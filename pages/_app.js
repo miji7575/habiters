@@ -1,9 +1,9 @@
 // import type { AppProps } from "next/app";
 import Layout from '../src/components/commons/layout/index';
 import { Global } from "@emotion/react";
-import { GlobalStyles } from "../src/commons/styles/globalStyles"
+// import { GlobalStyles } from "../src/commons/styles/globalStyles"
 import { RecoilRoot, useRecoilState, atom } from 'recoil';
-import {userState} from '../src/commons/stores/Stores';
+import { userState } from '../src/commons/stores/Stores';
 // "src/commons/styles/globalStyles";
 import '../styles/globals.css'
 import '../styles/colors.css'
@@ -25,15 +25,13 @@ import '../styles/util.css'
 
 export default function App({ Component, pageProps }) {
 
- 
-
-  
 
 
-    return (
-      <>
 
 
+
+  return (
+    <>
 
 
 
@@ -42,15 +40,17 @@ export default function App({ Component, pageProps }) {
 
 
 
-        {/* <Global styles={ GlobalStyles }> */}
-        <RecoilRoot>
-        
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </RecoilRoot>
-        {/* </Global> */}
 
-      </>
-    )
-  }
+
+      {/* <Global styles={ GlobalStyles }> */}
+      <RecoilRoot>
+
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
+      {/* </Global> */}
+
+    </>
+  )
+}

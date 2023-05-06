@@ -1,7 +1,7 @@
-import { atom } from "recoil"
+// import { atom } from "recoil"
 
-export const textState = atom({
-    key: 'text',
-    default: 1,
-});
+// export const textState = atom({
+//     key: 'text',
+//     default: 1,
+// });
 

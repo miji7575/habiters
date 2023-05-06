@@ -1,7 +1,7 @@
 import HeaderUI from "./Header.presenter"
 import { useRouter } from "next/router"
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { textState } from '../../../../../pages/commons/stores/store';
+// import { textState } from '../../../../../pages/commons/stores/store';
 import { userState } from '../../../../commons/stores/Stores';
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -33,7 +33,7 @@ export default function Header() {
 
 
 
-    const [text, setText] = useRecoilState(textState);
+    // const [text, setText] = useRecoilState(textState);
 
 
     const getUserData = async () => {

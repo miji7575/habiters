@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Header from './header/Header.container';
 import Footer from './footer/Footer.container';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import { textState } from '../../../../pages/commons/stores/store';
+// import { textState } from '../../../../pages/commons/stores/store';
 import { userState, sessionStorage, persistAtom } from '../../../commons/stores/Stores';
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -46,11 +46,11 @@ export default function Layout(props) {
 
 
     //   ===========inputTest ===========
-    const [text, setText] = useRecoilState(textState);
+    // const [text, setText] = useRecoilState(textState);
 
-    const onChange = (event) => {
-        setText(event.target.value);
-    };
+    // const onChange = (event) => {
+    //     setText(event.target.value);
+    // };
     //==============================================
 
 
