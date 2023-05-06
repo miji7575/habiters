@@ -68,7 +68,7 @@ export default function LoginPage() {
 
 
 
-    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/myhabit"
+    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
 
 
     return (
