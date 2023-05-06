@@ -1,7 +1,7 @@
 import { useRecoilState, atom } from 'recoil';
 import InputUI from "./Inputs.presenter"
 import { useState, useEffect, useCallback } from "react"
-import inputStyles from '../../../../styles/input.module.css'
+import inputStyles from '../../../styles/input.module.css'
 import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
 import { newInputValueState } from '../../../commons/stores/Stores';
 

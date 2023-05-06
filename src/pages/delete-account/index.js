@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
-import Textarea from "../../src/components/commons/textareas/Textareas.container"
+import Textarea from "../../components/commons/textareas/Textareas.container"
 
 export default function DeleteAccount() {
 

@@ -1,4 +1,4 @@
-import footerStyle from '../../../../../styles/footer.module.css'
+import footerStyle from '../../../../styles/footer.module.css'
 // ../../../../../styles/header.module.css
 import { FooterWrap, LogoBox, MainLogo, FooterDetailBox } from './Footer.styles'
 
