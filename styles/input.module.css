@@ -1,0 +1,112 @@
+
+
+/* input[type="text" i] { padding: 0 48px 0 12px; } */
+.aaa{
+    background-color: red;
+    width: 100px;
+}
+.input-default {
+    width: 380px;
+    height: 48px;
+    box-sizing: border-box;
+    border: solid 1px var(--color-black7);
+    border-radius: 8px;
+    color: var(--color-black2);
+
+}
+
+/* 입력중 */
+.input-default:focus { outline: 1px solid var(--color-black4);}
+.input_icon_close_circle_colored{ 
+    background-color: var(--color-black4);
+    position: absolute;
+    right: 12px;
+}
+
+/* 에러 */
+.input-error { border: solid 1px var(--color-error);}
+.input-error:focus { outline: solid 1px var(--color-error);}
+.icon-error-colored{ 
+    background-color: var(--color-error);
+    position: absolute;
+    right: 12px;
+}
+
+/* 성공 */
+.input-success {  border: solid 1px var(--color-success);}
+.input-success:focus {  outline: solid 1px var(--color-success);}
+.icon-check-colored{
+    background-color: var(--color-success);
+    position: absolute;
+    right: 12px;
+}
+
+/* 입력완료 */
+.input-done {}
+
+/* 읽기전용 */
+.input-default:disabled {
+    color: var(--color-black4);
+    border: solid 1px var(--color-black7);
+    background-color: var(--color-black8);
+}
+
+
+
+/* input 용도의 textarea */
+.input-textarea-default {
+    width: 380px;
+    height: 48px;
+    border: solid 1px var(--color-black7);
+    border-radius: 8px;
+    padding-left: 12px;
+    resize: none;
+    color: var(--color-black2);
+}
+
+
+
+
+
+
+/* ----- textarea.html ------ */
+
+.textarea-box {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-black4);
+    width: auto ;
+}
+
+.textarea-default {
+    
+    height: 272px ;
+    padding: 16px;
+    box-sizing: border-box;
+    resize: none;
+    border-radius: 8px;
+    border: solid 1px var(--color-black7);
+    color: var(--color-black4);
+}
+
+.textarea-explain {
+    /* width: 239px; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+
+
+
+.textarea-on {
+    color: var(--color-black2);
+}
+
+.textarea-error{
+    color: var(--color-error);
+}
+
+.textarea-done {}
+
+.textarea-readonly {}

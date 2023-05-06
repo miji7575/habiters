@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css순서 -->
+    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/typhography.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/input.css">
+    <link rel="stylesheet" href="/css/pop-up.css">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .thispage-title {
+            padding: 10px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+
+        }
+        .center{
+            text-align: center;
+        }
+        
+        .h-0{height: 28px; }
+        .h-1{height: 304px; line-height: 304px;}
+        .h-2{height: 268px; line-height: 268px;}
+        .h-3{height: 508px; line-height: 508px;}
+
+
+    </style>
+    <title>Pop-up</title>
+</head>
+
+<body>
+
+    <header class="headline1 thispage-title">
+        textarea
+    </header>
+    <hr>
+    <main>
+
+        <div class="container">
+
+            <section class="box">
+
+                <div class="headline5 center">1Button</div>
+
+                <!-- 1Button Text Only Pop-up -->
+                <div class="pop-up-container">
+
+                    <div class="pop-up-title">
+                        <span class="headline5">팝업 이름</span>
+                        <span class="icon-l icon-close-line"></span>
+                    </div>
+
+                    <div class="pop-up-content">
+                        <div class="body1-bold">서브타이틀</div>
+                        <div class="body2-medium">
+                            팝업 내용 입력해주세요. <br>
+                            팝업 내용에 따라 팝업 창의 높이 값은 달라질 수 있습니다.
+                        </div>
+                    </div>
+
+                    <div class="pop-up-btn">
+                        <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    </div>
+
+                </div>
+
+
+                <!-- 1Button Input Pop-up -->
+                <div class="pop-up-container">
+
+                    <div class="pop-up-title">
+                        <span class="headline5">팝업 이름</span>
+                        <span class="icon-l icon-close-line"></span>
+                    </div>
+
+                    <div class="pop-up-content">
+                        <div>
+                            <input type="text" class="input-default body3-medium color-black2" placeholder="플레이스 홀더">
+                        </div>
+                    </div>
+
+                    <div class="pop-up-btn">
+                        <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    </div>
+
+                </div>
+
+
+                <!-- 2Button TextArea Pop-up -->
+                <div class="pop-up-container">
+
+                    <div class="pop-up-title">
+                        <span class="headline5">팝업 이름</span>
+                        <span class="icon-l icon-close-line"></span>
+                    </div>
+
+                    <div class="pop-up-content">
+                        <div class="textarea-box">
+                            <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular"
+                                placeholder="플레이스 홀더. 텍스트를 입력해주세요."></textarea>
+                            <div class="textarea-explain caption2-regular">
+                                <span></span>
+                                <span>0/200</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pop-up-btn btn-arrange-row">
+                        <div class="btn btn-large btn-secondary-default body2-medium">버튼</div>
+                        <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="box">
+
+                <div class="headline5 center">2Button</div>
+
+                <!-- 2Button Text Only Pop-up -->
+                <div class="pop-up-container">
+
+                    <div class="pop-up-title">
+                        <span class="headline5">팝업 이름</span>
+                        <span class="icon-l icon-close-line"></span>
+                    </div>
+
+                    <div class="pop-up-content">
+                        <div class="body1-bold">서브타이틀</div>
+                        <div class="body2-medium">
+                            팝업 내용 입력해주세요. <br>
+                            팝업 내용에 따라 팝업 창의 높이 값은 달라질 수 있습니다.
+                        </div>
+                    </div>
+
+                    <div class="pop-up-btn btn-arrange-row">
+                        <div class="btn btn-large btn-secondary-default body2-medium">버튼</div>
+                        <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    </div>
+
+                </div>
+
+                <!-- 2Button Input Pop-up -->
+                <div class="pop-up-container">
+
+                    <div class="pop-up-title">
+                        <span class="headline5">팝업 이름</span>
+                        <span class="icon-l icon-close-line"></span>
+                    </div>
+
+                    <div class="pop-up-content">
+                        <div>
+                            <input type="text" class="input-default body3-medium color-black2" placeholder="플레이스 홀더">
+                        </div>
+                    </div>
+
+                    <div class="pop-up-btn btn-arrange-row">
+                        <div class="btn btn-large btn-secondary-default body2-medium">버튼</div>
+                        <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    </div>
+
+                </div>
+
+
+                <!-- 2Button TextArea Pop-up -->
+                <div class="pop-up-container">
+
+                    <div class="pop-up-title">
+                        <span class="headline5">팝업 이름</span>
+                        <span class="icon-l icon-close-line"></span>
+                    </div>
+
+                    <div class="pop-up-content">
+                        <div class="textarea-box">
+                            <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular"
+                                placeholder="플레이스 홀더. 텍스트를 입력해주세요."></textarea>
+                            <div class="textarea-explain caption2-regular">
+                                <span></span>
+                                <span>0/200</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pop-up-btn btn-arrange-row">
+                        <div class="btn btn-large btn-secondary-default body2-medium">버튼</div>
+                        <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="box headline5 ">
+                <div class="h-0"></div>
+                <div class="h-1">Text Only</div>
+                <div class="h-2">Input</div>
+                <div class="h-3">TextArea</div>
+            </section>
+
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>

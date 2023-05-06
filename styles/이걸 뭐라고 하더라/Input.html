@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/typhography.css">
+    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/css/input.css">
+
+    <style>
+        .input-container {
+            display: inline-flex;
+            flex-direction: column;
+        }
+
+        .input-box {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+        }
+
+        body {
+            padding: 10px;
+        }
+
+        .sub-title {
+            padding: 10px;
+        }
+
+        .box {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="headline1 sub-title">
+        Input (Input fiends & Text area)
+    </header>
+    <hr>
+    <main>
+
+        <section class="box">
+            <div>
+                <div class="headline3 sub-title">Input Fileds</div>
+                <div>인풋 필드 기본 사이즈는 380px로 사용하고, 상황에 따라 가로값을 유연하게 조정하여 사용합니다.<br>
+                    세로 높이 값은 48px로 고정해서 사용합니다.</div>
+            </div>
+        </section>
+
+
+        <!-- 기본 -->
+        <section class="box">
+            <div>
+                <div class="headline5">인풋레이블</div>
+                <div>
+                    <input type="text" class="input-default body3-medium color-black2" placeholder="플레이스 홀더">
+                </div>
+            </div>
+
+            <div>
+                <div class="headline5"> text area </div>
+                <div>
+                    <textarea name="" id="" class="input-textarea-default body3-medium"
+                        placeholder="플레이스 홀더"></textarea>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 입력중일 때 -->
+        <section class="box">
+
+            <div class="input-container">
+                <div class="input-box">
+                    <span class="icon-m icon-close-circle-colored"></span>
+                    <input type="text" class="input-default body3-medium" placeholder="입력중일 때">
+                </div>
+                <div class="caption1-regular color-error"></div>
+            </div>
+
+
+            <div>
+                <div>
+                    <textarea name="" id="" cols="30" rows="10" class="input-textarea-default body3-medium"
+                        placeholder="입력중일 때"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- 에러났을 때 -->
+        <section class="box">
+
+            <div class="input-container">
+                <div class="input-box">
+                    <input type="text" class="input-default body3-medium input-error" placeholder="에러났을 때">
+                    <span class="icon-m icon-error-colored"></span>
+                </div>
+                <div class="caption1-regular color-error">에러메세지</div>
+            </div>
+            <div>
+                <div>
+                    <textarea name="" id="" cols="30" rows="10" class="input-textarea-default body3-medium"
+                        placeholder="에러났을 때"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- 성공했을 때 -->
+        <section class="box">
+            <div class="input-container">
+                <div class="input-box">
+                    <input type="text" class="input-default body3-medium input-success" placeholder="성공했을 때">
+                    <span class="icon-m icon-check-colored"></span>
+                </div>
+                <div class="caption1-regular color-success">성공메세지</div>
+            </div>
+            <div>
+                <div>
+                    <textarea name="" id="" cols="30" rows="10" class="input-textarea-default body3-medium"
+                        placeholder="성공했을 때"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- 입력완료 텍스트 -->
+        <section class="box">
+            <div>
+                <div>
+                    <input type="text" class="input-default body3-medium" placeholder="입력완료 텍스트">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <textarea name="" id="" cols="30" rows="10" class="input-textarea-default body3-medium"
+                        placeholder="입력완료 텍스트"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- 읽기전용 -->
+        <section class="box">
+            <div>
+                <div>
+                    <input type="text" class="input-default body3-medium" placeholder="읽기전용 텍스트" disabled>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <textarea name="" id="" cols="30" rows="10" class="input-textarea-default body3-medium"
+                        placeholder="읽기전용 텍스트" disabled></textarea>
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+</body>
+
+</html>

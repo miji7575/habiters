@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css순서 -->
+    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/typhography.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/input.css">
+    <link rel="stylesheet" href="/css/daily-retrospect.css">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .thispage-title {
+            padding-top: 30px;
+            padding-bottom: 10px;
+        }
+
+        .box-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .box-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+
+        }
+    </style>
+    <title>DailyRetrospect</title>
+</head>
+
+<body>
+    <header class="headline1 thispage-title">
+        Daily
+    </header>
+    <hr>
+    <main>
+        <div class="headline5">오늘의 회고 작성</div>
+
+
+        <!-- ==================== Diary ====================  -->
+        <div class="headline5 thispage-title">diaryList</div>
+
+        <section class="box-column">          
+
+            <!-- Diary editable -->
+            <div class="diary-box">
+
+                <div class="diary-aside">
+
+                    <div class="diary-date-box">
+                        <div class="body3-regular color-black2">월요일</div>
+                        <div class="headline2 color-purple2">08</div>
+                    </div>
+
+                    <div class="diary-icon-box">
+                        <span class="icon-round-l icon-round-filled">
+                            <span class="icon-s icon-pencil-colored"></span>
+                        </span>
+                        <span class="icon-round-l bg-white icon-round-border-purple2">
+                            <span class="icon-s icon-delete-colored"></span>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="diary-content-box">
+                    <div class="body3-regular color-black2">
+                        오늘의 회고내용을 어쩌구 저쩌구 쓰게 됩니다.<br>
+                        그게 200자가 넘으면은 글자수가 제한되는데,<br>
+                        이게 어떻게 보면 너무 길어질 수도 있는데 이걸 영역을 늘려야 할지 아니면 애초에 스크롤로 가야할지...참 고민이 되네요.<br>
+                        근데 생각보다 200자가 그렇게 많지 않을 것 같기도 하네요? 이것 참참..<br>
+                        공백은 포함해서 가는건가요?<br>
+                        공백 포함하면 이게 200자
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Diary NON editable -->
+            <div class="diary-box diary-box-non-editable">
+
+                <div class="diary-aside">
+
+                    <div class="diary-date-box">
+                        <div class="body3-regular color-black2">월요일</div>
+                        <div class="headline2 color-black2">08</div>
+                    </div>
+
+                    <div class="diary-icon-box">
+                        <span class="icon-round-l bg-white icon-round-border-black4">
+                            <span class="icon-s icon-delete-colored icon-color-black4"></span>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="diary-content-box">
+                    <div class="body3-regular color-black2">
+                        오늘의 회고내용을 어쩌구 저쩌구 쓰게 됩니다.<br>
+                        그게 200자가 넘으면은 글자수가 제한되는데,<br>
+                        이게 어떻게 보면 너무 길어질 수도 있는데 이걸 영역을 늘려야 할지 아니면 애초에 스크롤로 가야할지...참 고민이 되네요.<br>
+                        근데 생각보다 200자가 그렇게 많지 않을 것 같기도 하네요? 이것 참참..<br>
+                        공백은 포함해서 가는건가요?<br>
+                        공백 포함하면 이게 200자
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </section>
+
+
+
+        <!-- ==================== Retrospect ====================  -->
+
+        <div class="headline5 thispage-title">Retrospect</div>
+
+        <section class="box-row">
+
+
+            <!-- Retrospect editable -->
+            <div class="retrospect-box">
+
+                <div class="headline5 color-black1">오늘의 회고</div>
+
+                <div class="textarea-box">
+                    <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular"
+                        placeholder="오늘의 회고를 작성해주세요.&#13;&#10;작성한 회고는 24시간 이내로만 수정이 가능해요."></textarea>
+                    <div class="textarea-explain caption2-regular">
+                        <span></span>
+                        <span>0/200</span>
+                    </div>
+                </div>
+
+                <div class="btn btn-large btn-primary-default body2-medium btn-width-auto">버튼</div>
+
+            </div>
+
+
+            <!-- Retrospect NON editable -->
+            <div class="retrospect-box">
+
+                <div class="headline5 color-black1">오늘의 회고</div>
+
+                <div class="textarea-box">
+                    <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular"
+                        placeholder="오늘의 회고를 이미 작성했어요.&#13;&#10;내일 또 만나요!" disabled></textarea>
+                    <div class="textarea-explain caption2-regular">
+                        <span></span>
+                        <span>0/200</span>
+                    </div>
+                </div>
+
+                <div class="btn-large btn-primary-default btn-primary-disabled body2-medium btn-width-auto">버튼</div>
+
+            </div>
+
+
+
+
+        </section>
+
+
+    </main>
+</body>
+
+</html>

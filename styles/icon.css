@@ -1,0 +1,199 @@
+:root {
+    --icon-size-xs: 12px;
+    --icon-size-s: 16px;
+    --icon-size-m: 24px;
+    --icon-size-l: 32px;
+    --icon-size-xl: 48px;
+
+    --icon-round-l: 32px;
+    --icon-round-m: 24px;
+}
+
+.icon-xs {
+    display: inline-block;
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+
+    background-size: var(--icon-size-xs) var(--icon-size-xs);
+    -webkit-mask-size: var(--icon-size-xs) var(--icon-size-xs);
+    cursor: pointer;
+}
+
+.icon-s {
+    display: inline-block;
+    width: var(--icon-size-s);
+    height: var(--icon-size-s);
+
+    background-size: var(--icon-size-s) var(--icon-size-s);
+    -webkit-mask-size: var(--icon-size-s) var(--icon-size-s);
+    cursor: pointer;
+}
+
+.icon-m {
+    display: inline-block;
+    width: var(--icon-size-m);
+    height: var(--icon-size-m);
+
+    background-size: var(--icon-size-m) var(--icon-size-m);
+    -webkit-mask-size: var(--icon-size-m) var(--icon-size-m);
+    cursor: pointer;
+}
+
+.icon-l {
+    display: inline-block;
+    width: var(--icon-size-l);
+    height: var(--icon-size-l);
+
+    background-size: var(--icon-size-l) var(--icon-size-l);
+    -webkit-mask-size: var(--icon-size-l) var(--icon-size-l);
+    cursor: pointer;
+}
+
+.icon-xl {
+    display: inline-block;
+    width: var(--icon-size-xl);
+    height: var(--icon-size-xl);
+
+    background-size: var(--icon-size-xl) var(--icon-size-xl);
+    -webkit-mask-size: var(--icon-size-xl) var(--icon-size-xl);
+    cursor: pointer;
+}
+
+
+.icon-add {
+    background: url(/image/icon/icon-add.svg) no-repeat;
+}
+
+.icon-arrow-left {
+    background: url(/image/icon/icon-arrow-left.svg) no-repeat;
+}
+
+.icon-check {
+    background: url(/image/icon/icon-check.svg) no-repeat;
+}
+
+.icon-close-circle {
+    background: url(/image/icon/icon-close-circle.svg) no-repeat;
+}
+
+.icon-close-line {
+    background: url(/image/icon/icon-close-line.svg) no-repeat;
+}
+
+.icon-delete {
+    background: url(/image/icon/icon-delete.svg) no-repeat;
+}
+
+.icon-error {
+    background: url(/image/icon/icon-error.svg) no-repeat;
+}
+
+.icon-pencil {
+    background: url(/image/icon/icon-pencil.svg) no-repeat;
+}
+
+
+.icon-add-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-add.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+.icon-arrow-left-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-arrow-left.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+.icon-check-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-check.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+.icon-close-circle-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-close-circle.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+.icon-close-line-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-close-line.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+.icon-delete-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-delete.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+.icon-error-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-error.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+.icon-pencil-colored {
+    background-color: var(--color-purple2);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-pencil.svg);
+    -webkit-mask-repeat: no-repeat;
+}
+
+
+
+
+
+.icon-round-l {
+    width: var(--icon-round-l);
+    height: var(--icon-round-l);
+    box-sizing: border-box;
+    border: solid 1px var(--color-black7);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(var(--icon-round-l) / 2);
+    cursor: pointer;
+}
+
+.icon-round-m {
+    width: var(--icon-round-m);
+    height: var(--icon-round-m);
+    box-sizing: border-box;
+    border: solid 1px var(--color-black7);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(var(--icon-round-m) / 2);
+    cursor: pointer;
+}
+
+.icon-round-filled {
+    background-color: var(--color-purple2);
+    border: solid 1px var(--color-purple2);
+}
+
+.icon-round-filled>span {
+    background-color: var(--color-white);
+}
+
+.icon-round-border-purple2 {
+    border: 1px solid var(--color-purple2);
+}
+
+.icon-round-border-black4 {
+    border: 1px solid var(--color-black4);
+}
+
+.icon-color-black4 {
+    background-color: var(--color-black4);
+}

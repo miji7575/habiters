@@ -1,0 +1,57 @@
+.pop-up-container {
+    width: 428px;
+    box-sizing: border-box;
+    padding: 40px 24px 40px 24px;
+    border-radius: 24px;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 3px 3px 3px black;
+}
+
+.pop-up-container-textarea {
+    height: 504px;
+}
+
+.pop-up-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+
+}
+
+
+.pop-up-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.pop-up-container .textarea-box {
+    width: auto;
+}
+
+.pop-up-btn {
+    display: flex;
+    justify-content: center;
+}
+
+
+ /* 팝업 배경
+.pop-up-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.pop-up-container {
+    position: absolute;
+    top: calc(50vh - (428px / 2));
+    left: calc(50vw - (504px / 2));
+} */

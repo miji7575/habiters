@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/typhography.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .thispage-title {
+            padding: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start
+        }
+
+        .box {
+            display: grid;
+            grid-template:
+                "button-size button-primary button-secondary button-type" 300px / 100px 4fr 4fr 100px;
+        }
+
+        .name {
+            display: inline-block;
+            width: 380px;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .size {
+            grid-area: button-size;
+            align-items: end;
+        }
+
+        .primary {
+            grid-area: button-primary;
+
+        }
+
+        .secondary {
+            grid-area: button-secondary;
+            margin-left: 8PX;
+        }
+
+        .type {
+            padding-left: 10px;
+            grid-area: button-type;
+            color: var(--color-black4);
+            display: grid;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .type1 {
+            grid-template-rows: 48px 48px 48px 48px 1fr;
+        }
+
+        .type2 {
+            grid-template-rows: 32px 32px 32px 32px 1fr;
+        }
+
+        .margin-bottom {
+            margin-bottom: 20px;
+        }
+
+        .margin-top {
+            margin-top: 30px;
+        }
+
+        .box-row {
+            display: flex;
+        }
+
+        .gap-50 {
+            gap: 50px;
+        }
+
+        .box-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+    <title>Button</title>
+</head>
+
+<body>
+    <header class="headline1 thispage-title">
+        Button
+    </header>
+    <hr>
+
+    <main>
+
+        <section>
+            버튼은 기본적으론 380px 사이즈를 가져가되, 컨텐츠에 맞춰 유연하게 사용합니다.
+        </section>
+
+        <section class="container">
+            <div>
+                <span class="headline5 name">Primary button</span>
+                <span class="headline5 name">Secondary button</span>
+            </div>
+
+
+            <div class="box">
+
+                <div class="size">
+                    <span class="headline5">Large</span>
+                </div>
+
+                <div class="primary btn-arrange-vertical">
+                    <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    <div class="btn btn-large btn-primary-default body2-medium">버튼</div>
+                    <div class="btn btn-large btn-primary-default btn-primary-pressed body2-medium">버튼</div>
+                    <div class="btn-large btn-primary-default btn-primary-disabled body2-medium">버튼</div>
+                </div>
+
+                <div class="secondary btn-arrange-vertical">
+                    <div class="btn btn-large btn-secondary-default body2-medium">버튼</div>
+                    <div class="btn btn-large btn-secondary-default body2-medium">버튼</div>
+                    <div class="btn btn-large btn-secondary-default btn-secondary-pressed body2-medium">버튼</div>
+                    <div class="btn-large btn-secondary-default btn-secondary-disabled  body2-medium">버튼</div>
+                </div>
+
+                <div class="body1-medium type type1">
+                    <div>default</div>
+                    <div>hover</div>
+                    <div>active/pressed</div>
+                    <div>disabled</div>
+                </div>
+            </div>
+
+
+            <div class="box">
+
+                <div class="size">
+                    <span class="headline5">Medium</span>
+                </div>
+
+                <div class="primary btn-arrange-vertical">
+                    <div class="body3-medium btn btn-medium btn-primary-default ">버튼</div>
+                    <div class="body3-medium btn btn-medium btn-primary-default ">버튼</div>
+                    <div class="body3-medium btn btn-medium btn-primary-default btn-primary-pressed ">버튼</div>
+                    <div class="body3-medium btn-medium btn-primary-default btn-primary-disabled ">버튼</div>
+                </div>
+
+                <div class="secondary btn-arrange-vertical">
+                    <div class="body3-medium btn btn-medium btn-secondary-default ">버튼</div>
+                    <div class="body3-medium btn btn-medium btn-secondary-default ">버튼</div>
+                    <div class="body3-medium btn btn-medium btn-secondary-default btn-secondary-pressed ">버튼</div>
+                    <div class="body3-medium btn-medium btn-secondary-default btn-secondary-disabled  ">버튼</div>
+                </div>
+
+                <div class="body1-medium type type2">
+                    <div>default</div>
+                    <div>hover</div>
+                    <div>active/pressed</div>
+                    <div>disabled</div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+        <section>
+
+
+
+
+
+            <div>
+                <span class="headline5 name">버튼 최소 크기 </span>
+            </div>
+
+            <div class="box-row gap-50">
+
+                <div>
+
+                    <div class="body3-bold margin-bottom margin-top">Medium 최소</div>
+
+                    <div class="btn-arrange-vertical">
+                        <div class="body3-medium btn btn-medium btn-primary-default btn-width-fit-content">
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body3-medium btn btn-medium btn-primary-default btn-width-fit-content">
+                            <span class="icon-s icon-add-colored btn-inner-icon-white"></span>
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content">
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content">
+                            <span class="icon-s icon-add-colored btn-inner-icon"></span>
+                            <span>버튼</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="body3-bold margin-bottom margin-top">Large 최소</div>
+
+                    <div class="btn-arrange-vertical">
+
+                        <div class="body2-medium btn btn-large btn-primary-default btn-width-fit-content">
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body2-medium btn btn-large btn-primary-default btn-width-fit-content">
+                            <span class="icon-m icon-add-colored btn-inner-icon-white"></span>
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body2-medium btn btn-large btn-secondary-default btn-width-fit-content">
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body2-medium btn btn-large btn-secondary-default btn-width-fit-content">
+                            <span class="icon-m icon-add-colored btn-inner-icon"></span>
+                            <span>버튼</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+
+
+
+        <section>
+
+            <div>
+                <span class="headline5 name">아이콘이 있는 버튼 </span>
+            </div>
+
+            <div class="box-row gap-50">
+
+                <div>
+                    <div class="body3-bold margin-bottom margin-top">Medium icon button</div>
+
+                    <div class="btn-arrange-vertical">
+                        <div class="body3-medium btn btn-medium btn-primary-default btn-width-fit-content">
+                            <span class="icon-s icon-add-colored btn-inner-icon-white"></span>
+                            <span>새로운 습관 만들기</span>
+                        </div>
+
+                        <div class="body3-medium btn btn-medium btn-primary-default btn-width-fit-content">
+                            <span class="icon-s icon-add-colored btn-inner-icon-white"></span>
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content">
+                            <span class="icon-s icon-add-colored btn-inner-icon"></span>
+                            <span>새로운 습관 만들기</span>
+                        </div>
+
+                        <div class="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content">
+                            <span class="icon-s icon-add-colored btn-inner-icon"></span>
+                            <span>버튼</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="body3-bold margin-bottom margin-top">Large icon button</div>
+
+                    <div class="btn-arrange-vertical">
+
+                        <div class="body2-medium btn btn-large btn-primary-default btn-width-fit-content">
+                            <span class="icon-m icon-add-colored btn-inner-icon-white"></span>
+                            <span>새로운 습관 만들기</span>
+                        </div>
+
+                        <div class="body2-medium btn btn-large btn-primary-default btn-width-fit-content">
+                            <span class="icon-m icon-add-colored btn-inner-icon-white"></span>
+                            <span>버튼</span>
+                        </div>
+
+                        <div class="body2-medium btn btn-large btn-secondary-default btn-width-fit-content">
+                            <span class="icon-m icon-add-colored btn-inner-icon"></span>
+                            <span>새로운 습관 만들기</span>
+                        </div>
+
+                        <div class="body2-medium btn btn-large btn-secondary-default btn-width-fit-content">
+                            <span class="icon-m icon-add-colored btn-inner-icon"></span>
+                            <span>버튼</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+
+
+        <section>
+
+            <div>
+                <span class="headline5 name">SNS로그인용 버튼</span>
+            </div>
+
+            <div class="box-column">
+
+                <div class="btn-sns-login btn-sns-login-google">
+                    <span class="body2-medium">구글로 로그인하기</span>
+                </div>
+
+                <div class="btn-sns-login btn-sns-login-kakao">
+                    <span class="body2-medium">카카오로 로그인하기</span>
+                </div>
+
+                <div class="btn-sns-login btn-sns-login-naver">
+                    <span class="body2-medium">네이버로 로그인하기</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+    </main>
+</body>
+
+</html>

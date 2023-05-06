@@ -1,0 +1,99 @@
+
+.header{
+    /* background-color: antiquewhite; */
+    height: var(--header-height);
+    display: flex;
+    padding-left: 17%;
+    padding-right: 19%;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-black7);
+    box-sizing: border-box;
+
+}
+
+.header > div{
+    height: inherit;
+}
+.logo{
+    box-sizing: border-box;
+}
+.main_logo{
+    width: 212px;
+    height: 24px;
+    padding: 33px 0px 33px 0;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+.header_menu_box{
+    display: flex;
+    gap: 40px;
+}
+.header_mypage_box{
+    display: flex;
+}
+
+
+
+.header_menu{
+    display: block;
+    color: var(--color-black1);
+    cursor: pointer;
+    line-height: var(--header-height);
+    
+    position: relative;
+    
+}
+
+.header_menu::before{
+    content: '';
+    background-color: var(--color-purple2);
+    width: max-content;
+    height: 4px;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    transition: .3s;
+}
+
+
+
+
+
+.header_menu:hover::before{
+    width: 100%;
+}
+
+.test{
+    background-color: red;
+}
+
+/* 폰트 */
+
+@font-face { 
+    font-family: 'Pretendard-Bold'; 
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff'); 
+    font-weight: bold; 
+    font-style: normal; 
+  }
+  
+  @font-face { 
+    font-family: 'Pretendard-Medium'; 
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff'); 
+    font-weight: 500; 
+    font-style: normal; 
+  }
+  
+  @font-face { 
+    font-family: 'Pretendard-Regular'; 
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff'); 
+    font-weight: 400; 
+    font-style: normal; 
+  }
+
+.body1_medium{
+    font-family: 'Pretendard-Medium'; 
+    font-size: 18px;
+    line-height: 26px;
+}

@@ -1,0 +1,128 @@
+@font-face { 
+    font-family: 'Pretendard-Bold'; 
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff'); 
+    font-weight: bold; 
+    font-style: normal; 
+}
+
+@font-face { 
+    font-family: 'Pretendard-Medium'; 
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff'); 
+    font-weight: 500; 
+    font-style: normal; 
+}
+
+@font-face { 
+    font-family: 'Pretendard-Regular'; 
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff'); 
+    font-weight: 400; 
+    font-style: normal; 
+}
+
+/* --- headline --- */
+.headline1{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 40px;
+    line-height: 52px;
+}
+.headline2{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 32px;
+    line-height: 42px;
+}
+.headline3{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 28px;
+    line-height: 38px;
+}
+.headline4{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 24px;
+    line-height: 32px;
+}
+.headline5{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 20px;
+    line-height: 28px;
+}
+/* --- body --- */
+.body1_bold{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 18px;
+    line-height: 26px;
+}
+.body1_medium{
+    font-family: 'Pretendard-Medium'; 
+    font-size: 18px;
+    line-height: 26px;
+}
+.body1_regular{
+    font-family: 'Pretendard-Regular'; 
+    font-size: 18px;
+    line-height: 26px;
+}
+.body2_bold{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 16px;
+    line-height: 24px;
+}
+.body2_medium{
+    font-family: 'Pretendard-Medium'; 
+    font-size: 16px;
+    line-height: 24px;
+}
+.body2_regular{
+    font-family: 'Pretendard-Regular'; 
+    font-size: 16px;
+    line-height: 24px;
+}
+.body3_bold{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 14px;
+    line-height: 20px;
+}
+.body3_medium{
+    font-family: 'Pretendard-Medium'; 
+    font-size: 14px;
+    line-height: 20px;
+}
+.body3_regular{
+    font-family: 'Pretendard-Regular'; 
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* --- caption --- */
+
+.caption1_bold{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 12px;
+    line-height: 16px;
+}
+.caption1_medium{
+    font-family: 'Pretendard-Medium'; 
+    font-size: 12px;
+    line-height: 16px;
+}
+.caption1_regular{
+    font-family: 'Pretendard-Regular'; 
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.caption2_bold{
+    font-family: 'Pretendard-Bold'; 
+    font-size: 10px;
+    line-height: 12px;
+}
+.caption2_medium{
+    font-family: 'Pretendard-Medium'; 
+    font-size: 10px;
+    line-height: 12px;
+}
+.caption2_regular{
+    font-family: 'Pretendard-Regular'; 
+    font-size: 10px;
+    line-height: 12px;
+}
+

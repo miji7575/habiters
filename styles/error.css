@@ -1,0 +1,20 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer{
+    position: absolute;
+}
+
+.error-img-box {
+    padding-top: 120px;
+}
+
+.btn-box {
+    padding-top: 40px;
+}
+
+.btn-large {
+    width: 240px;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/typhography.css">
+    <link rel="stylesheet" href="/css/input.css">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .thispage-title {
+            padding: 10px;
+        }
+
+        .box {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: inline-grid;
+            grid-template-columns: 300px 300px 300px 300px;
+            gap: 10px;
+        }
+        .textarea-box{
+            width: 239px;
+        }
+    </style>
+    <title>Textarea</title>
+</head>
+
+<body>
+    <header class="headline1 thispage-title">
+        textarea
+    </header>
+    <hr>
+    <main>
+
+        <section class="box">
+            <div>
+                <div class="headline3 thispage-title">textarea Fileds</div>
+                <div>TextArea는 상하좌우 패딩값 16을 기본으로 사용, 상황에 따라 유연한 너비, 높이 값을 가져갑니다.<br>
+                    다만, 높이의 경우 해당 페이지에 있는 값으로 고정하되 텍스트 내용이 고정값을 넘어가면 영역 내에서 스크롤 되도록 합니다.</div>
+            </div>
+        </section>
+
+
+        <section class="container">
+
+            <!-- 텍스트 에리어 글자수 세는거 까지 합친거 양식! -->
+
+            <div class="textarea-box">
+                <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular"
+                    placeholder="플레이스 홀더. 텍스트를 입력해주세요."></textarea>
+                <div class="textarea-explain caption2-regular">
+                    <span></span>
+                    <span>0/200</span>
+                </div>
+            </div>
+            <!-- ------------------------------------------------ -->
+
+            <div class="textarea-box">
+                <textarea name="" id="" cols="30" rows="10" class="textarea-default textarea-on body3-regular"
+                    placeholder="텍스트 입력중일 때. "></textarea>
+                <div class="textarea-explain caption2-regular">
+                    <span></span>
+                    <span>0/200</span>
+                </div>
+            </div>
+
+
+            <div class="textarea-box  textarea-error"> <!-- textarea는 따로 textarea-error 한번 더 먹여야함 -->
+                <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular textarea-error"
+                    placeholder="입력에 오류가 있을 때"></textarea>
+                <div class="textarea-explain caption2-regular ">
+                    <span>에러메세지</span>
+                    <span>0/200</span>
+                </div>
+            </div>
+
+
+            <div class="textarea-box">
+                <textarea name="" id="" cols="30" rows="10" class="textarea-default textarea-on body3-regular"
+                    placeholder="텍스트 입력이 완료되었을 때"></textarea>
+                <div class="textarea-explain caption2-regular">
+                    <span></span>
+                    <span>0/200</span>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="textarea-box">
+                    <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular"
+                        placeholder="읽기전용/작성불가" disabled></textarea>
+                </div>
+            </div>
+
+
+
+            <div class="textarea-box">
+                <textarea name="" id="" cols="30" rows="10" class="textarea-default body3-regular"
+                    placeholder="JS적용 완성양식."></textarea>
+                <div class="textarea-explain caption2-regular">
+                    <span></span>
+                    <span>0/200</span>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+</body>
+
+</html>

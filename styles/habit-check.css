@@ -1,0 +1,142 @@
+.habitcheck-wrap{
+    width: 280px;
+    height: 508px;
+    box-sizing: border-box;
+    position: relative;
+    
+
+    border-radius: 8px;
+    border: 1px solid var(--color-black7);
+    
+}
+
+
+.habitcheck-container{
+    width: 278px;
+    height: 438px;
+    box-sizing: border-box;
+    padding: 0 20px 20px 20px;
+    margin-top: 68px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    scrollbar-width: none;  
+    
+}
+.habitcheck-container .img-no-retrospect{
+    width: 148px;
+    height: 110px;
+}
+
+.habitcheck-container-filter-top{
+    position: absolute;
+    width: 278px;
+    height: 100px;
+    top: 68px;
+    left: 0px;
+    box-sizing: border-box;
+    background: linear-gradient(var(--color-white), #ffffff00);
+
+}
+
+.habitcheck-container-filter-bottom{
+    position: absolute;
+    width: 278px;
+    height: 100px;
+    background: linear-gradient( #ffffff00,var(--color-white));
+    bottom: 0px;
+    left: 0px;
+    border-radius: 0 0 8px 8px;
+}
+
+.habitcheck-container::-webkit-scrollbar{
+    /* display: none; */
+    width: 8px;
+
+}
+
+.habitcheck-container::-webkit-scrollbar-thumb{
+    height: 30%; /* 스크롤바의 길이 */
+    background: var(--color-black7); /* 스크롤바의 색상 */
+    border-radius: 10px;
+}
+
+.habitcheck-container::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.habitcheck-title{
+    height: 68px;
+    padding-left: 20px;
+    padding-top: 24px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    position: absolute;
+    top:0;
+}
+
+.habitcheck-box {
+    width: 240px;
+    height: 112px;
+    box-sizing: border-box;
+    padding: 20px 24px 20px 24px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.habitcheck-button {
+    width: 192px;
+    height: 32px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.habitcheck-box-purple{ background-color: var(--color-purple4); }
+.habitcheck-box-purple > .habitcheck-button{ 
+    color: var(--color-white);
+    background-color: var(--color-purple2);
+}
+
+.habitcheck-box-blue{ background-color: var(--color-skyblue4); }
+.habitcheck-box-blue > .habitcheck-button{ 
+    background-color: var(--color-skyblue2);
+    color: var(--color-white);
+}
+
+.habitcheck-box-green{ background-color: var(--color-green4); }
+.habitcheck-box-green > .habitcheck-button{ 
+    background-color: var(--color-green2);
+    color: var(--color-white);
+}
+
+.habitcheck-button.habitcheck-button-empty {
+    background-color: var(--color-white);
+}
+
+.habitcheck-box-purple > .habitcheck-button.habitcheck-button-empty{ 
+    color: var(--color-purple2);
+    border: 1px solid var(--color-purple2);
+}
+
+.habitcheck-box-blue > .habitcheck-button.habitcheck-button-empty{ 
+    color: var(--color-skyblue2);
+    border: 1px solid var(--color-skyblue2);
+}
+
+.habitcheck-box-green > .habitcheck-button.habitcheck-button-empty{ 
+    color: var(--color-green2);
+    border: 1px solid var(--color-green2);
+}
+

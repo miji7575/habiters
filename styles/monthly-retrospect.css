@@ -1,0 +1,366 @@
+.footer {
+    /* position: absolute; */
+}
+
+/* ----------Index page --------- */
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 200px;
+}
+
+.title {
+    padding: 72px 0 48px 0;
+    width: 500px;
+}
+
+.toggle-box {
+    padding-bottom: 64px;
+
+}
+
+.monthly-retrospect-container,
+.monthly-habit-tracker-container {
+    display: grid;
+    grid-template-columns: 880px 280px;
+    grid-template-rows: 32px 1fr;
+    column-gap: 20px;
+    row-gap: 24px;
+    justify-items: center
+}
+
+
+.habit-tracker-header {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: inline-flex;
+    width: 880px;
+    position: relative;
+    justify-content: center;
+}
+
+.add-habit-btn {
+    position: absolute;
+    right: 0;
+
+}
+
+/* ----- 월간 해빗 트래커 ----- */
+/*%%%%%%%%%%%%%%%%% grid %%%%%%%%%%%%%%사용 */
+/* .calender-container{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 880px;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    
+}
+
+.calender-box{
+    display: grid;
+    grid-template-columns: 176px repeat(31, 44px);
+    grid-template-rows: 60px repeat(5, 44px);
+    
+}
+.calender-index-column {
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+}
+
+
+.day-date-box{
+    width: 44px;
+    box-sizing: border-box;
+    padding: 9px 0px 9px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--color-black8);
+}
+
+.habit1{
+
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+
+
+.habit-checkbox{
+    width: 44px;
+    box-sizing: border-box;
+    padding: 9px 0px 9px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--color-black8);
+} */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+.calender-container {}
+
+
+.calender-box {
+    width: 880px;
+    overflow-x: scroll;
+}
+
+.calender {
+    display: inline-flex;
+    padding-bottom: 24px;
+}
+
+/* --- 스크롤바 커스텀 ---*/
+/* 
+.calender-box-scrollbar{
+
+}
+
+.calender-box-scrollbar::-webkit-scrollbar {
+    height: 4px;
+
+}
+.calender-box-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-black1);
+    border-radius: 2px;
+}
+
+.calender-box-scrollbar::-webkit-scrollbar-track {
+    background-color: var(--color-black8);
+} */
+
+
+/* ---------스크롤바 끝 -------- */
+.habit-list-box {
+    display: flex;
+    flex-direction: column;
+    width: 176px;
+    box-sizing: border-box;
+}
+
+.habit-list-box .habit-list-title {
+    border-top: 1px solid var(--color-black8);
+    border-top-left-radius: 8px;
+    height: 60px;
+    line-height: 60px;
+}
+
+.habit-list-box>span {
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    box-sizing: border-box;
+    border-left: 1px solid var(--color-black8);
+    border-right: 1px solid var(--color-black8);
+    border-bottom: 1px solid var(--color-black8);
+}
+
+.habit-list-box>.habit-title:last-child {
+    border-bottom-left-radius: 8px;
+}
+
+
+.habit-title:hover{
+    display: none;  
+}
+
+
+.habit-title-manage{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--color-purple2);
+    
+}
+.habit-update-btn,
+.habit-delete-btn{
+    background-color: var(--color-white);
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+
+.day-box {
+    display: flex;
+    flex-direction: column;
+    width: 44px;
+    box-sizing: border-box;
+}
+
+.day-box .day-date-box {
+    height: 60px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--color-black8);
+    border-right: 1px solid var(--color-black8);
+    border-bottom: 1px solid var(--color-black8);
+    cursor: pointer;
+}
+
+.day-box .habit-checkbox-box {
+    height: 44px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--color-black8);
+    border-bottom: 1px solid var(--color-black8);
+}
+
+.habit-checkbox {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background-color: var(--color-black9);
+}
+
+.calender .day-box:last-child .day-date-box {
+    border-top-right-radius: 8px;
+}
+
+.calender .day-box:last-child .habit-checkbox-box:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+
+/* 선택된 날 */
+.selected-day {
+    color: var(--color-white);
+}
+
+.selected-day .day-date-box {
+    border: 1px solid var(--color-black1);
+    background-color: var(--color-black1);
+}
+
+.selected-day .habit-checkbox-box {
+    border-left: 1px solid var(--color-black1);
+    border-right: 1px solid var(--color-black1);
+}
+
+.selected-day .habit-checkbox-box:last-child {
+    border-bottom: 1px solid var(--color-black1);
+}
+
+
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+
+
+/* ----- 월간 회고 ----- */
+
+
+
+.date-box {
+    display: inline-flex;
+    align-items: center;
+    color: #000000;
+}
+
+
+
+.date-yy-mm {
+    /* padding: 0 4px; */
+}
+
+.arrow-left,
+.arrow-right {
+    width: 32px;
+    height: 32px;
+    background: url(/image/icon/icon-arrow-left.svg) no-repeat;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.arrow-right {
+    transform: rotate(180deg);
+}
+
+.arrow-left:hover {
+    position: relative;
+    right: 4px;
+}
+
+.arrow-right:hover {
+    position: relative;
+    left: 4px;
+}
+
+
+.retrospect-box,
+.habitcheck-wrap {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+
+/* 회고가 없을 때 이미지 */
+.img-no-retrospect-box {
+    align-self: center;
+}
+
+.img-no-retrospect {
+    width: 148px;
+    height: 110px;
+}
+
+.monthly-retrospect-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+
+/*  팝업 나타났을 때 배경 */
+
+
+
+.pop-up-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.pop-up-container-textarea {
+    position: absolute;
+    top: calc(50vh - (428px / 2));
+    left: calc(50vw - (504px / 2));
+}
+
+.pop-up-delete-retrospect , .pop-up-delete-habit{
+    position: absolute;
+    top: calc(50vh - (428px / 2));
+    left: calc(50vw - (240px / 2));
+}
+
+.pop-up-add-habit , .pop-up-updaet-habit{
+    position: absolute;
+    top: calc(50vh - (428px / 2));
+    left: calc(50vw - (240px / 2));
+}
+

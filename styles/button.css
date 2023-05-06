@@ -1,0 +1,338 @@
+.btn-arrange-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.btn-arrange-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--color-purple2);
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+/* ----- Large btn -----*/
+
+.btn-large {
+    width: 380px;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 12px 16px 12px 16px;
+}
+
+/* ----- Medium btn -----*/
+
+.btn-medium {
+    width: 380px;
+    height: 32px;
+    box-sizing: border-box;
+    padding: 12px 16px 12px 16px;
+}
+
+
+
+/* primary */
+.btn-primary-default {
+    background-color: var(--color-purple2);
+    color: var(--color-white);
+    border: 1px solid var(--color-purple2);
+}
+
+.btn-primary-pressed {
+    background-color: var(--color-purple1);
+    border: 1px solid var(--color-purple1);
+}
+
+.btn-primary-disabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    text-align: center;
+    background-color: var(--color-purple4);
+    border: 1px solid var(--color-purple4);
+    cursor: auto;
+}
+
+/* secondary */
+.btn-secondary-default {
+    background-color: var(--color-white);
+    color: var(--color-purple2);
+    border: 1px solid var(--color-purple2);
+}
+
+.btn-secondary-pressed {
+    color: var(--color-purple1);
+    border: 1px solid var(--color-purple1);
+}
+
+.btn-secondary-disabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    text-align: center;
+    color: var(--color-purple4);
+    border: 1px solid var(--color-purple4);
+    cursor: auto;
+}
+
+/* 버튼 너비조정 */
+.btn-width-auto {
+    width: auto;
+}
+
+.btn-width-fit-content {
+    width: max-content;
+    box-sizing: border-box;
+}
+
+
+/* 버튼 안의 아이콘 */
+.btn-inner-icon {
+    padding-right: 4px;
+}
+
+.btn-inner-icon-white {
+    padding-right: 4px;
+    background-color: var(--color-white);
+}
+
+
+
+/* SNS로그인 버튼 */
+.btn-sns-login{
+    width: 600px;
+    height: 60px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-sns-login > span{
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-sns-login > span::before{
+    content: '';
+    display: inline-flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    padding-right: 8px;
+}
+
+
+.btn-sns-login-google{
+    border: 1px solid var(--color-black1);
+    color: var(--color-black1);
+}
+.btn-sns-login-google > span::before{
+    background: url(/image/icon/icon-logo-google.svg) no-repeat;
+}
+
+.btn-sns-login-kakao{
+    background-color: #FAE64C;
+    color: var(--color-black1);
+}
+.btn-sns-login-kakao > span::before{
+    background: url(/image/icon/icon-logo-kakao.svg) no-repeat;
+}
+
+.btn-sns-login-naver{
+    background-color: #00C300;
+    color: var(--color-white)
+}
+.btn-sns-login-naver > span::before{
+    background: url(/image/icon/icon-logo-naver.svg) no-repeat;
+}
+
+
+
+
+
+
+
+
+
+:root {
+    --radious: 32px;
+    --toggle-width : 500px;
+    --toggle-height: 60px;
+
+    --tab-width : 500px;
+    --tab-height: 60px;
+
+    
+}
+
+
+/* -------------- 토글 1 ------------- */
+.a-tab-box{
+    width: var(--tab-width);
+    height: var(--tab-height);
+    box-sizing: border-box;
+
+    border-radius: calc(var(--tab-height) / 2);
+    border: 1px solid var(--color-black7);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.a-tab-content{
+    width: calc((var(--tab-width) / 2) - 10px );
+    height: calc(var(--tab-height) - 12px);
+    text-align: center;
+    line-height: calc(var(--tab-height) - 12px);
+    border-radius: calc(var(--tab-height) / 2);
+
+}
+
+label[for=트래커], label[for=회고] {
+    cursor: pointer;
+    
+}
+
+
+input[name=tabs]:checked+label div {
+    transition: all .5s;
+    background: var(--color-purple2);
+    color : var(--color-white)
+}
+
+
+
+
+/*-------------- 토글2 ------------------------*/
+
+
+
+.mytabbtn {
+    display: inline-flex;
+    align-items: center;
+
+}
+
+
+.mytab {
+
+    /* --radious: 50px; */
+
+    /* background-color: rgb(205, 202, 255); */
+    
+    /* width: calc(var(--radious) * 2); */
+    /* height: var(--radious); */
+    /* border-radius: calc(var(--radious)/2); */
+    /* box-shadow: 0 0 3px 3px rgba(0 0 0 / 15%); */
+    
+    box-sizing: border-box;
+    width: 500px;
+    height: var(--toggle-height);
+    padding: 6px 10px 6px 10px;
+
+
+    border-radius: calc(var(--toggle-height) / 2);
+    border: 1px solid var(--color-black7);
+
+    position: relative;
+
+
+    transition: .5s;
+
+
+}
+
+
+
+.mytab::before {
+    content: "월간 해빗 트래커";
+    color: var(--color-white);
+    
+
+    box-sizing: border-box;
+    
+    /* width: calc(var(--radious) - (var(--radious)/5)); */
+    /* height: calc(var(--radious) - (var(--radious)/5)); */
+    /* border-radius: calc((var(--radious) - var(--radious) / 5) / 2); */
+    width: 240px;
+    height: 48px;
+    border-radius: calc(48px / 2);
+
+    text-align: center;
+    line-height: 48px;
+
+    /* --------- */
+    /* --------- */
+  
+    background-color: var(--color-purple2);
+
+    
+    /* text-indent: -999px; */
+
+
+    position: absolute;
+    /* left: calc(var(--radious)/10); */
+    left: 10px;
+    transition: left .5s, top .5s;
+
+
+}
+
+
+
+label[for=tab] {
+    cursor: pointer;
+}
+
+
+
+input[id=tab]:checked+label div {
+
+    /* background: #b67878; */
+}
+
+#tab:checked~label div::before {
+    /* left: calc(var(--radious) * 2 - (var(--radious) - (var(--radious)/5)) - (var(--radious)/10)); */
+    left: calc(500px / 2);
+    content: "월간 회고";
+    
+
+}
+
+.toggleSwitch,
+.toggleButton {
+
+    transition: all 0.2s ease-in;
+}
+
+
+/* .a {
+    left: calc(var(--radious) * 2 - (var(--radious) - (var(--radious)/5)) - (var(--radious)/10));
+    width: calc(var(--radious) - (var(--radious)/5));
+    height: calc(var(--radious) - (var(--radious)/5));
+} */
+
+

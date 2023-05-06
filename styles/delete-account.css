@@ -1,0 +1,47 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title{
+    padding: 72px 0 32px 0;
+}
+.sub-title{
+    padding-bottom: 48px;
+}
+.delete-account-notice-box {
+    width: 580px;
+    height: 202px;
+    box-sizing: border-box;
+    background-color: var(--color-black9);
+    border-radius: 16px;
+    padding: 24px 24px;
+
+}
+.delete-account-notice{
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    gap: 8px;
+
+}
+/* .notice{
+    display: inline-flex;
+    align-items: center;
+} */
+.notice::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--color-purple2);
+    margin-right: 8px;
+    
+}
+
+.textarea-box{
+    margin: 24px 0 56px 0;
+    width: 580px;
+    height: 172px;
+}

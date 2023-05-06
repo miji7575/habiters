@@ -1,0 +1,62 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    padding: 72px 0 58px 0 ;
+}
+.mypage-img-box {
+    position: relative;
+}
+
+.mypage-img {
+    width: 130px;
+    height: 130px;
+    object-fit: none;
+    box-sizing: border-box;
+    border: 1px solid var(--color-black7);
+    border-radius: 75px;
+}
+
+.mypage-img-update {
+    position: absolute;
+    background-color: var(--color-white);
+    bottom: 5px;
+    left: 98px;
+}
+
+.mypage-input-box{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 56px;
+    padding-top: 40px;
+}
+
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nickname-input-box{
+    display: flex;
+    width: 380px;
+}
+
+.nickname-input{
+ width: 292px;
+ margin-right: 8px;
+}
+
+.btn-width-fit-content{
+    width: 80px;
+}
+
+
+.btn-box{
+
+}

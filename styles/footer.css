@@ -1,0 +1,28 @@
+.footer{
+    background-color: var(--color-black10);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 204px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 48px 0 48px 19%;
+    /* position: absolute; */
+    bottom: 0;
+}
+
+.footer 
+.main-logo{
+    cursor: default;
+    padding: 0;
+}
+
+.footer-detail-box{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-detail-box a { text-decoration: none;}
+/* .footer-detail-box a:link,a:visited,a:hover,a:active{ color:inherit} */
