@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import {userState} from '../../src/commons/stores/Stores';
+import {userState} from '../../commons/stores/Stores';
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil';
 

@@ -3,9 +3,9 @@ import styled from '@emotion/styled'
 
 
 
-import MyHabitToggle from '../../src/components/units/toggle/Toggle.container';
-import MonthlyHabitTracker from '../../src/components/units/monthly-habittracker/MonthlyHabit.container';
-import MonthlyRetrospects from '../../src/components/units/monthly-retrospects/MonthlyRetrospects.container';
+import MyHabitToggle from '../../components/units/toggle/Toggle.container';
+import MonthlyHabitTracker from '../../components/units/monthly-habittracker/MonthlyHabit.container';
+import MonthlyRetrospects from '../../components/units/monthly-retrospects/MonthlyRetrospects.container';
 
 // --------------스타일----------------
 const Main = styled.div`

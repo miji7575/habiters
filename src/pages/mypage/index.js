@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
-import  Inputs  from "../../src/components/commons/inputs/Inputs.container"
+import  Inputs  from "../../components/commons/inputs/Inputs.container"
 
 export default function MyPage() {
 
