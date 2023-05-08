@@ -38,7 +38,7 @@ export default function Header() {
 
     const getUserData = async () => {
 
-
+        
         // new Headers({
         //     'Content-Type': 'application/json',
         // });

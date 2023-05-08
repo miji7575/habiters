@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import {userState} from '../../commons/stores/Stores';
+import { userState } from '../../commons/stores/Stores';
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil';
 
@@ -57,11 +57,8 @@ export default function LoginPage() {
         router.push("/myhabit")
     }
 
-    
-    const kakaoLogin = async () => {
 
-       
-        
+    const kakaoLogin = async () => {
 
 
     }
@@ -69,6 +66,7 @@ export default function LoginPage() {
 
 
     const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
+    const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
 
 
     return (
@@ -86,11 +84,11 @@ export default function LoginPage() {
 
                 <LoginButtonBox>
 
-                    <div className={'btn-sns-login btn-sns-login-google'}>
+                    {/* <div className={'btn-sns-login btn-sns-login-google'}>
                         <span
                             className={'body2-medium'}
                             onClick={aaa}>구글로 로그인하기</span>
-                    </div>
+                    </div> */}
 
                     <a href={KAKAO_LOGIN} onClick={kakaoLogin}>
                         <div className={'btn-sns-login btn-sns-login-kakao'} >
@@ -98,10 +96,11 @@ export default function LoginPage() {
                         </div>
                     </a>
 
-
-                    <div className={'btn-sns-login btn-sns-login-naver'}>
-                        <span className={'body2-medium'}>네이버로 로그인하기</span>
-                    </div>
+                    <a href={NAVER_LOGIN}>
+                        <div className={'btn-sns-login btn-sns-login-naver'}>
+                            <span className={'body2-medium'}>네이버로 로그인하기</span>
+                        </div>
+                    </a>
 
                 </LoginButtonBox>
 

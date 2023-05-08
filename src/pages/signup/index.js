@@ -46,6 +46,13 @@ export default function SignupPage() {
         router.push("/login")
     }
 
+    const kakaoLogin = async () => {
+
+
+    }
+
+    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
+    const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
 
 
     return (
@@ -63,17 +70,22 @@ export default function SignupPage() {
 
                 <LoginButtonBox>
 
-                    <div className={'btn-sns-login btn-sns-login-google'}>
+                    {/* <div className={'btn-sns-login btn-sns-login-google'}>
                         <span className={'body2-medium'}>구글로 시작하기</span>
-                    </div>
+                    </div> */}
 
-                    <div className={'btn-sns-login btn-sns-login-kakao'}>
-                        <span className={'body2-medium'}>카카오로 시작하기</span>
-                    </div>
+                    <a href={KAKAO_LOGIN} onClick={kakaoLogin}>
+                        <div className={'btn-sns-login btn-sns-login-kakao'}>
+                            <span className={'body2-medium'}>카카오로 시작하기</span>
+                        </div>
+                    </a>
 
-                    <div className={'btn-sns-login btn-sns-login-naver'}>
-                        <span className={'body2-medium'}>네이버로 시작하기</span>
-                    </div>
+
+                    <a href={NAVER_LOGIN}>
+                        <div className={'btn-sns-login btn-sns-login-naver'}>
+                            <span className={'body2-medium'}>네이버로 시작하기</span>
+                        </div>
+                    </a>
 
                 </LoginButtonBox>
 
