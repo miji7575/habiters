@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 
 export default function IntroPage() {
 
-    // -----------------스타일
+    // ============================== Style ==============================
     // 1페이지  
     const IntroFirstPageWrap = styled.div`
     display: flex;
@@ -75,7 +75,7 @@ export default function IntroPage() {
     height: 1200px;
     `
 
-    // 2페이지  
+    // 3페이지  
 
     const IntroThirdPageWrap = styled.div`
      display: flex;
@@ -91,7 +91,9 @@ export default function IntroPage() {
 
 
 
-    //---------함수
+    
+    // ============================== Function  ==============================
+    
     const router = useRouter()
 
 

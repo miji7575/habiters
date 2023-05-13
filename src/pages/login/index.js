@@ -1,28 +1,29 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userState } from '../../commons/stores/Stores';
+import { userState, accessTokenState } from '../../commons/stores/Stores';
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil';
 
 
+
 export default function LoginPage() {
 
-    // -----------------스타일
+    // ============================== Style ==============================
 
     const Body = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     `
 
     const LoginHeaderBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    margin-top: 200px;
-    margin-bottom: 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        margin-top: 200px;
+        margin-bottom: 56px;
     `
 
     const Logo = styled.img`
@@ -31,9 +32,9 @@ export default function LoginPage() {
     `
 
     const LoginButtonBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     margin-bottom: 64px;
     `
 
@@ -45,28 +46,83 @@ export default function LoginPage() {
     `
 
 
-    //---------함수
+    // ============================== Function  ==============================
+
     const router = useRouter()
 
     const onClickMoveSignup = () => {
         router.push("/signup")
     }
 
-    // 임시!!!!!!!!!!!!!!!!!!!!!!!!!!11111
-    const aaa = () => {
-        router.push("/myhabit")
-    }
 
+    // Push전에 수정!!!
+    // =====  소셜로그인 주소
+    // const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
+    // const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
+    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
+    const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://localhost:3000/myhabit"
+
+
+
+    const [accessToken, setAccessToken] = useRecoilState(userState);
 
     const kakaoLogin = async () => {
 
+        router.push(KAKAO_LOGIN)
+        // setAccessToken(() => router.query.accessToken)
+        // console.log(accessToken + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     }
 
 
 
-    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
-    const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
+
+    useEffect(() => {
+        console.log("로그인 페이지에서 가장 먼저 출력될 토큰 :  " + accessToken)
+
+        setAccessToken(() => router.query.accessToken)
+        // successLogin(accessToken)
+        if (accessToken) {
+            console.log(accessToken)
+            localStorage.setItem("accessToken", accessToken)
+            if (localStorage.getItem("accessToken")) {
+                setAccessToken(localStorage.getItem("accessToken") || "")
+                console.log(accessToken)
+            }
+            console.log("아아아아아아아아ㅏ")
+            router.push("/myhabit")
+        }
+        // if (accessToken) {
+        //     router.push("/myhabit")
+        // }
+    }, [])
+
+
+    // const successLogin = (accessToken) => {
+
+    //     console.log(accessToken)
+    //     if(accessToken){
+    //         console.log("아아아아아아아아ㅏ")
+    //         router.push("/myhabit")
+    //     }
+    // }
+
+
+    // useEffect(() => {
+    //     localStorage.setItem("accessToken",accessToken)
+    //     console.log(accessToken)
+    //     // if(accessToken){
+
+    //     // }
+
+    //     console.log(localStorage)
+    //     if (localStorage.getItem("accessToken")) {
+    //         setAccessToken(localStorage.getItem("accessToken") || "")
+    //         console.log(accessToken)
+    //     }
+    // }, [accessToken])
+
+
 
 
     return (
@@ -90,7 +146,7 @@ export default function LoginPage() {
                             onClick={aaa}>구글로 로그인하기</span>
                     </div> */}
 
-                    <a href={KAKAO_LOGIN} onClick={kakaoLogin}>
+                    <a onClick={kakaoLogin}>
                         <div className={'btn-sns-login btn-sns-login-kakao'} >
                             <span className={'body2-medium'}>카카오로 로그인하기</span>
                         </div>

@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import  Inputs  from "../../components/commons/inputs/Inputs.container"
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { userState, sessionStorage, persistAtom, userDetail } from '../../commons/stores/Stores';
 
 export default function MyPage() {
 
@@ -72,9 +75,16 @@ export default function MyPage() {
 
 
 
-    const emailInputPlaceHolder = "habiters@gmail.com";
-    const nicknameInputPlaceHolder = "해비터해비터"
+    const [emailInputPlaceHolder, setEmailInputPlaceHolder] = useState("habiters@gmail.com");
+    const [nicknameInputPlaceHolder, setNicknamePlaceHolder] = useState("해비터해비터");
 
+
+    const [user,setUser] = useRecoilState(userDetail)
+
+    useEffect(()=>{
+        setEmailInputPlaceHolder(user.email)
+        setNicknamePlaceHolder(user.nickName)
+    },[])
 
     // 1. 검증하기
     //2. 백엔드컴터에보내주기
@@ -106,7 +116,7 @@ export default function MyPage() {
                             </div>
                             <div>
                                 <Inputs
-                                    placeholder={emailInputPlaceHolder} />
+                                    placeholder={emailInputPlaceHolder} disabled />
                                 {/* <input type="text" class="input-default body3-medium color-black2"
                                     placeholder="habiters@gmail.com" /> */}
                             </div>

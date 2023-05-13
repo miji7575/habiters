@@ -6,10 +6,13 @@ export const DayBox = styled.div`
     flex-direction: column;
     width: 44px;
     box-sizing: border-box; 
-    &>span{
-        /* border-top: 1px solid var(--color-black2); */
-        /* border-right: ${(props) => props.isSelected === true ? '1px solid var(--color-black2)': '1px solid var(--color-black8)'}; */
-        /* border-bottom: 1px solid var(--color-black2); */
+    &{
+        border : ${(props) => props.isSelected === true ? '1px solid var(--color-black2)': 'none'}; 
+    }
+    & > span:first-of-type{
+        background-color: ${(props) => props.isSelected === true ? 'var(--color-black1)': 'none'};
+        color: ${(props) => props.isSelected === true ? 'var(--color-white)': 'none'};
+        ${(props) => props.isSelected === true ? 'border: none' : 'none'};
     }
 `
 

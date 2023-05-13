@@ -11,3 +11,12 @@ export const MonthlyRetrospectContainer = styled.div`
     row-gap: 24px;
     justify-items: center;
 `
+
+export const MonthlyRetrospectNoneImgBox = styled.div`
+    align-self: center;
+`
+
+export const MonthlyRetrospectNoneImg = styled.img`
+    width: 148px;
+    height: 110px;
+`

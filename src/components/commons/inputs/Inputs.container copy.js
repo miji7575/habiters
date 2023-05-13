@@ -3,7 +3,7 @@ import InputUI from "./Inputs.presenter"
 import { useState, useEffect, useCallback } from "react"
 import inputStyles from '../../../styles/input.module.css'
 import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
-import { newInputValueState,inputDoneState } from '../../../commons/stores/Stores';
+import { newInputValueState } from '../../../commons/stores/Stores';
 
 
 
@@ -12,44 +12,8 @@ import { newInputValueState,inputDoneState } from '../../../commons/stores/Store
 
 export default function Inputs(props) {
 
-    const [newInput, setNewInput] = useRecoilState(newInputValueState)
-    // const [value, setValue] = useState('')
-    const [isValueNull, setIsValueNull] = useState(true)
-    const [isError, setisError] = useState(false);
-
-    useEffect(()=>{
-        console.log(newInput)
-        console.log(isValueNull)
-        if(newInput == ''){
-            setIsValueNull(()=>true)
-            console.log(isValueNull)
-        }
-        else{
-        setIsValueNull(()=>false)
-        }
 
 
-
-        
-
-    },[newInput])
-
-
-    const onChangeHandler = async(e) => {
-
-        setNewInput(()=> e.target.value)
-        // console.log(e.target.value)
-        // props.onChangeHandler(e.target.value)
-
-    }
-   
-    const removeValue = async () => {
-        setNewInput('')
-    }
- 
-
-        
-  
 
     return (
         <>
@@ -58,25 +22,24 @@ export default function Inputs(props) {
             <InputWrap>
 
                 <InputBox>
-                    {!isValueNull &&
+                    {!props.isError &&
                         <span
                             className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
-                            onClick={removeValue} />}
+                            onClick={props.removeValue} />}
                     <Input
                         type="text"
                         className={'input-default body3-medium color-black2'}
                         width={props.width}
                         // isError={props.isError}
-                        onChange={onChangeHandler}
-                        value={newInput}
+                        onChange={props.onChangeHandler}
+                        value={props.newInput}
                         placeholder={props.placeholder}
-
 
                     />
 
 
 
-                    {isError &&
+                    {props.isError &&
                         <ErrorIcon
                             className="icon-m icon-error-colored" />}
                 </InputBox>

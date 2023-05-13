@@ -73,13 +73,14 @@ export default function Habit(props) {
 
 
     function updateHabitPopupOn(){
-        props.updateHabitPopupOn()
+        props.updateHabitPopupOn(props.habitId, props.name)
         setIsHabitTitleShow(true)
         setIsHabitTitleManageShow(false)
     }
 
     function deleteHabitPopupOn(){
-        props.deleteHabitPopupOn()
+        props.deleteHabitPopupOn(props.habitId)
+        console.log(props.habitId)
         setIsHabitTitleShow(true)
         setIsHabitTitleManageShow(false)
     }
@@ -100,7 +101,9 @@ export default function Habit(props) {
                     <HabitUpdateBtn className="icon-m icon-pencil-colored"
                         onClick={updateHabitPopupOn}></HabitUpdateBtn>
                     <HabitDeleteBtn className="icon-m icon-delete-colored"
-                        onClick={deleteHabitPopupOn}></HabitDeleteBtn>
+                        onClick={deleteHabitPopupOn}
+                        habitId={props.habitId}
+                        ></HabitDeleteBtn>
                 </HabitTitleManage>}
         </HabitTitleBox>
 

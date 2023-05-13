@@ -18,101 +18,17 @@ export default function Header() {
     const OnClickMoveMyhabit = (e) => {
         e.preventDefault();
         router.push("/myhabit")
-        
-        console.log("토큰" + accessToken)
+        console.log("토큰 마이해빗" + accessToken)
     }
+
     const OnClickMoveHabitimunity = () => {
         router.push("/comming-soon")
-        console.log("토큰" + accessToken)
+        console.log("토큰 해비티뮤티" + accessToken)
     }
     const OnClickMoveMypage = () => {
         router.push("/mypage")
-        // getUsers()
-        getUserData()
+        console.log("토큰 마이페이지" + accessToken)
     }
-
-
-
-    // const [text, setText] = useRecoilState(textState);
-
-
-    const getUserData = async () => {
-
-        
-        // new Headers({
-        //     'Content-Type': 'application/json',
-        // });
-        if (accessToken) {
-
-            console.log("토큰" + accessToken)
-            const response = await axios.get('http://223.130.162.40:8080/users/me', {
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
-                .then(function (response) {
-                    console.log(response);
-                })
-
-            // const json = await response.json()
-            // console.log(json)
-        }
-        console.log("토큰없음.")
-        // return response.data;
-    }
-
-
-
-
-  
-    // async function getUsers() {
-    //     console.log(accessToken)
-    // }
-
-
-
-
-    // const getUserData = async () => {
-
-
-    //     // new Headers({
-    //     //     'Content-Type': 'application/json',
-    //     // });
-    //     if (accessToken) {
-
-    //         console.log("토큰" + accessToken)
-    //         const response = await axios.get('http://223.130.162.40:8080/users/me', {
-    //             headers: {
-    //                 Authorization: 'Bearer'+ accessToken,
-    //             }
-    //         })
-    //             .then(function (response) {
-    //                 console.log(response);
-    //             })
-
-    //         const json = await response.json()
-
-    //         console.log(json)
-    //     }
-    //         console.log("토큰없음.")
-    //     // return response.data;
-    // }
-
-
-
-
-    // async fetchSuperCategory() {
-    //     let myInfoForAuth;
-    //     if (this.$store.state.tokenResponse.access) {
-    //       myInfoForAuth = 'Bearer ' + this.$store.state.tokenResponse.access;
-    //     }
-    //     const response = await fetch('http://localhost:8080/categorys/super', {
-    //       headers: {
-    //         Authorization: myInfoForAuth,
-    //       },
-    //     });
-    //     const json = await response.json();
-    //     this.superCategoryList = json;
-    //     await this.fetchCategory();
-    //   },
 
 
 

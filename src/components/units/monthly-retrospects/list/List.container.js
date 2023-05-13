@@ -1,17 +1,20 @@
 import RetrospectListUI from "./List.presenter"
-
+import { userRetrospectState, userState } from '../../../../commons/stores/Stores';
+import { useRecoilState } from "recoil";
 
 
 export default function RetrospectList(props) {
 
-    // 로직을 여기다 담아라
-   
+    
+    const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectState)
 
 
 
     return (
         <RetrospectListUI 
-        data={props.data}/>
+        userRetrospect={userRetrospect}
+        getUserRetrospects={props.getUserRetrospects}
+        />
     )
 
 }

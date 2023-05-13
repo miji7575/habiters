@@ -35,7 +35,11 @@ export const HabitCheckBtn = styled.div`
     line-height: 32px;
     cursor: pointer;
     color: var(--color-white);
-    background-color: ${(props)=>props.btnColorArray[(props.index%3)]};
+    /* background-color: ${(props)=>props.btnColorArray[(props.index%3)]}; */
+    background-color: ${ (props) => props.isHabitChecked === true ? 'var(--color-white)' : props.btnColorArray[(props.index%3)]} ;
+    border: ${ (props) => props.isHabitChecked === true ?  `1px solid ${props.btnColorArray[(props.index%3)]}` : 'none'} ;
+    color: ${ (props) => props.isHabitChecked === true ? props.btnColorArray[(props.index%3)] : 'var(--color-white)'} ;
+    
 `
 
 export const HabitCheckBtnPurple = styled(HabitCheckBtn)`

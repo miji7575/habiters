@@ -6,13 +6,15 @@ export const CalenderContainer = styled.div`
 `
 export const CalenderBox = styled.div`
      width: 880px;
-    overflow-x: scroll;
+     /* overflow-x: scroll; */
+     position: relative;
     /* 스크롤바 여기에 달기 */
 `
 
 export const Calender = styled.div`
+    
      display: inline-flex;
-    padding-bottom: 24px;
+     padding-bottom: 24px;
     
     & > div:first-of-type span:first-of-type{
         border-top-left-radius: 8px;
@@ -20,11 +22,21 @@ export const Calender = styled.div`
     & > div:first-of-type span:last-of-type {
         border-bottom-left-radius: 8px;
     }
-    & > div:last-of-type span:first-of-type{
+    & > div:last-of-type > div:last-of-type > div:last-of-type > span:first-of-type{
         border-top-right-radius: 8px;
     }
-    & > div:last-of-type span:last-of-type{
+    & > div:last-of-type > div:last-of-type > div:last-of-type > span:last-of-type{
         border-bottom-right-radius: 8px;
     }
+   
+   
+`
 
+export const CalenderDaysContainer = styled.div`
+    /* position: absolute; */
+    /* left: 0; */
+    width: 704px;
+    overflow-x: scroll;
+    display: inline-flex;
+    padding-bottom: 24px; 
 `

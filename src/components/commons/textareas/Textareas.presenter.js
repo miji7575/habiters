@@ -5,6 +5,8 @@ import {
     TextareaExplain
 } from './Textareas.styles'
 import { useState } from "react"
+import { useRecoilState } from 'recoil';
+import { TextareaValueState } from '../../../commons/stores/Stores';
 
 
 
@@ -15,17 +17,17 @@ import { useState } from "react"
 export default function TextareaUI(props) {
 
     const [textareaValue, setTextareaValue] = useState('')
-    const [isError,setIsError] = useState(false)
+    const [isError, setIsError] = useState(false)
+
+    const [textareaInput, setTextareaInput] = useRecoilState(TextareaValueState)
+    function InputChange(e) {
+        setTextareaInput(e.target.value)
+        if (textareaValue === "오류") {
+            setIsError(true)
+        }
 
 
-function InputChange(e){
-    setTextareaValue(e.target.value)
-    if(textareaValue === "오류"){
-        setIsError(true)
     }
-
-
-}
 
 
 
@@ -40,17 +42,20 @@ function InputChange(e){
             <TextareaBox
                 width={props.width}
                 margin={props.margin}
-                
+
             >
                 <TextareaDefault name="" id="" cols="30" rows="10" className="body3-regular"
                     height={props.height}
                     placeholder={props.placeholder}
-                    value={textareaValue}
-                    onChange={InputChange }
+
+                    onChange={InputChange}
                     maxLength={200}
                     isError={isError}
-                    >
-                    
+
+
+                    value={textareaInput}
+                >
+
                 </TextareaDefault>
                 <TextareaExplain className="caption2-regular ">
                     <span>{props.textareaErrorMessage}</span>
@@ -58,7 +63,7 @@ function InputChange(e){
                 </TextareaExplain>
             </TextareaBox>
 
-            
+
 
 
             {/* 

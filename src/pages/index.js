@@ -1,9 +1,14 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
+import { useRecoilState } from 'recoil'
+import { userState, userDetail, userHabitState} from '../commons/stores/Stores';
+import { useEffect } from 'react';
+
+
 
 export default function IntroPage() {
 
-    // -----------------스타일
+    // ============================== Style ==============================
     // 1페이지  
     const IntroFirstPageWrap = styled.div`
     display: flex;
@@ -64,6 +69,7 @@ export default function IntroPage() {
         top : 15px
     }
     `
+
     // 2페이지  
     const IntroSecondPageWrap = styled.div`
      display: flex;
@@ -75,8 +81,7 @@ export default function IntroPage() {
     height: 1200px;
     `
 
-    // 2페이지  
-
+    // 3페이지  
     const IntroThirdPageWrap = styled.div`
      display: flex;
     height: 100vh;
@@ -91,16 +96,32 @@ export default function IntroPage() {
 
 
 
-    //---------함수
+    // ============================== Function  ==============================
+
     const router = useRouter()
+
+    const [accessToken, setAccessToken] = useRecoilState(userState);
+
+
+
+    // ===============안필요
+    const [user, setUser] = useRecoilState(userDetail)
+    const [userHabit, setUserHabit] = useRecoilState(userHabitState)
+    // ============================================
 
 
     const onClickMoveLogin = () => {
 
         // =========================TOKEN TEST================
+        // console.log(accessToken)
+        setAccessToken(()=>'')
+        setUser('')
+        setUserHabit('')
+        // console.log(localStorage.getItem("accessToken"))
         if(localStorage.getItem("accessToken")){
             localStorage.setItem("accessToken",'')
-            console.log(localStorage)
+            // console.log(localStorage)
+            // console.log(accessToken)
         }
         // =========================TOKEN TEST================
         router.push("/login")
@@ -109,6 +130,9 @@ export default function IntroPage() {
         router.push("/signup")
     }
 
+
+
+  
     // 1페이지
 
 
