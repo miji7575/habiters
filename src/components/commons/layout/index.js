@@ -96,7 +96,9 @@ export default function Layout(props) {
             </div> */}
 
 
-
+            <head>
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+            </head>
 
             <Body>
                 {!isHiddenLayout && <Header />}
