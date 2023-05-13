@@ -1,63 +1,72 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import  Inputs  from "../../components/commons/inputs/Inputs.container"
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { userState, sessionStorage, persistAtom, userDetail } from '../../commons/stores/Stores';
+
+
+
+   // -----------------스타일
+
+   const Main = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-bottom: 200px;
+   `
+
+   const Title = styled.div`
+    padding: 72px 0 58px 0 ;
+   `
+
+   const MyImgWrap = styled.div`
+   position: relative;
+   `
+   const MyImg = styled.img`
+    width: 130px;
+   height: 130px;
+   object-fit: none;
+   box-sizing: border-box;
+   border: 1px solid var(--color-black7);
+   border-radius: 75px;
+   `
+   const MyImgUpdateIcon = styled.span`
+   position: absolute;
+   background-color: var(--color-white);
+   bottom: 5px;
+   left: 98px;
+   `
+
+   const MypageInputWrap = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 32px;
+   padding-bottom: 56px;
+   padding-top: 40px;
+   `
+   const MypageInputBox = styled.div`
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   `
+
+   const NickNameInputBox = styled.div`
+    display: flex;
+   width: 380px;
+   `
+
+   const NickNameUpdateBtn = styled.div`
+       margin-left: 8px;
+       width: 80px;
+   
+   `
+
+
 
 export default function MyPage() {
 
-    // -----------------스타일
-
-    const Main = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 200px;
-    `
-
-    const Title = styled.div`
-     padding: 72px 0 58px 0 ;
-    `
-
-    const MyImgWrap = styled.div`
-    position: relative;
-    `
-    const MyImg = styled.img`
-     width: 130px;
-    height: 130px;
-    object-fit: none;
-    box-sizing: border-box;
-    border: 1px solid var(--color-black7);
-    border-radius: 75px;
-    `
-    const MyImgUpdateIcon = styled.span`
-    position: absolute;
-    background-color: var(--color-white);
-    bottom: 5px;
-    left: 98px;
-    `
-
-    const MypageInputWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    padding-bottom: 56px;
-    padding-top: 40px;
-    `
-    const MypageInputBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    `
-
-    const NickNameInputBox = styled.div`
-     display: flex;
-    width: 380px;
-    `
-
-    const NickNameUpdateBtn = styled.div`
-        margin-left: 8px;
-        width: 80px;
-    
-    `
+ 
 
 
     //---------함수---------------------
@@ -72,9 +81,16 @@ export default function MyPage() {
 
 
 
-    const emailInputPlaceHolder = "habiters@gmail.com";
-    const nicknameInputPlaceHolder = "해비터해비터"
+    const [emailInputPlaceHolder, setEmailInputPlaceHolder] = useState("habiters@gmail.com");
+    const [nicknameInputPlaceHolder, setNicknamePlaceHolder] = useState("해비터해비터");
 
+
+    const [user,setUser] = useRecoilState(userDetail)
+
+    useEffect(()=>{
+        setEmailInputPlaceHolder(user.email)
+        setNicknamePlaceHolder(user.nickName)
+    },[])
 
     // 1. 검증하기
     //2. 백엔드컴터에보내주기
@@ -106,7 +122,7 @@ export default function MyPage() {
                             </div>
                             <div>
                                 <Inputs
-                                    placeholder={emailInputPlaceHolder} />
+                                    placeholder={emailInputPlaceHolder} disabled />
                                 {/* <input type="text" class="input-default body3-medium color-black2"
                                     placeholder="habiters@gmail.com" /> */}
                             </div>

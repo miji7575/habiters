@@ -16,27 +16,20 @@ export default function HabitBoxUI(props) {
             index={props.index}
             >
                 <HabitTitle className="body2-bold">{props.name}</HabitTitle>
-                <HabitCheckBtn className="body3-medium"
+                <HabitCheckBtn 
+                className="body3-medium"
                 btnColorArray={props.btnColorArray}
-                index={props.index}>
-                    성공했어요
+                index={props.index}
+                
+                isHabitChecked={props.isHabitChecked}
+                onClick={props.onHabitCheckClick}
+                >
+                    성공했어요{props.nowSelectedDate}
                 </HabitCheckBtn>
             </HabitCheck>
 
 
-            {/* <HabitCheckBlue>
-                <HabitTitle className="body2-bold">습관 이름 최대 10자</HabitTitle>
-                <HabitCheckBtnBlue className="body3-medium">
-                    성공했어요
-                </HabitCheckBtnBlue>
-            </HabitCheckBlue>
-
-            <HabitCheckGreen>
-                <HabitTitle className="body2-bold">습관 이름 최대 10자</HabitTitle>
-                <HabitCheckBtnGreen className=" body3-medium">
-                    성공했어요
-                </HabitCheckBtnGreen>
-            </HabitCheckGreen> */}
+            
         </>
     )
 

@@ -1,40 +1,40 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 
+
+// ========================= Style ==============================
+
+const Main = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+height: 70vh;
+`
+
+const ErrorImgBox = styled.div`
+padding-top: 150px;
+
+`
+
+const Error = styled.img`
+height: 398px;
+width: 379px;
+`
+
+const ButtonBox = styled.div`
+padding-top: 40px;
+padding-bottom: 150px;
+`
+
+const ButtonLarge = styled.div`
+width: 240px;
+`
+
+
 export default function ErrorPage() {
 
-    // -----------------스타일
+// ========================= Function  ==============================
 
-    const Main = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 70vh;
-    `
-
-    const ErrorImgBox = styled.div`
-    padding-top: 150px;
-
-    `
-
-    const Error = styled.img`
-    height: 398px;
-    width: 379px;
-    `
-
-    const ButtonBox = styled.div`
-    padding-top: 40px;
-    padding-bottom: 150px;
-    `
-
-    const ButtonLarge = styled.div`
-    width: 240px;
-    `
-
-
-
-
-    //---------함수
     const router = useRouter()
     const onClickMove = () => {
         router.push("/")

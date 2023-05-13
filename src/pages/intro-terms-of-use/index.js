@@ -1,33 +1,33 @@
 import styled from '@emotion/styled'
 
+ // -----------------스타일
+
+ const Container = styled.div`
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ `
+
+
+ // -----1page
+ const TermsOfUseWrap = styled.div`
+ width: 1180px;
+ & > :last-child{
+     padding: 80px 0 200px 0;
+ }
+ `
+
+ const TermsOfUseTitle = styled.div`
+  padding: 72px 0 32px 0;
+ `
+
+ const TermsOfUseSubTitle = styled.div`
+ padding: 24px 0 8px 0;
+ `
 
 export default function IntroTermsOfusePage() {
 
-    // -----------------스타일
-
-    const Container = styled.div`
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    `
-
-
-    // -----1page
-    const TermsOfUseWrap = styled.div`
-    width: 1180px;
-    & > :last-child{
-        padding: 80px 0 200px 0;
-    }
-    `
-
-    const TermsOfUseTitle = styled.div`
-     padding: 72px 0 32px 0;
-    `
-
-    const TermsOfUseSubTitle = styled.div`
-    padding: 24px 0 8px 0;
-    `
-
+   
 
 
 

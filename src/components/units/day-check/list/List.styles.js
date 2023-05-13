@@ -59,7 +59,7 @@ export const TodayHabitCheckContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     gap: 16px;
     overflow-y: scroll; 
@@ -83,4 +83,17 @@ export const TodayHabitCheckContent = styled.div`
 
     
 
+`
+
+export const NoRetrospectImgBox = styled.div`
+    /* width: 278px;*/
+    height: 100%; 
+    padding-top: 147px;
+    /* align-items: center; */
+    /* display: flex; */
+    
+`
+export const NoRetrospectImg = styled.img`
+    width: 148px;
+    height: 110px;
 `

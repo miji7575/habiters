@@ -1,139 +1,138 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 
-export default function IntroServicePage() {
+// -----------------스타일
 
-    // -----------------스타일
-
-    const Main = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    `
+const Main = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`
 
 
-    // -----1page
-    const IntroServicePage1 = styled.div`
-     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 128px;
-    align-items: center;
-    justify-content: center;
-    `
+// -----1page
+const IntroServicePage1 = styled.div`
+ height: 100vh;
+display: flex;
+flex-direction: column;
+gap: 128px;
+align-items: center;
+justify-content: center;
+`
 
-    const IntroBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    text-align: center;
-    `
+const IntroBox = styled.div`
+display: flex;
+flex-direction: column;
+gap: 32px;
+text-align: center;
+`
 
-    const IntroServicePage1Title = styled.div`
-    font-family: 'Pretendard-Bold';
-    font-size: 80px;
-    font-weight: 900;
-    line-height: 96px;
-    letter-spacing: 0em;
-    text-align: center;
+const IntroServicePage1Title = styled.div`
+font-family: 'Pretendard-Bold';
+font-size: 80px;
+font-weight: 900;
+line-height: 96px;
+letter-spacing: 0em;
+text-align: center;
 
-    line-height: 80px;
-    letter-spacing: 0em;
-    `
+line-height: 80px;
+letter-spacing: 0em;
+`
 
-    // ----page2
-    const IntroServicePage2 = styled.div`
-    background-color: var(--color-black10);
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-    `
+// ----page2
+const IntroServicePage2 = styled.div`
+background-color: var(--color-black10);
+display: flex;
+height: 100vh;
+width: 100vw;
+justify-content: center;
+align-items: center;
+`
 
-    const IntroServiceDetailBox = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+const IntroServiceDetailBox = styled.div`
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(3, 1fr);
 
 `
 
-    const Page2IntroServiceDetail = styled.div`
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 4;
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-    display: inline-block;
-    font-family: 'Pretendard-Bold';
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 36px;
-    letter-spacing: 0em;
+const Page2IntroServiceDetail = styled.div`
+grid-column-start: 2;
+grid-column-end: 3;
+grid-row-start: 2;
+grid-row-end: 4;
+display: flex;
+flex-direction: column;
+gap: 64px;
+display: inline-block;
+font-family: 'Pretendard-Bold';
+font-size: 24px;
+font-weight: 700;
+line-height: 36px;
+letter-spacing: 0em;
 `
 
-    // ----page3
-    const IntroServicePage3 = styled.div`
-     display: flex;
-    flex-direction: column;
-    align-items: center;
-    `
+// ----page3
+const IntroServicePage3 = styled.div`
+ display: flex;
+flex-direction: column;
+align-items: center;
+`
 
-    const IntroServicePage3IntroBox = styled.div`
-    padding: 240px 0 ;
-    text-align: center;
-    `
+const IntroServicePage3IntroBox = styled.div`
+padding: 240px 0 ;
+text-align: center;
+`
 
-    const IntroServicePage3DetainFont = styled.div`
-     display: inline-block;
-    font-family: 'Pretendard-Bold';
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 36px;
-    letter-spacing: 0em;
-    `
+const IntroServicePage3DetainFont = styled.div`
+ display: inline-block;
+font-family: 'Pretendard-Bold';
+font-size: 24px;
+font-weight: 700;
+line-height: 36px;
+letter-spacing: 0em;
+`
 
-    const LogoBox = styled.div`
-    padding: 120px 0 32px 0;
-    `
+const LogoBox = styled.div`
+padding: 120px 0 32px 0;
+`
 
-    const IntroServicePage3Logo = styled.img`
-    width: 407.46px;
-    height: 48px;
-    `
+const IntroServicePage3Logo = styled.img`
+width: 407.46px;
+height: 48px;
+`
 
-    const IntroServicePage3Image2Box = styled.div`
-    padding-bottom: 56px;
-    `
+const IntroServicePage3Image2Box = styled.div`
+padding-bottom: 56px;
+`
 
-    const IntroServicePage3Image = styled.img`
-        width: 906px;
-        height: 412px;
-    `
+const IntroServicePage3Image = styled.img`
+    width: 906px;
+    height: 412px;
+`
 
-    const IntroServicePage3BannerBox = styled.div`
+const IntroServicePage3BannerBox = styled.div`
 padding: 240px 0 200px 0;
 `
 
-    const IntroServicePage3Banner = styled.img`
-    width: 1180px;
-    height: 174px;
+const IntroServicePage3Banner = styled.img`
+width: 1180px;
+height: 174px;
 `
 
 
 
+const ButtonBox = styled.div`
+padding-top: 40px;
+`
 
+const ButtonLarge = styled.div`
+width: 240px;
+`
 
+export default function IntroServicePage() {
 
-    const ButtonBox = styled.div`
-    padding-top: 40px;
-    `
-
-    const ButtonLarge = styled.div`
-    width: 240px;
-    `
+    
 
 
 

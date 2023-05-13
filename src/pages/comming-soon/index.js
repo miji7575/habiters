@@ -1,20 +1,19 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 
+// =========================== Style =======================
+
+const Main = styled.div`
+min-height : 100%;  
+display: flex;
+justify-content: center;
+padding-top: 325px;
+`
+
 export default function CommingSoonPage() {
 
-    // -----------------스타일
 
-    const Main = styled.div`
-    min-height : 100%;  
-    display: flex;
-    justify-content: center;
-    padding-top: 325px;
-    `
-
-
-
-    //---------함수
+   // =========================== Function =======================
     const router = useRouter()
     const onClickMove = () => {
         router.push("/")
@@ -24,10 +23,6 @@ export default function CommingSoonPage() {
 
     return (
         <>
-
-            
-
-
             <main>
             <Main>
                 <div>
