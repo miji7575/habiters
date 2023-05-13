@@ -59,15 +59,17 @@ export default function LoginPage() {
 
 
     const kakaoLogin = async () => {
+        router.push(KAKAO_LOGIN)
 
 
     }
 
 
 
-    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
-    const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
-
+    // const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
+    // const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
+    const KAKAO_LOGIN = "https://habiters.vercel.app/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
+    const NAVER_LOGIN = "https://habiters.vercel.app/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
 
     return (
         <main>
