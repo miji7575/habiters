@@ -44,9 +44,6 @@ export default function App({ Component, pageProps }) {
 
       {/* <Global styles={ GlobalStyles }> */}
       <RecoilRoot>
-        <head>
-          <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-        </head>
         <Layout>
           <Component {...pageProps} />
         </Layout>
