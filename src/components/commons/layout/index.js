@@ -4,18 +4,17 @@ import Header from './header/Header.container';
 import Footer from './footer/Footer.container';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 // import { textState } from '../../../../pages/commons/stores/store';
-import { userState, sessionStorage, persistAtom } from '../../../commons/stores/Stores';
+import { userState, sessionStorage, persistAtom, userDetail } from '../../../commons/stores/Stores';
 import axios from 'axios';
 import { useEffect } from 'react';
 
 
 
-
+// ======= 헤더, 풋터 제외할 페이지
 const HIDDEN_HEADERS = [
     "/",
     "/login",
     "/signup",
-
 ]
 
 const HIDDEN_FOOTERS = [
@@ -24,6 +23,9 @@ const HIDDEN_FOOTERS = [
 
 
 export default function Layout(props) {
+
+    // ============================== Style ==============================
+
     const Body = styled.div`
     width: 100%;
     height: 100%;
@@ -36,13 +38,44 @@ export default function Layout(props) {
     position: relative;
     `
 
-
     const router = useRouter();
-    // console.log(router.asPath)
     const isHiddenLayout = HIDDEN_HEADERS.includes(router.asPath);
     const isHiddenFooter = HIDDEN_FOOTERS.includes(router.asPath);
 
 
+
+
+    // ============================== Function  ==============================
+
+    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const [user, setUser] = useRecoilState(userDetail)
+
+    useEffect(() => {
+        getUserData()
+        console.log(user)
+    }, [accessToken])
+
+
+    // ======= 유저의 정보 get
+    const getUserData = async () => {
+
+        console.log("레이아웃==================시작====")
+        if (accessToken) {
+            console.log("레이아웃==================시작====")
+            console.log("토큰" + accessToken)
+            const response = await axios.get('http://223.130.162.40:8080/users/me', {
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+
+
+            console.log(response.data.data)
+            setUser(response.data.data)
+            console.log("레이아웃==================끝   ====")
+            return
+        }
+        console.log(" 레이아웃 토큰없음.")
+
+    }
 
 
     //   ===========inputTest ===========
@@ -53,37 +86,6 @@ export default function Layout(props) {
     // };
     //==============================================
 
-
-
-
-    //=================TokenTest ======================== 
-    // const [userToken, setUserToken] = useRecoilState(userState)
-    
-    
-    
-    
-    const [accessToken, setAccessToken] = useRecoilState(userState)
-    setAccessToken(() => router.query.accessToken)
-    console.log(accessToken)
-
-    // 
-  
-
-    useEffect(() => {
-        localStorage.setItem("accessToken",accessToken)
-        console.log(accessToken)
-        // if(accessToken){
-            
-        // }
-       
-        console.log(localStorage)
-        if (localStorage.getItem("accessToken")) {
-            setAccessToken(localStorage.getItem("accessToken") || "")
-            console.log(accessToken)
-        }
-    }, [accessToken])
-    
-    //=================TokenTest ======================== 
 
     return (
         <>
