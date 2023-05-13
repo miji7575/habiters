@@ -73,7 +73,9 @@ export default function HabitTracker() {
 
             console.log("토큰" + accessToken)
             const response = await axios.get('http://223.130.162.40:8080/habits', {
-                headers: {  "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+
+                headers: { "Content-Type": "application/json",Authorization: 'Bearer ' + accessToken }
+
             })
 
 
