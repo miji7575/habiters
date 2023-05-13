@@ -1,16 +1,15 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import Inputs  from '../../../commons/inputs/Inputs.container';
+import Inputs from '../../../commons/inputs/Inputs.container';
 import styled from '@emotion/styled'
+import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { newInputValueState } from '../../../../commons/stores/Stores';
+import { userState, newInputValueState } from '../../../../commons/stores/Stores';
+// import inputStyles from '../../../../styles/input.module.css'
 
 
-
-export default function AddNewHabitPopup(props) {
-
-
-    // 스타일
-    const PopupBackground = styled.div`
+// ============================== Style  ==============================
+// --- 모달
+const PopupBackground = styled.div`
      position: fixed;
     top: 0;
     left: 0;
@@ -20,7 +19,7 @@ export default function AddNewHabitPopup(props) {
     background: rgba(0, 0, 0, 0.8);
     `
 
-    const PopupContainer = styled.div`
+const PopupContainer = styled.div`
     width: 428px;
     box-sizing: border-box;
     padding: 40px 24px 40px 24px;
@@ -35,7 +34,7 @@ export default function AddNewHabitPopup(props) {
     left: calc(50vw - (240px / 2));
     `
 
-    const PopupTitle = styled.div`
+const PopupTitle = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,52 +43,122 @@ export default function AddNewHabitPopup(props) {
     
     `
 
-    const PopupContent = styled.div`
+const PopupContent = styled.div`
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 32px;
     `
 
-    const PopupBtn = styled.div`
+const PopupBtn = styled.div`
     display: flex;
     justify-content: center;
     `
+// ----- 인풋
+// const InputWrap = styled.div`
+//         display: inline-flex;
+//         flex-direction: column;
+// `
+
+// const InputBox = styled.div`
+//         display: inline-flex;
+//         align-items: center;
+//         position: relative;
+// `
+
+// const Input = styled.input`
+// padding: 0 48px 0 12px;     
+// height: var(--header-height);
+// width: ${(props) => props.width || `380px`};
+// height: 48px;
+// box-sizing: border-box;
+// border: ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `solid 1px var(--color-black7)`};
+// border-radius: 8px;
+// color: var(--color-black2);
+// &:focus{
+//     outline: ${(props) => props.isError === true ? `var(--color-red)` : `auto`};
+// }
+// `
+
+
+// const InputMessage = styled.div`
+
+// `
+
+// const ErrorIcon = styled.span`
+// background-color: var(--color-error);
+// position: absolute;
+// right: 12px;
+
+// `
+export default function AddNewHabitPopup(props) {
 
 
 
 
-    // 함수
 
+
+    // ============================== Function  ==============================
+
+    // ----- axios
+
+    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const postHabit = async () => {
+
+        console.log("PostHabit 함수 토큰 : " + accessToken)
+
+        if (accessToken) {
+
+            console.log("PostHabit 함수 newInput : " + newInput)
+
+
+            const response = await axios.post('http://223.130.162.40:8080/habits', newInput, {
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ` + accessToken },
+            })
+            console.log("PostHabit 의 Response : " + response.data)
+
+            return
+        }
+
+    }
+
+
+    const addNewhabit = async () => {
+        if (newInput.trim().length == 0) {
+            alert("내용을 입력해주세요")
+        }
+        else {
+            props.addNewhabit(newInput);
+            setNewInput(() => '')
+            await postHabit()
+            props.getUserData();
+        }
+    }
+
+
+
+    // ----- input
     const placeholder = "만드실 습관을 10자 이내로 입력해주세요.";
     const [newInput, setNewInput] = useRecoilState(newInputValueState)
+    // const [newInput, setNewInput] = useState('')
+
+    const onChangeHandler = (e) => {
+        setNewInput(e.target.value)
+    };
+
 
 
     function addNewHabitPopupClose() {
+        setNewInput('')
         props.addNewHabitPopupClose();
     }
 
 
-    function addNewhabit() {
-        props.addNewhabit(newInput);
-        setNewInput(()=>'')
-    }
 
 
 
-     useEffect(() => {
-        console.log(newInput)
-    }, [newInput])
 
 
-    const onChangeHandler = (event) => {
-        setNewInput(() => event.target.value);
-        console.log(newInput)
-    };
-
-    const removeValue = () => {
-        setNewInput('')
-    }
 
     return (
 
@@ -106,18 +175,43 @@ export default function AddNewHabitPopup(props) {
 
                 <PopupContent>
                     <div>
-                       <Inputs
-                       placeholder={placeholder}
-                       onChangeHandler={onChangeHandler}
-                       newInput={newInput}
-                       removeValue={removeValue}
-                       />
+                        <Inputs
+                            placeholder={placeholder}
+                            onChangeHandler={onChangeHandler}
+
+                        />
+
+                        {/* <InputWrap>
+
+                            <InputBox>
+                                {!props.isError &&
+                                    <span
+                                        className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
+                                        onClick={removeValue} />}
+                                <Input
+                                    type="text"
+                                    className={'input-default body3-medium color-black2'}
+                                    width={props.width}
+                                    // isError={props.isError}
+                                    onChange={onChangeHandler}
+                                    value={newInput}
+                                    placeholder={placeholder}
+
+
+                                />
+
+
+
+                                {props.isError &&
+                                    <ErrorIcon
+                                        className="icon-m icon-error-colored" />}
+                            </InputBox>
+                            <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
+                        </InputWrap> */}
 
 
                     </div>
-                    {/* ============================================== */}
-                    {/* <div>{newInput} : HabitAddPopup</div> */}
-                    {/* ============================================== */}
+
                 </PopupContent>
 
 

@@ -69,6 +69,7 @@ export default function AddNewHabitPopup(props) {
 
         props.addNewhabit();
         reftest()
+        postHabit();
     }
 
 
@@ -108,6 +109,7 @@ export default function AddNewHabitPopup(props) {
 
   
     //=================삭제
+// ==================================습관 추가하기.
 
 
 

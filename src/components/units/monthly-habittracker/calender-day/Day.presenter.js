@@ -13,20 +13,32 @@ export default function CalenderDayUI(props) {
         // html 부분을 여기에 담아라
         <div>
 
-            <DayBox 
-             isSelected={props.isSelected}>
+            <DayBox
+                isSelected={props.isSelected}>
                 <DayDateBox
-                onClick={props.selected}>
+                    onClick={props.onClickDayHandler}>
                     <CalenderDay className="caption1-medium">{props.day}</CalenderDay>
                     <CalenderDate className="body1-bold">{props.date}</CalenderDate>
                 </DayDateBox>
 
-                {props.habits.map((habits,index) => <CalenderDayHabitCheckbox habitName={habits} index={index} habitsArr={props.habits}/>)}
+
+                {Object.entries(props.habits).map(([key, value], index) =>
+                    <CalenderDayHabitCheckbox
+                        habitId={value.id}
+                        habitName={value.content}
+                        habitChecks={value.habitChecks}
+                        index={index} 
+                       
+
+                        showDate={props.showDate}
+                        date={props.date}
 
 
-                {/* <HabitCheckBoxContainer>
-                    <HabitCheckBox />
-                </HabitCheckBoxContainer> */}
+
+
+                        getUserData={props.getUserData}
+                        />)}
+
 
             </DayBox>
         </div>

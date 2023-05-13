@@ -1,5 +1,5 @@
 
-import { CalenderContainer, CalenderBox, Calender, } from './Calender.styles'
+import { CalenderContainer, CalenderBox, Calender, CalenderDaysContainer } from './Calender.styles'
 import CalenderHabit from '../calender-habit/CalenderHabit.container';
 import CalenderDay from '../calender-day/Day.container';
 
@@ -29,13 +29,27 @@ export default function CalenderUI(props) {
                             deleteHabitPopupOn={props.deleteHabitPopupOn}
                         />
 
-                        {props.showDate.showDays.map((day, index) => <CalenderDay
-                            selected={props.selected}
-                            isSelected={props.isSelected}
-                            habits={props.habits}
-                            day={day}
-                            date={index + 1}
-                        />)}
+
+                        <CalenderDaysContainer>
+                            {props.showDate.showDays.map((day, index) => <CalenderDay
+                                selected={props.selected}
+                                selectedDate={props.selectedDate}
+                                
+                                habits={props.habits}
+                                day={day}
+                                date={index + 1}
+
+
+
+                                showDate={props.showDate}
+
+                            
+                                
+
+
+                                getUserData={props.getUserData}
+                            />)}
+                        </CalenderDaysContainer>
 
 
 

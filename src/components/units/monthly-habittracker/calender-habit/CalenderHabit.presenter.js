@@ -18,10 +18,12 @@ export default function CalenderHabitUI(props) {
             <HabitListBox>
                 <HabitListTitle className="body1-bold">내 습관 목록</HabitListTitle>
 
-                {props.habits.map((habits) => <Habits 
+                {Object.entries(props.habits).map(([key,value]) => 
+                <Habits 
                   updateHabitPopupOn={props.updateHabitPopupOn}
                   deleteHabitPopupOn={props.deleteHabitPopupOn}
-                  name={habits}/>)}
+                  name={value.content}
+                  habitId={value.id}/>)}
 
 
 

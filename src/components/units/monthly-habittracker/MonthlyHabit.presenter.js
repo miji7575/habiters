@@ -35,8 +35,13 @@ export default function MonthlyHabitTrackerUI(props) {
 
 
                 {/* <!-- ---  일별확인  ---  --> */}
-                <TodayHabitCheck 
-                habits={props.habits}/>
+                <TodayHabitCheck
+                    habits={props.habits}
+                    isHabitNull={props.isHabitNull}
+                    showDate={props.showDate}
+
+              
+                />
 
 
 
@@ -48,6 +53,13 @@ export default function MonthlyHabitTrackerUI(props) {
                     deleteHabitPopupOn={props.deleteHabitPopupOn}
                     habits={props.habits}
 
+                    
+                    selected={props.selected}
+                    selectedDate={props.selectedDate}
+                    
+                    
+
+                    getUserData={props.getUserData}
                 />
 
 

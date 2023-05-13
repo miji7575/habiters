@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CalenderUI from "./Calender.presenter"
 
 
@@ -6,24 +6,25 @@ import CalenderUI from "./Calender.presenter"
 
 export default function Calender(props) {
 
-    const [isSelected, setIsSelected] = useState(false);
-    const selected = () => {
-        setIsSelected(true)
-        console.log(isSelected)
-    }
 
 
 
 
     return (
         <CalenderUI
-            selected={selected}
-            isSelected={isSelected}
-            
+            selected={props.selected}
+            selectedDate={props.selectedDate}
+
+
             updateHabitPopupOn={props.updateHabitPopupOn}
             deleteHabitPopupOn={props.deleteHabitPopupOn}
             showDate={props.showDate}
             habits={props.habits}
+           
+
+
+
+            getUserData={props.getUserData}
         />
     )
 
