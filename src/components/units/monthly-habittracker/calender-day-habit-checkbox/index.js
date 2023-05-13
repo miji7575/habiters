@@ -149,7 +149,7 @@ export default function CalenderDayHabitCheckbox(props) {
 
         habitColoring();
 
-    }, [props.habitChecks, isCheckboxChecked])
+    })
 
 
     // const [userHabit, setUserHabit] = useRecoilState(userHabitState)

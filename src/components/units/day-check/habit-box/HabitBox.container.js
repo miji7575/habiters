@@ -47,13 +47,13 @@ export default function HabitBox(props) {
         console.log(props.habitId)
         if(isHabitChecked) {
             await deleteHabitCheck()
-            props.getUserData()
+            // props.getUserData()
             // setIsCheckboxChecked(false)
 
             return
         }
         await postHabitCheck()
-        props.getUserData()
+        // props.getUserData()
 
         return
 
