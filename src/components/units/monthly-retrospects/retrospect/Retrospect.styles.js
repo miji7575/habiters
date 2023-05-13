@@ -60,5 +60,4 @@ export const DiaryContent = styled.div`
     padding: 20px 32px 20px 32px;
     border-radius: 0px 8px 8px 0px;
     overflow: auto;
-    white-space: pre-wrap;
 `

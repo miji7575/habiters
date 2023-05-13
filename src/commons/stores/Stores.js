@@ -12,7 +12,6 @@ export const localStorage =
 
 
 export const { persistAtom } = recoilPersist({
-    key: 'aa',
     storage: localStorage,
 });
 
@@ -22,11 +21,59 @@ export const userState = atom({
     effects_UNSTABLE: [persistAtom],
 });
 
+// ---------------------------------------------------
+export const accessTokenState = atom({
+    key: "accessTokenState",
+    default: ""
+})
 
-
+// ===============================input Value
 export const newInputValueState = atom({
     key: 'newInput',
     default: '',
 })
 
+// ===============================Textarea Value
+export const TextareaValueState = atom({
+    key: 'TextareaInput',
+    default: '',
+})
 
+
+
+
+
+
+
+// ============ 받아온 user의 자기소개 data===============================
+
+export const userDetail = atom({
+    key: "user",
+    default:"",
+    effects_UNSTABLE:[persistAtom]
+})
+
+// ===============받아온 user의 habit data
+export const userHabitState = atom({
+    key:"userhabit",
+    default:'',
+    effects_UNSTABLE:[persistAtom]
+})
+
+// ===============받아온 user의 habit data
+export const userRetrospectState = atom({
+    key:"userRetrospect",
+    default:'',
+    effects_UNSTABLE:[persistAtom]
+})
+
+
+
+
+
+
+// 선택한 날짜
+export const SelectedDate = atom({
+    key: "date",
+    default:new Date().getDate()
+})

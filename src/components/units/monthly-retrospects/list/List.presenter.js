@@ -6,7 +6,7 @@ import Retrospect from '../retrospect/Retrospect.container';
 export default function RetrospectListUI(props) {
 
 
-   
+
 
     return (
 
@@ -14,11 +14,13 @@ export default function RetrospectListUI(props) {
 
             <MonthlyRetrospectBox >
 
-                {props.data.retrospects.map((data) =>
+                {Object.entries(props.userRetrospect).map(([key, value]) =>
                     <Retrospect
-                        date={data.regDate}
-                        content={data.content} />)}
-
+                        contentId={value.id}
+                        content={value.content}
+                        date={value.createDate}
+                        getUserRetrospects={props.getUserRetrospects}
+                    />)}
 
 
 

@@ -1,6 +1,9 @@
 
 import { TodayRetrospectContainer, TextareaBox, TextareaDefault, TextareaTextCountBox } from './TodayRetrospect.styles'
 import Textarea from '../../commons/textareas/Textareas.container';
+import { useRecoilState } from 'recoil';
+import {TextareaValueState} from '../../../commons/stores/Stores';
+
 
 export default function TodayRetrospectUI(props) {
 
@@ -21,6 +24,7 @@ export default function TodayRetrospectUI(props) {
                     textareaErrorMessage={props.textareaErrorMessage}
                     width={`239px`}
                     height={`272px`}
+
                     />
                 {/* <TextareaBox>
                     
@@ -32,7 +36,8 @@ export default function TodayRetrospectUI(props) {
                     </TextareaTextCountBox>
                 </TextareaBox> */}
 
-                <div className="btn btn-large btn-primary-default body2-medium btn-width-auto">버튼</div>
+                <div className="btn btn-large btn-primary-default body2-medium btn-width-auto"
+                onClick={props.onPostRetrospectsBtnClick}>버튼</div>
 
             </TodayRetrospectContainer>
         </>
