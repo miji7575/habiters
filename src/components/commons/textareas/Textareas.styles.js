@@ -33,6 +33,7 @@ export const TextareaDefault = styled.textarea`
     border-radius: 8px;
     border: solid 1px var(--color-black7);
     color: var(--color-black4);
+    background-color:${(props)=>props.diaryState === true? `var(--color-black8)`: 'none'}
    
 `
 

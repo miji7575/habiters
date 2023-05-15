@@ -37,7 +37,7 @@ export default function Inputs(props) {
 
     useEffect(()=>{
 
-        setNewInput(undefined)
+        setNewInput('')
     },[])
 
     
@@ -111,6 +111,7 @@ export default function Inputs(props) {
                         placeholder={props.placeholder}
                         name={props.name}
                         disabled={props.isEditable ? true : false}
+                        
                     />
 
 

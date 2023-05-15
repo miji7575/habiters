@@ -38,8 +38,8 @@ export default function TextareaUI(props) {
     return (
         // html 부분을 여기에 담아라
         <>
-
-            <TextareaBox
+            {/* 입력 가능 */}
+            {!props.diaryState && <TextareaBox
                 width={props.width}
                 margin={props.margin}
             >
@@ -60,30 +60,39 @@ export default function TextareaUI(props) {
                     <span>{props.textareaErrorMessage}</span>
                     <span><span>{textareaInput.length}</span>/200</span>
                 </TextareaExplain>
-            </TextareaBox>
+            </TextareaBox>}
 
 
 
 
-            {/* 
-            <InputWrap>
+            {/* 읽기 전용 */}
+            {props.diaryState && <TextareaBox
+                width={props.width}
+                margin={props.margin}
+            >
+                <TextareaDefault name="" id="" cols="30" rows="10" className="body3-regular"
+                    height={props.height}
+                    placeholder={props.placeholder}
 
-                <InputBox>
-                    <span className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}></span>
-                    <Input
-                        onChange={InputChangeValue}
-                        value={inputValue}
-                        type="text" className={'input-default body3-medium color-black2'} placeholder={props.placeholder} />
-                </InputBox>
-                <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
-            </InputWrap> */}
+                    onChange={InputChange}
+                    maxLength={200}
+                    isError={isError}
+                    disabled
+                    diaryState={props.diaryState}
+                    // value={textareaInput}
+                >
+
+                </TextareaDefault>
+                <TextareaExplain className="caption2-regular ">
+                    <span>{props.textareaErrorMessage}</span>
+                    <span><span>{textareaInput.length}</span>/200</span>
+                </TextareaExplain>
+            </TextareaBox>}
 
 
 
-            {/* ===================================================== */}
-            {/* <div>{inputValue}</div> */}
 
-            {/* ===================================================== */}
+
         </>
     )
 

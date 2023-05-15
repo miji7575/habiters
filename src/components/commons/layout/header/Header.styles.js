@@ -35,23 +35,29 @@ export const HeaderMenuBox = styled.div`
 export const HeaderMypageBox = styled.div`
     display: flex;
 `
-export const HeaderMenu = styled.div`
-    display: block;
-    color: var(--color-black1);
-    cursor: pointer;
-    line-height: var(--header-height);
-    position: relative;
-    &::before{
-        content: '';
-    background-color: var(--color-purple2);
-    width: max-content;
-    height: 4px;
-    width: 0;
-    position: absolute;
-    bottom: 0;
-    transition: .3s;
-    }
-    &:hover::before{
-        width: 100%;
-    }
-`
+// export const HeaderMenu = styled.div`
+//     display: block;
+//     color: var(--color-black1);
+//     cursor: pointer;
+//     line-height: var(--header-height);
+//     position: relative;
+//     &::before{
+//     content: '';
+//     background-color: var(--color-purple2);
+//     width: max-content;
+//     height: 4px;
+//     width: 0;
+//     ${(props)=> props.isMyHabitClicked === true ? `width: 100%;` : `width: 0;`}
+//     /* ${(props)=> props.isHabitimunityClicked === true ? `width: 100%;` : `width: 0;`}
+//     ${(props)=> props.isMyPageClicked === true ? `width: 100%;` : `width: 0;`} */
+//     position: absolute;
+//     bottom: 0;
+//     transition: .3s;
+//     }
+//     &:hover::before{
+//         width: 100%;
+//     }
+   
+
+   
+// `

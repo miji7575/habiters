@@ -21,7 +21,7 @@ export default function Textareas(props) {
                 height={props.height}
                 placeholder={props.placeholder}
                 textareaErrorMessage={props.textareaErrorMessage}
-                todayRetrospectState={props.todayRetrospectState} /* 오늘 작성한 적이 있으면 non editable */
+                diaryState={props.diaryState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
             />
         </>
     )

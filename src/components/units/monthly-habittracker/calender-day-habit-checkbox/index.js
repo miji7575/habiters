@@ -39,8 +39,8 @@ export default function CalenderDayHabitCheckbox(props) {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
-            console.log(response)
-            console.log("해빗체크됨")
+            // console.log(response)
+            console.log("해빗체크완료")
             return
 
         }
@@ -54,8 +54,8 @@ export default function CalenderDayHabitCheckbox(props) {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
-            console.log(response)
-            console.log("해빗체크삭제됨")
+            // console.log(response)
+            console.log("해빗체크삭제")
             return response
 
         }
@@ -136,20 +136,20 @@ export default function CalenderDayHabitCheckbox(props) {
                 setIsCheckboxChecked(()=>true)
                 if(value.updatedAt.includes("2023-05-12")){
                     setIsCheckboxChecked(()=>true)
-                    console.log("!!!!!2023-05-12!!!!!데이터값 : "+value.updatedAt)
-                    console.log("!!!!!2023-05-12!!!!!!애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
-                    console.log("!!!!2023-05-12!!!!!! : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
-                    console.log("!!!!!!!2023-05-12!!!!!체크박스 색깔 여부 : "+isCheckboxChecked)
+                    // console.log("!!!!!2023-05-12!!!!!데이터값 : "+value.updatedAt)
+                    // console.log("!!!!!2023-05-12!!!!!!애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
+                    // console.log("!!!!2023-05-12!!!!!! : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
+                    // console.log("!!!!!!!2023-05-12!!!!!체크박스 색깔 여부 : "+isCheckboxChecked)
                 }
-                console.log("?????????데이터값 : "+value.updatedAt)
-                    console.log("???????????????애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
-                    console.log("????????????? : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
-                    console.log("?????????????체크박스 색깔 여부 : "+isCheckboxChecked)
+                // console.log("?????????데이터값 : "+value.updatedAt)
+                //     console.log("???????????????애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
+                //     console.log("????????????? : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
+                //     console.log("?????????????체크박스 색깔 여부 : "+isCheckboxChecked)
                 
             }
             else {
                 setIsCheckboxChecked(false)
-                console.log("불꺼짐")
+                // console.log("불꺼짐")
             }
 
         })

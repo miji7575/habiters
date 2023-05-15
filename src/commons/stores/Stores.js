@@ -96,3 +96,9 @@ export const TodayRetrospectState = atom({
     key: "todayRetrospectState",
     default:false
 })
+
+
+export const headerSelectedMenu = atom({
+    key : "menu",
+    default : "마이해빗"
+})

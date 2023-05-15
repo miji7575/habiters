@@ -32,6 +32,8 @@ export default function TodayRetrospectUI(props) {
                     onClick={props.onPostRetrospectsBtnClick}
                 >버튼</div>}
 
+                
+
                 {/* 작성이 불가능할 때 버튼 */}
                 {props.diaryState && <TodayRetrospectBtn className="btn btn-large btn-primary-default body2-medium btn-width-auto"
                     diaryState={props.diaryState}
