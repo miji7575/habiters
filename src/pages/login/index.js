@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userState, accessTokenStatem , URL } from '../../commons/stores/Stores';
+import { userState, accessTokenStatem, URL } from '../../commons/stores/Stores';
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -58,24 +58,32 @@ export default function LoginPage() {
 
     // Push전에 수정!!!
     // =====  소셜로그인 주소
+    const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://habiters.vercel.app/login"
     const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/login"
     const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/login"
     // const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
     // const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3000/login"
+    // const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://localhost:3000/login"
 
-   
 
 
 
 
     const [accessToken, setAccessToken] = useRecoilState(userState);
-console.log(accessToken)
+   
     const kakaoLogin = async () => {
-
         router.push(KAKAO_LOGIN)
         // setAccessToken(() => router.query.accessToken)
-        // console.log(accessToken + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    }
 
+    const naverLogin = async () => {
+        router.push(NAVER_LOGIN)
+        // setAccessToken(() => router.query.accessToken)
+    }
+
+    const googleLogin = async () => {
+        router.push(GOOGLE_LOGIN)
+        // setAccessToken(() => router.query.accessToken)
     }
 
 
@@ -102,7 +110,7 @@ console.log(accessToken)
     }, [])
 
 
-   
+
 
 
 
@@ -122,23 +130,22 @@ console.log(accessToken)
 
                 <LoginButtonBox>
 
-                    {/* <div className={'btn-sns-login btn-sns-login-google'}>
-                        <span
-                            className={'body2-medium'}
-                            onClick={aaa}>구글로 로그인하기</span>
-                    </div> */}
+                    <div className={'btn-sns-login btn-sns-login-google'}
+                    onClick={googleLogin}>
+                        <span className={'body2-medium'}>구글로 로그인하기</span>
+                    </div>
 
-                    <a onClick={kakaoLogin}>
-                        <div className={'btn-sns-login btn-sns-login-kakao'} >
-                            <span className={'body2-medium'}>카카오로 로그인하기</span>
-                        </div>
-                    </a>
 
-                    <a href={NAVER_LOGIN}>
-                        <div className={'btn-sns-login btn-sns-login-naver'}>
+                    <div className={'btn-sns-login btn-sns-login-kakao'} onClick={kakaoLogin}>
+                        <span className={'body2-medium'}>카카오로 로그인하기</span>
+                    </div>
+
+
+                    {/* <a href={NAVER_LOGIN}> */}
+                        <div className={'btn-sns-login btn-sns-login-naver'} onClick={naverLogin}>
                             <span className={'body2-medium'}>네이버로 로그인하기</span>
                         </div>
-                    </a>
+                    {/* </a> */}
 
                 </LoginButtonBox>
 
