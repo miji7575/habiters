@@ -30,7 +30,6 @@ const Content = styled.div`
 
 const Title = styled.div`
     padding: 72px 0 48px 0;
-    width: 500px;
 `
 
 

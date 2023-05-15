@@ -85,6 +85,7 @@ export default function MyPage() {
     const [user, setUser] = useRecoilState(userDetail)
 
     useEffect(() => {
+        
         setEmailInputPlaceHolder(user.email)
         setNicknamePlaceHolder(nicknameInputPlaceHolder)
         setNewInput(user.nickName)
