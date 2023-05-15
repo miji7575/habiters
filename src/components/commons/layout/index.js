@@ -63,7 +63,7 @@ export default function Layout(props) {
         if (accessToken) {
             console.log("레이아웃==================시작====")
             console.log("토큰" + accessToken)
-            const response = await axios.get('http://223.130.162.40:8080/users/me', {
+            const response = await axios.get('https://api.habiters.store/users/me', {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
 

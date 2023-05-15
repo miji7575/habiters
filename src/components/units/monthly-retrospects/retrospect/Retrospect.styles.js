@@ -25,23 +25,26 @@ export const DiaryAside = styled.div`
     border: 1px solid var(--color-black7);
     border-radius: 8px 0px 0px 8px;
 
-    background-color: var(--color-purple5);
-
-
-`
-
-export const DiaryAsideNonEditable = styled(DiaryAside)`
-
-
     /* background-color: var(--color-purple5); */
-    /* NONEDITABLE */
-     background-color: var(--color-black9);
+
+    ${(props) =>
+        props.isEditable === true ?
+            `background-color: var(--color-purple5);` : ` background-color: var(--color-black9);`}
+
 
 `
+
+
 
 export const DiaryDateBox = styled.div`
     margin-bottom: 12px;
     text-align: center;
+    &>div:first-of-type{
+        color: var(--color-black2);
+    }
+    &>div:last-of-type{
+        color: ${(props)=> props.isEditable === true ? `var(--color-purple2)`:`var(--color-black2)`};
+    }
 `
 
 export const DiaryIconBox = styled.div`

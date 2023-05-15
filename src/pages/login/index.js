@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userState, accessTokenState } from '../../commons/stores/Stores';
+import { userState, accessTokenStatem , URL } from '../../commons/stores/Stores';
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
 
 
 
@@ -57,15 +58,18 @@ export default function LoginPage() {
 
     // Push전에 수정!!!
     // =====  소셜로그인 주소
-    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/login"
-    const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
-    // const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
-    // const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://localhost:3000/myhabit"
+    const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/login"
+    const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/login"
+    // const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
+    // const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3000/login"
+
+   
+
 
 
 
     const [accessToken, setAccessToken] = useRecoilState(userState);
-
+console.log(accessToken)
     const kakaoLogin = async () => {
 
         router.push(KAKAO_LOGIN)
@@ -78,7 +82,7 @@ export default function LoginPage() {
 
 
     useEffect(() => {
-        console.log("로그인 페이지에서 가장 먼저 출력될 토큰 :  " + accessToken)
+        // console.log("로그인 페이지에서 가장 먼저 출력될 토큰 :  " + accessToken)
 
         setAccessToken(() => router.query.accessToken)
         // successLogin(accessToken)
@@ -89,7 +93,7 @@ export default function LoginPage() {
                 setAccessToken(localStorage.getItem("accessToken") || "")
                 console.log(accessToken)
             }
-            console.log("아아아아아아아아ㅏ")
+            // console.log("아아아아아아아아ㅏ")
             router.push("/myhabit")
         }
         // if (accessToken) {
@@ -98,29 +102,7 @@ export default function LoginPage() {
     }, [])
 
 
-    // const successLogin = (accessToken) => {
-
-    //     console.log(accessToken)
-    //     if(accessToken){
-    //         console.log("아아아아아아아아ㅏ")
-    //         router.push("/myhabit")
-    //     }
-    // }
-
-
-    // useEffect(() => {
-    //     localStorage.setItem("accessToken",accessToken)
-    //     console.log(accessToken)
-    //     // if(accessToken){
-
-    //     // }
-
-    //     console.log(localStorage)
-    //     if (localStorage.getItem("accessToken")) {
-    //         setAccessToken(localStorage.getItem("accessToken") || "")
-    //         console.log(accessToken)
-    //     }
-    // }, [accessToken])
+   
 
 
 

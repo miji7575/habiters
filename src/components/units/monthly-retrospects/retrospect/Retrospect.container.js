@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import RetrospectUI from "./Retrospect.presenter"
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import {userRetrospectState, userState} from '../../../../commons/stores/Stores';
+import { userRetrospectData} from '../../../../commons/stores/Stores';
 
 
 
@@ -12,29 +12,38 @@ export default function Retrospect(props) {
     const WEEKDAY = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
     console.log(new Date(props.date))
 
+    // const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectState)
 
 
-    const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectState)
-    const [accessToken, setAccessToken] = useRecoilState(userState)
 
-    const deleteUserRetrospectData = async () => {
 
-        console.log(props.contentId)
-        if (accessToken) {
-            const response = await axios.delete(`http://223.130.162.40:8080/diaries/${props.contentId}`, {
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
 
-            console.log(response)
+    // ---------------------------UI변화부분
+    const [isEditable, setIsEditable] = useState(false)
+    const [userRetrospect,setUserRetrospect] = useRecoilState(userRetrospectData)
+
+    useEffect(() => {
+        if (props.diaryState && (props.date.includes(props.Today))) {
+            // props.diaryState 없이 그냥 객체별 생성일과 오늘 날짜를 비교하는 뒤에 식만 있어도 될 것 같다
+            setIsEditable(true)
+ 
             return
         }
 
-    }
- 
 
-    const deleteRetrospect = async() => {
-        await deleteUserRetrospectData()
-        props.getUserRetrospects()
+    })
+
+    // --- 수정할 id와 내용을 넘겨주면서 팝업을 켠다.
+    const updateRetrospectsPopupOn = async () => {
+        props.updateRetrospectsPopupOn(props.contentId, props.content)
+        console.log(props.contentId)
+        console.log(props.content)
+    }
+
+    // ---삭제할 id넘겨주면서 팝업을 켠다.
+    const deleteRetrospectsPopupOn = async () => {
+        props.deleteRetrospectsPopupOn(props.contentId)
+        console.log(props.contentId)
     }
 
     return (
@@ -42,8 +51,14 @@ export default function Retrospect(props) {
             date={new Date(props.date).getDate()}
             day={WEEKDAY[new Date(props.date).getDay()]}
             content={props.content}
-            deleteRetrospect={deleteRetrospect}
-            
+
+
+
+            diaryState={props.diaryState}/* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+            isEditable={isEditable}/* 수정 가능한 UI로 변경위한 State */
+
+            updateRetrospectsPopupOn={updateRetrospectsPopupOn} /* 수정 팝업을 열기 위한 함수 */
+            deleteRetrospectsPopupOn={deleteRetrospectsPopupOn} /* 삭제 팝업을 열기 위한 함수 */
         />
     )
 

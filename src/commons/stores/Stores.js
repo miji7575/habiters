@@ -4,6 +4,8 @@ import { recoilPersist } from "recoil-persist"
 
 // const { persistAtom } = recoilPersist();
 
+
+
 export const sessionStorage =
     typeof window !== 'undefined' ? window.sessionStorage : undefined
 
@@ -14,6 +16,15 @@ export const localStorage =
 export const { persistAtom } = recoilPersist({
     storage: localStorage,
 });
+
+
+/* ===============================그거 포트번호 ============================= */
+export const URL = atom({
+    key: 'url',
+    default:'https://api.habiters.store',
+    effects_UNSTABLE: [persistAtom],
+})
+
 
 export const userState = atom({
     key: 'accessToken',
@@ -35,7 +46,8 @@ export const newInputValueState = atom({
 
 // ===============================Textarea Value
 export const TextareaValueState = atom({
-    key: 'TextareaInput',
+
+    key: 'textareaInput',
     default: '',
 })
 
@@ -61,7 +73,7 @@ export const userHabitState = atom({
 })
 
 // ===============받아온 user의 habit data
-export const userRetrospectState = atom({
+export const userRetrospectData = atom({
     key:"userRetrospect",
     default:'',
     effects_UNSTABLE:[persistAtom]
@@ -76,4 +88,11 @@ export const userRetrospectState = atom({
 export const SelectedDate = atom({
     key: "date",
     default:new Date().getDate()
+})
+
+
+// =======오늘 회고를 작성했는지 여부
+export const TodayRetrospectState = atom({
+    key: "todayRetrospectState",
+    default:false
 })

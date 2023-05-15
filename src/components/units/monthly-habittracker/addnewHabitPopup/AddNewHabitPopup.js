@@ -112,7 +112,7 @@ export default function AddNewHabitPopup(props) {
             console.log("PostHabit 함수 newInput : " + newInput)
 
 
-            const response = await axios.post('http://223.130.162.40:8080/habits', newInput, {
+            const response = await axios.post('https://api.habiters.store/habits', newInput, {
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ` + accessToken },
             })
             console.log("PostHabit 의 Response : " + response.data)
@@ -128,7 +128,7 @@ export default function AddNewHabitPopup(props) {
             alert("내용을 입력해주세요")
         }
         else {
-            props.addNewhabit(newInput);
+            props.addNewhabit();
             setNewInput(() => '')
             await postHabit()
             props.getUserData();
