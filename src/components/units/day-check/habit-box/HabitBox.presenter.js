@@ -24,7 +24,7 @@ export default function HabitBoxUI(props) {
                 isHabitChecked={props.isHabitChecked}
                 onClick={props.onHabitCheckClick}
                 >
-                    성공했어요{props.nowSelectedDate}
+                    성공했어요
                 </HabitCheckBtn>
             </HabitCheck>
 
