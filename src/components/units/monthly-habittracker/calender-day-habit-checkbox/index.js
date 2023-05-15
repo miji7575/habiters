@@ -81,7 +81,7 @@ export default function CalenderDayHabitCheckbox(props) {
         // console.log(props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date)
 
 
-        // if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date == today )) {
+        if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date == today )) {
 
 
                                                                                                         // console.log(props.habitChecks.length)
@@ -107,11 +107,11 @@ export default function CalenderDayHabitCheckbox(props) {
             await postHabitCheck()
             props.getUserData()
 
-        //     return
-        // }
-        // else {
-        //     alert("당일의 습관만 체크할 수 있습니다.")
-        // }
+            return
+        }
+        else {
+            alert("당일의 습관만 체크할 수 있습니다.")
+        }
 
 
 
