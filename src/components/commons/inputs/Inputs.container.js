@@ -13,34 +13,40 @@ import { newInputValueState,inputDoneState } from '../../../commons/stores/Store
 export default function Inputs(props) {
 
     const [newInput, setNewInput] = useRecoilState(newInputValueState)
+    // const [newInput, setNewInput] = useState()
     // const [value, setValue] = useState('')
     const [isValueNull, setIsValueNull] = useState(true)
     const [isError, setisError] = useState(false);
 
+
+ 
+
     useEffect(()=>{
-        console.log(newInput)
-        console.log(isValueNull)
+
         if(newInput == ''){
             setIsValueNull(()=>true)
-            console.log(isValueNull)
         }
         else{
         setIsValueNull(()=>false)
         }
-
-
-
+        
+        
         
 
     },[newInput])
 
+    useEffect(()=>{
+
+        setNewInput(undefined)
+    },[])
+
+    
+
+  
+
 
     const onChangeHandler = async(e) => {
-
-        setNewInput(()=> e.target.value)
-        // console.log(e.target.value)
-        // props.onChangeHandler(e.target.value)
-
+        setNewInput(e.target.value)
     }
    
     const removeValue = async () => {
@@ -48,14 +54,16 @@ export default function Inputs(props) {
     }
  
 
+
+
         
   
 
     return (
         <>
             {/* // html 부분을 여기에 담아라 */}
-
-            <InputWrap>
+            {/* ---------------수정가능 -------------------- */}
+            {!props.isEditable && <InputWrap>
 
                 <InputBox>
                     {!isValueNull &&
@@ -70,8 +78,8 @@ export default function Inputs(props) {
                         onChange={onChangeHandler}
                         value={newInput}
                         placeholder={props.placeholder}
-
-
+                        name={props.name}
+                        disabled={props.isEditable ? true : false}
                     />
 
 
@@ -81,15 +89,38 @@ export default function Inputs(props) {
                             className="icon-m icon-error-colored" />}
                 </InputBox>
                 <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
-            </InputWrap>
+            </InputWrap>}
 
 
 
-            {/* ===================================================== */}
-            {/* <div> {props.newInput}: inputPresenter</div>
-            <button>입력버튼</button> */}
 
             {/* ===================================================== */}
+            {/* ---------------읽기전용 -------------------- */}
+
+            {props.isEditable && <InputWrap>
+
+                <InputBox>
+                    
+                    <Input
+                        type="text"
+                        className={'input-default body3-medium color-black2'}
+                        width={props.width}
+                        // isError={props.isError}
+                        onChange={onChangeHandler}
+                        // value={newInput}
+                        placeholder={props.placeholder}
+                        name={props.name}
+                        disabled={props.isEditable ? true : false}
+                    />
+
+
+
+                    {isError &&
+                        <ErrorIcon
+                            className="icon-m icon-error-colored" />}
+                </InputBox>
+                <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
+            </InputWrap>}
 
         </>
 

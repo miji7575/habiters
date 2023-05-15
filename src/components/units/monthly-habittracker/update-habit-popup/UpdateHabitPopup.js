@@ -55,7 +55,7 @@ flex-direction: row;
 gap: 8px;
 `
 
-export default function UpdateHabitPopup(props) {
+export default function updateRetrospectsPopup(props) {
 
    
 
@@ -107,7 +107,7 @@ export default function UpdateHabitPopup(props) {
     const updateHabitData = async () => {
 
         if (accessToken) {
-            const response = await axios.put(`http://223.130.162.40:8080/habits/${props.habitId}`, newInput, {
+            const response = await axios.put(`https://api.habiters.store/habits/${props.habitId}`, newInput, {
                 headers: {  "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
             })
             return

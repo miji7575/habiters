@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userState, accessTokenState } from '../../commons/stores/Stores';
+import { userState, accessTokenStatem , URL } from '../../commons/stores/Stores';
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 
 
@@ -55,17 +55,19 @@ export default function LoginPage() {
     }
 
 
+    const url = useRecoilValue(URL)
+    console.log(url)
     // Push전에 수정!!!
     // =====  소셜로그인 주소
-    // const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
-    // const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
-    const KAKAO_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
-    const NAVER_LOGIN = "http://223.130.162.40:8080/oauth2/authorization/naver?redirect_uri=http://localhost:3000/myhabit"
+    // const KAKAO_LOGIN = "http://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
+    // const NAVER_LOGIN = "http://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
+    const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
+    const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3000/myhabit"
 
 
 
     const [accessToken, setAccessToken] = useRecoilState(userState);
-
+console.log(accessToken)
     const kakaoLogin = async () => {
 
         router.push(KAKAO_LOGIN)

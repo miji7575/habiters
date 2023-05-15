@@ -9,7 +9,8 @@ export default function Textareas(props) {
 
 
 
-    const [textareaInput, setTextareaInput] = useRecoilState(TextareaValueState)
+    
+
 
     return (
         <>
@@ -20,9 +21,7 @@ export default function Textareas(props) {
                 height={props.height}
                 placeholder={props.placeholder}
                 textareaErrorMessage={props.textareaErrorMessage}
-
-
-
+                todayRetrospectState={props.todayRetrospectState} /* 오늘 작성한 적이 있으면 non editable */
             />
         </>
     )

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
-import { useRecoilState } from 'recoil'
-import { userState, userDetail, userHabitState} from '../commons/stores/Stores';
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { userState, userDetail, userHabitState, URL} from '../commons/stores/Stores';
 import { useEffect } from 'react';
 
 
@@ -131,7 +131,8 @@ export default function IntroPage() {
     }
 
 
-
+    const url = useRecoilValue(URL)
+    console.log(url)
   
     // 1페이지
 

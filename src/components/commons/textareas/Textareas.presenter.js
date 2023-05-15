@@ -42,7 +42,6 @@ export default function TextareaUI(props) {
             <TextareaBox
                 width={props.width}
                 margin={props.margin}
-
             >
                 <TextareaDefault name="" id="" cols="30" rows="10" className="body3-regular"
                     height={props.height}
@@ -59,7 +58,7 @@ export default function TextareaUI(props) {
                 </TextareaDefault>
                 <TextareaExplain className="caption2-regular ">
                     <span>{props.textareaErrorMessage}</span>
-                    <span><span>{textareaValue.length}</span>/200</span>
+                    <span><span>{textareaInput.length}</span>/200</span>
                 </TextareaExplain>
             </TextareaBox>
 

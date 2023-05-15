@@ -1,5 +1,5 @@
 
-import { DiaryBox, DiaryAside, DiaryAsideNonEditable, DiaryDateBox, DiaryIconBox, DiaryContent } from './Retrospect.styles'
+import { DiaryBox, DiaryAside, DiaryDateBox, DiaryIconBox, DiaryContent } from './Retrospect.styles'
 
 
 export default function RetrospectUI(props) {
@@ -11,28 +11,45 @@ export default function RetrospectUI(props) {
     return (
 
         <>
-
+            {/* NONEDITABLE */}
             <DiaryBox>
-                <DiaryAsideNonEditable>
-                    <DiaryDateBox>
-                        <div className="body3-regular color-black2">{props.day}</div>
-                        <div className="headline2 color-black2">{props.date}</div>
+                <DiaryAside
+                    isEditable={props.isEditable}/* 수정 가능한 UI로 변경위한 State */
+                >
+                    <DiaryDateBox
+                        isEditable={props.isEditable}/* 수정 가능한 UI로 변경위한 State */
+                    >
+                        <div className="body3-regular">{props.day}</div>
+                        <div className="headline2">{props.date}</div>
                     </DiaryDateBox>
 
-                    <DiaryIconBox
-                    onClick={props.deleteRetrospect}>
-                        <span className="icon-round-l bg-white icon-round-border-black4">
+                        {/* 수정가능 */}
+                    {props.isEditable && 
+                    <DiaryIconBox>
+                        <span className="icon-round-l icon-round-filled"
+                        onClick={props.updateRetrospectsPopupOn}>
+                            <span className="icon-s icon-pencil-colored"></span>
+                        </span>
+                        <span className="icon-round-l bg-white icon-round-border-purple2"
+                            onClick={props.deleteRetrospectsPopupOn}>
+                            <span className="icon-s icon-delete-colored"></span>
+                        </span>
+                    </DiaryIconBox>}
+
+                        {/*수정못함  */}
+                    {!props.isEditable && 
+                    <DiaryIconBox>
+                        <span className="icon-round-l bg-white icon-round-border-black4"
+                            onClick={props.deleteRetrospectsPopupOn}>
                             <span className="icon-s icon-delete-colored icon-color-black4"></span>
                         </span>
-                    </DiaryIconBox>
+                    </DiaryIconBox>}
+                </DiaryAside>
 
-
-                </DiaryAsideNonEditable>
 
                 <DiaryContent>
                     <div className="body3-regular color-black2">
                         {props.content}
-                        
                     </div>
                 </DiaryContent>
 
@@ -40,39 +57,11 @@ export default function RetrospectUI(props) {
             </DiaryBox>
 
 
-            {/* <DiaryBox>
-                <DiaryAside>
-                    <DiaryDateBox>
-                        <div className="body3-regular color-black2">월요일</div>
-                        <div className="headline2 color-purple2">08</div>
-                    </DiaryDateBox>
-
-                    <DiaryIconBox>
-                        <span className="icon-round-l icon-round-filled">
-                            <span className="icon-s icon-pencil-colored"></span>
-                        </span>
-                        <span className="icon-round-l bg-white icon-round-border-purple2">
-                            <span className="icon-s icon-delete-colored"></span>
-                        </span>
-                    </DiaryIconBox>
 
 
-                </DiaryAside>
+          
 
-                <DiaryContent>
-                    <div className="body3-regular color-black2">
-                        오늘의 회고내용을 어쩌구 저쩌구 쓰게 됩니다.<br />
-                        그게 200자가 넘으면은 글자수가 제한되는데,<br />
-                        이게 어떻게 보면 너무 길어질 수도 있는데 이걸 영역을 늘려야 할지 아니면 애초에 스크롤로 가야할지...참 고민이 되네요.<br />
-                        근데 생각보다 200자가 그렇게 많지 않을 것 같기도 하네요? 이것 참참..<br />
-                        공백은 포함해서 가는건가요?<br />
-                        공백 포함하면 이게 200자
-                    </div>
-                </DiaryContent>
-
-
-            </DiaryBox> */}
-
+           
 
 
         </>

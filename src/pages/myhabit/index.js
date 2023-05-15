@@ -72,7 +72,7 @@ export default function HabitTracker() {
         if (accessToken) {
 
             console.log("토큰" + accessToken)
-            const response = await axios.get('http://223.130.162.40:8080/habits', {
+            const response = await axios.get('https://api.habiters.store/habits', {
 
                 headers: { "Content-Type": "application/json",Authorization: 'Bearer ' + accessToken }
 

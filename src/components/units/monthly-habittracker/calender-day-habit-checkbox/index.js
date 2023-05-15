@@ -35,7 +35,7 @@ export default function CalenderDayHabitCheckbox(props) {
     const postHabitCheck = async () => {
 
         if (accessToken) {
-            const response = await axios.post(`http://223.130.162.40:8080/habits/${props.habitId}/check`, props.habitId, {
+            const response = await axios.post(`https://api.habiters.store/habits/${props.habitId}/check`, props.habitId, {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
@@ -50,13 +50,13 @@ export default function CalenderDayHabitCheckbox(props) {
     const deleteHabitCheck = async () => {
 
         if (accessToken) {
-            const response = await axios.delete(`http://223.130.162.40:8080/habits/${props.habitId}/check`, {
+            const response = await axios.delete(`https://api.habiters.store/habits/${props.habitId}/check`,{
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             console.log(response)
             console.log("해빗체크삭제됨")
-            return
+            return response
 
         }
     }
@@ -94,11 +94,12 @@ export default function CalenderDayHabitCheckbox(props) {
                                                                                                         // if (props.habitChecks.length == 0) {
                                                                                                         //     await postHabitCheck()
                                                                                                         //     props.getUserData()
-                                                                                                        // }
-
+                                                                                                                                                                                          // }
+            console.log(props.habitId)  
             if (isCheckboxChecked) {
                 await deleteHabitCheck()
                 props.getUserData()
+                
                 // setIsCheckboxChecked(false)
 
                 return
@@ -106,7 +107,7 @@ export default function CalenderDayHabitCheckbox(props) {
             await postHabitCheck()
             props.getUserData()
 
-            return
+        //     return
         // }
         // else {
         //     alert("당일의 습관만 체크할 수 있습니다.")
@@ -132,8 +133,19 @@ export default function CalenderDayHabitCheckbox(props) {
         Object.entries(props.habitChecks).map(([key, value]) => {
 
             if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
-                setIsCheckboxChecked(true)
-                console.log("불들어옴")
+                setIsCheckboxChecked(()=>true)
+                if(value.updatedAt.includes("2023-05-12")){
+                    setIsCheckboxChecked(()=>true)
+                    console.log("!!!!!2023-05-12!!!!!데이터값 : "+value.updatedAt)
+                    console.log("!!!!!2023-05-12!!!!!!애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
+                    console.log("!!!!2023-05-12!!!!!! : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
+                    console.log("!!!!!!!2023-05-12!!!!!체크박스 색깔 여부 : "+isCheckboxChecked)
+                }
+                console.log("?????????데이터값 : "+value.updatedAt)
+                    console.log("???????????????애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
+                    console.log("????????????? : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
+                    console.log("?????????????체크박스 색깔 여부 : "+isCheckboxChecked)
+                
             }
             else {
                 setIsCheckboxChecked(false)

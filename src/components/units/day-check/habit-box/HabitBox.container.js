@@ -17,7 +17,7 @@ export default function HabitBox(props) {
     const postHabitCheck = async () => {
 
         if (accessToken) {
-            const response = await axios.post(`http://223.130.162.40:8080/habits/${props.habitId}/check`, props.habitId, {
+            const response = await axios.post(`https://api.habiters.store/habits/${props.habitId}/check`, props.habitId, {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
@@ -32,7 +32,7 @@ export default function HabitBox(props) {
     const deleteHabitCheck = async () => {
 
         if (accessToken) {
-            const response = await axios.delete(`http://223.130.162.40:8080/habits/${props.habitId}/check`, {
+            const response = await axios.delete(`https://api.habiters.store/habits/${props.habitId}/check`, {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
