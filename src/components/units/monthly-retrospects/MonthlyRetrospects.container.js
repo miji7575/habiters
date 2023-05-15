@@ -4,7 +4,7 @@ import MonthlyRetrospectsUI from "./MonthlyRetrospects.presenter"
 import { useEffect, useState } from 'react';
 import { userRetrospectData, userState } from '../../../commons/stores/Stores';
 import UpdateRetrospectsPopup from './update-retrospects-popup';
-import {DeleteRetrospectsPopup} from './delete-retrospects-popup/';
+import {DeleteRetrospectsPopup} from './delete-retrospects-popup/DeleteRetrospectsPopup';
 
 
 
