@@ -23,7 +23,7 @@ export default function MonthlyRetrospects(props) {
 
             console.log("토큰" + accessToken)
             // console.log(props.showDate.showYear + '-' + props.showDate.showMonth)
-            const URL = `https://api.habiters.store/diaries?date={Option:${props.showDate.showYear}-${props.showDate.showMonth}}`
+            const URL = `https://api.habiters.store/diaries?date=${props.showDate.showYear}-${props.showDate.showMonth}`
             // ?date={Option:${props.showDate.showYear}-${props.showDate.showMonth}}
             const response = await axios.get(URL,
                 {
