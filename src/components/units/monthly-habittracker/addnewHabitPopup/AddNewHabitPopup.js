@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import Inputs from '../../../commons/inputs/Inputs.container';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, newInputValueState } from '../../../../commons/stores/Stores';
-// import inputStyles from '../../../../styles/input.module.css'
+import { userState, InputValue } from '../../../../commons/stores/Stores';
+import Input from '../../../commons/inputs/Inputs.container';
 
 
 // ============================== Style  ==============================
@@ -54,84 +53,46 @@ const PopupBtn = styled.div`
     display: flex;
     justify-content: center;
     `
-// ----- 인풋
-// const InputWrap = styled.div`
-//         display: inline-flex;
-//         flex-direction: column;
-// `
 
-// const InputBox = styled.div`
-//         display: inline-flex;
-//         align-items: center;
-//         position: relative;
-// `
-
-// const Input = styled.input`
-// padding: 0 48px 0 12px;     
-// height: var(--header-height);
-// width: ${(props) => props.width || `380px`};
-// height: 48px;
-// box-sizing: border-box;
-// border: ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `solid 1px var(--color-black7)`};
-// border-radius: 8px;
-// color: var(--color-black2);
-// &:focus{
-//     outline: ${(props) => props.isError === true ? `var(--color-red)` : `auto`};
-// }
-// `
-
-
-// const InputMessage = styled.div`
-
-// `
-
-// const ErrorIcon = styled.span`
-// background-color: var(--color-error);
-// position: absolute;
-// right: 12px;
-
-// `
 export default function AddNewHabitPopup(props) {
-
-
-
-
-
 
     // ============================== Function  ==============================
 
-    // ----- axios
 
+
+    // ----- axios(post) -- 습관이름 등록하기
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const postHabit = async () => {
-
-        console.log("PostHabit 함수 토큰 : " + accessToken)
-
         if (accessToken) {
-
-            console.log("PostHabit 함수 newInput : " + newInput)
-
-
-            const response = await axios.post('https://api.habiters.store/habits', newInput, {
+            const response = await axios.post('https://api.habiters.store/habits', {
+                "content": newInput["habitName"]
+            }, {
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ` + accessToken },
             })
-            console.log("PostHabit 의 Response : " + response.data)
-
             return
         }
 
     }
 
 
+    // ----- 습관 등록하기
     const addNewhabit = async () => {
-        if (newInput.trim().length == 0) {
-            alert("내용을 입력해주세요")
+
+
+        if ( !newInput["habitName"]  || newInput["habitName"].trim().length == 0 ) {
+            alert("내용을 입력해주세요");
+            return
+        }
+        if (newInput["habitName"].length > 10) {
+            alert("습관 이름은 10자 이내만 가능합니다")
+            return
         }
         else {
-            props.addNewhabit();
-            setNewInput(() => '')
             await postHabit()
+            setNewInput(() => '')
             props.getUserData();
+            props.addNewHabitPopupClose();
+            return
         }
     }
 
@@ -139,15 +100,19 @@ export default function AddNewHabitPopup(props) {
 
     // ----- input
     const placeholder = "만드실 습관을 10자 이내로 입력해주세요.";
-    const [newInput, setNewInput] = useRecoilState(newInputValueState)
-    // const [newInput, setNewInput] = useState('')
+    const [newInput, setNewInput] = useRecoilState(InputValue)
+    const { habitName } = newInput;
 
-    const onChangeHandler = (e) => {
-        setNewInput(e.target.value)
+
+
+
+    const onChange = (e) => {
+        const { value, name } = e.target;
+        setNewInput({ ...newInput, [name]: value })
     };
 
 
-
+// ----- 팝업창 닫기
     function addNewHabitPopupClose() {
         setNewInput('')
         props.addNewHabitPopupClose();
@@ -156,7 +121,7 @@ export default function AddNewHabitPopup(props) {
 
 
 
-
+    
 
 
 
@@ -175,40 +140,17 @@ export default function AddNewHabitPopup(props) {
 
                 <PopupContent>
                     <div>
-                        <Inputs
+                        {/* <Inputs
                             placeholder={placeholder}
                             onChangeHandler={onChangeHandler}
-
+                        /> */}
+                        <Input
+                            name="habitName"
+                            value={habitName}
+                            placeholder={placeholder}
+                            onChange={onChange}
+                           
                         />
-
-                        {/* <InputWrap>
-
-                            <InputBox>
-                                {!props.isError &&
-                                    <span
-                                        className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
-                                        onClick={removeValue} />}
-                                <Input
-                                    type="text"
-                                    className={'input-default body3-medium color-black2'}
-                                    width={props.width}
-                                    // isError={props.isError}
-                                    onChange={onChangeHandler}
-                                    value={newInput}
-                                    placeholder={placeholder}
-
-
-                                />
-
-
-
-                                {props.isError &&
-                                    <ErrorIcon
-                                        className="icon-m icon-error-colored" />}
-                            </InputBox>
-                            <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
-                        </InputWrap> */}
-
 
                     </div>
 

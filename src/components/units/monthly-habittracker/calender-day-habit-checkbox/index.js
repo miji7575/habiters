@@ -12,11 +12,9 @@ box-sizing: border-box;
 display: flex;
 align-items: center;
 justify-content: center;
-border-right: 1px solid var(--color-black8);
-border-bottom: 1px solid var(--color-black8);
-&:last-child{
-    border-bottom: 1px solid var(--color-black8);
-}
+/* border-right: ${(props) => props.isSelected === true ? 'none' : '1px solid var(--color-black8)'}; */
+/* border-bottom: 1px solid var(--color-black8); */
+
 `
 const HabitCheckBox = styled.span`
 width: 24px;
@@ -169,7 +167,8 @@ export default function CalenderDayHabitCheckbox(props) {
 
     // ============================== Rendering ==============================
     return (
-        <HabitCheckBoxContainer>
+        <HabitCheckBoxContainer
+        isSelected={props.isSelected}>
             <HabitCheckBox
                 onClick={checkboxCheck}
                 isCheckboxChecked={isCheckboxChecked}

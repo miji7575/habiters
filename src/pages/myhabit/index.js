@@ -17,15 +17,15 @@ import MonthlyRetrospects from '../../components/units/monthly-retrospects/Month
 const Main = styled.div`
     display: flex;
     justify-content: center;
-
 `
 
 const Content = styled.div`
- width: 60vw;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 200px;
+
 `
 
 const Title = styled.div`

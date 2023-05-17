@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import Inputs from '../../../commons/inputs/Inputs.container';
 import styled from '@emotion/styled'
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import { userState, newInputValueState } from '../../../../commons/stores/Stores';
+import axios from 'axios';
+import { userState, InputValue } from '../../../../commons/stores/Stores';
+import Input from '../../../commons/inputs/Inputs.container';
 
 
 
-   // ============================== Style  ==============================
- const PopupBackground = styled.div`
- position: fixed;
+// ============================== Style  ==============================
+const PopupBackground = styled.div`
+position: fixed;
 top: 0;
 left: 0;
 bottom: 0;
@@ -57,62 +57,66 @@ gap: 8px;
 
 export default function UpdateHabitPopup(props) {
 
-   
-
-
-
-
     // ============================== Function  ==============================
 
-    // 기존 저장된 습관 이름을 불러와야함
-    const [habitValue, setHabitValue] = useState('')
-    // const newHabirValue = "약먹기(임시)"
-    // setHabitValue(newHabirValue)
-
-    const placeholder = "만드실 습관을 10자 이내로 입력해주세요.";
+    // --- 초기설정
+    useEffect(() => {
+        setNewInput({ ["habitName"]: props.selectedHabitName })
+    }, [])
 
 
+    //  ----- Axios put(update) -- 습관이름 수정하기
+    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const updateHabitData = async () => {
+
+        if (accessToken) {
+            const response = await axios.put(`https://api.habiters.store/habits/${props.habitId}`, {
+                "content": newInput["habitName"]
+            }, {
+                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+            })
+            return
+        }
+    }
+
+
+    // --- 팝업창 닫기
     function updateHabitPopupClose() {
         setNewInput('')
         props.updateHabitPopupClose();
     }
 
+    // --- 습관이름 수정하기
     const updateHabit = async () => {
-        props.updateHabit();
-        await updateHabitData()
-        props.getUserData();
-        setNewInput('')
-        console.log("습관 수정 완료")
-    }
-
-
-
-
-    // ------------------input
-    const [newInput, setNewInput] = useRecoilState(newInputValueState)
-    useEffect(()=>{
-        setNewInput(props.selectedHabitName)
-    },[])
-
-    const onChangeHandler = (e) => {
-        setNewInput(e.target.value)
-        console.log(e.target.value)
-
-    }
-
-
-
-    //  ----- Axios put(update)
-    const [accessToken, setAccessToken] = useRecoilState(userState)
-    const updateHabitData = async () => {
-
-        if (accessToken) {
-            const response = await axios.put(`https://api.habiters.store/habits/${props.habitId}`, newInput, {
-                headers: {  "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-            })
+        if (!newInput["habitName"] || newInput["habitName"].trim().length == 0) {
+            alert("내용을 입력해주세요");
             return
         }
+        if (newInput["habitName"].length > 10) {
+            alert("습관 이름은 10자 이내만 가능합니다")
+            return
+        }
+        else {
+            await updateHabitData()
+            setNewInput(() => '')
+            props.getUserData();
+            props.updateHabitPopupClose();
+        }
     }
+
+
+
+    // --- input
+    const placeholder = "만드실 습관을 10자 이내로 입력해주세요.";
+    const [newInput, setNewInput] = useRecoilState(InputValue)
+    const { habitName } = newInput;
+
+
+    const onChange = (e) => {
+        const { value, name } = e.target;
+        setNewInput({ ...newInput, [name]: value })
+    }
+
 
     return (
 
@@ -131,9 +135,11 @@ export default function UpdateHabitPopup(props) {
 
                     <PopupContent>
                         <div>
-                            <Inputs
-                                placeholder={placeholder} 
-                                onChangeHandler={onChangeHandler} />
+                            <Input
+                                name="habitName"
+                                value={habitName}
+                                placeholder={placeholder}
+                                onChange={onChange} />
                         </div>
                     </PopupContent>
 

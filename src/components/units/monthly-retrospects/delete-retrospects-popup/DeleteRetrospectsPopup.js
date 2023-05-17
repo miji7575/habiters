@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Inputs } from '../../../commons/inputs/Inputs.container';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';

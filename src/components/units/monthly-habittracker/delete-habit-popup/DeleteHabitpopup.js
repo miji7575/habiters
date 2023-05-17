@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Inputs } from '../../../commons/inputs/Inputs.container';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 import {userState} from '../../../../commons/stores/Stores';
+
 
 
 export default function DeleteHabitPopup(props) {
@@ -62,30 +62,13 @@ export default function DeleteHabitPopup(props) {
     // 함수==================================
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const deleteHabitData = async () => {
-
         console.log(props.habitId)
-        // new Headers({
-        //     'Content-Type': 'application/json',
-        // });
         if (accessToken) {
-            console.log("레이아웃==================시작====")
-            console.log("토큰" + accessToken)
             const response = await axios.delete(`https://api.habiters.store/habits/${props.habitId}`, {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
-                // .then(function (response) {
-                //     console.log(response);
-                // })
-
-            // const json = await response.json
-            
-            console.log(response.data.data)
-            
-            console.log("레이아웃==================끝   ====")
             return
         }
-        console.log(" 레이아웃 토큰없음.")
-        // return response.data;
     }
     
 
@@ -98,7 +81,7 @@ export default function DeleteHabitPopup(props) {
     const deleteHabit = async () => {
         console.log(props.habitId)
         await deleteHabitData()
-        props.deleteHabit();
+        props.deleteHabitPopupClose();
         console.log("습관 삭제 완료")
         props.getUserData();
 

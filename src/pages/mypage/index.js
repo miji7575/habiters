@@ -1,14 +1,17 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
-import Inputs from "../../components/commons/inputs/Inputs.container"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { userState, sessionStorage, newInputValueState, userDetail } from '../../commons/stores/Stores';
+import { userState, userDetail, InputValue } from '../../commons/stores/Stores';
 import axios from 'axios'
 
 
+import Input from '../../components/commons/inputs/Inputs.container';
 
-// -----------------스타일
+
+
+
+// ============================== Style ==============================
 
 const Main = styled.div`
  display: flex;
@@ -64,167 +67,189 @@ const NickNameUpdateBtn = styled.div`
  `
 export default function MyPage() {
 
+    // 1. 검증하기
+    //2. 백엔드컴터에보내주기
+    //3. 성공알람 보여주기.
 
-
-    //---------함수---------------------
+   
+    // ============================== Function  ==============================
     const router = useRouter()
-    const onClickUpdateImg = () => {
-        //    이미지 로드
-        alert("파일로드창!")
-    }
     const onClickMoveDeleteAccount = () => {
         router.push("/delete-account")
     }
 
+    //  -----  이미지 로드
+    const onClickUpdateImg = () => {
+        alert("파일로드창!")
+    }
 
 
-    const [emailInputPlaceHolder, setEmailInputPlaceHolder] = useState("habiters@gmail.com");
-    const [nicknameInputPlaceHolder, setNicknamePlaceHolder] = useState("닉네임을 입력해주세요. ex) 해빗터_해빗터");
+
+
+    const [emailInputPlaceHolder, setEmailInputPlaceHolder] = useState("이메일 주소를 입력해주세요. ex)habiters@gmail.com");
+    const [nicknameInputPlaceHolder, setNicknamePlaceHolder] = useState("닉네임을 입력해주세요.");
+    const [isEditable, setIsEditable] = useState(true)
 
 
     const [user, setUser] = useRecoilState(userDetail)
 
+    // ----- 초기값 설정하기
     useEffect(() => {
-        
-        setEmailInputPlaceHolder(user.email)
-        setNicknamePlaceHolder(nicknameInputPlaceHolder)
-        setNewInput(user.nickName)
-
+        setInputValues({ ["nickName"]: user.nickName })
+        if (user.email) {
+            setEmailInputPlaceHolder(user.email)
+            setInputValues({
+                ["nickName"]: user.nickName,
+                 ["email"]: user.email
+            })
+        }
     }, [])
 
 
-// 1. 검증하기
-//2. 백엔드컴터에보내주기
-//3. 성공알람 보여주기.
-
-// --- input
-const [newInput, setNewInput] = useRecoilState(newInputValueState)
-// const [nickname, setNickName] = useState(user.nickName)
-const [isEditable, setIsEditable] = useState(true)
-
-useEffect(()=>{
-    console.log(newInput)
-})
 
 
+   
+    //  ----- Axios put(update) -- 회원정보 수정
+    const [accessToken, setAccessToken] = useRecoilState(userState)
 
+    const updateUserData = async () => {
 
-
-
-
-// --------------------회원정보 수정하기
-//  ----- Axios put(update)
-const [accessToken, setAccessToken] = useRecoilState(userState)
-
-const updateUserData = async () => {
-
-    if (accessToken) {
-        const response = await axios.put(`https://api.habiters.store//users/me`, newInput, {
-            headers: {  "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-        })
-        return
+        if (accessToken) {
+            const response = await axios.put(`https://api.habiters.store/users/me`, {
+                "email" : email,
+                "nickName" : nickName
+              }, {
+                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+            })
+            console.log(response)
+            return
+        }
     }
-}
 
+    //  ----- Axios get -- 회원정보 가져오기
+    const getUserData = async () => {
 
-
-// --------------------회원정보 가져오기
-//  ----- Axios get
-const getUserData = async () => {
-
-    console.log("레이아웃==================시작====")
-    if (accessToken) {
-        console.log("레이아웃==================시작====")
-        console.log("토큰" + accessToken)
-        const response = await axios.get('https://api.habiters.store/users/me', {
-            headers: { Authorization: 'Bearer ' + accessToken }
-        })
-
-
-        console.log(response.data.data)
-        setUser(response.data.data)
-        console.log("레이아웃==================끝   ====")
-        return
+        if (accessToken) {
+            const response = await axios.get('https://api.habiters.store/users/me', {
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+            setUser(response.data.data)
+            return
+        }
     }
-    console.log(" 레이아웃 토큰없음.")
 
-}
 
-const updateUser = async() => {
-    await updateUserData()
-    getUserData()
-}
 
-return (
-    <>
-        <main>
+    // --------------------회원정보 수정하기
+    const updateUser = async () => {
+        await updateUserData()
+        getUserData()
+    }
 
-            <Main>
 
-                <Title className={'headline1'}>
-                    마이페이지
-                </Title>
 
-                <MyImgWrap>
-                    <MyImg src="/image/image-default.svg" alt="기본이미지" />
-                    <MyImgUpdateIcon className={'icon-round-l'} onClick={onClickUpdateImg}>
-                        <span className={'icon-s icon-pencil'}></span>
-                    </MyImgUpdateIcon>
-                </MyImgWrap>
+    // =========================INPUT
 
-                <MypageInputWrap>
-                    <MypageInputBox>
-                        <div className={'body1-bold'}>
-                            이메일
+    const [inputValues, setInputValues] = useRecoilState(InputValue)
+    const { email, nickName } = inputValues; // 비구조화 할당을 통해 값 추출
+
+    const onChangeRecoil = (e) => {
+        const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+        setInputValues({
+            ...inputValues, // 기존의 input 객체를 복사한 뒤
+            [name]: value // [name]: value // name 키를 가진 값을 value 로 설정
+        });
+    };
+
+
+
+
+
+
+
+
+
+    return (
+        <>
+            <main>
+
+                <Main>
+
+                    <Title className={'headline1'}>
+                        마이페이지
+                    </Title>
+
+                    <MyImgWrap>
+                        <MyImg src="/image/image-default.svg" alt="기본이미지" />
+                        <MyImgUpdateIcon className={'icon-round-l'} onClick={onClickUpdateImg}>
+                            <span className={'icon-s icon-pencil'}></span>
+                        </MyImgUpdateIcon>
+                    </MyImgWrap>
+
+                    <MypageInputWrap>
+                        <MypageInputBox>
+                            <div className={'body1-bold'}>
+                                이메일
+                            </div>
+                            <div>
+
+
+                                <Input
+                                    name="email"
+                                    onChange={onChangeRecoil}
+                                    value={email}
+                                    placeholder={emailInputPlaceHolder}
+                                    isEditable={isEditable}
+                                ></Input>
+
+
+                            </div>
+                        </MypageInputBox>
+
+                        <MypageInputBox>
+                            <div className={'body1-bold'}>
+                                닉네임
+                            </div>
+
+                            <NickNameInputBox>
+                                <div>
+                                    <Input
+                                        name="nickName"
+                                        onChange={onChangeRecoil}
+                                        value={nickName}
+                                        placeholder={nicknameInputPlaceHolder}
+                                        width={`292px`}
+                                       
+                                    ></Input>
+
+                                </div>
+                                <NickNameUpdateBtn className="body2-medium btn btn-large btn-primary-default btn-width-fit-content"
+                                    onClick={updateUser}>
+                                    <span>수정</span>
+                                </NickNameUpdateBtn>
+                            </NickNameInputBox>
+                        </MypageInputBox>
+                    </MypageInputWrap>
+
+
+
+
+                    <div className="btn-arrange-vertical">
+                        <div>
+                            <div className="btn btn-large btn-primary-default body2-medium">로그아웃</div>
                         </div>
                         <div>
-                            <Inputs
-                                placeholder={emailInputPlaceHolder}
-                                isEditable={isEditable} />
-                            {/* <input type="text" class="input-default body3-medium color-black2"
-                                    placeholder="habiters@gmail.com" /> */}
+                            <div className="btn btn-large btn-secondary-default body2-medium"
+                                onClick={onClickMoveDeleteAccount}>탈퇴하기</div>
                         </div>
-                    </MypageInputBox>
-
-                    <MypageInputBox>
-                        <div className={'body1-bold'}>
-                            닉네임
-                        </div>
-
-                        <NickNameInputBox>
-                            <div>
-                                <Inputs
-                                    width={'292px'}
-                                    placeholder={nicknameInputPlaceHolder}
-
-                                />
-                                {/* <input type="text" class="input-default body3-medium color-black2 nickname-input"
-                                        placeholder="해비터해비터" /> */}
-                            </div>
-                            <NickNameUpdateBtn className="body2-medium btn btn-large btn-primary-default btn-width-fit-content"
-                            onClick={updateUser}>
-                                <span>수정</span>
-                            </NickNameUpdateBtn>
-                        </NickNameInputBox>
-                    </MypageInputBox>
-                </MypageInputWrap>
-
-                <div className="btn-arrange-vertical">
-                    <div>
-                        <div className="btn btn-large btn-primary-default body2-medium">로그아웃</div>
                     </div>
-                    <div>
-                        <div className="btn btn-large btn-secondary-default body2-medium"
-                            onClick={onClickMoveDeleteAccount}>탈퇴하기</div>
-                    </div>
-                </div>
 
-            </Main>
+                </Main>
 
 
 
-        </main>
-    </>
+            </main>
+        </>
 
-)
+    )
 }

@@ -1,5 +1,5 @@
 
-import { DayBox, DayDateBox, CalenderDay, CalenderDate, HabitCheckBoxContainer, HabitCheckBox } from './Day.styles'
+import { DayBox, DayDateBox, CalenderDay, CalenderDate, DayContainer, HabitCheckBox } from './Day.styles'
 import CalenderDayHabitCheckbox from '../calender-day-habit-checkbox';
 
 export default function CalenderDayUI(props) {
@@ -11,10 +11,11 @@ export default function CalenderDayUI(props) {
 
     return (
         // html 부분을 여기에 담아라
-        <div>
+        <DayContainer
+            isSelected={props.isSelected}>
 
             <DayBox
-                isSelected={props.isSelected}>
+            isSelected={props.isSelected}>
                 <DayDateBox
                     onClick={props.onClickDayHandler}>
                     <CalenderDay className="caption1-medium">{props.day}</CalenderDay>
@@ -27,8 +28,8 @@ export default function CalenderDayUI(props) {
                         habitId={value.id}
                         habitName={value.content}
                         habitChecks={value.habitChecks}
-                        index={index} 
-                       
+                        index={index}
+                        isSelected={props.isSelected}
 
                         showDate={props.showDate}
                         date={props.date}
@@ -37,11 +38,11 @@ export default function CalenderDayUI(props) {
 
 
                         getUserData={props.getUserData}
-                        />)}
+                    />)}
 
 
             </DayBox>
-        </div>
+        </DayContainer>
     )
 
 }

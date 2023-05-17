@@ -18,7 +18,7 @@ const HIDDEN_HEADERS = [
 ]
 
 const HIDDEN_FOOTERS = [
-    "/comming-soon"
+    // "/comming-soon"
 ]
 
 
@@ -38,6 +38,8 @@ export default function Layout(props) {
     position: relative;
     `
 
+
+    // ============================== Function  ==============================
     const router = useRouter();
     const isHiddenLayout = HIDDEN_HEADERS.includes(router.asPath);
     const isHiddenFooter = HIDDEN_FOOTERS.includes(router.asPath);
@@ -45,58 +47,11 @@ export default function Layout(props) {
 
 
 
-    // ============================== Function  ==============================
 
-    const [accessToken, setAccessToken] = useRecoilState(userState)
-    const [user, setUser] = useRecoilState(userDetail)
-
-    useEffect(() => {
-        getUserData()
-        console.log(user)
-    }, [accessToken])
-
-
-    // ======= 유저의 정보 get
-    const getUserData = async () => {
-
-        console.log("레이아웃==================시작====")
-        if (accessToken) {
-            console.log("레이아웃==================시작====")
-            console.log("토큰" + accessToken)
-            const response = await axios.get('https://api.habiters.store/users/me', {
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
-
-
-            console.log(response.data.data)
-            setUser(response.data.data)
-            console.log("레이아웃==================끝   ====")
-            return
-        }
-        console.log(" 레이아웃 토큰없음.")
-
-    }
-
-
-    //   ===========inputTest ===========
-    // const [text, setText] = useRecoilState(textState);
-
-    // const onChange = (event) => {
-    //     setText(event.target.value);
-    // };
-    //==============================================
 
 
     return (
         <>
-            {/* <div>
-                <input type="text" value={text} onChange={onChange} />
-                <br />
-                Echo: {text}
-            </div> */}
-
-
-
             <Body>
                 {!isHiddenLayout && <Header />}
                 <Main>
@@ -104,7 +59,6 @@ export default function Layout(props) {
                 </Main>
                 {!isHiddenLayout && !isHiddenFooter && <Footer />}
             </Body>
-
         </>
     )
 }

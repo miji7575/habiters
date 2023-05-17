@@ -15,28 +15,44 @@ export const Calender = styled.div`
     
      display: inline-flex;
      padding-bottom: 24px;
-    
-    & > div:first-of-type span:first-of-type{
+    // ----- 습관-내습관목록
+    & > div:first-of-type>span:first-of-type{   
         border-top-left-radius: 8px;
+        border: 1px solid var(--color-black8);}
+    //습관-마지막습관
+    & > div:first-of-type>span:last-of-type{    
+        border-bottom-left-radius: 8px; }
+    //습관-마우스오버(관리창)
+    & > div:first-of-type>span:last-of-type>div:last-of-type{   
+        border-bottom-left-radius: 8px; }
+    //습관-전체
+    & > div:first-of-type>span{ 
+        border-left: 1px solid var(--color-black8);
+        border-bottom: 1px solid var(--color-black8);
+        border-right: 1px solid var(--color-black8);
     }
-    & > div:first-of-type span:last-of-type {
-        border-bottom-left-radius: 8px;
-    }
-    & > div:last-of-type > div:last-of-type > div:last-of-type > span:first-of-type{
+
+
+   
+    
+    // ----- 날짜 - 세로줄전체 - 마지막줄
+    & > div:nth-of-type(2) > div:last-of-type > div{
         border-top-right-radius: 8px;
-    }
-    & > div:last-of-type > div:last-of-type > div:last-of-type > span:last-of-type{
         border-bottom-right-radius: 8px;
+    }
+     // 날짜 - 세로줄마지막(말일) - 날짜박스
+    & > div:nth-of-type(2) > div:last-of-type  > div> span:first-of-type{
+        border-top-right-radius: 6px;
     }
    
    
 `
 
 export const CalenderDaysContainer = styled.div`
-    /* position: absolute; */
-    /* left: 0; */
+
     width: 704px;
     overflow-x: scroll;
-    display: inline-flex;
+    display: flex;
     padding-bottom: 24px; 
+    
 `

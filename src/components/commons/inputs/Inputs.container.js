@@ -1,9 +1,9 @@
 import { useRecoilState, atom } from 'recoil';
 import InputUI from "./Inputs.presenter"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import inputStyles from '../../../styles/input.module.css'
 import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
-import { newInputValueState,inputDoneState } from '../../../commons/stores/Stores';
+import { newInputValueState,inputDoneState, InputValue } from '../../../commons/stores/Stores';
 
 
 
@@ -12,107 +12,106 @@ import { newInputValueState,inputDoneState } from '../../../commons/stores/Store
 
 export default function Inputs(props) {
 
-    const [newInput, setNewInput] = useRecoilState(newInputValueState)
-    // const [newInput, setNewInput] = useState()
-    // const [value, setValue] = useState('')
+
+    const [inputValues, setInputValues] = useRecoilState(InputValue)
     const [isValueNull, setIsValueNull] = useState(true)
+    const [isOnFocus, setIsOnFocus] = useState(false)
     const [isError, setisError] = useState(false);
 
 
- 
+
 
     useEffect(()=>{
+        console.log(inputValues)
+        console.log(props.name)
+        console.log(inputValues[props.name])
 
-        if(newInput == ''){
-            setIsValueNull(()=>true)
-        }
-        else{
-        setIsValueNull(()=>false)
-        }
-        
-        
-        
+    })
 
-    },[newInput])
+  
 
-    useEffect(()=>{
 
-        setNewInput('')
-    },[])
 
+//   ----- 삭제 icon 클릭시 전체삭제
+    const removeValue = async (e) => {
+   
+        setInputValues({...inputValues,
+            [props.name]:''});
+            setIsValueNull(true)
+
+    }
     
 
-  
+// ----- 
+    useEffect(()=>{
+        // if(inputValues[props.name] == ''){
+        //     setIsValueNull(true)
+        // }
+        // else{
+        // setIsValueNull(false)
+        // }
+       
+     })  
+
+     const onChange = (e) => {
+        props.onChange(e)
+        if(inputValues[props.name] == ''){
+            setIsValueNull(true)
+        }
+        else{
+        setIsValueNull(false)
+        }
+     }
+
+     const onFocus = () => {
+        setIsOnFocus(true)
+        if(inputValues[props.name] == ''){
+            setIsValueNull(true)
+        }
+        else{
+        setIsValueNull(false)
+        }
+     }
 
 
-    const onChangeHandler = async(e) => {
-        setNewInput(e.target.value)
-    }
-   
-    const removeValue = async () => {
-        setNewInput('')
-    }
- 
 
 
 
-        
-  
+
+
 
     return (
         <>
-            {/* // html 부분을 여기에 담아라 */}
-            {/* ---------------수정가능 -------------------- */}
-            {!props.isEditable && <InputWrap>
 
-                <InputBox>
-                    {!isValueNull &&
+             <InputWrap>
+
+                <InputBox
+                // {()=>setIsOnFocus(false)}
+                >
+                    {!isValueNull  && isOnFocus &&
                         <span
                             className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
                             onClick={removeValue} />}
                     <Input
                         type="text"
                         className={'input-default body3-medium color-black2'}
-                        width={props.width}
-                        // isError={props.isError}
-                        onChange={onChangeHandler}
-                        value={newInput}
-                        placeholder={props.placeholder}
-                        name={props.name}
-                        disabled={props.isEditable ? true : false}
-                    />
-
-
-
-                    {isError &&
-                        <ErrorIcon
-                            className="icon-m icon-error-colored" />}
-                </InputBox>
-                <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
-            </InputWrap>}
-
-
-
-
-            {/* ===================================================== */}
-            {/* ---------------읽기전용 -------------------- */}
-
-            {props.isEditable && <InputWrap>
-
-                <InputBox>
-                    
-                    <Input
-                        type="text"
-                        className={'input-default body3-medium color-black2'}
-                        width={props.width}
-                        // isError={props.isError}
-                        onChange={onChangeHandler}
-                        // value={newInput}
-                        placeholder={props.placeholder}
-                        name={props.name}
-                        disabled={props.isEditable ? true : false}
                         
+                        // isError={props.isError}
+                        onChange={onChange}
+                        value={props.value}
+                        placeholder={props.placeholder}
+                        name={props.name}
+                        
+                        disabled={props.isEditable ? true : false}
+                        onFocus={onFocus}
+                        onBlur={()=>setIsOnFocus(false)}
+                        width={props.width}
+
+                  
+
+                       
                     />
+                        
 
 
 
@@ -121,8 +120,12 @@ export default function Inputs(props) {
                             className="icon-m icon-error-colored" />}
                 </InputBox>
                 <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
-            </InputWrap>}
+            </InputWrap>
 
+
+
+
+           
         </>
 
     )

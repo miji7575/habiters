@@ -1,24 +1,19 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userState, accessTokenStatem, URL } from '../../commons/stores/Stores';
+import { userState, accessTokenStatem, URL, userDetail } from '../../commons/stores/Stores';
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+// ============================== Style ==============================
 
-
-
-export default function LoginPage() {
-
-    // ============================== Style ==============================
-
-    const Body = styled.div`
+const Body = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
     `
 
-    const LoginHeaderBox = styled.div`
+const LoginHeaderBox = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -27,19 +22,19 @@ export default function LoginPage() {
         margin-bottom: 56px;
     `
 
-    const Logo = styled.img`
+const Logo = styled.img`
         width: 305.6px;
         height: 36px;
     `
 
-    const LoginButtonBox = styled.div`
+const LoginButtonBox = styled.div`
         display: flex;
         flex-direction: column;
         gap: 16px;
     margin-bottom: 64px;
     `
 
-    const MoveLink = styled.span`
+const MoveLink = styled.span`
         text-decoration: underline;
         color: var(--color-purple2);
         padding-left: 8px;
@@ -47,14 +42,64 @@ export default function LoginPage() {
     `
 
 
+export default function LoginPage() {
+
     // ============================== Function  ==============================
 
     const router = useRouter()
 
+
+
+
+
+    // ----- 토큰을 로컬에 저장
+
+    const [accessToken, setAccessToken] = useRecoilState(userState);
+
+    const getAccessToken = async () => {
+        setAccessToken(() => router.query.accessToken)
+        // console.log("토큰 : " + accessToken)
+        if (accessToken) {
+            localStorage.setItem("accessToken", accessToken)
+            if (localStorage.getItem("accessToken")) {
+                setAccessToken(localStorage.getItem("accessToken") || "")
+            }
+        }
+    }
+
+
+
+    // ----- 유저의 정보 get
+    const [user, setUser] = useRecoilState(userDetail);
+
+    const getUserData = async () => {
+
+        if (accessToken) {
+            const response = await axios.get('https://api.habiters.store/users/me', {
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+            setUser(response.data.data)
+            return
+        }
+        // console.log(" 레이아웃 토큰없음. 유저정보 get x")
+
+    }
+
+
+    useEffect(() => {
+        getAccessToken();
+        getUserData()
+        if (accessToken) {
+            router.push("/myhabit")
+        }
+        // console.log(user)
+    }, [accessToken])
+    // ===============================================================================
+
+
     const onClickMoveSignup = () => {
         router.push("/signup")
     }
-
 
     // Push전에 수정!!!
     // =====  소셜로그인 주소
@@ -65,53 +110,17 @@ export default function LoginPage() {
     // const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3000/login"
     // const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://localhost:3000/login"
 
-
-
-
-
-    const [accessToken, setAccessToken] = useRecoilState(userState);
-   
     const kakaoLogin = async () => {
         router.push(KAKAO_LOGIN)
-        // setAccessToken(() => router.query.accessToken)
     }
 
     const naverLogin = async () => {
         router.push(NAVER_LOGIN)
-        // setAccessToken(() => router.query.accessToken)
     }
 
     const googleLogin = async () => {
         router.push(GOOGLE_LOGIN)
-        // setAccessToken(() => router.query.accessToken)
     }
-
-
-
-
-    useEffect(() => {
-        // console.log("로그인 페이지에서 가장 먼저 출력될 토큰 :  " + accessToken)
-
-        setAccessToken(() => router.query.accessToken)
-        // successLogin(accessToken)
-        if (accessToken) {
-            console.log(accessToken)
-            localStorage.setItem("accessToken", accessToken)
-            if (localStorage.getItem("accessToken")) {
-                setAccessToken(localStorage.getItem("accessToken") || "")
-                console.log(accessToken)
-            }
-            // console.log("아아아아아아아아ㅏ")
-            router.push("/myhabit")
-        }
-        // if (accessToken) {
-        //     router.push("/myhabit")
-        // }
-    }, [])
-
-
-
-
 
 
 
@@ -131,21 +140,22 @@ export default function LoginPage() {
                 <LoginButtonBox>
 
                     <div className={'btn-sns-login btn-sns-login-google'}
-                    onClick={googleLogin}>
+                        onClick={googleLogin}>
                         <span className={'body2-medium'}>구글로 로그인하기</span>
                     </div>
 
 
-                    <div className={'btn-sns-login btn-sns-login-kakao'} onClick={kakaoLogin}>
+                    <div className={'btn-sns-login btn-sns-login-kakao'}
+                        onClick={kakaoLogin}>
                         <span className={'body2-medium'}>카카오로 로그인하기</span>
                     </div>
 
 
-                    {/* <a href={NAVER_LOGIN}> */}
-                        <div className={'btn-sns-login btn-sns-login-naver'} onClick={naverLogin}>
-                            <span className={'body2-medium'}>네이버로 로그인하기</span>
-                        </div>
-                    {/* </a> */}
+                    <div className={'btn-sns-login btn-sns-login-naver'}
+                        onClick={naverLogin}>
+                        <span className={'body2-medium'}>네이버로 로그인하기</span>
+                    </div>
+
 
                 </LoginButtonBox>
 

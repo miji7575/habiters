@@ -17,21 +17,15 @@ export default function MonthlyHabitTracker(props) {
 
 
 
-    //  습관 추가하기
+    // --- 습관 추가하기
     const [isaddNewHabitPopupOn, setIsaddNewHabitPopupOn] = useState(false)
 
     function addNewHabitPopupOn() {
         setIsaddNewHabitPopupOn(true)
-
     }
     function addNewHabitPopupClose() {
         setIsaddNewHabitPopupOn(false)
     }
-    function addNewhabit() {
-        addNewHabitPopupClose();
-    }
-
-
 
 
 
@@ -42,8 +36,6 @@ export default function MonthlyHabitTracker(props) {
     const [isUpdateHabitPopupOn, setIsUpdateHabitPopupOn] = useState(false)
 
     function updateHabitPopupOn(habitId, habitname) {
-        // console.log(habitId)
-        // console.log(habitname)
         setHabitId(() => habitId)
         setSelectedHabitName(() => habitname)
         setIsUpdateHabitPopupOn(true);
@@ -51,25 +43,18 @@ export default function MonthlyHabitTracker(props) {
     function updateHabitPopupClose() {
         setIsUpdateHabitPopupOn(false)
     }
-    function updateHabit() {
-        updateHabitPopupClose();
-    }
+
 
 
     // --- 습관 삭제하기
     const [isDeleteHabitPopupOn, setIsDeleteHabitPopupOn] = useState(false);
 
-
     function deleteHabitPopupOn(habitId) {
-        // console.log(habitId)
         setHabitId(() => habitId)
         setIsDeleteHabitPopupOn(true)
     }
     function deleteHabitPopupClose() {
         setIsDeleteHabitPopupOn(false)
-    }
-    function deleteHabit(habitId) {
-        deleteHabitPopupClose();
     }
 
 
@@ -80,14 +65,10 @@ export default function MonthlyHabitTracker(props) {
 
     useEffect(() => {
         if (habits.length === 0) {
-            // console.log(habits)
             setIsHabitNull(true)
-            // console.log(isHabitNull)
         }
         else {
-            // console.log(habits)
             setIsHabitNull(false)
-            // console.log(isHabitNull)
         }
 
     }, [habits])
@@ -128,8 +109,7 @@ export default function MonthlyHabitTracker(props) {
 
     return (
         <>
-            {/* <div>{habits}</div>
-            <div>{newHabitName}</div> */}
+
 
 
             <MonthlyHabitTrackerUI
@@ -159,13 +139,11 @@ export default function MonthlyHabitTracker(props) {
 
             {isaddNewHabitPopupOn && <AddNewHabitPopup
                 addNewHabitPopupClose={addNewHabitPopupClose}
-                addNewhabit={addNewhabit}
                 getUserData={props.getUserData}
             />}
 
             {isUpdateHabitPopupOn && <UpdateHabitPopup
                 updateHabitPopupClose={updateHabitPopupClose}
-                updateHabit={updateHabit}
                 selectedHabitName={selectedHabitName}
                 habitId={habitId}
                 getUserData={props.getUserData}
@@ -173,7 +151,6 @@ export default function MonthlyHabitTracker(props) {
 
             {isDeleteHabitPopupOn && <DeleteHabitPopup
                 deleteHabitPopupClose={deleteHabitPopupClose}
-                deleteHabit={deleteHabit}
                 habitId={habitId}
                 getUserData={props.getUserData}
             />}
