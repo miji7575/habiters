@@ -17,6 +17,7 @@ import MonthlyRetrospects from '../../components/units/monthly-retrospects/Month
 const Main = styled.div`
     display: flex;
     justify-content: center;
+
 `
 
 const Content = styled.div`
@@ -38,6 +39,9 @@ const Title = styled.div`
 
 
 export default function HabitTracker() {
+
+
+
     // ============================== Function  ==============================
 
     const [accessToken, setAccessToken] = useRecoilState(userState)
@@ -47,53 +51,39 @@ export default function HabitTracker() {
 
 
     useEffect(() => {
-        // console.log("여기가 널인가" + accessToken)
+
+        setUserName(user.nickName)
+        getUserHabit()
+
         if (accessToken === undefined) {
             Router.push("/login")
         }
-        setUserName(user.nickName)
-
-        // console.log(user.nickName)
-        console.log(accessToken)
-
-    }, [])
-
-    useEffect(() => {
-
-        getUserData();
-
-    }, [])
+        
+    }, [user])
 
 
 
-    // Habit Data 
-    const getUserData = async () => {
+
+
+    // --- Axios get--- 유저의 habit 목록 get 
+    const getUserHabit = async () => {
         if (accessToken) {
-
-            console.log("토큰" + accessToken)
-            const response = await axios.get('https://api.habiters.store/habits', {
-
-                headers: { "Content-Type": "application/json",Authorization: 'Bearer ' + accessToken }
-
+            console.log("토큰" + showDate.showMonth)
+            const response = await axios.get(`https://api.habiters.store/habits?date=${showDate.showYear}-${showDate.showMonth}`, {
+                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
             })
-
-
-            // console.log(response.data.data)
-            console.log("getUserData 실행됨")
-            // 
-            // return response.data.data
             setUserHabit(() => response.data.data)
+            console.log(response)
         }
-        // console.log("토큰없음.")
-        console.log(userHabit)
-        return 
+       
+        return
     }
 
 
-    
-    
 
-    
+
+
+
 
 
     // ----- 달력
@@ -128,10 +118,10 @@ export default function HabitTracker() {
     }
 
 
-
     useEffect(() => {
         setLastDate(() => (new Date(year, month, 0).getDate()));
         setStartDay(() => new Date(year, month - 1, 1).getDay())
+        getUserHabit();
     }, [year, month])
 
     useEffect(() => {
@@ -156,21 +146,27 @@ export default function HabitTracker() {
         setMonth(nowDate.toJSON().substring(5, 7))
     }
 
+
+
+    // --- 이전 달
     const monthDown = () => {
-        setMonth(month => ('00'+(Number(month) - 1)).slice(-2));
+        setMonth(month => ('00' + (Number(month) - 1)).slice(-2));
         if (month == '01') {
             setMonth(12)
             setYear(year => year - 1)
         }
     }
 
+    // --- 다음 달
     function monthUp() {
-        setMonth(month => ('00'+(Number(month) + 1)).slice(-2));
+        setMonth(month => ('00' + (Number(month) + 1)).slice(-2));
         if (month == 12) {
             setMonth('01')
             setYear(year => year + 1)
         }
     }
+
+
 
 
 
@@ -204,15 +200,6 @@ export default function HabitTracker() {
 
 
 
-    // const router = useRouter()
-    // const [accessToken, setAccessToken] = useRecoilState(userState);
-    // useEffect(() => {
-    //     setAccessToken(() => router.query.accessToken)
-    //     console.log(accessToken)
-    // },[accessToken])
-    // const router = useRouter();
-    // console.log(router.asPath)
-
     return (
 
         <>
@@ -235,7 +222,7 @@ export default function HabitTracker() {
 
 
                         {isMonthlyHabitTrackerOn && <MonthlyHabitTracker
-                            getUserData={getUserData}
+                            getUserHabit={getUserHabit}
                             showDate={showDate}
                             monthDown={monthDown}
                             monthUp={monthUp} />}

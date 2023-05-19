@@ -39,7 +39,7 @@ export default function TextareaUI(props) {
         // html 부분을 여기에 담아라
         <>
             {/* 입력 가능 */}
-            {!props.diaryState && <TextareaBox
+            {!props.todayRetrospectState && <TextareaBox
                 width={props.width}
                 margin={props.margin}
             >
@@ -66,7 +66,7 @@ export default function TextareaUI(props) {
 
 
             {/* 읽기 전용 */}
-            {props.diaryState && <TextareaBox
+            {props.todayRetrospectState && <TextareaBox
                 width={props.width}
                 margin={props.margin}
             >
@@ -78,7 +78,7 @@ export default function TextareaUI(props) {
                     maxLength={200}
                     isError={isError}
                     disabled
-                    diaryState={props.diaryState}
+                    todayRetrospectState={props.todayRetrospectState}
                     // value={textareaInput}
                 >
 

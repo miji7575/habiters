@@ -63,7 +63,7 @@ export default function SignupPage() {
                     <div>
                         <Logo src="/image/logo-habiters.svg" alt="Logo" />
                     </div>
-                    <div class="headline4 color-black1">
+                    <div className="headline4 color-black1">
                         해비터즈와 함께 지금 바로 습관 형성을 시작하세요!
                     </div>
                 </LoginHeaderBox>

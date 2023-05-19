@@ -46,8 +46,8 @@ export const TextareaTextCountBox = styled.div`
 
 export const TodayRetrospectBtn = styled.div`
 
- background-color: ${(props)=> props.diaryState === true ? "var(--color-purple4)" : "var(--color-purple2)"};
- border:  ${(props)=> props.diaryState === true ? "1px solid var(--color-purple4)" : "1px solid var(--color-purple2)"};
+ background-color: ${(props)=> props.todayRetrospectState === true ? "var(--color-purple4)" : "var(--color-purple2)"};
+ border:  ${(props)=> props.todayRetrospectState === true ? "1px solid var(--color-purple4)" : "1px solid var(--color-purple2)"};
  cursor: auto;
  transition: 0;
  &:hover{

@@ -10,19 +10,31 @@ import { useEffect, useState } from "react";
 
 export default function TodayRetrospect(props) {
 
-    // 로직을 여기다 담아라
+
+
+    // ----- 오늘의 회고 입력창 placeHolder
     const [placeholder, setPlaceholder] = useState("오늘의 회고를 작성해주세요.  \n작성한 회고는 24시간 이내로만 수정이 가능해요.")
+    
+    useEffect(() => {
+        if (props.todayRetrospectState) {
+            setPlaceholder("오늘의 회고를 이미 작성했어요.  \n내일 또 만나요!")
+        }
+        else{
+            setPlaceholder("오늘의 회고를 작성해주세요.  \n작성한 회고는 24시간 이내로만 수정이 가능해요.")
+        }
+    }, [props.todayRetrospectState])
+
+
+
+    // ----- 에러메세지 
     const textareaErrorMessage = "";
 
 
 
-
-    //  ----- Axios put(update)
+    //  ----- Axios put(update) --- (오늘의 회고 수정하기)
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const [textareaInput, setTextareaInput] = useRecoilState(TextareaValueState)
     const postRetrospects = async () => {
-        console.log("!@!@!@!@!@!@!@!!@!@!!@")
-        console.log(textareaInput)
         if (accessToken) {
             const response = await axios.post(`https://api.habiters.store/diaries`, textareaInput, {
                 headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
@@ -32,21 +44,18 @@ export default function TodayRetrospect(props) {
         }
     }
 
+
+    // ----- 오늘의 회고 수정하기
     const onPostRetrospectsBtnClick = async () => {
         await postRetrospects();
         props.getUserRetrospects()
+        props.createTodayRetrospects(); /*test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!8*/
         setTextareaInput('')
     }
 
 
-    // ---------------------------UI변화부분
-  
 
-    useEffect(() => {
-        if (props.diaryState) {
-            setPlaceholder("오늘의 회고를 이미 작성했어요.  \n내일 또 만나요!")
-        }
-    }, [props.diaryState])
+  
 
 
     return (
@@ -54,7 +63,7 @@ export default function TodayRetrospect(props) {
             placeholder={placeholder}
             textareaErrorMessage={textareaErrorMessage}
             onPostRetrospectsBtnClick={onPostRetrospectsBtnClick}
-            diaryState={props.diaryState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+            todayRetrospectState={props.todayRetrospectState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
         />
     )
 

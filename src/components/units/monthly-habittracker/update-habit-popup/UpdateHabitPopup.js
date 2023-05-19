@@ -99,7 +99,7 @@ export default function UpdateHabitPopup(props) {
         else {
             await updateHabitData()
             setNewInput(() => '')
-            props.getUserData();
+            props.getUserHabit();
             props.updateHabitPopupClose();
         }
     }

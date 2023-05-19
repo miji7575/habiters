@@ -23,18 +23,16 @@ export default function MonthlyHabitTrackerUI(props) {
                     monthUp={props.monthUp}
                 />
 
-                {/* <!-- ---  오늘의 회고 작성가능 -----> */}
+                {/* <!-- ---  오늘의 회고 -----> */}
                 < TodayRetrospect
                     getUserRetrospects={props.getUserRetrospects}
-                    diaryState={props.diaryState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+                    todayRetrospectState={props.todayRetrospectState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+                    createTodayRetrospects={props.createTodayRetrospects} /*test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!8*/
                 />
-                {/* <!-- ---  오늘의 회고 작성 불가능 -----> */}
-                {/* < TodayRetrospect
-                    getUserRetrospects={props.getUserRetrospects}
-                /> */}
+
 
                 {/* <!-- ---  월간 회고가 없을 때 나타나는 이미지  ---  --> */}
-                {!(props.userRetrospect) && <MonthlyRetrospectNoneImgBox>
+                {(props.userRetrospect.length == 0) && <MonthlyRetrospectNoneImgBox>
                     <MonthlyRetrospectNoneImg src="/image/img-no-retrospect.svg" alt="작성된 회고 없음" />
                 </MonthlyRetrospectNoneImgBox>}
 
@@ -46,7 +44,7 @@ export default function MonthlyHabitTrackerUI(props) {
                     data={props.data}
                     getUserRetrospects={props.getUserRetrospects}
 
-                    diaryState={props.diaryState}/* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+                    todayRetrospectState={props.todayRetrospectState}/* 오늘 쓴 글이 있는지 없는지 확인하려고 */
                     Today={props.Today}/*오늘 날짜 */
 
                     updateRetrospectsPopupOn={props.updateRetrospectsPopupOn} /* 수정 팝업을 열기 위한 함수 */

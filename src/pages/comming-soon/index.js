@@ -4,10 +4,10 @@ import { useRouter } from "next/router"
 // =========================== Style =======================
 
 const Main = styled.div`
-min-height : 100%;  
 display: flex;
 justify-content: center;
 padding-top: 325px;
+height: calc(100vh - 204px - 90px);
 `
 
 export default function CommingSoonPage() {

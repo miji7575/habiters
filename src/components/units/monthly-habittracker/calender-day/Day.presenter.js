@@ -33,11 +33,11 @@ export default function CalenderDayUI(props) {
 
                         showDate={props.showDate}
                         date={props.date}
+                       
 
 
 
-
-                        getUserData={props.getUserData}
+                        getUserHabit={props.getUserHabit}
                     />)}
 
 

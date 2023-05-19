@@ -83,7 +83,7 @@ export default function DeleteHabitPopup(props) {
         await deleteHabitData()
         props.deleteHabitPopupClose();
         console.log("습관 삭제 완료")
-        props.getUserData();
+        props.getUserHabit();
 
     }
 

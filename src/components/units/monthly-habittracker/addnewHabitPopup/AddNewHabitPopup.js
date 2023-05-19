@@ -90,7 +90,7 @@ export default function AddNewHabitPopup(props) {
         else {
             await postHabit()
             setNewInput(() => '')
-            props.getUserData();
+            props.getUserHabit();
             props.addNewHabitPopupClose();
             return
         }

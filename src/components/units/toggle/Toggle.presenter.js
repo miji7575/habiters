@@ -15,13 +15,13 @@ export default function MyHabitToggleUI(props) {
                 <div className="a-tab-box headline5 ">
 
                     <input type="radio" id="트래커" name="tabs" checked={props.monthlyHabitTrackerChecked} hidden />
-                    <label for="트래커"
+                    <label HTMLfor="트래커"
                     onClick={props.MonthlyHabitTrackerOn}>
                         <div className="a-tab-content" >월간 해빗 트래커</div>
                     </label>
 
                     <input type="radio" id="회고" name="tabs" checked={props.monthlyRetrospectsChecked} hidden />
-                    <label for="회고"
+                    <label HTMLfor="회고"
                      onClick={props.MonthlyRetrospectsOn}>
                         <div className="a-tab-content">월간 회고</div>
                     </label>

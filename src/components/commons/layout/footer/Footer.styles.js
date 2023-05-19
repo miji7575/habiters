@@ -4,31 +4,21 @@ import styled from '@emotion/styled'
 export const FooterWrap = styled.div`
 
 
-background-color: var(--color-black10);
+    background-color: var(--color-black10);
 
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-height: 204px;
-width: 100%;
-box-sizing: border-box;
-padding: 48px 0 48px 19%;
-/* position: absolute; */
-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 204px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 48px 0 48px 19%;
+    /* position: absolute; */
+    bottom: 0;
     `
 
 
-// export const LogoBox = styled.div`
-//     box-sizing: border-box;
-// `
 
-// export const MainLogo = styled.img`
-//     width: 212px;
-//     height: 24px;
-//     padding: 33px 0px 33px 0;
-//     cursor: pointer;
-//     object-fit: contain;
-// `
 
 export const FooterDetailBox = styled.div`
     display: flex;

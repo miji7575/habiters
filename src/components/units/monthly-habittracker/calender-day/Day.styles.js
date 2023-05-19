@@ -3,11 +3,9 @@ import styled from '@emotion/styled'
 export const DayContainer = styled.div`
 
 /* 날짜기준 세로줄 전체 */
-& > div {
+& > div  {
     box-sizing: border-box;
     border-left: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : '1px solid var(--color-black8)'};  
-    border-top: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : '1px solid var(--color-black8)'};  
-    border-bottom: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : '1px solid var(--color-black8)'};  
     border-right: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : 'none'};  
 }
 /* 선택된 날의 다음날의 왼쪽줄은 없앤다 */
@@ -26,6 +24,7 @@ export const DayContainer = styled.div`
 }
 /* 날짜칸 */
 & > div > span:first-of-type{
+    border-top: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : '1px solid var(--color-black8)'};  
     border-bottom: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : '1px solid var(--color-black8)'}; ;
     background-color: ${(props) => props.isSelected === true ? 'var(--color-black1)' : 'none'};
     color: ${(props) => props.isSelected === true ? 'var(--color-white)' : 'none'};
@@ -35,12 +34,6 @@ export const DayContainer = styled.div`
 & > div > span {
     border-bottom: 1px solid var(--color-black8);
 }
-/* 마지막 체크박스 컨테이너 */
-& > div > span:last-of-type {
-    border-bottom: none;
-    height: 43px;
-}
-
 
 `
 
@@ -54,15 +47,12 @@ export const DayBox = styled.div`
 `
 
 export const DayDateBox = styled.span`
-    height: 59px;
+    height: 60px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* border-top: 1px solid var(--color-black8);
-    border-right: 1px solid var(--color-black8);
-    border-bottom: 1px solid var(--color-black8); */
     cursor: pointer;
 `
 

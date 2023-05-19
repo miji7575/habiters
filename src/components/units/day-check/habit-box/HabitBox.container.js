@@ -9,9 +9,11 @@ import {SelectedDate, userState} from '../../../../commons/stores/Stores';
 
 export default function HabitBox(props) {
 
+
+
      // ============================== Function ==============================
 
-    //  ----- Axios post
+    //  ----- Axios post -- 오늘날짜의 선택한 Habit 체크
     const [accessToken, setAccessToken] = useRecoilState(userState)
 
     const postHabitCheck = async () => {
@@ -28,7 +30,7 @@ export default function HabitBox(props) {
         }
     }
 
-    //  ----- Axios delete
+    //  ----- Axios delete -- 오늘날짜의 선택한 Habit 체크해제
     const deleteHabitCheck = async () => {
 
         if (accessToken) {
@@ -45,15 +47,19 @@ export default function HabitBox(props) {
 
     const onHabitCheckClick = async() => {
         console.log(props.habitId)
+
+        // 체크해제하기
         if(isHabitChecked) {
             await deleteHabitCheck()
-            props.getUserData()
-            // setIsCheckboxChecked(false)
+            await props.getUserHabit()
+            setIsHabitChecked(false)
 
             return
         }
+        // 체크하기
         await postHabitCheck()
-        props.getUserData()
+        props.getUserHabit()
+        setIsHabitChecked(true)
 
         return
 

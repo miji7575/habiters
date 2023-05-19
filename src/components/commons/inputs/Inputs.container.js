@@ -65,18 +65,17 @@ export default function Inputs(props) {
 
      const onFocus = () => {
         setIsOnFocus(true)
-        if(inputValues[props.name] == ''){
-            setIsValueNull(true)
-        }
-        else{
-        setIsValueNull(false)
-        }
+         if (inputValues[props.name] == '') {
+             setIsValueNull(true)
+         } 
+         else {
+             setIsValueNull(false)
+         }
      }
 
 
 
-
-
+// ================================================
 
 
 
@@ -104,7 +103,8 @@ export default function Inputs(props) {
                         
                         disabled={props.isEditable ? true : false}
                         onFocus={onFocus}
-                        onBlur={()=>setIsOnFocus(false)}
+                        
+                        // onBlur={()=>setIsOnFocus(false)}
                         width={props.width}
 
                   

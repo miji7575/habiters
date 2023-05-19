@@ -10,8 +10,7 @@ export default function Retrospect(props) {
 
 
     const WEEKDAY = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-    console.log(new Date(props.date))
-
+    // console.log(new Date(props.date))
     // const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectState)
 
 
@@ -23,7 +22,7 @@ export default function Retrospect(props) {
     const [userRetrospect,setUserRetrospect] = useRecoilState(userRetrospectData)
 
     useEffect(() => {
-        if (props.diaryState && (props.date.includes(props.Today))) {
+        if (props.todayRetrospectState && (props.date.includes(props.Today))) {
             // props.diaryState 없이 그냥 객체별 생성일과 오늘 날짜를 비교하는 뒤에 식만 있어도 될 것 같다
             setIsEditable(true)
  
@@ -36,14 +35,11 @@ export default function Retrospect(props) {
     // --- 수정할 id와 내용을 넘겨주면서 팝업을 켠다.
     const updateRetrospectsPopupOn = async () => {
         props.updateRetrospectsPopupOn(props.contentId, props.content)
-        console.log(props.contentId)
-        console.log(props.content)
     }
 
     // ---삭제할 id넘겨주면서 팝업을 켠다.
     const deleteRetrospectsPopupOn = async () => {
         props.deleteRetrospectsPopupOn(props.contentId)
-        console.log(props.contentId)
     }
 
     return (
@@ -54,7 +50,7 @@ export default function Retrospect(props) {
 
 
 
-            diaryState={props.diaryState}/* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+            todayRetrospectState={props.todayRetrospectState}/* 오늘 쓴 글이 있는지 없는지 확인하려고 */
             isEditable={isEditable}/* 수정 가능한 UI로 변경위한 State */
 
             updateRetrospectsPopupOn={updateRetrospectsPopupOn} /* 수정 팝업을 열기 위한 함수 */

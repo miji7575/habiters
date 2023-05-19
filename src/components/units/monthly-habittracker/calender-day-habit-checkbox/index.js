@@ -12,9 +12,11 @@ box-sizing: border-box;
 display: flex;
 align-items: center;
 justify-content: center;
-/* border-right: ${(props) => props.isSelected === true ? 'none' : '1px solid var(--color-black8)'}; */
-/* border-bottom: 1px solid var(--color-black8); */
 
+/* 마지막 체크박스 컨테이너 */
+&:last-of-type{
+    border-bottom: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : '1px solid var(--color-black8)'};  
+}
 `
 const HabitCheckBox = styled.span`
 width: 24px;
@@ -28,33 +30,47 @@ export default function CalenderDayHabitCheckbox(props) {
 
     // ============================== Function ==============================
 
-    //  ----- Axios post
+    //  ----- Axios post -- 습관 체크하기
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const postHabitCheck = async () => {
 
+
+
+        console.log(("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate);
+        // console.log(props.habitId)
+
+        const postDate = ("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate
+
         if (accessToken) {
-            const response = await axios.post(`https://api.habiters.store/habits/${props.habitId}/check`, props.habitId, {
+            const response = await axios.post(`https://api.habiters.store/habits/${props.habitId}/check`, {
+                "habitId": props.habitId,
+                "requestDate": postDate
+            }, {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             // console.log(response)
-            console.log("해빗체크완료")
+            // console.log("해빗체크완료")
             return
 
         }
     }
 
-    //  ----- Axios delete
+    //  ----- Axios delete -- 습관 체크 해제하기
     const deleteHabitCheck = async () => {
 
         if (accessToken) {
-            const response = await axios.delete(`https://api.habiters.store/habits/${props.habitId}/check`,{
-                'Content-Type': 'application/json',
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
+
+
+            const response = await axios.delete(`https://api.habiters.store/habits/${habitcheckId}/uncheck`
+                , {
+                    'Content-Type': 'application/json',
+                    headers: { Authorization: 'Bearer ' + accessToken },
+                })
             // console.log(response)
-            console.log("해빗체크삭제")
-            return response
+            // console.log("해빗체크 삭제 완료")
+
+            return
 
         }
     }
@@ -69,41 +85,28 @@ export default function CalenderDayHabitCheckbox(props) {
     const todayYear = new Date().getFullYear()
     const todayMonth = new Date().getMonth() + 1
     const todayDate = new Date().getDate()
-    const today = todayYear+"-"+("00"+(Number(todayMonth))).slice(-2)+"-"+todayDate;
+    const today = todayYear + "-" + ("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate;
 
+
+
+    // ------ 체크박스 클릭
     const checkboxCheck = async () => {
-        // console.log(props.showDate.showYear)
-        // console.log(props.showDate.showMonth)
-        // console.log(props.date)
-        // console.log(today)
-        // console.log(props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date)
+        console.log(habitcheckId)
 
 
-        if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date == today )) {
+
+        if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date == today)) {
 
 
-                                                                                                        // console.log(props.habitChecks.length)
-                                                                                                        // if (props.habitChecks.length == 1) {
-                                                                                                        //     await deleteHabitCheck()
-                                                                                                        //     props.getUserData()
-                                                                                                        //     return
-                                                                                                        // }
 
-                                                                                                        // if (props.habitChecks.length == 0) {
-                                                                                                        //     await postHabitCheck()
-                                                                                                        //     props.getUserData()
-                                                                                                                                                                                          // }
-            console.log(props.habitId)  
             if (isCheckboxChecked) {
                 await deleteHabitCheck()
-                props.getUserData()
-                
-                // setIsCheckboxChecked(false)
-
+                props.getUserHabit()
+                setIsCheckboxChecked(false)
                 return
             }
             await postHabitCheck()
-            props.getUserData()
+            props.getUserHabit()
 
             return
         }
@@ -126,49 +129,64 @@ export default function CalenderDayHabitCheckbox(props) {
 
 
     // --- check된 날짜에만 색칠
+    const [habitcheckId, setHabitcheckId] = useState()
     const habitColoring = async () => {
 
         Object.entries(props.habitChecks).map(([key, value]) => {
+            // console.log(value)
 
             if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
-                setIsCheckboxChecked(()=>true)
-                if(value.updatedAt.includes("2023-05-12")){
-                    setIsCheckboxChecked(()=>true)
-                    // console.log("!!!!!2023-05-12!!!!!데이터값 : "+value.updatedAt)
-                    // console.log("!!!!!2023-05-12!!!!!!애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
-                    // console.log("!!!!2023-05-12!!!!!! : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
-                    // console.log("!!!!!!!2023-05-12!!!!!체크박스 색깔 여부 : "+isCheckboxChecked)
-                }
-                // console.log("?????????데이터값 : "+value.updatedAt)
-                //     console.log("???????????????애들의 값 : "+year + "-" + props.showDate.showMonth + "-" + date)
-                //     console.log("????????????? : "+value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date))
-                //     console.log("?????????????체크박스 색깔 여부 : "+isCheckboxChecked)
-                
+                setHabitcheckId(value.id)
+                setIsCheckboxChecked(() => true)
+                return
+
             }
             else {
-                setIsCheckboxChecked(false)
-                // console.log("불꺼짐")
+                if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date == today)) {
+                    setIsCheckboxChecked(false)
+                }
             }
+
 
         })
     }
 
 
     // ----색칠
-    useEffect(() => {
+    const [habits, setHabits] = useRecoilState(userHabitState)
 
-        habitColoring();
+
+    useEffect(() => {
+        habitColoring()
 
     })
 
+    useEffect(() => {
 
-    // const [userHabit, setUserHabit] = useRecoilState(userHabitState)
+        setIsCheckboxChecked(false)
+        // Object.entries(props.habitChecks).map(([key, value]) => {
+
+
+        //     if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
+        //         setHabitcheckId(value.id)
+        //         setIsCheckboxChecked(() => true)
+        //         return
+
+        //     }
+
+        // })
+    }, [props.showDate.showMonth])
+
+
+
+
+
 
 
     // ============================== Rendering ==============================
     return (
         <HabitCheckBoxContainer
-        isSelected={props.isSelected}>
+            isSelected={props.isSelected}>
             <HabitCheckBox
                 onClick={checkboxCheck}
                 isCheckboxChecked={isCheckboxChecked}

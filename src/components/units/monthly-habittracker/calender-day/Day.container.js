@@ -32,8 +32,7 @@ export default function CalenderDay(props) {
 
     // ----- 선택한 날짜만 색깔
     useEffect(()=>{
-        // console.log(props.date)
-        // console.log(nowSelectedDate)
+
 
 
             if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date === props.showDate.showYear + "-" + props.showDate.showMonth + "-" + nowSelectedDate)||
@@ -70,7 +69,7 @@ export default function CalenderDay(props) {
             
             
             
-            getUserData={props.getUserData}
+            getUserHabit={props.getUserHabit}
             />
 
 

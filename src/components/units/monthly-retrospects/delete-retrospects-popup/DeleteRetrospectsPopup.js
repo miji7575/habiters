@@ -58,47 +58,17 @@ export default function DeleteRetrospectsPopup(props) {
 
 
 
-    // // 함수==================================
-    // const [accessToken, setAccessToken] = useRecoilState(userState)
-    // const deleteHabitData = async () => {
 
-    //     console.log(props.habitId)
-    //     // new Headers({
-    //     //     'Content-Type': 'application/json',
-    //     // });
-    //     if (accessToken) {
-    //         console.log("레이아웃==================시작====")
-    //         console.log("토큰" + accessToken)
-    //         const response = await axios.delete(`http://223.130.162.40/habits/${props.habitId}`, {
-    //             headers: { Authorization: 'Bearer ' + accessToken }
-    //         })
-    //             // .then(function (response) {
-    //             //     console.log(response);
-    //             // })
-
-    //         // const json = await response.json
-            
-    //         console.log(response.data.data)
-            
-    //         console.log("레이아웃==================끝   ====")
-    //         return
-    //     }
-    //     console.log(" 레이아웃 토큰없음.")
-    //     // return response.data;
-    // }
     
     const [accessToken, setAccessToken] = useRecoilState(userState)
 
 
-    // --- Axios Delete
+    // --- Axios Delete  -- (회고 삭제)
     const deleteUserRetrospectData = async () => {
-        console.log(props.retrospectsId)
         if (accessToken) {
             const response = await axios.delete(`https://api.habiters.store/diaries/${props.retrospectsId}`, {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
-            console.log("===============delete는 response가있니")
-            console.log(response)
             return
         }
     }
@@ -107,23 +77,15 @@ export default function DeleteRetrospectsPopup(props) {
 
 
 
-    //   -------------
-
+    //   ---- 회고 삭제
     const deleteRetrospect = async () => {
-        console.log(props.retrospectsId)
-        await deleteUserRetrospectData()
-        console.log("습관 삭제 완료")
-        await props.getUserRetrospects()
-        console.log("========delete 팝업 안에서 확인하는 ")
-        props.checkDiaryState() /* 이거 있으면 안되긴 하는데 일단 Test용으로 (지우고 나서 오늘 작성한 회고록이 있는지 확인.) */
+        await deleteUserRetrospectData();
+        await props.getUserRetrospects();
+        props.deleteRetrospects()
         props.deleteRetrospectsPopupClose();
     }
 
 
-
-    function deleteRetrospectsPopupClose() {
-        props.deleteRetrospectsPopupClose();
-    }
 
    
 
@@ -139,7 +101,7 @@ export default function DeleteRetrospectsPopup(props) {
                     <PopupTitle>
                         <span className="headline5">정말 삭제하실건가요?</span>
                         <span className="icon-l icon-close-line"
-                            onClick={deleteRetrospectsPopupClose}></span>
+                            onClick={props.deleteRetrospectsPopupClose}></span>
                     </PopupTitle>
 
                     <PopupContent>
@@ -154,7 +116,7 @@ export default function DeleteRetrospectsPopup(props) {
                         <div className="btn btn-large btn-secondary-default body2-medium"
                             onClick={deleteRetrospect}>예</div>
                         <div className="btn btn-large btn-primary-default body2-medium"
-                            onClick={deleteRetrospectsPopupClose}>아니요</div>
+                            onClick={props.deleteRetrospectsPopupClose}>아니요</div>
                     </PopupBtnContainer>
 
 

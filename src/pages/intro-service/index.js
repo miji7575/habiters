@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 
-// -----------------스타일
+// ====================================  STYLE ==============================================
+
 
 const Main = styled.div`
 display: flex;
@@ -46,32 +47,58 @@ display: flex;
 height: 100vh;
 width: 100vw;
 justify-content: center;
-align-items: center;
+/* align-items: center; */
 `
 
 const IntroServiceDetailBox = styled.div`
+
+padding: 200px 0 200px 0;
 display: grid;
-grid-template-columns: repeat(2, 1fr);
-grid-template-rows: repeat(3, 1fr);
+grid-template-rows: 156px 80px 144px 64px 144px;
+grid-template-columns: 410px 242px 1fr;
 
 `
 
-const Page2IntroServiceDetail = styled.div`
-grid-column-start: 2;
-grid-column-end: 3;
-grid-row-start: 2;
-grid-row-end: 4;
-display: flex;
-flex-direction: column;
-gap: 64px;
-display: inline-block;
-font-family: 'Pretendard-Bold';
-font-size: 24px;
-font-weight: 700;
-line-height: 36px;
-letter-spacing: 0em;
+const Page2IntroServiceDetail1 = styled.div`
+    width: 420px;
+    box-sizing: border-box;
+    color: var(--color-black1);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
 `
 
+const Page2IntroServiceDetail2 = styled.div`
+    width: 510px;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    
+
+    font-family: 'Pretendard-Bold';
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    color: var(--color-black2);
+`
+const Page2IntroServiceDetail3 = styled.div`
+    width: 510px;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 6;
+
+    font-family: 'Pretendard-Bold';
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    color: var(--color-black2);
+
+`
 // ----page3
 const IntroServicePage3 = styled.div`
  display: flex;
@@ -132,12 +159,8 @@ width: 240px;
 
 export default function IntroServicePage() {
 
-    
+    // ====================================  Function  ==============================================
 
-
-
-
-    //---------함수
     const router = useRouter()
     const onClickMove = () => {
         router.push("/")
@@ -151,7 +174,7 @@ export default function IntroServicePage() {
                 <Main>
                     <IntroServicePage1>
                         <IntroBox>
-                            <div class="headline2 color-black1">모두가 건강하고 유익한 생활을 할 수 있도록.</div>
+                            <div className="headline2 color-black1">모두가 건강하고 유익한 생활을 할 수 있도록.</div>
                             <IntroServicePage1Title className={'color-black1'}>HABIT? HAVE-IT!</IntroServicePage1Title>
                         </IntroBox>
                         <div>
@@ -160,25 +183,26 @@ export default function IntroServicePage() {
                     </IntroServicePage1>
                     <IntroServicePage2>
                         <IntroServiceDetailBox>
-                            <div className={'headline1 color-black1'}>
+                            <Page2IntroServiceDetail1 className={'headline1'}>
                                 HABITERS는 <br />
                                 해빗트래커 기반 <br />
                                 습관 성형 커뮤니티입니다.
-                            </div>
-                            <Page2IntroServiceDetail className={'color-black2'}>
-                                <div >
-                                    건강한 습관과 갓생은 <br />
-                                    의지가 강한 사람들에게만 허락된 것이 아니라 <br />
-                                    적절한 환경과 소소한 성취감만 주어진다면 <br />
-                                    누구나 얼마든지 할 수 있다고 생각합니다.
-                                </div>
-                                <div >
-                                    또한 그 과정은 ‘밀린 방학 숙제’ 같은<br />
-                                    재미 없고 하기 싫은 것이 아니라<br />
-                                    ‘더 나은 나’를 발견해가는 나를 찾아 떠나는<br />
-                                    행복하고 즐거운 여행이었으면 좋겠다고 생각했습니다.
-                                </div>
-                            </Page2IntroServiceDetail>
+                            </Page2IntroServiceDetail1>
+
+                            <Page2IntroServiceDetail2>
+                                건강한 습관과 갓생은 <br />
+                                의지가 강한 사람들에게만 허락된 것이 아니라 <br />
+                                적절한 환경과 소소한 성취감만 주어진다면 <br />
+                                누구나 얼마든지 할 수 있다고 생각합니다.
+                            </Page2IntroServiceDetail2>
+
+                            <Page2IntroServiceDetail3>
+                                또한 그 과정은 ‘밀린 방학 숙제’ 같은<br />
+                                재미 없고 하기 싫은 것이 아니라<br />
+                                ‘더 나은 나’를 발견해가는 나를 찾아 떠나는<br />
+                                행복하고 즐거운 여행이었으면 좋겠다고 생각했습니다.
+                            </Page2IntroServiceDetail3>
+
                         </IntroServiceDetailBox>
                     </IntroServicePage2>
 

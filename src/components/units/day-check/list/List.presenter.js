@@ -19,7 +19,7 @@ export default function DayCheckUI(props) {
                     일별 확인
                 </TodayHabitCheckTitle>
 
-                {/* <TodayHabitCheckFilterTop /> */}
+
 
                 <TodayHabitCheckContent>
                     {Object.entries(props.habits).map(([key, value], index) => <HabitBox
@@ -28,19 +28,22 @@ export default function DayCheckUI(props) {
                         habitChecks={value.habitChecks}
                         habitId={value.id}
                         showDate={props.showDate}
+                        getUserHabit={props.getUserHabit}
 
                     />)}
 
+
+                    {/* 등록된 habit이 없을 때 이미지 */}
                     {props.isHabitNull &&
                         <NoRetrospectImgBox>
-                            <NoRetrospectImg class="img-no-retrospect" src="/image/img-no-retrospect.svg" alt="일별확인없음" />
+                            <NoRetrospectImg className="img-no-retrospect" src="/image/img-no-retrospect.svg" alt="일별확인없음" />
                         </NoRetrospectImgBox>
                     }
 
 
 
                 </TodayHabitCheckContent>
-
+                {/* <TodayHabitCheckFilterTop /> */}
                 {/* <TodayHabitCheckFilterBottom /> */}
 
             </TodayHabitCheckContainer>

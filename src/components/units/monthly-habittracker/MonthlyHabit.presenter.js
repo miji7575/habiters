@@ -40,7 +40,7 @@ export default function MonthlyHabitTrackerUI(props) {
                     isHabitNull={props.isHabitNull}
                     showDate={props.showDate}
 
-              
+                    getUserHabit={props.getUserHabit}
                 />
 
 
@@ -59,7 +59,7 @@ export default function MonthlyHabitTrackerUI(props) {
                     
                     
 
-                    getUserData={props.getUserData}
+                    getUserHabit={props.getUserHabit}
                 />
 
 

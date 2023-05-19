@@ -132,7 +132,7 @@ export default function LoginPage() {
                     <div>
                         <Logo src="/image/logo-habiters.svg" alt="Logo" />
                     </div>
-                    <div class="headline4 color-black1">
+                    <div className="headline4 color-black1">
                         환영합니다, 당신의 습관 메이커 해비터즈입니다!
                     </div>
                 </LoginHeaderBox>

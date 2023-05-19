@@ -49,8 +49,8 @@ export default function Habit(props) {
     }
 
     function HabitTitleShow() {
-        setIsHabitTitleShow(true)
         setIsHabitTitleManageShow(false)
+        setIsHabitTitleShow(true)
     }
 
 
@@ -71,7 +71,7 @@ export default function Habit(props) {
         <HabitTitleBox >
             {ishabitTitleShow &&
                 <HabitTitle className="body2-medium color-black2"
-                    onMouseOver={HabitTitleManageShow} >
+                    onMouseEnter={HabitTitleManageShow} >
                     {props.name}
                 </HabitTitle>}
 

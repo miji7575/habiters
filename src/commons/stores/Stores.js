@@ -111,5 +111,6 @@ export const TodayRetrospectState = atom({
 
 export const headerSelectedMenu = atom({
     key : "menu",
-    default : "마이해빗"
+    default : "마이해빗",
+    effects_UNSTABLE: [persistAtom],
 })

@@ -15,6 +15,7 @@ export default function DayCheck(props) {
         habits={props.habits}
         isHabitNull={props.isHabitNull}
         showDate={props.showDate}
+        getUserHabit={props.getUserHabit}
         />
     )
 

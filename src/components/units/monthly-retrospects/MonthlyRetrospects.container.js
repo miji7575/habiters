@@ -11,74 +11,60 @@ import DeleteRetrospectsPopup from './delete-retrospects-popup/DeleteRetrospects
 export default function MonthlyRetrospects(props) {
 
 
-
-
-    // 로직을 여기다 담아라
-    // ----- Retrospect Data 
+    // ----- Axios get --- get Retrospect Data (유저의 회고 목록 가져오기)
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectData)
 
     const getUserRetrospects = async () => {
         if (accessToken) {
-
-            console.log("토큰" + accessToken)
-            // console.log(props.showDate.showYear + '-' + props.showDate.showMonth)
             const URL = `https://api.habiters.store/diaries?date=${props.showDate.showYear}-${props.showDate.showMonth}`
-            // ?date={Option:${props.showDate.showYear}-${props.showDate.showMonth}}
             const response = await axios.get(URL,
                 {
-                    headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'text/plain', Authorization: 'Bearer ' + accessToken },
+                    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + accessToken },
                 }
             )
-
-            console.log("getUserRetrospects 실행됨")
-
             setUserRetrospect(() => response.data.data)
-            await checkDiaryState()
-            console.log(userRetrospect)
         }
-
         return
     }
 
     useEffect(() => {
         getUserRetrospects()
-    }, [])
+    }, [props.showDate.showMonth])
 
 
-    // --------------------------------날짜에 따른 수정 가능 여부
-    // console.log(Object.entries(userRetrospect).map(([key,value])=>{value.createDate}))
-    // console.log(Object.entries(userRetrospect)[key,value])
+    // --------------------------------작성 가능 여부 판별
+    
 
     // --- 오늘 작성한 글이 있는지 확인
-    const [diaryState, setDiaryState] = useState(false)
     const todayData = new Date();
     const todayMonth = ('00' + (Number(todayData.getMonth() + 1))).slice(-2)
     const todayDate = ('00' + (Number(todayData.getDate()))).slice(-2)
     const Today = todayData.getFullYear() + "-" + todayMonth + "-" + todayDate
-    useEffect(() => {
-        checkDiaryState()
-        console.log("오늘 날짜 : " + Today)
-        console.log("diaryState : " + diaryState)
 
-    })
-
-    const checkDiaryState = async () => {
+    const checkTodayRetrospectsExist = async () => {
         for (const [key, value] of Object.entries(userRetrospect)) {
-            // console.log(`${key}: ${value.createDate}`);
-            // console.log(Today)
             if (value.createDate.includes(Today)) {
-                setDiaryState(true)
-                console.log(diaryState)
+                setTodayRetrospectState(true)
                 return
             }
-
         }
+    }
+    useEffect(() => {
+        checkTodayRetrospectsExist()
+    },[])
+
+
+    // ----- 오늘 작성한 글이 있을 때 입력 막기
+    const [todayRetrospectState, setTodayRetrospectState] = useState(false)
+
+    const createTodayRetrospects = async() => {
+        setTodayRetrospectState(true)
     }
 
 
 
-    // -------수정팝업
+    // -------오늘의 회고 수정팝업
     const [retrospectsId, setRetrospectsId] = useState()
     const [retrospectsContent, setRetrospectsContent] = useState()
     const [isUpdateRetrospectsPopupOn, setIsUpdateRetrospectsPopupOn] = useState(false)
@@ -90,21 +76,21 @@ export default function MonthlyRetrospects(props) {
     }
     function updateRetrospectsPopupClose() {
         setIsUpdateRetrospectsPopupOn(false)
-        console.log("닫음")
     }
-    // function updateRetrospects() {
-    //     updateHabitPopupClose();
-    // }
 
-    // ------- 삭제 팝업
-    const [isDeleteRetrospectsPopupOn, setIsDeleteRetrospectsPopupOn] = useState(false)
+
+    // ------- 회고 삭제 팝업
+    const [isDeleteRetrospectsPopupOn, setIsDeleteRetrospectsPopupOn] = useState(false);
     function deleteRetrospectsPopupOn(retrospectsId) {
-        setRetrospectsId(() => retrospectsId)
+        setRetrospectsId(() => retrospectsId);
         setIsDeleteRetrospectsPopupOn(true);
     }
     function deleteRetrospectsPopupClose() {
-        setIsDeleteRetrospectsPopupOn(false)
-        console.log("닫음")
+        setIsDeleteRetrospectsPopupOn(false);
+    }
+
+    const deleteRetrospects = async() => {
+        setTodayRetrospectState(false)
     }
 
 
@@ -121,7 +107,10 @@ export default function MonthlyRetrospects(props) {
                 getUserRetrospects={getUserRetrospects}
                 userRetrospect={userRetrospect}
 
-                diaryState={diaryState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+                todayRetrospectState={todayRetrospectState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+                // --------
+                createTodayRetrospects={createTodayRetrospects}
+                // --------
                 Today={Today}/*오늘 날짜 */
 
 
@@ -146,7 +135,10 @@ export default function MonthlyRetrospects(props) {
                     deleteRetrospectsPopupClose={deleteRetrospectsPopupClose}/* 삭제 팝업을 닫기 위한 함수 */
                     retrospectsId={retrospectsId} /* 지울 회고의 Id */
                     getUserRetrospects={getUserRetrospects} /* 작업 완료 후 새로 불러오기 */
-                    checkDiaryState={checkDiaryState} /* 이거 있으면 안되긴 하는데 일단 Test용으로 (지우고 나서 오늘 작성한 회고록이 있는지 확인.) */
+
+
+
+                    deleteRetrospects={deleteRetrospects} /* 이거 있으면 안되긴 하는데 일단 Test용으로 (지우고 나서 오늘 작성한 회고록이 있는지 확인.) */
 
 
                 />}

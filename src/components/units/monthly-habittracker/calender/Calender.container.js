@@ -24,7 +24,7 @@ export default function Calender(props) {
 
 
 
-            getUserData={props.getUserData}
+            getUserHabit={props.getUserHabit}
         />
     )
 

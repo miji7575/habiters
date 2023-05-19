@@ -47,7 +47,7 @@ export default function CalenderUI(props) {
                                 
 
 
-                                getUserData={props.getUserData}
+                                getUserHabit={props.getUserHabit}
                             />)}
                         </CalenderDaysContainer>
 

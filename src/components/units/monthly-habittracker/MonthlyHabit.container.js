@@ -45,7 +45,6 @@ export default function MonthlyHabitTracker(props) {
     }
 
 
-
     // --- 습관 삭제하기
     const [isDeleteHabitPopupOn, setIsDeleteHabitPopupOn] = useState(false);
 
@@ -88,22 +87,15 @@ export default function MonthlyHabitTracker(props) {
 
     const [selectedDate, setSelectedDate] = useState(today)
 
-    const isClickedDateFunction = async (date) => {
-        setYear(props.showDate.showYear)
-        setMonth(props.showDate.showMonth)
-
-    }
+  
 
 
 
-    const selected = (date) => {
-        // console.log(props.showDate.showMonth)
+    const dateSelect = (date) => {
         setDate(date)
     }
 
-    // const habitCheckedSelected = () => {
-    //     props.getUserData()
-    // }
+  
 
 
 
@@ -116,6 +108,8 @@ export default function MonthlyHabitTracker(props) {
                 addNewHabitPopupOn={addNewHabitPopupOn}
                 updateHabitPopupOn={updateHabitPopupOn}
                 deleteHabitPopupOn={deleteHabitPopupOn}
+
+                
                 showDate={props.showDate}
                 monthDown={props.monthDown}
                 monthUp={props.monthUp}
@@ -125,34 +119,34 @@ export default function MonthlyHabitTracker(props) {
                 isHabitNull={isHabitNull}
 
 
-                selected={selected}
+                selected={dateSelect}
                 selectedDate={selectedDate}
 
 
 
 
 
-                getUserData={props.getUserData}
+                getUserHabit={props.getUserHabit}
             />
 
 
 
             {isaddNewHabitPopupOn && <AddNewHabitPopup
                 addNewHabitPopupClose={addNewHabitPopupClose}
-                getUserData={props.getUserData}
+                getUserHabit={props.getUserHabit}
             />}
 
             {isUpdateHabitPopupOn && <UpdateHabitPopup
                 updateHabitPopupClose={updateHabitPopupClose}
                 selectedHabitName={selectedHabitName}
                 habitId={habitId}
-                getUserData={props.getUserData}
+                getUserHabit={props.getUserHabit}
             />}
 
             {isDeleteHabitPopupOn && <DeleteHabitPopup
                 deleteHabitPopupClose={deleteHabitPopupClose}
                 habitId={habitId}
-                getUserData={props.getUserData}
+                getUserHabit={props.getUserHabit}
             />}
         </>
 

@@ -28,11 +28,13 @@ export const TodayHabitCheckTitle = styled.div`
 export const TodayHabitCheckFilterTop = styled.div`
  position: absolute;
     width: 278px;
+    /* height: 50px; */
     height: 100px;
     top: 68px;
     left: 0px;
     box-sizing: border-box;
     background: linear-gradient(var(--color-white), #ffffff00);
+    /* background-color: red; */
 `
 
 export const TodayHabitCheckFilterBottom = styled.div`
