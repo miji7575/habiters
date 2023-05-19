@@ -116,34 +116,7 @@ export default function MyPage() {
 
 
 
-    //  ----- Axios put(update) -- 회원정보 수정
-    const [accessToken, setAccessToken] = useRecoilState(userState)
-    const formData = new FormData()
-    formData.append('nickName', nickName);
-    formData.append('file', profileImgUrl);
-
-
-
-    const updateUserData = async () => {
-
-        if (accessToken) {
-           
-            const response = await axios.put(`https://api.habiters.store/users/me`, 
-            // {
-            //     // "email" : email,
-            //     "nickName": nickName,
-            //     "profileImgUrl": profileImgUrl
-            // }
-            formData
-            , {
-                headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
-            })
-            console.log(response)
-            return
-        
-        }
-    }
-
+    
     //  ----- Axios get -- 회원정보 가져오기
     const getUserData = async () => {
 
@@ -190,6 +163,36 @@ export default function MyPage() {
         let imageFile = e.target.files[0];
         setProfileImgUrl(URL.createObjectURL(imageFile));
 
+    }
+
+
+
+    //  ----- Axios put(update) -- 회원정보 수정
+    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const formData = new FormData()
+    formData.append('nickName', nickName);
+    formData.append('file', profileImgUrl);
+
+
+
+    const updateUserData = async () => {
+
+        if (accessToken) {
+           
+            const response = await axios.put(`https://api.habiters.store/users/me`, 
+            // {
+            //     // "email" : email,
+            //     "nickName": nickName,
+            //     "profileImgUrl": profileImgUrl
+            // }
+            formData
+            , {
+                headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
+            })
+            console.log(response)
+            return
+        
+        }
     }
 
 
