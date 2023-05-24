@@ -99,8 +99,8 @@ export default function SignupPage() {
     // ===============================================================================
 
 
-    const onClickMoveSignup = () => {
-        router.push("/signup")
+    const onClickMoveLogin = () => {
+        router.push("/login")
     }
 
     // Push전에 수정!!!
