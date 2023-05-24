@@ -24,7 +24,7 @@ export default function MonthlyRetrospects(props) {
                 }
             )
             setUserRetrospect(() => response.data.data)
-        
+
         }
         return
     }
@@ -35,7 +35,7 @@ export default function MonthlyRetrospects(props) {
 
 
     // --------------------------------작성 가능 여부 판별
-    
+
 
     // --- 오늘 작성한 글이 있는지 확인
     const todayData = new Date();
@@ -53,15 +53,16 @@ export default function MonthlyRetrospects(props) {
     }
     useEffect(() => {
         checkTodayRetrospectsExist()
-    },[])
+        console.log("test")
+    },[userRetrospect])
 
 
     // ----- 오늘 작성한 글이 있을 때 입력 막기
     const [todayRetrospectState, setTodayRetrospectState] = useState(false)
 
-    const createTodayRetrospects = async() => {
-        setTodayRetrospectState(true)
-    }
+    // const createTodayRetrospects = async () => {
+    //     setTodayRetrospectState(true)
+    // }
 
 
 
@@ -90,7 +91,7 @@ export default function MonthlyRetrospects(props) {
         setIsDeleteRetrospectsPopupOn(false);
     }
 
-    const deleteRetrospects = async() => {
+    const deleteRetrospects = async () => {
         setTodayRetrospectState(false)
     }
 
@@ -110,7 +111,7 @@ export default function MonthlyRetrospects(props) {
 
                 todayRetrospectState={todayRetrospectState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
                 // --------
-                createTodayRetrospects={createTodayRetrospects}
+                // createTodayRetrospects={createTodayRetrospects}
                 // --------
                 Today={Today}/*오늘 날짜 */
 

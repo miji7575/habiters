@@ -27,7 +27,7 @@ export default function MonthlyHabitTrackerUI(props) {
                 < TodayRetrospect
                     getUserRetrospects={props.getUserRetrospects}
                     todayRetrospectState={props.todayRetrospectState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
-                    createTodayRetrospects={props.createTodayRetrospects} /*test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!8*/
+                    // createTodayRetrospects={props.createTodayRetrospects} /*test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!8*/
                 />
 
 

@@ -49,7 +49,7 @@ export default function TodayRetrospect(props) {
     const onPostRetrospectsBtnClick = async () => {
         await postRetrospects();
         props.getUserRetrospects()
-        props.createTodayRetrospects(); /*test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!8*/
+        // props.createTodayRetrospects(); /*test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!8*/
         setTextareaInput('')
     }
 
