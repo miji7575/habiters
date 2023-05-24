@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { userState, userDetail, InputValue } from '../../commons/stores/Stores';
+import { userState, userDetail, InputValue, userHabitState, userRetrospectData, SelectedDate, TodayRetrospectState  } from '../../components/stores';
 import axios from 'axios'
 
 
@@ -79,6 +79,12 @@ export default function MyPage() {
 
     // ============================== Function  ==============================
     const router = useRouter()
+    useEffect(() => {
+        if (!accessToken) {
+            router.push("/login")
+        }
+    }, [])
+    
     const onClickMoveDeleteAccount = () => {
         router.push("/delete-account")
     }
@@ -125,7 +131,7 @@ export default function MyPage() {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             setUser(response.data.data)
-            console.log(response)
+            // console.log(response)
             return
         }
     }
@@ -189,11 +195,35 @@ export default function MyPage() {
             , {
                 headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
             })
-            console.log(response)
+            // console.log(response)
             return
         
         }
     }
+
+
+
+    // -----------로그아웃
+// const [userDetail,setUserDetail] = useRecoilState(userDetail)
+const [userHabit,setUserHabit] = useRecoilState(userHabitState)
+const [userRetrospect,setUserRetrospect] = useRecoilState(userRetrospectData)
+const [Selected,setSelected] = useRecoilState(SelectedDate)
+const [TodayRetrospect,setTodayRetrospect] = useRecoilState(TodayRetrospectState)
+// const [userState,setUserState] = useRecoilState(userState)
+
+
+
+    const logout = async() => {
+        setUser();
+        setUserHabit();
+        setUserRetrospect();
+        setSelected();
+        setTodayRetrospect();
+        setAccessToken();
+        router.push("/")
+    }
+
+
 
 
 
@@ -273,7 +303,8 @@ export default function MyPage() {
 
                     <div className="btn-arrange-vertical">
                         <div>
-                            <div className="btn btn-large btn-primary-default body2-medium">로그아웃</div>
+                            <div className="btn btn-large btn-primary-default body2-medium"
+                            onClick={logout}>로그아웃</div>
                         </div>
                         <div>
                             <div className="btn btn-large btn-secondary-default body2-medium"

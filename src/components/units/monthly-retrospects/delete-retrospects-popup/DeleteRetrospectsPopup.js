@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import {userState} from '../../../../commons/stores/Stores';
+import {userState} from '../../../../components/stores';
 
 
 export default function DeleteRetrospectsPopup(props) {

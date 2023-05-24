@@ -25,42 +25,35 @@ export const URL = atom({
     effects_UNSTABLE: [persistAtom],
 })
 
-
+// ----토큰을 받아오는 용도
 export const userState = atom({
     key: 'accessToken',
     default: '',
     effects_UNSTABLE: [persistAtom],
 });
 
-// ---------------------------------------------------
+// ---------------------------------------------------안씀
 export const accessTokenState = atom({
     key: "accessTokenState",
     default: ""
 })
 
-// ===============================input Value
-export const newInputValueState = atom({
-    key: 'newInput',
-    default: '',
-})
 
-// ===============================Textarea Value
+
+// ========================================
+// --- Textarea Value
 export const TextareaValueState = atom({
 
     key: 'textareaInput',
     default: '',
 })
 
-
-
-// -======================================
-// ======================================
-// ===============================input Value
+// --- input Value
 export const InputValue = atom({
     key: 'value',
     default: '',
 })
-// ========================================
+
 // =======================================
 // ============================================
 
@@ -108,9 +101,11 @@ export const TodayRetrospectState = atom({
     default:false
 })
 
-
+// --- 헤더 메뉴
 export const headerSelectedMenu = atom({
     key : "menu",
     default : "마이해빗",
     effects_UNSTABLE: [persistAtom],
 })
+
+

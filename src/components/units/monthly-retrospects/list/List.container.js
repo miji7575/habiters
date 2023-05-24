@@ -1,5 +1,5 @@
 import RetrospectListUI from "./List.presenter"
-import { userRetrospectData, userState } from '../../../../commons/stores/Stores';
+import { userRetrospectData, userState } from '../../../../components/stores';
 import { useRecoilState } from "recoil";
 
 

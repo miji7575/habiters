@@ -1,7 +1,7 @@
 import axios from "axios";
 import TodayRetrospectUI from "./TodayRetrospect.presenter"
 import { useRecoilState } from "recoil";
-import { userState, TextareaValueState } from '../../../commons/stores/Stores';
+import { userState, TextareaValueState } from '../../../components/stores';
 import { useEffect, useState } from "react";
 
 

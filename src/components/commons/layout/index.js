@@ -4,7 +4,7 @@ import Header from './header/Header.container';
 import Footer from './footer/Footer.container';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 // import { textState } from '../../../../pages/commons/stores/store';
-import { userState, sessionStorage, persistAtom, userDetail } from '../../../commons/stores/Stores';
+import { userState, sessionStorage, persistAtom, userDetail } from '../../../components/stores';
 import axios from 'axios';
 import { useEffect } from 'react';
 
@@ -34,7 +34,7 @@ export default function Layout(props) {
     `
 
     const Main = styled.div`
-    height: 100%;
+    min-height: calc(100vh - 292px);
     position: relative;
     `
 

@@ -7,7 +7,7 @@ const Main = styled.div`
 display: flex;
 justify-content: center;
 padding-top: 325px;
-height: calc(100vh - 204px - 90px);
+
 `
 
 export default function CommingSoonPage() {
@@ -26,7 +26,8 @@ export default function CommingSoonPage() {
             <main>
             <Main>
                 <div>
-                    <img src="/image/Comming-soon.svg" alt="준비중"/>
+                    <img src="/image/Comming-soon.svg" alt="준비중"
+                    onClick={onClickMove}/>
                 </div>
             </Main>
 

@@ -3,7 +3,7 @@ import Layout from '../components/commons/layout/index';
 import { Global } from "@emotion/react";
 // import { GlobalStyles } from "../src/commons/styles/globalStyles"
 import { RecoilRoot, useRecoilState, atom } from 'recoil';
-import { userState } from '../commons/stores/Stores';
+
 // "src/commons/styles/globalStyles";
 import '../styles/globals.css'
 import '../styles/colors.css'

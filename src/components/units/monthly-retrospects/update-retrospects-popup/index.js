@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import { userState, newInputValueState, TextareaValueState } from '../../../../commons/stores/Stores';
+import { userState,  TextareaValueState } from '../../../../components/stores';
 import Textareas from '../../../commons/textareas/Textareas.container';
 
 
@@ -98,7 +98,7 @@ export default function UpdateHabitPopup(props) {
 
     const onChangeHandler = (e) => {
         setTextareaInput(e.target.value)
-        console.log(e.target.value)
+        // console.log(e.target.value)
 
     }
 
@@ -108,16 +108,13 @@ export default function UpdateHabitPopup(props) {
     // --- Axios Update
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const updateUserRetrospectData = async () => {
-        console.log(props.retrospectsId)
+        // console.log(props.retrospectsId)
         if (accessToken) {
             const response = await axios.put(`https://api.habiters.store/diaries/${props.retrospectsId}`, textareaInput, {
 
                 headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
             })
-            console.log("-----updateUserRetrospectData-----")
-            console.log(response)
-            console.log(textareaInput)
-            console.log("-----updateUserRetrospectData-----")
+   
             return
         }
     }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useRecoilState } from "recoil";
 import MonthlyRetrospectsUI from "./MonthlyRetrospects.presenter"
 import { useEffect, useState } from 'react';
-import { userRetrospectData, userState } from '../../../commons/stores/Stores';
+import { userRetrospectData, userState } from '../../../components/stores';
 import UpdateRetrospectsPopup from './update-retrospects-popup';
 import DeleteRetrospectsPopup from './delete-retrospects-popup/DeleteRetrospectsPopup';
 
@@ -24,6 +24,7 @@ export default function MonthlyRetrospects(props) {
                 }
             )
             setUserRetrospect(() => response.data.data)
+        
         }
         return
     }

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import { userState, userHabitState } from '../../../../commons/stores/Stores';
+import { RecoilRoot, useRecoilState} from 'recoil';
+import { userState, userHabitState } from '../../../../components/stores';
 
 
 // ============================== Style ==============================
@@ -35,10 +35,6 @@ export default function CalenderDayHabitCheckbox(props) {
     const postHabitCheck = async () => {
 
 
-
-        console.log(("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate);
-        // console.log(props.habitId)
-
         const postDate = ("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate
 
         if (accessToken) {
@@ -70,7 +66,7 @@ export default function CalenderDayHabitCheckbox(props) {
             // console.log(response)
             // console.log("해빗체크 삭제 완료")
 
-            return
+            return response
 
         }
     }
@@ -91,7 +87,7 @@ export default function CalenderDayHabitCheckbox(props) {
 
     // ------ 체크박스 클릭
     const checkboxCheck = async () => {
-        console.log(habitcheckId)
+        // console.log(habitcheckId)
 
 
 
@@ -101,12 +97,18 @@ export default function CalenderDayHabitCheckbox(props) {
 
             if (isCheckboxChecked) {
                 await deleteHabitCheck()
-                props.getUserHabit()
-                setIsCheckboxChecked(false)
+                await props.getUserHabit()
+                // setIsCheckboxChecked(()=>false)     
+
+                // habitColoring()
+
                 return
             }
             await postHabitCheck()
-            props.getUserHabit()
+            await props.getUserHabit()
+
+            // habitColoring()
+   
 
             return
         }
@@ -132,8 +134,9 @@ export default function CalenderDayHabitCheckbox(props) {
     const [habitcheckId, setHabitcheckId] = useState()
     const habitColoring = async () => {
 
+        setIsCheckboxChecked(false)
         Object.entries(props.habitChecks).map(([key, value]) => {
-            // console.log(value)
+
 
             if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
                 setHabitcheckId(value.id)
@@ -156,26 +159,37 @@ export default function CalenderDayHabitCheckbox(props) {
     const [habits, setHabits] = useRecoilState(userHabitState)
 
 
-    useEffect(() => {
+
+
+
+    // useEffect(() => {
+
+    //     // setIsCheckboxChecked(false)
+    //     // props.getUserHabit()
+    //     habitColoring();
+
+    //     // Object.entries(props.habitChecks).map(([key, value]) => {
+
+
+    //     //     if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
+    //     //         setHabitcheckId(value.id)
+    //     //         setIsCheckboxChecked(() => true)
+    //     //         return
+
+    //     //     }
+
+    //     // })
+    // }, [props.showDate.showMonth])
+
+    // useEffect(() => {
+    //     habitColoring()
+
+    // },[habits, props.showDate.showMonth])
+
+
+    useEffect(()=>{
         habitColoring()
-
     })
-
-    useEffect(() => {
-
-        setIsCheckboxChecked(false)
-        // Object.entries(props.habitChecks).map(([key, value]) => {
-
-
-        //     if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
-        //         setHabitcheckId(value.id)
-        //         setIsCheckboxChecked(() => true)
-        //         return
-
-        //     }
-
-        // })
-    }, [props.showDate.showMonth])
 
 
 

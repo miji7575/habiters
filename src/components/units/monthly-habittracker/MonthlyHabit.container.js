@@ -5,7 +5,8 @@ import AddNewHabitPopup from './addnewHabitPopup/AddNewHabitPopup';
 import UpdateHabitPopup from './update-habit-popup/UpdateHabitPopup';
 import DeleteHabitPopup from './delete-habit-popup/DeleteHabitpopup';
 
-import { newInputValueState, userHabitState } from '../../../commons/stores/Stores';
+import { userHabitState, userState} from '../../../components/stores';
+import axios from "axios";
 
 
 
@@ -13,6 +14,27 @@ export default function MonthlyHabitTracker(props) {
 
 
     const [habits, setHabits] = useRecoilState(userHabitState)
+    const [accessToken, setAccessToken] = useRecoilState(userState)
+    useEffect(() => {
+        getUserHabit()
+    }, [])
+
+  
+    // --- Axios get--- 유저의 habit 목록 get 
+    const getUserHabit = async () => {
+        if (accessToken) {
+            // console.log("토큰" + props.showDate.showMonth)
+            const response = await axios.get(`https://api.habiters.store/habits?date=${props.showDate.showYear}-${props.showDate.showMonth}`, {
+                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+            })
+            setHabits(() => response.data.data)
+         
+        }
+
+        return
+    }
+
+
 
 
 
@@ -87,7 +109,7 @@ export default function MonthlyHabitTracker(props) {
 
     const [selectedDate, setSelectedDate] = useState(today)
 
-  
+
 
 
 
@@ -95,7 +117,7 @@ export default function MonthlyHabitTracker(props) {
         setDate(date)
     }
 
-  
+
 
 
 
@@ -109,13 +131,13 @@ export default function MonthlyHabitTracker(props) {
                 updateHabitPopupOn={updateHabitPopupOn}
                 deleteHabitPopupOn={deleteHabitPopupOn}
 
-                
+
                 showDate={props.showDate}
                 monthDown={props.monthDown}
                 monthUp={props.monthUp}
 
                 habits={habits}
-                setHabits={setHabits}
+                // setHabits={setHabits}
                 isHabitNull={isHabitNull}
 
 
@@ -126,27 +148,27 @@ export default function MonthlyHabitTracker(props) {
 
 
 
-                getUserHabit={props.getUserHabit}
+                getUserHabit={getUserHabit}
             />
 
 
 
             {isaddNewHabitPopupOn && <AddNewHabitPopup
                 addNewHabitPopupClose={addNewHabitPopupClose}
-                getUserHabit={props.getUserHabit}
+                getUserHabit={getUserHabit}
             />}
 
             {isUpdateHabitPopupOn && <UpdateHabitPopup
                 updateHabitPopupClose={updateHabitPopupClose}
                 selectedHabitName={selectedHabitName}
                 habitId={habitId}
-                getUserHabit={props.getUserHabit}
+                getUserHabit={getUserHabit}
             />}
 
             {isDeleteHabitPopupOn && <DeleteHabitPopup
                 deleteHabitPopupClose={deleteHabitPopupClose}
                 habitId={habitId}
-                getUserHabit={props.getUserHabit}
+                getUserHabit={getUserHabit}
             />}
         </>
 

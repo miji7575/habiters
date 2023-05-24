@@ -29,6 +29,7 @@ export default function DayCheckUI(props) {
                         habitId={value.id}
                         showDate={props.showDate}
                         getUserHabit={props.getUserHabit}
+                        date={props.date}
 
                     />)}
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { useRecoilState } from "recoil";
-import { userDetail, userState, userHabitState } from '../../commons/stores/Stores';
+import { userDetail, userState } from '../../components/stores';
 import { useRouter } from "next/router";
 
 
@@ -46,18 +46,19 @@ export default function HabitTracker() {
 
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const [user, setUser] = useRecoilState(userDetail);
-    const [userHabit, setUserHabit] = useRecoilState(userHabitState)
     const [userName, setUserName] = useState("")
 
+    const router = useRouter()
 
     useEffect(() => {
-
-        setUserName(user.nickName)
-        getUserHabit()
-
-        if (accessToken === undefined) {
-            Router.push("/login")
+        if (!accessToken) {
+            router.push("/login")
         }
+        
+    }, [])
+
+    useEffect(() => {
+        setUserName(user.nickName)
         
     }, [user])
 
@@ -65,19 +66,8 @@ export default function HabitTracker() {
 
 
 
-    // --- Axios get--- 유저의 habit 목록 get 
-    const getUserHabit = async () => {
-        if (accessToken) {
-            console.log("토큰" + showDate.showMonth)
-            const response = await axios.get(`https://api.habiters.store/habits?date=${showDate.showYear}-${showDate.showMonth}`, {
-                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-            })
-            setUserHabit(() => response.data.data)
-            console.log(response)
-        }
-       
-        return
-    }
+
+   
 
 
 
@@ -121,7 +111,7 @@ export default function HabitTracker() {
     useEffect(() => {
         setLastDate(() => (new Date(year, month, 0).getDate()));
         setStartDay(() => new Date(year, month - 1, 1).getDay())
-        getUserHabit();
+        // getUserHabit();
     }, [year, month])
 
     useEffect(() => {
@@ -222,7 +212,6 @@ export default function HabitTracker() {
 
 
                         {isMonthlyHabitTrackerOn && <MonthlyHabitTracker
-                            getUserHabit={getUserHabit}
                             showDate={showDate}
                             monthDown={monthDown}
                             monthUp={monthUp} />}

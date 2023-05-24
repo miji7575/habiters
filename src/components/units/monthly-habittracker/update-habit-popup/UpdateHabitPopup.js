@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useEffect, useState } from 'react';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 import axios from 'axios';
-import { userState, InputValue } from '../../../../commons/stores/Stores';
+import { userState, InputValue } from '../../../../components/stores';
 import Input from '../../../commons/inputs/Inputs.container';
 
 

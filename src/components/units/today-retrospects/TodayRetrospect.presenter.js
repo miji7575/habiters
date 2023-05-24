@@ -2,7 +2,7 @@
 import { TodayRetrospectContainer, TodayRetrospectBtn } from './TodayRetrospect.styles'
 import Textarea from '../../commons/textareas/Textareas.container';
 import { useRecoilState } from 'recoil';
-import { TextareaValueState } from '../../../commons/stores/Stores';
+import { TextareaValueState } from '../../../components/stores';
 
 
 export default function TodayRetrospectUI(props) {

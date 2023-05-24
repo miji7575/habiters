@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import Textarea from "../../components/commons/textareas/Textareas.container"
+import axios from 'axios'
+import {userState} from '../../components/stores';
+import { useRecoilState } from 'recoil';
 
 
 // =======================  Style  =======================
@@ -58,17 +61,30 @@ export default function DeleteAccount() {
 
 
     const router = useRouter()
-    const onClickMoveMainPage = () => {
+    const onDeleteUserBtnClick = () => {
+        deleteUser();
+        setAccessToken();
         router.push("/")
     }
-    const onClickUpdateImg = () => {
-        //    이미지 로드
-        alert("파일로드창!")
-    }
+
 
     const placeholder = "탈퇴 사유를 입력해주세요. (선택적)"
     const textareaErrorMessage = "";
 
+
+    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const deleteUser = async() => {
+        if (accessToken) {
+           
+            const response = await axios.delete(`https://api.habiters.store/users/me`, 
+           {
+                headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
+            })
+            // console.log(response)
+            return
+        
+        }
+    }
 
 
     return (
@@ -96,7 +112,7 @@ export default function DeleteAccount() {
                     placeholder={placeholder}
                     textareaErrorMessage={textareaErrorMessage}/>
 
-                    <div className={'btn btn-large btn-primary-default body2-medium'} onClick={onClickMoveMainPage}>탈퇴하기</div>
+                    <div className={'btn btn-large btn-primary-default body2-medium'} onClick={onDeleteUserBtnClick}>탈퇴하기</div>
 
                 </Main>
 

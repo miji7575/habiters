@@ -3,7 +3,7 @@ import InputUI from "./Inputs.presenter"
 import { useState, useEffect, useCallback, useRef } from "react"
 import inputStyles from '../../../styles/input.module.css'
 import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
-import { newInputValueState,inputDoneState, InputValue } from '../../../commons/stores/Stores';
+import { inputDoneState, InputValue } from '../../../components/stores';
 
 
 
@@ -21,12 +21,7 @@ export default function Inputs(props) {
 
 
 
-    useEffect(()=>{
-        console.log(inputValues)
-        console.log(props.name)
-        console.log(inputValues[props.name])
-
-    })
+   
 
   
 
@@ -87,7 +82,7 @@ export default function Inputs(props) {
                 <InputBox
                 // {()=>setIsOnFocus(false)}
                 >
-                    {!isValueNull  && isOnFocus &&
+                    {!isValueNull  && isOnFocus && !props.isError &&
                         <span
                             className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
                             onClick={removeValue} />}
@@ -95,7 +90,7 @@ export default function Inputs(props) {
                         type="text"
                         className={'input-default body3-medium color-black2'}
                         
-                        // isError={props.isError}
+                        isError={props.isError}
                         onChange={onChange}
                         value={props.value}
                         placeholder={props.placeholder}
@@ -115,11 +110,11 @@ export default function Inputs(props) {
 
 
 
-                    {isError &&
+                    {props.isError &&
                         <ErrorIcon
                             className="icon-m icon-error-colored" />}
                 </InputBox>
-                <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
+                {props.isError && <InputMessage id="name" className={'caption1-regular color-error'}>{props.errorMessage}</InputMessage>}
             </InputWrap>
 
 

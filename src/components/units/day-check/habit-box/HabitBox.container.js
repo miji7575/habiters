@@ -2,29 +2,43 @@ import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
 import axios from 'axios';
 import HabitBoxUI from "./HabitBox.presenter"
-import {SelectedDate, userState} from '../../../../commons/stores/Stores';
+import { SelectedDate, userState, userHabitState } from '../../../../components/stores';
 
 
 
 
 export default function HabitBox(props) {
 
+    // 로직을 여기다 담아라
+    const todayYear = new Date().getFullYear()
+    const todayMonth = new Date().getMonth() + 1
+    const todayDate = new Date().getDate()
+    const today = todayYear + "-" + ("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate;
 
 
-     // ============================== Function ==============================
+
+    // ============================== Function ==============================
+
+
+
 
     //  ----- Axios post -- 오늘날짜의 선택한 Habit 체크
     const [accessToken, setAccessToken] = useRecoilState(userState)
 
     const postHabitCheck = async () => {
+        const postDate = ("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate
 
         if (accessToken) {
-            const response = await axios.post(`https://api.habiters.store/habits/${props.habitId}/check`, props.habitId, {
+            const response = await axios.post(`https://api.habiters.store/habits/${props.habitId}/check`,
+                {
+                    "habitId": props.habitId,
+                    "requestDate": postDate
+                }, {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
-            console.log(response)
-            console.log("해빗체크됨")
+            // console.log(response)
+            // console.log("해빗체크됨")
             return
 
         }
@@ -34,65 +48,77 @@ export default function HabitBox(props) {
     const deleteHabitCheck = async () => {
 
         if (accessToken) {
-            const response = await axios.delete(`https://api.habiters.store/habits/${props.habitId}/check`, {
-                'Content-Type': 'application/json',
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
-            console.log(response)
-            console.log("해빗체크삭제됨")
-            return
+            const response = await axios.delete(`https://api.habiters.store/habits/${habitcheckId}/uncheck`
+                , {
+                    'Content-Type': 'application/json',
+                    headers: { Authorization: 'Bearer ' + accessToken },
+                })
+            // console.log(response)
+            // console.log("해빗체크삭제됨")
+            return response
 
         }
     }
 
-    const onHabitCheckClick = async() => {
-        console.log(props.habitId)
 
-        // 체크해제하기
-        if(isHabitChecked) {
-            await deleteHabitCheck()
-            await props.getUserHabit()
-            setIsHabitChecked(false)
+
+    const onHabitCheckClick = async () => {
+        // console.log(props.habitId)
+
+        if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + nowSelectedDate == today)) {
+            // 체크해제하기
+            if (isHabitChecked) {
+                await deleteHabitCheck()
+                await props.getUserHabit()
+                // setIsHabitChecked(false)
+                return
+            }
+            // 체크하기
+
+            await postHabitCheck()
+            props.getUserHabit()
+            // setIsHabitChecked(true)
 
             return
-        }
-        // 체크하기
-        await postHabitCheck()
-        props.getUserHabit()
-        setIsHabitChecked(true)
 
-        return
+        }
+        else {
+            alert("오늘의 습관만 체크할 수 있습니다.")
+        }
 
     }
-   
+
     const colorArray = ['var(--color-purple4)', 'var(--color-skyblue4)', 'var(--color-green4)']
     const btnColorArray = ['var(--color-purple2)', 'var(--color-skyblue2)', 'var(--color-green2)']
 
 
     const [isHabitChecked, setIsHabitChecked] = useState(false)
     const [nowSelectedDate, setNowSelectedDate] = useRecoilState(SelectedDate)
-    // console.log(nowSelectedDate)
+
 
     const year = props.showDate.showYear;
-    
-   
 
 
 
-    
 
 
 
-     // --- check된 날짜에만 색칠
-     const habitColoring = async () => {
 
-        if (nowSelectedDate.toString().length == 1) {
-            setNowSelectedDate("0" + nowSelectedDate)
-        }
 
+
+    // --- check된 날짜에만 색칠
+    // --------habitcheckId 얻기
+    const [habitcheckId, setHabitcheckId] = useState()
+    const habitColoring = async () => {
+
+        // if (nowSelectedDate.toString().length == 1) {
+        //     setNowSelectedDate("0" + nowSelectedDate)
+        // }
+        setIsHabitChecked(false)
         Object.entries(props.habitChecks).map(([key, value]) => {
             if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + nowSelectedDate)) {
                 setIsHabitChecked(true)
+                setHabitcheckId(value.id)
             }
             else {
                 setIsHabitChecked(false)
@@ -100,22 +126,25 @@ export default function HabitBox(props) {
         })
     }
 
-    useEffect(()=>{
+
+    const [habits, setHabits] = useRecoilState(userHabitState)
+    useEffect(() => {
         habitColoring()
+        
     })
 
     return (
-        <HabitBoxUI 
-        name={props.name}
-        index={props.index}
-        colorArray={colorArray}
-        btnColorArray={btnColorArray}
+        <HabitBoxUI
+            name={props.name}
+            index={props.index}
+            colorArray={colorArray}
+            btnColorArray={btnColorArray}
 
-        showDate={props.showDate}
-        nowSelectedDate={nowSelectedDate}
-        isHabitChecked={isHabitChecked}
+            showDate={props.showDate}
+            nowSelectedDate={nowSelectedDate}
+            isHabitChecked={isHabitChecked}
 
-        onHabitCheckClick={onHabitCheckClick}
+            onHabitCheckClick={onHabitCheckClick}
         />
     )
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TextareaUI from "./Textareas.presenter"
 import { useState } from "react"
 import { useRecoilState } from 'recoil';
-import {TextareaValueState} from '../../../commons/stores/Stores';
+import {TextareaValueState} from '../../../components/stores';
 
 
 export default function Textareas(props) {

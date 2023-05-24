@@ -6,7 +6,7 @@ import {
 } from './Textareas.styles'
 import { useState } from "react"
 import { useRecoilState } from 'recoil';
-import { TextareaValueState } from '../../../commons/stores/Stores';
+import { TextareaValueState } from '../../../components/stores';
 
 
 

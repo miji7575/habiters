@@ -1,21 +1,25 @@
 import { useRecoilState } from "recoil"
 import DayCheckUI from "./List.presenter"
-import {SelectedDate} from '../../../../commons/stores/Stores';
+import { SelectedDate } from '../../../../components/stores';
+import { useEffect } from "react";
+import { userHabitState } from '../../../../components/stores';
 
 
 export default function DayCheck(props) {
-
-    // 로직을 여기다 담아라
-   
-    
+    const [habits, setHabits] = useRecoilState(userHabitState)
+    useEffect(() => {
+        props.getUserHabit()
+    }, [])
 
 
     return (
-        <DayCheckUI 
-        habits={props.habits}
-        isHabitNull={props.isHabitNull}
-        showDate={props.showDate}
-        getUserHabit={props.getUserHabit}
+        <DayCheckUI
+            habits={habits}
+            isHabitNull={props.isHabitNull}
+            showDate={props.showDate}
+            getUserHabit={props.getUserHabit}
+
+
         />
     )
 

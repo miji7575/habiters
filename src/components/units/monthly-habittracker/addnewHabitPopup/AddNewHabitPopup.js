@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, InputValue } from '../../../../commons/stores/Stores';
+import { userState, InputValue } from '../../../../components/stores';
 import Input from '../../../commons/inputs/Inputs.container';
 
 
@@ -76,15 +76,21 @@ export default function AddNewHabitPopup(props) {
 
 
     // ----- 습관 등록하기
+    const[isError, setIsError] = useState(false)
+    const[errorMessage, setErrorMessage] = useState()
     const addNewhabit = async () => {
 
 
         if ( !newInput["habitName"]  || newInput["habitName"].trim().length == 0 ) {
-            alert("내용을 입력해주세요");
+            // alert("내용을 입력해주세요");
+            setIsError(true)
+            setErrorMessage("내용을 입력해주세요")
             return
         }
         if (newInput["habitName"].length > 10) {
-            alert("습관 이름은 10자 이내만 가능합니다")
+            // alert("습관 이름은 10자 이내만 가능합니다")
+            setIsError(true)
+            setErrorMessage("습관 이름은 10자 이내만 가능합니다")
             return
         }
         else {
@@ -109,6 +115,7 @@ export default function AddNewHabitPopup(props) {
     const onChange = (e) => {
         const { value, name } = e.target;
         setNewInput({ ...newInput, [name]: value })
+        setIsError(false)
     };
 
 
@@ -149,6 +156,10 @@ export default function AddNewHabitPopup(props) {
                             value={habitName}
                             placeholder={placeholder}
                             onChange={onChange}
+
+
+                            isError={isError}
+                            errorMessage={errorMessage}
                            
                         />
 

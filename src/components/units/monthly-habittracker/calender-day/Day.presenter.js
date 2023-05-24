@@ -12,7 +12,8 @@ export default function CalenderDayUI(props) {
     return (
         // html 부분을 여기에 담아라
         <DayContainer
-            isSelected={props.isSelected}>
+            isSelected={props.isSelected}
+            ref={props.ref}>
 
             <DayBox
             isSelected={props.isSelected}>

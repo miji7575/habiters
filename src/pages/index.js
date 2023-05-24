@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { userState, userDetail, userHabitState, URL } from '../commons/stores/Stores';
+import { userState, userDetail, userHabitState, URL } from '../components/stores/index';
 import { useEffect, useRef, useState } from 'react';
 
 import { css, keyframes } from '@emotion/react';
@@ -12,7 +12,7 @@ import { css, keyframes } from '@emotion/react';
 const Main = styled.div`
     height: 100vh;
     overflow-y: auto;
-    /* width: 100vw; */
+    width: 100vw;
     overflow-x: hidden; 
 `
 // ============================== Style ==============================
@@ -251,7 +251,7 @@ export default function IntroPage() {
 
     const [scrollY, setScrollY] = useState(0);
     useEffect(() => {
-        console.log(introOuterRef.current.scrollTop)
+        // console.log(introOuterRef.current.scrollTop)
 
         document.addEventListener('scroll', () => setScrollY(introOuterRef.current.scrollTop));
         // console.log(scrollY)

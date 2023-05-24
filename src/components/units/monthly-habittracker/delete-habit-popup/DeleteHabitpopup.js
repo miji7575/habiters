@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import {userState} from '../../../../commons/stores/Stores';
+import {userState} from '../../../../components/stores';
 
 
 
@@ -62,7 +62,7 @@ export default function DeleteHabitPopup(props) {
     // 함수==================================
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const deleteHabitData = async () => {
-        console.log(props.habitId)
+        // console.log(props.habitId)
         if (accessToken) {
             const response = await axios.delete(`https://api.habiters.store/habits/${props.habitId}`, {
                 headers: { Authorization: 'Bearer ' + accessToken }
@@ -79,10 +79,10 @@ export default function DeleteHabitPopup(props) {
     }
 
     const deleteHabit = async () => {
-        console.log(props.habitId)
+        // console.log(props.habitId)
         await deleteHabitData()
         props.deleteHabitPopupClose();
-        console.log("습관 삭제 완료")
+        // console.log("습관 삭제 완료")
         props.getUserHabit();
 
     }

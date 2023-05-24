@@ -24,6 +24,7 @@ export default function MonthlyHabitTrackerUI(props) {
                         showDate={props.showDate}
                         monthDown={props.monthDown}
                         monthUp={props.monthUp}
+                        getUserHabit={props.getUserHabit}
                     />
                     <AddHabitBtn className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content "
                         onClick={props.addNewHabitPopupOn}>

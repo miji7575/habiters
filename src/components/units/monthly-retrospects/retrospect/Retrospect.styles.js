@@ -9,6 +9,7 @@ export const DiaryBox = styled.div`
 /* diarybox */
     display: flex;
     width: 880px;
+    /* min-height: 160px;  영역넓히기*/
     height: 160px;
     box-sizing: border-box;
 `
@@ -63,4 +64,5 @@ export const DiaryContent = styled.div`
     padding: 20px 32px 20px 32px;
     border-radius: 0px 8px 8px 0px;
     overflow: auto;
+    white-space: pre-line;
 `

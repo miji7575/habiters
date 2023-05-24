@@ -1,17 +1,16 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 
-export default function SignupPage() {
 
-    // -----------------스타일
+// ============================== Style ==============================
 
-    const Body = styled.div`
+const Body = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     `
 
-    const LoginHeaderBox = styled.div`
+const LoginHeaderBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,19 +19,19 @@ export default function SignupPage() {
     margin-bottom: 56px;
     `
 
-    const Logo = styled.img`
+const Logo = styled.img`
     width: 305.6px;
     height: 36px;
     `
 
-    const LoginButtonBox = styled.div`
+const LoginButtonBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
     margin-bottom: 64px;
     `
 
-    const MoveLink = styled.span`
+const MoveLink = styled.span`
         text-decoration: underline;
         color: var(--color-purple2);
         padding-left: 8px;
@@ -40,19 +39,89 @@ export default function SignupPage() {
     `
 
 
-    //---------함수
+export default function SignupPage() {
+
+
+    // ============================== Function  ==============================
+
     const router = useRouter()
-    const onClickMoveLogin = () => {
-        router.push("/login")
+
+
+
+
+
+    // ----- 토큰을 로컬에 저장
+
+    const [accessToken, setAccessToken] = useRecoilState(userState);
+
+    const getAccessToken = async () => {
+        setAccessToken(() => router.query.accessToken)
+        // console.log("토큰 : " + accessToken)
+        if (accessToken) {
+            localStorage.setItem("accessToken", accessToken)
+            if (localStorage.getItem("accessToken")) {
+                setAccessToken(localStorage.getItem("accessToken") || "")
+            }
+        }
     }
 
+
+
+    // ----- 유저의 정보 get
+    const [user, setUser] = useRecoilState(userDetail);
+
+    const getUserData = async () => {
+
+        if (accessToken) {
+            const response = await axios.get('https://api.habiters.store/users/me', {
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+            setUser(response.data.data)
+            return
+        }
+        // console.log(" 레이아웃 토큰없음. 유저정보 get x")
+
+    }
+
+
+    useEffect(() => {
+        getAccessToken();
+        getUserData()
+        if (accessToken) {
+            router.push("/myhabit")
+        }
+        // console.log(user)
+    }, [accessToken])
+    // ===============================================================================
+
+
+    const onClickMoveSignup = () => {
+        router.push("/signup")
+    }
+
+    // Push전에 수정!!!
+    // =====  소셜로그인 주소
+    const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://habiters.vercel.app/login"
+    const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/login"
+    const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/login"
+    // const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
+    // const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3000/login"
+    // const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://localhost:3000/login"
+
+
+    const googleLogin = async () => {
+        router.push(GOOGLE_LOGIN)
+    }
+    
     const kakaoLogin = async () => {
-
-
+        router.push(KAKAO_LOGIN)
     }
 
-    const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/myhabit"
-    const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/myhabit"
+    const naverLogin = async () => {
+        router.push(NAVER_LOGIN)
+    }
+
+
 
 
     return (
@@ -70,22 +139,21 @@ export default function SignupPage() {
 
                 <LoginButtonBox>
 
-                    {/* <div className={'btn-sns-login btn-sns-login-google'}>
+                    <div className={'btn-sns-login btn-sns-login-google'}
+                        onClick={googleLogin}>
                         <span className={'body2-medium'}>구글로 시작하기</span>
-                    </div> */}
+                    </div>
 
-                    <a href={KAKAO_LOGIN} onClick={kakaoLogin}>
-                        <div className={'btn-sns-login btn-sns-login-kakao'}>
-                            <span className={'body2-medium'}>카카오로 시작하기</span>
-                        </div>
-                    </a>
+                    <div className={'btn-sns-login btn-sns-login-kakao'}
+                        onClick={kakaoLogin}>
+                        <span className={'body2-medium'}>카카오로 시작하기</span>
+                    </div>
 
+                    <div className={'btn-sns-login btn-sns-login-naver'}
+                        onClick={naverLogin}>
+                        <span className={'body2-medium'}>네이버로 시작하기</span>
+                    </div>
 
-                    <a href={NAVER_LOGIN}>
-                        <div className={'btn-sns-login btn-sns-login-naver'}>
-                            <span className={'body2-medium'}>네이버로 시작하기</span>
-                        </div>
-                    </a>
 
                 </LoginButtonBox>
 

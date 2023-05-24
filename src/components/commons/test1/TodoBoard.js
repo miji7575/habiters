@@ -4,7 +4,7 @@ import TodoItem from './TodoItem';
 function TodoBoard(props){
 
 
-    console.log("todoboard는",props.todoLists)
+    // console.log("todoboard는",props.todoLists)
 
     return(
         <div>

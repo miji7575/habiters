@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import RetrospectUI from "./Retrospect.presenter"
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { userRetrospectData} from '../../../../commons/stores/Stores';
+import { userRetrospectData } from '../../../../components/stores';
 
 
 
@@ -14,18 +14,19 @@ export default function Retrospect(props) {
     // const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectState)
 
 
+    
 
 
 
     // ---------------------------UI변화부분
     const [isEditable, setIsEditable] = useState(false)
-    const [userRetrospect,setUserRetrospect] = useRecoilState(userRetrospectData)
+    const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectData)
 
     useEffect(() => {
         if (props.todayRetrospectState && (props.date.includes(props.Today))) {
             // props.diaryState 없이 그냥 객체별 생성일과 오늘 날짜를 비교하는 뒤에 식만 있어도 될 것 같다
             setIsEditable(true)
- 
+
             return
         }
 
