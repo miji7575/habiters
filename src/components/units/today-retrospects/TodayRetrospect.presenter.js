@@ -30,14 +30,14 @@ export default function TodayRetrospectUI(props) {
                 {/* 작성이 가능할 때 버튼 */}
                 {!props.todayRetrospectState && <div className="btn btn-large btn-primary-default body2-medium btn-width-auto"
                     onClick={props.onPostRetrospectsBtnClick}
-                >버튼</div>}
+                >회고 작성하기</div>}
 
                 
 
                 {/* 작성이 불가능할 때 버튼 */}
                 {props.todayRetrospectState && <TodayRetrospectBtn className="btn btn-large btn-primary-default body2-medium btn-width-auto"
                     todayRetrospectState={props.todayRetrospectState}
-                >버튼</TodayRetrospectBtn>}
+                >회고 작성하기</TodayRetrospectBtn>}
 
             </TodayRetrospectContainer>
         </>

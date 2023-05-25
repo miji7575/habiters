@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { userState, userDetail, InputValue, userHabitState, userRetrospectData, SelectedDate, TodayRetrospectState  } from '../../components/stores';
+import { userState, userDetail, InputValue, userHabitState, userRetrospectData, SelectedDate, TodayRetrospectState } from '../../components/stores';
 import axios from 'axios'
 
 
@@ -84,7 +84,7 @@ export default function MyPage() {
             router.push("/login")
         }
     }, [])
-    
+
     const onClickMoveDeleteAccount = () => {
         router.push("/delete-account")
     }
@@ -109,7 +109,7 @@ export default function MyPage() {
         }
 
         setInputValues({ ["nickName"]: user.nickName })
-        if (user.email) {
+        if (user.email != null) {
             setEmailInputPlaceHolder(user.email)
             setInputValues({
                 ["nickName"]: user.nickName,
@@ -122,7 +122,7 @@ export default function MyPage() {
 
 
 
-    
+
     //  ----- Axios get -- 회원정보 가져오기
     const getUserData = async () => {
 
@@ -139,7 +139,31 @@ export default function MyPage() {
 
 
     // --------------------회원정보 수정하기
+    const formData = new FormData()
+
     const updateUser = async () => {
+
+        if (!nickName) {
+            alert("닉네임을 입력해주세요")
+            return
+        }
+        if (user.nickName != nickName) {
+            formData.append('nickName', nickName);
+            console.log("변경할 닉네임 추가됨.")
+        }
+        console.log("이미지입력하러가는중.")
+        console.log(imageFile)
+        if (imageFile) {
+            console.log("변경할 이미지 추가됨.")
+            formData.append('file', imageFile);
+        }
+        if(!imageFile){
+            formData.append('file', null);
+        }
+        
+        console.log(formData)
+
+
         await updateUserData()
         getUserData()
     }
@@ -164,10 +188,11 @@ export default function MyPage() {
 
     //  -----  이미지 로드
     const [profileImgUrl, setProfileImgUrl] = useState('');
+    const [imageFile, setImageFile] = useState()
 
     const imgUpdate = (e) => {
-        let imageFile = e.target.files[0];
-        setProfileImgUrl(URL.createObjectURL(imageFile));
+        setImageFile(e.target.files[0]);
+        setProfileImgUrl(URL.createObjectURL(e.target.files[0]));
 
     }
 
@@ -175,45 +200,41 @@ export default function MyPage() {
 
     //  ----- Axios put(update) -- 회원정보 수정
     const [accessToken, setAccessToken] = useRecoilState(userState)
-    const formData = new FormData()
-    formData.append('nickName', nickName);
-    formData.append('file', profileImgUrl);
-
-
 
     const updateUserData = async () => {
 
+
         if (accessToken) {
-           
-            const response = await axios.put(`https://api.habiters.store/users/me`, 
-            // {
-            //     // "email" : email,
-            //     "nickName": nickName,
-            //     "profileImgUrl": profileImgUrl
-            // }
-            formData
-            , {
-                headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
-            })
+
+            const response = await axios.put(`https://api.habiters.store/users/me`,
+                // {
+                //     // "email" : email,
+                //     "nickName": nickName,
+                //     "profileImgUrl": profileImgUrl
+                // }
+                formData
+                , {
+                    headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
+                })
             // console.log(response)
             return
-        
+
         }
     }
 
 
 
     // -----------로그아웃
-// const [userDetail,setUserDetail] = useRecoilState(userDetail)
-const [userHabit,setUserHabit] = useRecoilState(userHabitState)
-const [userRetrospect,setUserRetrospect] = useRecoilState(userRetrospectData)
-const [Selected,setSelected] = useRecoilState(SelectedDate)
-const [TodayRetrospect,setTodayRetrospect] = useRecoilState(TodayRetrospectState)
-// const [userState,setUserState] = useRecoilState(userState)
+    // const [userDetail,setUserDetail] = useRecoilState(userDetail)
+    const [userHabit, setUserHabit] = useRecoilState(userHabitState)
+    const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectData)
+    const [Selected, setSelected] = useRecoilState(SelectedDate)
+    const [TodayRetrospect, setTodayRetrospect] = useRecoilState(TodayRetrospectState)
+    // const [userState,setUserState] = useRecoilState(userState)
 
 
 
-    const logout = async() => {
+    const logout = async () => {
         setUser();
         setUserHabit();
         setUserRetrospect();
@@ -304,7 +325,7 @@ const [TodayRetrospect,setTodayRetrospect] = useRecoilState(TodayRetrospectState
                     <div className="btn-arrange-vertical">
                         <div>
                             <div className="btn btn-large btn-primary-default body2-medium"
-                            onClick={logout}>로그아웃</div>
+                                onClick={logout}>로그아웃</div>
                         </div>
                         <div>
                             <div className="btn btn-large btn-secondary-default body2-medium"

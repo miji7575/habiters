@@ -8,6 +8,7 @@ const Menu = styled.div`
     cursor: pointer;
     line-height: var(--header-height);
     position: relative;
+    min-width: max-content;
     &::before{
     content: '';
     background-color: var(--color-purple2);

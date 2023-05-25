@@ -10,7 +10,8 @@ export const DiaryBox = styled.div`
     display: flex;
     width: 880px;
     /* min-height: 160px;  영역넓히기*/
-    height: 160px;
+    min-height: 160px; 
+    /* height: 160px; */
     box-sizing: border-box;
 `
 
