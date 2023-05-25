@@ -15,15 +15,19 @@ export default function Header() {
     const menuName = ["마이해빗", "해비티뮤니티", "마이페이지"]
     const [clickedMenu, setClickedMenu] = useRecoilState(headerSelectedMenu)
 
-    // useEffect(()=>{
-    //     setClickedMenu("마이해빗")
-    //     console.log(clickedMenu)
-    // },[])
+    useEffect(()=>{
+      
+        if(router.asPath == "/myhabit"){
+            setClickedMenu(menuName[0])
+        }
+        // setClickedMenu("마이해빗")
+        // console.log(clickedMenu)
+    },[])
    
 
 
     const OnClickMoveMyhabit = async(e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setClickedMenu("마이해빗")
         // console.log(clickedMenu)
         router.push("/myhabit")
@@ -32,14 +36,14 @@ export default function Header() {
     }
 
     const OnClickMoveHabitimunity = async(e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setClickedMenu(menuName[1])
         // console.log(clickedMenu)
         router.push("/habitimunity")
         // console.log("토큰 해비티뮤티" + accessToken)
     }
     const OnClickMoveMypage = async(e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setClickedMenu(menuName[2])
         // console.log(clickedMenu)
         router.push("/mypage")

@@ -3,6 +3,7 @@ import Layout from '../components/commons/layout/index';
 import { Global } from "@emotion/react";
 // import { GlobalStyles } from "../src/commons/styles/globalStyles"
 import { RecoilRoot, useRecoilState, atom } from 'recoil';
+import ErrorPage from '../pages/errorpage';
 
 // "src/commons/styles/globalStyles";
 import '../styles/globals.css'
@@ -45,7 +46,8 @@ export default function App({ Component, pageProps }) {
       {/* <Global styles={ GlobalStyles }> */}
       <RecoilRoot>
         <Layout>
-          <Component {...pageProps} />
+         {pageProps.statusCode != 404 && <Component {...pageProps} />}
+         {pageProps.statusCode == 404 && <ErrorPage/>}
         </Layout>
       </RecoilRoot>
       {/* </Global> */}

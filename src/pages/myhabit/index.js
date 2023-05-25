@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { useRecoilState } from "recoil";
-import { userDetail, userState } from '../../components/stores';
+import { userDetail, userState, headerSelectedMenu } from '../../components/stores';
 import { useRouter } from "next/router";
 
 
@@ -47,6 +47,7 @@ export default function HabitTracker() {
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const [user, setUser] = useRecoilState(userDetail);
     const [userName, setUserName] = useState("")
+   
 
     const router = useRouter()
 
@@ -54,7 +55,7 @@ export default function HabitTracker() {
         if (!accessToken) {
             router.push("/login")
         }
-        
+       
     }, [])
 
     useEffect(() => {

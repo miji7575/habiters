@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { userState, userDetail, userHabitState, URL } from '../components/stores/index';
+import { userState, userDetail, userHabitState, headerSelectedMenu } from '../components/stores/index';
 import { useEffect, useRef, useState } from 'react';
 
 import { css, keyframes } from '@emotion/react';
@@ -182,28 +182,23 @@ export default function IntroPage() {
     // ============================== Function  ==============================
 
     const router = useRouter()
+    const [clickedMenu, setClickedMenu] = useRecoilState(headerSelectedMenu)
+    useEffect(()=>{
+        setClickedMenu('')
+    },[])
 
     const [accessToken, setAccessToken] = useRecoilState(userState);
 
 
 
     // ===============안필요
-    const [user, setUser] = useRecoilState(userDetail)
-    const [userHabit, setUserHabit] = useRecoilState(userHabitState)
+  
     // ============================================
 
 
     const onClickMoveLogin = () => {
 
-        // =========================TOKEN TEST================
-        setAccessToken(() => '')
-        setUser('')
-        setUserHabit('')
-
-        if (localStorage.getItem("accessToken")) {
-            localStorage.setItem("accessToken", '')
-        }
-        // =========================TOKEN TEST================
+       
         router.push("/login")
     }
     const onClickMoveSignup = () => {
@@ -211,7 +206,7 @@ export default function IntroPage() {
     }
 
 
-    const url = useRecoilValue(URL)
+   
     // console.log(url)
 
     // ========================================================================
@@ -253,7 +248,7 @@ export default function IntroPage() {
     useEffect(() => {
         // console.log(introOuterRef.current.scrollTop)
 
-        document.addEventListener('scroll', () => setScrollY(introOuterRef.current.scrollTop));
+        // document.addEventListener('scroll', () => setScrollY(introOuterRef.current.scrollTop));
         // console.log(scrollY)
     })
     // useEffect(() => {

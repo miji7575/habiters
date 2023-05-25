@@ -8,7 +8,7 @@ const Main = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-height: 70vh;
+/* height: 70vh; */
 `
 
 const ErrorImgBox = styled.div`
