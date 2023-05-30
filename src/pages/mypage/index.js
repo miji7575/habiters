@@ -157,10 +157,10 @@ export default function MyPage() {
             console.log("변경할 이미지 추가됨.")
             formData.append('file', imageFile);
         }
-        if(!imageFile){
+        if (!imageFile) {
             formData.append('file', null);
         }
-        
+
         console.log(formData)
 
 
@@ -261,12 +261,13 @@ export default function MyPage() {
                     <Form method="post" enctype="multipart/form-data">
                         <MyImgWrap>
                             <label>
-                                {profileImgUrl && <MyImg src={profileImgUrl} alt="프로필이미지" />}
-                                {!profileImgUrl && <MyImg src="/image/image-default.svg" alt="프로필이미지" />}
-                                <input className="d-none" id="img" name="files" type="file" accept="image/*" onChange={imgUpdate} />
-                                <MyImgUpdateIcon className={'icon-round-l'} >
+                                {/* {profileImgUrl && <MyImg src={profileImgUrl} alt="프로필이미지" />} */}
+                                {/* {!profileImgUrl && <MyImg src="/image/image-default.svg" alt="프로필이미지" />} */}
+                                <MyImg src="/image/image-default.svg" alt="프로필이미지" />
+                                {/* <input className="d-none" id="img" name="files" type="file" accept="image/*" onChange={imgUpdate} /> */}
+                                {/* <MyImgUpdateIcon className={'icon-round-l'} >
                                     <span className={'icon-s icon-pencil'}></span>
-                                </MyImgUpdateIcon>
+                                </MyImgUpdateIcon> */}
                             </label>
 
 
@@ -277,19 +278,24 @@ export default function MyPage() {
                                 <div className={'body1-bold'}>
                                     이메일
                                 </div>
-                                <div>
+
+                                
+                                    <div>
 
 
-                                    <Input
-                                        name="email"
-                                        onChange={onChangeRecoil}
-                                        value={email}
-                                        placeholder={emailInputPlaceHolder}
-                                        isEditable={isEditable}
-                                    ></Input>
+                                        <Input
+                                            name="email"
+                                            onChange={onChangeRecoil}
+                                            value={email}
+                                            placeholder={emailInputPlaceHolder}
+                                            isEditable={isEditable}
+                                           
+                                        ></Input>
 
 
-                                </div>
+                                    </div>
+
+          
                             </MypageInputBox>
 
                             <MypageInputBox>

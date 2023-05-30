@@ -1,18 +1,23 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
+import {headerSelectedMenu} from '../../components/stores';
+import { useRecoilState } from 'recoil';
 
 
 // ========================= Style ==============================
 
 const Main = styled.div`
+
 display: flex;
 flex-direction: column;
-align-items: center;
-/* height: 70vh; */
+ height: calc(100vh - 292px);
+ justify-content: center;
+ align-items: center;
+
 `
 
 const ErrorImgBox = styled.div`
-padding-top: 150px;
+/* padding-top: 150px; */
 
 `
 
@@ -23,7 +28,7 @@ width: 379px;
 
 const ButtonBox = styled.div`
 padding-top: 40px;
-padding-bottom: 150px;
+/* padding-bottom: 150px; */
 `
 
 const ButtonLarge = styled.div`
@@ -35,11 +40,13 @@ export default function ErrorPage() {
 
 // ========================= Function  ==============================
 
+const [clickedMenu, setClickedMenu] = useRecoilState(headerSelectedMenu)
     const router = useRouter()
     const onClickMove = () => {
-        router.push("/")
+        setClickedMenu("마이해빗")
+        console.log(clickedMenu)
+        router.push("/myhabit")
     }
-
 
 
     return (
