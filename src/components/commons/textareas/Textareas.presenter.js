@@ -7,6 +7,7 @@ import {
 import { useState } from "react"
 import { useRecoilState } from 'recoil';
 import { TextareaValueState } from '../../../components/stores';
+import { useEffect } from 'react';
 
 
 
@@ -15,24 +16,39 @@ import { TextareaValueState } from '../../../components/stores';
 // -----------
 
 export default function TextareaUI(props) {
-
-    const [textareaValue, setTextareaValue] = useState('')
     const [isError, setIsError] = useState(false)
-
     const [textareaInput, setTextareaInput] = useRecoilState(TextareaValueState)
-    function InputChange(e) {
-        setTextareaInput(e.target.value)
-        if (textareaValue === "오류") {
-            setIsError(true)
+    const [textareaErrorMessage, setTextareaErrorMessage] = useState("")
+    const [textLength, setTextLength] = useState()
+
+    useEffect(() => {
+        setTextareaErrorMessage(props.textareaErrorMessage)
+    }, [])
+
+    useEffect(() => {
+        textLengthCheck()
+    }, [textareaInput])
+
+
+
+    
+    const textLengthCheck = () => {
+        if (textareaInput.length < 200) {
+            setIsError(false)
+            setTextareaErrorMessage("")
         }
-
-
+        else {
+            setIsError(true)
+            setTextareaErrorMessage("회고는 200자 이내로 입력해주세요.")
+        }
     }
 
 
+    function InputChange(e) {
+        console.log(textareaInput.length)
+        setTextareaInput(() => e.target.value)
 
-
-
+    }
 
 
     return (
@@ -42,6 +58,7 @@ export default function TextareaUI(props) {
             {!props.todayRetrospectState && <TextareaBox
                 width={props.width}
                 margin={props.margin}
+                isError={isError}
             >
                 <TextareaDefault name="" id="" cols="30" rows="10" className="body3-regular"
                     height={props.height}
@@ -52,12 +69,12 @@ export default function TextareaUI(props) {
                     isError={isError}
 
 
-                    value={textareaInput}
+                    value={props.textareaInput}
                 >
 
                 </TextareaDefault>
                 <TextareaExplain className="caption2-regular ">
-                    <span>{props.textareaErrorMessage}</span>
+                    <span>{textareaErrorMessage}</span>
                     <span><span>{textareaInput.length}</span>/200</span>
                 </TextareaExplain>
             </TextareaBox>}
@@ -79,12 +96,12 @@ export default function TextareaUI(props) {
                     isError={isError}
                     disabled
                     todayRetrospectState={props.todayRetrospectState}
-                    // value={textareaInput}
+                // value={textareaInput}
                 >
 
                 </TextareaDefault>
                 <TextareaExplain className="caption2-regular ">
-                    <span>{props.textareaErrorMessage}</span>
+                    <span>{textareaErrorMessage}</span>
                     <span><span>{textareaInput.length}</span>/200</span>
                 </TextareaExplain>
             </TextareaBox>}

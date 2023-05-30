@@ -8,7 +8,8 @@ import { useRecoilState } from 'recoil';
 const Main = styled.div`
 
  display: flex;
- height: calc(100vh - 292px);
+ /* height: calc(100vh - 292px); */
+ min-height: calc(100vh - 292px + 100px);
  justify-content: center;
  align-items: center;
 

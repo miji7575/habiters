@@ -15,14 +15,20 @@ export const InputBox = styled.div`
 export const Input = styled.input`
     padding: 0 48px 0 12px;     
     height: var(--header-height);
-    width: ${(props) => props.width || `380px` };
+    width: ${(props) => props.width || `380px`};
     height: 48px;
     box-sizing: border-box;
-    border: ${(props) => props.isError === true ? `solid 1px var(--color-error)` :  `solid 1px var(--color-black7)`};
+    border: ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `solid 1px var(--color-black7)`};
     border-radius: 8px;
-    color: var(--color-black2);
+    color: ${(props) => props.isError === true ? `var(--color-error)` : `var(--color-black2);`}; 
     &:focus{
-        outline: ${(props) => props.isError === true ? `var(--color-red)` : `auto`};
+        outline: none;
+    }
+    &:focus-visible {
+    outline: 1px solid var(--color-black4);
+    }
+    &::placeholder {
+    color: var(--color-black4);
     }
     `
 

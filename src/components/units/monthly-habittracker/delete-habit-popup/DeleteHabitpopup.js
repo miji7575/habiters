@@ -5,10 +5,7 @@ import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 import {userState} from '../../../../components/stores';
 
 
-
-export default function DeleteHabitPopup(props) {
-
-    // 스타일
+// ============================== Style  ==============================
     const PopupBackground = styled.div`
      position: fixed;
     top: 0;
@@ -57,10 +54,18 @@ export default function DeleteHabitPopup(props) {
     `
 
 
+export default function DeleteHabitPopup(props) {
+
+   
 
 
-    // 함수==================================
+
+
+    // ============================== Function  ==============================
+
     const [accessToken, setAccessToken] = useRecoilState(userState)
+
+      // ----- axios(delete) -- 습관이름 삭제하기
     const deleteHabitData = async () => {
         // console.log(props.habitId)
         if (accessToken) {

@@ -44,13 +44,28 @@ export const TextareaTextCountBox = styled.div`
     margin-top: 4px;
 `
 
-export const TodayRetrospectBtn = styled.div`
+export const BtnNonActive = styled.div`
 
- background-color: ${(props)=> props.todayRetrospectState === true ? "var(--color-purple4)" : "var(--color-purple2)"};
- border:  ${(props)=> props.todayRetrospectState === true ? "1px solid var(--color-purple4)" : "1px solid var(--color-purple2)"};
+ background-color: var(--color-purple4);
+ border:  1px solid var(--color-purple4);
  cursor: auto;
  transition: 0;
  &:hover{
     box-shadow: none;
  }
+
+  /* background-color: ${(props) => props.todayRetrospectState === true ? "var(--color-purple4)" : "var(--color-purple2)"};
+ border:  ${(props) => props.todayRetrospectState === true ? "1px solid var(--color-purple4)" : "1px solid var(--color-purple2)"};
+ cursor: auto;
+ transition: 0;
+ &:hover{
+    box-shadow: none;
+ } */
+`
+
+export const BtnActive = styled.div`
+
+ background-color: var(--color-purple2);
+ border:  1px solid var(--color-purple2);
+
 `

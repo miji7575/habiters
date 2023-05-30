@@ -76,21 +76,22 @@ export default function AddNewHabitPopup(props) {
 
 
     // ----- 습관 등록하기
-    const[isError, setIsError] = useState(false)
-    const[errorMessage, setErrorMessage] = useState()
+    const [isError, setIsError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
+
+
     const addNewhabit = async () => {
-
-
-        if ( !newInput["habitName"]  || newInput["habitName"].trim().length == 0 ) {
+    
+        if (!newInput["habitName"] || newInput["habitName"].trim().length == 0) {
             // alert("내용을 입력해주세요");
             setIsError(true)
-            setErrorMessage("내용을 입력해주세요")
+            setErrorMessage("습관 이름을 작성해주세요")
             return
         }
         if (newInput["habitName"].length > 10) {
             // alert("습관 이름은 10자 이내만 가능합니다")
             setIsError(true)
-            setErrorMessage("습관 이름은 10자 이내만 가능합니다")
+            setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
             return
         }
         else {
@@ -119,7 +120,7 @@ export default function AddNewHabitPopup(props) {
     };
 
 
-// ----- 팝업창 닫기
+    // ----- 팝업창 닫기
     function addNewHabitPopupClose() {
         setNewInput('')
         props.addNewHabitPopupClose();
@@ -128,7 +129,7 @@ export default function AddNewHabitPopup(props) {
 
 
 
-    
+
 
 
 
@@ -160,7 +161,7 @@ export default function AddNewHabitPopup(props) {
 
                             isError={isError}
                             errorMessage={errorMessage}
-                           
+
                         />
 
                     </div>

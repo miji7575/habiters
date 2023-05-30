@@ -55,6 +55,11 @@ export default function TodayRetrospect(props) {
 
 
 
+
+    // ---버튼 활성화
+  const buttonActivation = () =>{
+
+  }
   
 
 
@@ -64,6 +69,7 @@ export default function TodayRetrospect(props) {
             textareaErrorMessage={textareaErrorMessage}
             onPostRetrospectsBtnClick={onPostRetrospectsBtnClick}
             todayRetrospectState={props.todayRetrospectState} /* 오늘 쓴 글이 있는지 없는지 확인하려고 */
+            textLength={textareaInput.length}
         />
     )
 
