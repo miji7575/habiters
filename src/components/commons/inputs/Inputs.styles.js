@@ -25,7 +25,8 @@ export const Input = styled.input`
         outline: none;
     }
     &:focus-visible {
-    outline: 1px solid var(--color-black4);
+    outline: ${(props) => props.isError === true ? `1px solid var(--color-error)` : `1px solid var(--color-black4)`}; 
+    /* outline: 1px solid var(--color-black4); */
     }
     &::placeholder {
     color: var(--color-black4);

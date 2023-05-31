@@ -7,7 +7,7 @@ import axios from 'axios'
 
 
 import Input from '../../components/commons/inputs/Inputs.container';
-
+import UpdateDonePopup from './update-done-popup/UpdateDonePopup';
 
 
 
@@ -38,7 +38,8 @@ const MyImg = styled.img`
  box-sizing: border-box;
  border: 1px solid var(--color-black7);
  border-radius: 75px;
- ${(props) => props.src === "/image/image-default.svg" ? `object-fit: none` : `object-fit: fill`};
+ object-fit: none;
+ /* ${(props) => props.src === "/image/image-default.svg" ? `object-fit: none` : `object-fit: fill`}; */
  `
 const MyImgUpdateIcon = styled.span`
  position: absolute;
@@ -131,7 +132,7 @@ export default function MyPage() {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             setUser(response.data.data)
-            // console.log(response)
+            console.log(response)
             return
         }
     }
@@ -140,33 +141,67 @@ export default function MyPage() {
 
     // --------------------회원정보 수정하기
     const formData = new FormData()
+    const [isError, setIsError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
 
     const updateUser = async () => {
 
         if (!nickName) {
-            alert("닉네임을 입력해주세요")
+            // alert("닉네임을 입력해주세요")
+            setIsError(true)
+            setErrorMessage("닉네임을 입력해주세요")
             return
         }
-        if (user.nickName != nickName) {
-            formData.append('nickName', nickName);
-            console.log("변경할 닉네임 추가됨.")
+        else if (user.nickName == nickName) {
+            // alert("기존 닉네임과 동일합니다")
+            setIsError(true)
+            setErrorMessage("기존 닉네임과 동일합니다")
+            return
         }
-        console.log("이미지입력하러가는중.")
-        console.log(imageFile)
-        if (imageFile) {
-            console.log("변경할 이미지 추가됨.")
-            formData.append('file', imageFile);
-        }
-        if (!imageFile) {
-            formData.append('file', null);
+        // if (user.nickName != nickName) {
+        //     // formData.append('nickName', nickName);
+        //     console.log("변경할 닉네임 추가됨.")
+        // }
+        // console.log("이미지입력하러가는중.")
+        // console.log(imageFile)
+        // if (imageFile) {
+        //     console.log("변경할 이미지 추가됨.")
+        //     formData.append('file', imageFile);
+        // }
+        // if (!imageFile) {
+        //     formData.append('file', null);
+        // }
+
+        // console.log(formData)
+        else {
+            await updateUserData()
+            await getUserData()
+            setUpdatePopupStatus(true)
         }
 
-        console.log(formData)
-
-
-        await updateUserData()
-        getUserData()
     }
+
+
+
+    const nickNameCheck = () => {
+        if(!nickName){
+            setIsError(true)
+            setErrorMessage("닉네임을 입력해주세요")
+            return
+        }
+        // else if (user.nickName == nickName) {
+        //     // alert("기존 닉네임과 동일합니다")
+        //     setIsError(true)
+        //     setErrorMessage("기존 닉네임과 동일합니다")
+        //     return
+        // }
+        else{
+            setIsError(false)
+            setErrorMessage("")
+        }
+
+    }
+
 
 
 
@@ -181,9 +216,13 @@ export default function MyPage() {
             ...inputValues, // 기존의 input 객체를 복사한 뒤
             [name]: value // [name]: value // name 키를 가진 값을 value 로 설정
         });
+
+       
     };
 
-
+    useEffect(()=>{
+        nickNameCheck()
+    },[nickName])
 
 
     //  -----  이미지 로드
@@ -206,15 +245,16 @@ export default function MyPage() {
 
         if (accessToken) {
 
+
             const response = await axios.put(`https://api.habiters.store/users/me`,
-                // {
-                //     // "email" : email,
-                //     "nickName": nickName,
-                //     "profileImgUrl": profileImgUrl
-                // }
-                formData
+                {
+                    // "email" : email,
+                    "nickName": nickName,
+                    // "profileImgUrl": profileImgUrl
+                }
+                // formData
                 , {
-                    headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
+                    headers: { "Content-Type": 'application/json', Authorization: 'Bearer ' + accessToken }
                 })
             // console.log(response)
             return
@@ -222,6 +262,12 @@ export default function MyPage() {
         }
     }
 
+
+    // ------- 수정 완료 팝업
+    const [updateDonePopupStatus, setUpdatePopupStatus] = useState(false)
+    const updateDonePopupClose = () => {
+        setUpdatePopupStatus(false)
+    }
 
 
     // -----------로그아웃
@@ -249,6 +295,8 @@ export default function MyPage() {
 
 
 
+
+
     return (
         <>
             <main>
@@ -261,9 +309,9 @@ export default function MyPage() {
                     <Form method="post" enctype="multipart/form-data">
                         <MyImgWrap>
                             <label>
-                                {/* {profileImgUrl && <MyImg src={profileImgUrl} alt="프로필이미지" />} */}
+                                <MyImg src={profileImgUrl} alt="프로필이미지" />
                                 {/* {!profileImgUrl && <MyImg src="/image/image-default.svg" alt="프로필이미지" />} */}
-                                <MyImg src="/image/image-default.svg" alt="프로필이미지" />
+                                {/* <MyImg src="/image/image-default.svg" alt="프로필이미지" /> */}
                                 {/* <input className="d-none" id="img" name="files" type="file" accept="image/*" onChange={imgUpdate} /> */}
                                 {/* <MyImgUpdateIcon className={'icon-round-l'} >
                                     <span className={'icon-s icon-pencil'}></span>
@@ -279,23 +327,23 @@ export default function MyPage() {
                                     이메일
                                 </div>
 
-                                
-                                    <div>
+
+                                <div>
 
 
-                                        <Input
-                                            name="email"
-                                            onChange={onChangeRecoil}
-                                            value={email}
-                                            placeholder={emailInputPlaceHolder}
-                                            isEditable={isEditable}
-                                           
-                                        ></Input>
+                                    <Input
+                                        name="email"
+                                        onChange={onChangeRecoil}
+                                        value={email}
+                                        placeholder={emailInputPlaceHolder}
+                                        isEditable={isEditable}
+
+                                    ></Input>
 
 
-                                    </div>
+                                </div>
 
-          
+
                             </MypageInputBox>
 
                             <MypageInputBox>
@@ -311,7 +359,8 @@ export default function MyPage() {
                                             value={nickName}
                                             placeholder={nicknameInputPlaceHolder}
                                             width={`292px`}
-
+                                            isError={isError}
+                                            errorMessage={errorMessage}
                                         ></Input>
 
                                     </div>
@@ -341,7 +390,9 @@ export default function MyPage() {
 
                 </Main>
 
-
+                {/* 수정완료 팝업 */}
+                {updateDonePopupStatus && <UpdateDonePopup
+                    updateDonePopupClose={updateDonePopupClose} />}
 
             </main>
         </>

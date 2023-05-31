@@ -26,7 +26,7 @@ const PopupContainer = styled.div`
     background-color: var(--color-white);
     display: flex;
     flex-direction: column;
-    box-shadow: 3px 3px 3px 3px black;
+    /* box-shadow: 3px 3px 3px 3px black; */
 
     position: absolute;
     top: calc(50vh - (428px / 2));

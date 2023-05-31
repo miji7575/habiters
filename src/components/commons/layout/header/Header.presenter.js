@@ -1,5 +1,5 @@
 
-import { HeaderWrap, LogoBox, MainLogo, HeaderMenuBox, HeaderMypageBox,} from './Header.styles' // HeaderMenu 
+import { HeaderWrap, LogoBox, MainLogo, HeaderMenuBox, HeaderMypageBox, MyImg } from './Header.styles' // HeaderMenu 
 import HeaderMenu from './menus/Index';
 
 export default function HeaderUI(props) {
@@ -27,15 +27,20 @@ export default function HeaderUI(props) {
                             onClick={props.OnClickMoveHabitimunity}
                             menuName={props.menuName[1]}
                             clickedMenu={props.clickedMenu}
-                            />
+                        />
                     </HeaderMenuBox>
                     <HeaderMypageBox className='body1-medium'>
                         {/* 마이페이지 */}
+
                         <HeaderMenu
                             onClick={props.OnClickMoveMypage}
                             menuName={props.menuName[2]}
                             clickedMenu={props.clickedMenu}
-                            />
+                            profileImgUrl={props.profileImgUrl}
+                        >
+                        </HeaderMenu>
+                       
+
                     </HeaderMypageBox>
                 </HeaderWrap>
             </header>

@@ -2,7 +2,7 @@ import HeaderUI from "./Header.presenter"
 import { useRouter } from "next/router"
 import { useRecoilState, useRecoilValue } from 'recoil';
 // import { textState } from '../../../../../pages/commons/stores/store';
-import { userState, headerSelectedMenu} from '../../../../components/stores';
+import { userState, userDetail,  headerSelectedMenu} from '../../../../components/stores';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import instance from '../../../../commons/shared/Request';
@@ -12,11 +12,15 @@ export default function Header() {
 
     const router = useRouter()
     const accessToken = useRecoilValue(userState)
+    const [user, setUser] = useRecoilState(userDetail)
+    const [profileImgUrl, setProfileImgUrl] = useState('');
+
     const menuName = ["마이해빗", "해비티뮤니티", "마이페이지"]
     const [clickedMenu, setClickedMenu] = useRecoilState(headerSelectedMenu)
 
     useEffect(()=>{
-      
+       setProfileImgUrl(user.profileImgUrl)
+       console.log(user)
         if(router.asPath == "/myhabit"){
             setClickedMenu(menuName[0])
         }
@@ -65,7 +69,7 @@ export default function Header() {
 
                 menuName={menuName}
                 clickedMenu={clickedMenu}
-                
+                profileImgUrl={profileImgUrl}
             />
         </>
     )

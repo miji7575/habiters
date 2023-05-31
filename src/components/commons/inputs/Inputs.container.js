@@ -112,7 +112,8 @@ export default function Inputs(props) {
 
                     {props.isError &&
                         <ErrorIcon
-                            className="icon-m icon-error-colored" />}
+                            className="icon-m icon-error-colored" 
+                            onClick={onFocus}/>}
                 </InputBox>
                 {props.isError && <InputMessage id="name" className={'caption1-regular color-error'}>{props.errorMessage}</InputMessage>}
             </InputWrap>

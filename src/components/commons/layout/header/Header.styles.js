@@ -35,6 +35,9 @@ export const HeaderMenuBox = styled.div`
 export const HeaderMypageBox = styled.div`
     display: flex;
 `
+
+
+
 // export const HeaderMenu = styled.div`
 //     display: block;
 //     color: var(--color-black1);

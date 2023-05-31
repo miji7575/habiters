@@ -2,12 +2,10 @@ import { useState } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import {userState} from '../../../../components/stores';
+// import {userState} from '../../../../components/stores';
 
 
-export default function DeleteRetrospectsPopup(props) {
-
-    // 스타일
+// ============================== Style  ==============================
     const PopupBackground = styled.div`
      position: fixed;
     top: 0;
@@ -29,8 +27,9 @@ export default function DeleteRetrospectsPopup(props) {
     /* box-shadow: 3px 3px 3px 3px black; */
 
     position: absolute;
-    top: calc(50vh - (428px / 2));
-    left: calc(50vw - (240px / 2));
+    left: calc(50vw - (428px / 2));
+    top: calc(50vh - (240px / 2));
+    
     `
 
     const PopupTitle = styled.div`
@@ -56,38 +55,22 @@ export default function DeleteRetrospectsPopup(props) {
     `
 
 
-
-
-
-    
-    const [accessToken, setAccessToken] = useRecoilState(userState)
-
-
-    // --- Axios Delete  -- (회고 삭제)
-    const deleteUserRetrospectData = async () => {
-        if (accessToken) {
-            const response = await axios.delete(`https://api.habiters.store/diaries/${props.retrospectsId}`, {
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
-            return
-        }
-    }
-
-
-
-
-
-    //   ---- 회고 삭제
-    const deleteRetrospect = async () => {
-        await deleteUserRetrospectData();
-        await props.getUserRetrospects();
-        props.deleteRetrospects()
-        props.deleteRetrospectsPopupClose();
-    }
-
-
+export default function UpdateDonePopup(props) {
 
    
+
+
+
+
+    // ============================== Function  ==============================
+
+    function popupClose() {
+        props.updateDonePopupClose();
+    }
+
+   
+
+
 
     return (
 
@@ -99,24 +82,24 @@ export default function DeleteRetrospectsPopup(props) {
                 <PopupContainer>
 
                     <PopupTitle>
-                        <span className="headline5">정말 삭제하실건가요?</span>
+                        <span className="headline5">닉네임 수정 완료</span>
                         <span className="icon-l icon-close-line"
-                            onClick={props.deleteRetrospectsPopupClose}></span>
+                            onClick={popupClose}></span>
                     </PopupTitle>
 
                     <PopupContent>
                         <div>
                             <div className="body2-medium">
-                                해당 기록은 삭제하시면 복구가 불가능해요!
+                            변경하신 닉네임으로 수정이 완료되었어요.
                             </div>
                         </div>
                     </PopupContent>
 
                     <PopupBtnContainer>
-                        <div className="btn btn-large btn-secondary-default body2-medium"
-                            onClick={deleteRetrospect}>예</div>
+                        {/* <div className="btn btn-large btn-secondary-default body2-medium"
+                            onClick={popupClose}>예</div> */}
                         <div className="btn btn-large btn-primary-default body2-medium"
-                            onClick={props.deleteRetrospectsPopupClose}>아니요</div>
+                            onClick={popupClose}>확인</div>
                     </PopupBtnContainer>
 
 

@@ -387,7 +387,7 @@ export default function IntroPage() {
                             HAVE-IT!
                         </IntroFirstPageTitle>
                         <IntroFirstPageSubTitle>
-                            해비터즈는 해킷트래커 기반 습관 성형 커뮤니티 입니다.<br />
+                            해비터즈는 해빗트래커 기반 습관 성형 커뮤니티 입니다.<br />
                             누구나 얼마든지 건강한 습관을 가질 수 있습니다.<br />
                             해비터즈와 함께 더 나은 내가 되기 위한 여정을 지금 바로 시작하세요.
                         </IntroFirstPageSubTitle>
