@@ -41,13 +41,14 @@ export const Calender = styled.div`
         border-bottom-right-radius: 8px;
     }
     /* 마지막날의 마지막습관 */
-    & > div:nth-of-type(2) > div:last-of-type > div  span:last-of-type{
+    & > div:nth-of-type(2) > div:last-of-type > div > span:last-of-type{
         border-bottom-right-radius: 8px;
     }
 
      // 날짜 - 세로줄마지막(말일) - 날짜박스
     & > div:nth-of-type(2) > div:last-of-type  > div> span:first-of-type{
         border-top-right-radius: 6px;
+      
     }
    
    
