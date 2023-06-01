@@ -71,15 +71,15 @@ export default function Inputs(props) {
 
 
 
-const [autocompleteState, setAutocompleteState ] = useState('new-password')
-console.log(autocompleteState)
-const autocompleteOn = () => {
+// const [autocompleteState, setAutocompleteState ] = useState('new-password')
+// console.log(autocompleteState)
+// const autocompleteOn = () => {
 
-    if(props.autocomplete === 'on'){
-        setAutocompleteState('on')
-        return
-    }
-}
+//     if(props.autocomplete === 'on'){
+//         setAutocompleteState('on')
+//         return
+//     }
+// }
 // ================================================
 
 

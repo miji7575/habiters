@@ -126,15 +126,12 @@ export default function MyPage() {
 
     // ------- 수정 완료 팝업
     const [updateDonePopupStatus, setUpdatePopupStatus] = useState(false)
-    const [popUp, setPopUp] = useState([])
+    const [popUp, setPopUp] = useState({
+        messageTitle: '닉네임 수정 완료',
+        content: '변경하신 닉네임으로 수정이 완료되었어요.'
+    })
 
 
-    useEffect(() => {
-        setPopUp({
-            messageTitle: '닉네임 수정 완료',
-            content: '변경하신 닉네임으로 수정이 완료되었어요.'
-        })
-    }, [])
     const updateDonePopupClose = () => {
 
         setUpdatePopupStatus(false)
