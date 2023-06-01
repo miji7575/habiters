@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
@@ -57,6 +57,8 @@ import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 
 export default function UpdateDonePopup(props) {
 
+
+
    
 
 
@@ -68,6 +70,13 @@ export default function UpdateDonePopup(props) {
         props.updateDonePopupClose();
     }
 
+    const [popUpTitle, setPopupTitle ] = useState(props.popUp.messageTitle)
+    const [popUpMessage, setPopupMessage ] = useState(props.popUp.content)
+    useEffect(()=>{
+        setPopupTitle(props.popUp.messageTitle)
+        setPopupMessage(props.popUp.content)
+        console.log("Sdf")
+    },[props.popUp])
    
 
 
@@ -82,15 +91,19 @@ export default function UpdateDonePopup(props) {
                 <PopupContainer>
 
                     <PopupTitle>
-                        <span className="headline5">{props.popUp.messageTitle}</span>
+                        {/* <span className="headline5">{props.popUp.messageTitle}</span> */}
+                        <span className="headline5">{popUpTitle}</span>
                         <span className="icon-l icon-close-line"
                             onClick={popupClose}></span>
                     </PopupTitle>
 
                     <PopupContent>
                         <div>
-                            <div className="body2-medium">
+                            {/* <div className="body2-medium">
                             {props.popUp.content}
+                            </div> */}
+                            <div className="body2-medium">
+                            {popUpMessage}
                             </div>
                         </div>
                     </PopupContent>
