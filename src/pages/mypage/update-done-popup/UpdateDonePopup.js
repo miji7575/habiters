@@ -75,7 +75,7 @@ export default function UpdateDonePopup(props) {
     useEffect(()=>{
         setPopupTitle(props.popUp.summary)
         setPopupMessage(props.popUp.content)
-        console.log("Sdf")
+       
     },[props.popUp])
    
 

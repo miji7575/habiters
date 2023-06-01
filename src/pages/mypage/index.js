@@ -163,25 +163,33 @@ export default function MyPage() {
     const [errorMessage, setErrorMessage] = useState()
 
     const updateUser = async () => {
-
+        console.log(isError)
         if (!nickName) {
 
             setIsError(true)
             setErrorMessage("닉네임을 입력해주세요")
             return
         }
-        else if (user.nickName == nickName) {
+        if (user.nickName == nickName) {
 
             setIsError(true)
             setErrorMessage("기존 닉네임과 동일합니다. 확인해주세요.")
             return
         }
 
+
+
         else {
 
-            setUpdatePopupStatus(true)
-            await updateUserData()
+            const updateUser = await updateUserData()
             await getUserData()
+            if (updateUser) { //정상적으로 실행되었을 때
+                setUpdatePopupStatus(true)
+                return
+            }
+            else { //에러가 발생했을 때
+                return
+            }
         }
 
     }
@@ -199,12 +207,7 @@ export default function MyPage() {
             setIsError(true)
             setErrorMessage("닉네임은 12자 이내로 입력해주세요.")
         }
-        // else if (user.nickName == nickName) {
-        //     // alert("기존 닉네임과 동일합니다")
-        //     setIsError(true)
-        //     setErrorMessage("기존 닉네임과 동일합니다")
-        //     return
-        // }
+
         else {
             setIsError(false)
             setErrorMessage("")
@@ -255,7 +258,7 @@ export default function MyPage() {
     const updateUserData = async () => {
 
 
-        if (accessToken) {
+     
 
 
             const response = await axios.put(`https://api.habiters.store/users/me`,
@@ -274,10 +277,13 @@ export default function MyPage() {
                 .catch(function (error) {
                     if (error.response) { // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.
                         // console.log(error.response.data.msg);
-
-                        setPopUp({ summary: '닉네임 수정 실패', content: error.response.data.msg })
                         // console.log(error.response.status);
                         // console.log(error.response.headers);
+
+                        // setPopUp({ summary: '닉네임 수정 실패', content: error.response.data.msg })
+                        setIsError(() => true)
+                        setErrorMessage("이미 사용중인 닉네임입니다. 다른 이름을 입력해주세요.")
+
                         return
                     } else if (error.request) {
                         // 요청이 전송되었지만, 응답이 수신되지 않았습니다. 
@@ -290,23 +296,33 @@ export default function MyPage() {
                         // 오류가 발생한 요청을 설정하는 동안 문제가 발생했습니다.
 
                         // console.log('Error', error.message);
+                        return
 
                     }
 
 
                     // console.log(error.config);
                     return
-                });
+                })
 
 
 
-            console.log("항상 나오나?")
+            // console.log("항상 나오나?")
             console.log(response)
 
 
 
-        }
+
+
+        
+
+
+        return response
+
+
+
     }
+
 
 
 
@@ -418,7 +434,7 @@ export default function MyPage() {
 
                     </Form>
 
-                   
+
 
                     <div className="btn-arrange-vertical">
                         <div>
