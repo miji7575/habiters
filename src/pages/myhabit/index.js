@@ -51,6 +51,7 @@ export default function HabitTracker() {
 
     const router = useRouter()
 
+    // 로그인이 되어있지 않다면 로그인화면으로 이동
     useEffect(() => {
         if (!accessToken) {
             router.push("/login")
@@ -58,6 +59,7 @@ export default function HabitTracker() {
        
     }, [])
 
+    // user의 정보를 받으면 닉네임 보여주기
     useEffect(() => {
         setUserName(user.nickName)
         

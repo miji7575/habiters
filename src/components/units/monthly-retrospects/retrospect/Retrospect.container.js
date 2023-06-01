@@ -14,7 +14,7 @@ export default function Retrospect(props) {
     // const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectState)
 
 
-    
+
 
 
 
@@ -23,10 +23,11 @@ export default function Retrospect(props) {
     const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectData)
 
     useEffect(() => {
-        if (props.todayRetrospectState && (props.date.includes(props.Today))) {
-            // props.diaryState 없이 그냥 객체별 생성일과 오늘 날짜를 비교하는 뒤에 식만 있어도 될 것 같다
+        // if (props.todayRetrospectState && (props.date.includes(props.Today))) {
+        // props.diaryState 없이 그냥 객체별 생성일과 오늘 날짜를 비교하는 뒤에 식만 있어도 될 것 같다
+        setIsEditable(false)
+        if ((props.date.includes(props.Today))) {
             setIsEditable(true)
-
             return
         }
 

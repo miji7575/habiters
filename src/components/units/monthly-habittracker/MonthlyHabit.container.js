@@ -17,7 +17,7 @@ export default function MonthlyHabitTracker(props) {
     const [accessToken, setAccessToken] = useRecoilState(userState)
     useEffect(() => {
         getUserHabit()
-    }, [])
+    }, [props.showDate])
 
   
     // --- Axios get--- 유저의 habit 목록 get 

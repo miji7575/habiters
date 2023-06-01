@@ -24,6 +24,8 @@ export default function RetrospectListUI(props) {
                         Today={props.Today}/*오늘 날짜 */
                         updateRetrospectsPopupOn={props.updateRetrospectsPopupOn} /* 수정 팝업을 열기 위한 함수 */
                         deleteRetrospectsPopupOn={props.deleteRetrospectsPopupOn} /* 삭제 팝업을 열기 위한 함수 */
+                    showDate={props.showDate}
+
                     />)}
 
 

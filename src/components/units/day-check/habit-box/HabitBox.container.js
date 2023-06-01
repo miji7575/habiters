@@ -26,7 +26,9 @@ export default function HabitBox(props) {
     const [accessToken, setAccessToken] = useRecoilState(userState)
 
     const postHabitCheck = async () => {
-        const postDate = ("00" + (Number(todayMonth))).slice(-2) + "-" + todayDate
+        const postDate = ("00" + (Number(todayMonth))).slice(-2) + "-" + ("00" + (Number(todayDate))).slice(-2)
+        console.log("날짜"+todayDate)
+        console.log("post 전체" + postDate)
 
         if (accessToken) {
             const response = await axios.post(`https://api.habiters.store/habits/${props.habitId}/check`,
@@ -111,17 +113,23 @@ export default function HabitBox(props) {
     const [habitcheckId, setHabitcheckId] = useState()
     const habitColoring = async () => {
 
-        // if (nowSelectedDate.toString().length == 1) {
-        //     setNowSelectedDate("0" + nowSelectedDate)
-        // }
+    
+        const date = (('00' + (Number(nowSelectedDate))).slice(-2));
         setIsHabitChecked(false)
         Object.entries(props.habitChecks).map(([key, value]) => {
-            if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + nowSelectedDate)) {
+
+           
+           
+            if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
                 setIsHabitChecked(true)
                 setHabitcheckId(value.id)
+                return
             }
             else {
-                setIsHabitChecked(false)
+                if((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date == today)){
+                    setIsHabitChecked(false)
+                }
+                
             }
         })
     }

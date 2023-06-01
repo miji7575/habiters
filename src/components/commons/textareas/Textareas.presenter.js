@@ -27,6 +27,7 @@ export default function TextareaUI(props) {
 
     useEffect(() => {
         textLengthCheck()
+        
     }, [textareaInput])
 
 
@@ -45,7 +46,7 @@ export default function TextareaUI(props) {
 
 
     function InputChange(e) {
-        console.log(textareaInput.length)
+       
         setTextareaInput(() => e.target.value)
 
     }
@@ -69,7 +70,7 @@ export default function TextareaUI(props) {
                     isError={isError}
 
 
-                    value={props.textareaInput}
+                    value={textareaInput}
                 >
 
                 </TextareaDefault>

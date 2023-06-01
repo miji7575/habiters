@@ -93,6 +93,8 @@ export default function UpdateHabitPopup(props) {
 
 
     useEffect(()=>{
+        // console.log(props.retrospectsContent)
+        // console.log(textareaInput)
         setTextareaInput(props.retrospectsContent)
     },[])
 
@@ -155,6 +157,7 @@ export default function UpdateHabitPopup(props) {
                          width={`auto`}
                          height={"272px"}
                          onChangeHandler={onChangeHandler}
+                        
                         ></Textareas>
 
 

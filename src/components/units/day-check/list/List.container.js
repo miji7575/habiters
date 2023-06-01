@@ -11,6 +11,7 @@ export default function DayCheck(props) {
         props.getUserHabit()
     }, [])
 
+   
 
     return (
         <DayCheckUI
