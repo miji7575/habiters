@@ -82,7 +82,7 @@ export default function UpdateDonePopup(props) {
                 <PopupContainer>
 
                     <PopupTitle>
-                        <span className="headline5">닉네임 수정 완료</span>
+                        <span className="headline5">{props.popUp.messageTitle}</span>
                         <span className="icon-l icon-close-line"
                             onClick={popupClose}></span>
                     </PopupTitle>
@@ -90,7 +90,7 @@ export default function UpdateDonePopup(props) {
                     <PopupContent>
                         <div>
                             <div className="body2-medium">
-                            변경하신 닉네임으로 수정이 완료되었어요.
+                            {props.popUp.content}
                             </div>
                         </div>
                     </PopupContent>

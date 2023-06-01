@@ -45,6 +45,7 @@ export default function Inputs(props) {
         // else{
         // setIsValueNull(false)
         // }
+        // autocompleteOn()
        
      })  
 
@@ -70,6 +71,15 @@ export default function Inputs(props) {
 
 
 
+const [autocompleteState, setAutocompleteState ] = useState('new-password')
+console.log(autocompleteState)
+const autocompleteOn = () => {
+
+    if(props.autocomplete === 'on'){
+        setAutocompleteState('on')
+        return
+    }
+}
 // ================================================
 
 
@@ -101,7 +111,8 @@ export default function Inputs(props) {
                         
                         // onBlur={()=>setIsOnFocus(false)}
                         width={props.width}
-
+                        maxLength={props.length}
+                        autocomplete="off" 
                   
 
                        

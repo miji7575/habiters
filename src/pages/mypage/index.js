@@ -22,11 +22,16 @@ const Main = styled.div`
 
 const Title = styled.div`
   padding: 72px 0 58px 0 ;
+  color: var(--color-black1);
  `
 const Form = styled.form`
  display: flex;
  flex-direction: column;
  align-items: center;
+`
+
+const Label = styled.div`
+color: var(--color-black1);
 `
 const MyImgWrap = styled.div`
  position: relative;
@@ -94,7 +99,6 @@ export default function MyPage() {
 
 
 
-
     const [emailInputPlaceHolder, setEmailInputPlaceHolder] = useState("이메일 주소를 입력해주세요. ex)habiters@gmail.com");
     const [nicknameInputPlaceHolder, setNicknamePlaceHolder] = useState("닉네임을 입력해주세요.");
     const [isEditable, setIsEditable] = useState(true)
@@ -120,6 +124,23 @@ export default function MyPage() {
     }, [])
 
 
+    // ------- 수정 완료 팝업
+    const [updateDonePopupStatus, setUpdatePopupStatus] = useState(false)
+    const [popUp, setPopUp] = useState([])
+
+
+    useEffect(() => {
+        setPopUp({
+            messageTitle: '닉네임 수정 완료',
+            content: '변경하신 닉네임으로 수정이 완료되었어요.'
+        })
+    }, [])
+    const updateDonePopupClose = () => {
+
+        setUpdatePopupStatus(false)
+    }
+
+
 
 
 
@@ -132,7 +153,7 @@ export default function MyPage() {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             setUser(response.data.data)
-            console.log(response)
+            // console.log(response)
             return
         }
     }
@@ -147,36 +168,23 @@ export default function MyPage() {
     const updateUser = async () => {
 
         if (!nickName) {
-            // alert("닉네임을 입력해주세요")
+
             setIsError(true)
             setErrorMessage("닉네임을 입력해주세요")
             return
         }
         else if (user.nickName == nickName) {
-            // alert("기존 닉네임과 동일합니다")
+
             setIsError(true)
             setErrorMessage("기존 닉네임과 동일합니다")
             return
         }
-        // if (user.nickName != nickName) {
-        //     // formData.append('nickName', nickName);
-        //     console.log("변경할 닉네임 추가됨.")
-        // }
-        // console.log("이미지입력하러가는중.")
-        // console.log(imageFile)
-        // if (imageFile) {
-        //     console.log("변경할 이미지 추가됨.")
-        //     formData.append('file', imageFile);
-        // }
-        // if (!imageFile) {
-        //     formData.append('file', null);
-        // }
 
-        // console.log(formData)
         else {
+
+            setUpdatePopupStatus(true)
             await updateUserData()
             await getUserData()
-            setUpdatePopupStatus(true)
         }
 
     }
@@ -184,10 +192,15 @@ export default function MyPage() {
 
 
     const nickNameCheck = () => {
-        if(!nickName){
+        // console.log(nickName.toString().length)
+        if (!nickName) {
             setIsError(true)
             setErrorMessage("닉네임을 입력해주세요")
             return
+        }
+        if (nickName.toString().length >= nickNameLength) {
+            setIsError(true)
+            setErrorMessage("닉네임은 12자 이내로 입력해주세요.")
         }
         // else if (user.nickName == nickName) {
         //     // alert("기존 닉네임과 동일합니다")
@@ -195,10 +208,11 @@ export default function MyPage() {
         //     setErrorMessage("기존 닉네임과 동일합니다")
         //     return
         // }
-        else{
+        else {
             setIsError(false)
             setErrorMessage("")
         }
+
 
     }
 
@@ -209,6 +223,7 @@ export default function MyPage() {
 
     const [inputValues, setInputValues] = useRecoilState(InputValue)
     const { email, nickName } = inputValues; // 비구조화 할당을 통해 값 추출
+    const nickNameLength = 12;
 
     const onChangeRecoil = (e) => {
         const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
@@ -217,12 +232,12 @@ export default function MyPage() {
             [name]: value // [name]: value // name 키를 가진 값을 value 로 설정
         });
 
-       
+
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         nickNameCheck()
-    },[nickName])
+    }, [nickName])
 
 
     //  -----  이미지 로드
@@ -256,18 +271,47 @@ export default function MyPage() {
                 , {
                     headers: { "Content-Type": 'application/json', Authorization: 'Bearer ' + accessToken }
                 })
-            // console.log(response)
-            return
+                .then(
+                    setPopUp({ messageTitle: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
+                )
+                .catch(function (error) {
+                    if (error.response) { // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.
+                        // console.log(error.response.data.msg);
+
+                        setPopUp({ messageTitle: '닉네임 수정 실패', content: error.response.data.msg })
+                        // console.log(error.response.status);
+                        // console.log(error.response.headers);
+                        return
+                    } else if (error.request) {
+                        // 요청이 전송되었지만, 응답이 수신되지 않았습니다. 
+                        // 'error.request'는 브라우저에서 XMLHtpRequest 인스턴스이고,
+                        // node.js에서는 http.ClientRequest 인스턴스입니다.
+
+                        // console.log(error.request);
+                        return
+                    } else {
+                        // 오류가 발생한 요청을 설정하는 동안 문제가 발생했습니다.
+
+                        // console.log('Error', error.message);
+
+                    }
+
+
+                    // console.log(error.config);
+                    return
+                });
+
+
+
+            console.log("항상 나오나?")
+            console.log(response)
+
+
 
         }
     }
 
 
-    // ------- 수정 완료 팝업
-    const [updateDonePopupStatus, setUpdatePopupStatus] = useState(false)
-    const updateDonePopupClose = () => {
-        setUpdatePopupStatus(false)
-    }
 
 
     // -----------로그아웃
@@ -306,7 +350,7 @@ export default function MyPage() {
                     <Title className={'headline1'}>
                         마이페이지
                     </Title>
-                    <Form method="post" enctype="multipart/form-data">
+                    <Form method="post" enctype="multipart/form-data" >
                         <MyImgWrap>
                             <label>
                                 <MyImg src={profileImgUrl} alt="프로필이미지" />
@@ -323,9 +367,9 @@ export default function MyPage() {
 
                         <MypageInputWrap>
                             <MypageInputBox>
-                                <div className={'body1-bold'}>
+                                <Label className={'body1-bold'}>
                                     이메일
-                                </div>
+                                </Label>
 
 
                                 <div>
@@ -347,9 +391,9 @@ export default function MyPage() {
                             </MypageInputBox>
 
                             <MypageInputBox>
-                                <div className={'body1-bold'}>
+                                <Label className={'body1-bold'}>
                                     닉네임
-                                </div>
+                                </Label>
 
                                 <NickNameInputBox>
                                     <div>
@@ -361,6 +405,8 @@ export default function MyPage() {
                                             width={`292px`}
                                             isError={isError}
                                             errorMessage={errorMessage}
+                                            length={nickNameLength}
+
                                         ></Input>
 
                                     </div>
@@ -375,7 +421,7 @@ export default function MyPage() {
 
                     </Form>
 
-
+                   
 
                     <div className="btn-arrange-vertical">
                         <div>
@@ -392,6 +438,7 @@ export default function MyPage() {
 
                 {/* 수정완료 팝업 */}
                 {updateDonePopupStatus && <UpdateDonePopup
+                    popUp={popUp}
                     updateDonePopupClose={updateDonePopupClose} />}
 
             </main>
