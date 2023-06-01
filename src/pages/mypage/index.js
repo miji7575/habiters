@@ -127,7 +127,7 @@ export default function MyPage() {
     // ------- 수정 완료 팝업
     const [updateDonePopupStatus, setUpdatePopupStatus] = useState(false)
     const [popUp, setPopUp] = useState({
-        messageTitle: '닉네임 수정 완료',
+        summary: '닉네임 수정 완료',
         content: '변경하신 닉네임으로 수정이 완료되었어요.'
     })
 
@@ -269,13 +269,13 @@ export default function MyPage() {
                     headers: { "Content-Type": 'application/json', Authorization: 'Bearer ' + accessToken }
                 })
                 .then(
-                    setPopUp({ messageTitle: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
+                    setPopUp({ summary: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
                 )
                 .catch(function (error) {
                     if (error.response) { // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.
                         // console.log(error.response.data.msg);
 
-                        setPopUp({ messageTitle: '닉네임 수정 실패', content: error.response.data.msg })
+                        setPopUp({ summary: '닉네임 수정 실패', content: error.response.data.msg })
                         // console.log(error.response.status);
                         // console.log(error.response.headers);
                         return

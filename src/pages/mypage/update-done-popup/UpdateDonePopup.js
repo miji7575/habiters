@@ -70,10 +70,10 @@ export default function UpdateDonePopup(props) {
         props.updateDonePopupClose();
     }
 
-    const [popUpTitle, setPopupTitle ] = useState(props.popUp.messageTitle)
+    const [popUpTitle, setPopupTitle ] = useState(props.popUp.summary)
     const [popUpMessage, setPopupMessage ] = useState(props.popUp.content)
     useEffect(()=>{
-        setPopupTitle(props.popUp.messageTitle)
+        setPopupTitle(props.popUp.summary)
         setPopupMessage(props.popUp.content)
         console.log("Sdf")
     },[props.popUp])
