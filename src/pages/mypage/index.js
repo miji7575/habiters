@@ -173,7 +173,7 @@ export default function MyPage() {
         else if (user.nickName == nickName) {
 
             setIsError(true)
-            setErrorMessage("기존 닉네임과 동일합니다")
+            setErrorMessage("기존 닉네임과 동일합니다. 확인해주세요.")
             return
         }
 
