@@ -33,29 +33,17 @@
 ## 개발 언어 및 활용 기술 💻
 ### Tech
 
- <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
-  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
-    <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
-<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+ <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/>
 
 ### Deploy
 
 <img src="https://img.shields.io/badge/Github Actions-2AB1AC?style=for-the-badge&logo=GithubActions&logoColor=white"/> <img src="https://img.shields.io/badge/Docker-%230db7ed.svg?style=for-the-badge&logo=Docker&logoColor=white"/>
 
 ### Tool
-
-<img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=for-the-badge&logo=intellijIdea&logoColor=white"/> <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white"/>
+<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white"/> <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white"/>
 
 <br><br><br><br>
-## API Spec 💽
 
-### 습관 API
-https://documenter.getpostman.com/view/25320340/2s93RWQXTo
-
-
-### 회고록 API
-https://documenter.getpostman.com/view/25320340/2s93RWQXTs
 
 <br><br><br><br>
 ## ERD 💾
@@ -85,18 +73,6 @@ https://documenter.getpostman.com/view/25320340/2s93RWQXTs
 |       NAVER_URI       |     naver 로그인에서 사용할 OAuth Redirect URI      |
 |       NAVER_CLIENT_ID       |     Kakao 앱 키(REST API 키)      |
 |        NAVER_CLIENT_SECRET           |            Kakao에서 보안을 위해 제공하는 비밀키     |
-
-### using Github Project
-
-1. github에서 프로젝트를 다운받는다
-
-   ```git clone https://github.com/potenday-project/Clover```
-2. 환경 변수 예제를 보고, .env 파일을 생성하여 환경 변수를 지정해준다
-3. build 후, jar 파일을 실행한다
-    ```
-    ./gradlew clean build
-    java -jar build/libs/{Habbitters}.jar
-    ```
 
 
 
