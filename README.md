@@ -50,29 +50,7 @@
 <img src="https://user-images.githubusercontent.com/104195103/229722435-59525a2f-e45f-4bbb-b712-e2489e2012c6.png" width="600" height="600">
 
 <br><br><br><br>
-## 프로젝트 실행 방법 ⚙
-프로젝트 실행 전 아래 항목을 확인해주세요
 
-- naver,kakao,google에서 어플리케이션을 생성 해주어야 합니다
-- 프로젝트에 필요한 환경 변수들을 지정해주어야 합니다
-
-### 환경 변수
-
-|        environment         |           description            |
-|:--------------------------:|:--------------------------------:|
-| DB_USER_NAME |    db에 접속할 수 있는 사용자 username     |
-| DB_PASSWORD |    db에 접속할 수 있는 사용자 password     |
-|   DB_URL    |          접속하려는 db의 url           |
-|       JWT_SECRET       |          JWT 검증을 위한 비밀키          |
-|   KAKAO_URI       | kakao 로그인에서 사용할 OAuth Redirect URI |
-|   KAKAO_CLIENT_ID          |      Kakao 앱 키(REST API 키)       |
-|   KAKAO_CLIENT_SECRET      |     Kakao에서 보안을 위해 제공하는 비밀키      |
-|    GOOGLE_URI     | google 로그인에서 사용할 OAuth Redirect URI |
-|    GOOGLE_CLIENT_ID        |      google 앱 키(REST API 키)       |
-|    GOOGLE_CLIENT_SECRET    |     google에서 보안을 위해 제공하는 비밀키     
-|       NAVER_URI       |     naver 로그인에서 사용할 OAuth Redirect URI      |
-|       NAVER_CLIENT_ID       |     Kakao 앱 키(REST API 키)      |
-|        NAVER_CLIENT_SECRET           |            Kakao에서 보안을 위해 제공하는 비밀키     |
 
 
 
