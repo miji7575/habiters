@@ -138,16 +138,69 @@ const IntroServicePage3Image = styled.img`
     height: 412px;
 `
 
+const IntroServicePage3Detail2 = styled.div`
+    text-align: center;
+`
+
 const IntroServicePage3BannerBox = styled.div`
-padding: 240px 0 200px 0;
+    margin: 240px 0 200px 0;
+    width: 1180px;
+    height: 174px;
+    border-radius: 16px;
+    background-color: var(--color-black10);
+    box-sizing: border-box;
+
+
+    display: grid;
+    grid-template-columns: 1fr 337px;
+    grid-template-rows: 174px;
+
+    
+
 `
 
-const IntroServicePage3Banner = styled.img`
-width: 1180px;
+const IntroServicePage3BannerContent = styled.div`
+    padding-left: 80px;
+    padding-top: 48px;
+    color: var(--color-black1);
+    box-sizing: border-box;
+    grid-template-areas: 0 ;
+`
+const IntroServicePage3BannerImageBox = styled.div`
+position: relative;
+width: 337px;
 height: 174px;
+overflow: hidden;
+border-top-right-radius: 16px;
+
+`
+const GreenRound = styled.div`
+position: absolute;
+ width: 108px;
+ height: 108px;
+ border-radius: 54px;
+ background-color: var(--color-green3);
+ top: 23px;
 `
 
-
+const PurpleRound = styled.div`
+position: absolute;
+ width: 262px;
+ height: 262px;
+ border-radius: 131px;
+ background-color: var(--color-purple3);
+ top: 35px;
+ right: 18px;
+`
+const BlueRound = styled.div`
+position: absolute;
+ width: 178px;
+ height: 178px;
+ border-radius: 89px;
+ background-color: var(--color-skyblue3);
+ bottom: 43px;
+ right: -46px;
+`
 
 const ButtonBox = styled.div`
 padding-top: 40px;
@@ -225,13 +278,27 @@ export default function IntroServicePage() {
                             <IntroServicePage3Image src="/image/img-Intro-service2.svg" alt="서비스소개 이미지2" />
                         </IntroServicePage3Image2Box>
 
-                        <div className={'headline1 color-black1'}>
+                        <IntroServicePage3Detail2 className={'headline1 color-black1'}>
                             더 나은 내가 되기 위한 여정,<br />
                             TEAM CLOVER🍀와 해비티가 함께 할게요!
-                        </div>
+                        </IntroServicePage3Detail2>
 
                         <IntroServicePage3BannerBox>
-                            <IntroServicePage3Banner src="/image/img-Intro-service-banner.svg" alt="서비스소개 배너" />
+                            {/* <IntroServicePage3BannerBackground src="/image/img-Intro-service-banner.svg" alt="서비스소개 배너" /> */}
+
+                            <IntroServicePage3BannerContent className={'body1-bold'}>
+                                피드백은 언제든지 환영이예요! 🤗<br />
+                                🍀 TEAM CLOVER<br />
+                                : weareteamclovers@gmail.com<br />
+                            </IntroServicePage3BannerContent>
+
+                            <IntroServicePage3BannerImageBox>
+                                <GreenRound />
+                                <BlueRound/>
+                                <PurpleRound/>
+                            </IntroServicePage3BannerImageBox>
+
+
                         </IntroServicePage3BannerBox>
 
                     </IntroServicePage3>
