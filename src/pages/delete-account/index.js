@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import Textarea from "../../components/commons/textareas/Textareas.container"
 import axios from 'axios'
-import {userState} from '../../components/stores';
+import { userState } from '../../components/stores';
 import { useRecoilState } from 'recoil';
 
 
@@ -12,6 +12,7 @@ const Main = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+padding-bottom: 200px;
 `
 
 const Title = styled.div`
@@ -37,16 +38,22 @@ padding-top: 16px;
 gap: 8px;
 `
 const Notice = styled.div`
+display: flex;
+align-items: center;
 &::before{
-content: '';
-display: inline-block;
-width: 4px;
-height: 4px;
-border-radius: 2px;
-background-color: var(--color-purple2);
-margin-right: 8px;}
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--color-purple2);
+    margin-right: 8px;
+    }
 `
 
+
+const NoticeEmail = styled.div`
+padding-left: 12px;
+`
 
 const DeleteAccountTextarea = styled(Textarea)`
    margin: 24px 0 56px 0;
@@ -57,7 +64,7 @@ const DeleteAccountTextarea = styled(Textarea)`
 
 export default function DeleteAccount() {
 
-// =======================  Function  =======================
+    // =======================  Function  =======================
 
 
     const router = useRouter()
@@ -73,16 +80,16 @@ export default function DeleteAccount() {
 
 
     const [accessToken, setAccessToken] = useRecoilState(userState)
-    const deleteUser = async() => {
+    const deleteUser = async () => {
         if (accessToken) {
-           
-            const response = await axios.delete(`https://api.habiters.store/users/me`, 
-           {
-                headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
-            })
+
+            const response = await axios.delete(`https://api.habiters.store/users/me`,
+                {
+                    headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
+                })
             // console.log(response)
             return
-        
+
         }
     }
 
@@ -100,17 +107,19 @@ export default function DeleteAccount() {
                         <DeleteAccountNotice className={'body2-regular color-black2'}>
                             <Notice>탈퇴가 완료되면 개인정보 및 모든 기록은 즉시 파기되며 복구가 불가해요. </Notice>
                             <Notice>기록을 남기고 싶으시면 탈퇴 전 엑셀 파일을 다운받아 주세요.</Notice>
-                            <Notice>추가 문의 사항은 해비터스 개인정보관리팀에 연락주세요.</Notice>
-                            <div>   (메일주소)</div>
+                            <div>
+                                <Notice>추가 문의 사항은 해비터스 개인정보관리팀에 연락주세요.</Notice>
+                                <NoticeEmail>weareteamclovers@gmail.com</NoticeEmail>
+                            </div>
                         </DeleteAccountNotice>
                     </DeleteAccountNoticeWrap>
 
-                    <Textarea  
-                    width={`580px`}
-                    margin={`24px 0 56px 0`}
-                    height={`172px`}
-                    placeholder={placeholder}
-                    textareaErrorMessage={textareaErrorMessage}/>
+                    <Textarea
+                        width={`580px`}
+                        margin={`24px 0 56px 0`}
+                        height={`172px`}
+                        placeholder={placeholder}
+                        textareaErrorMessage={textareaErrorMessage} />
 
                     <div className={'btn btn-large btn-primary-default body2-medium'} onClick={onDeleteUserBtnClick}>탈퇴하기</div>
 

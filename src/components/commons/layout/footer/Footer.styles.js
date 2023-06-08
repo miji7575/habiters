@@ -32,26 +32,19 @@ export const FooterDetailBox = styled.div`
         color:inherit
     }
 `
-export const HeaderMypageBox = styled.div`
+
+
+
+export const FooterDetail = styled.div`
     display: flex;
+    align-items: center;
+    gap : 12px;
 `
-export const HeaderMenu = styled.div`
-    display: block;
-    color: var(--color-black1);
-    cursor: pointer;
-    line-height: var(--header-height);
-    position: relative;
-    &::before{
-        content: '';
-    background-color: var(--color-purple2);
-    width: max-content;
-    height: 4px;
-    width: 0;
-    position: absolute;
-    bottom: 0;
-    transition: .3s;
-    }
-    &:hover::before{
-        width: 100%;
-    }
+
+export const Bar = styled.span`
+    /* padding: 12px 0; */
+    display: inline-block;
+    width: 1px; 
+    height: 10px; 
+    background-color : var(--color-black5);
 `
