@@ -4,17 +4,23 @@ import styled from '@emotion/styled'
 export const HeaderWrap = styled.div`
     height: var(--header-height);
     display: flex;
-    padding-left: 17%;
-    padding-right: 19%;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     border-bottom: 1px solid var(--color-black7);
     box-sizing: border-box;
-    & >div{
+    & > div{
         height: inherit;
     }
     `
-
+export const HeaderContent = styled.div`
+    width: 1108px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    & > div{
+        height: inherit;
+    }   
+`
 
 export const LogoBox = styled.div`
     box-sizing: border-box;

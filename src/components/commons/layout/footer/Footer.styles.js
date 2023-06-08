@@ -7,16 +7,21 @@ export const FooterWrap = styled.div`
     background-color: var(--color-black10);
 
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     height: 204px;
     width: 100%;
-    box-sizing: border-box;
-    padding: 48px 0 48px 19%;
-    /* position: absolute; */
+    box-sizing: border-box; 
     bottom: 0;
     `
+export const FooterContent = styled.div`
+    width: 1180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 48px 0;
 
+`
 
 
 
