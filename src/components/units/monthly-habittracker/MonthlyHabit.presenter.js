@@ -52,6 +52,7 @@ export default function MonthlyHabitTrackerUI(props) {
                     showDate={props.showDate}
                     updateHabitPopupOn={props.updateHabitPopupOn}
                     deleteHabitPopupOn={props.deleteHabitPopupOn}
+                    HabitAlertPopupOn={props.HabitAlertPopupOn}
                     habits={props.habits}
 
                     

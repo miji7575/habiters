@@ -49,7 +49,7 @@ export default function CalenderDay(props) {
 
 
 
-   
+
 
 
 
@@ -58,6 +58,7 @@ export default function CalenderDay(props) {
 
 
         <CalenderDayUI
+            HabitAlertPopupOn={props.HabitAlertPopupOn}
             isSelected={isSelected}
             selected={props.selected}
             habits={props.habits}
