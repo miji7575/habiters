@@ -2,11 +2,11 @@ import { useState } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-import {userState} from '../../../../components/stores';
+import { userState } from '../../../../components/stores';
 
 
 // ============================== Style  ==============================
-    const PopupBackground = styled.div`
+const PopupBackground = styled.div`
      position: fixed;
     top: 0;
     left: 0;
@@ -16,7 +16,7 @@ import {userState} from '../../../../components/stores';
     background: rgba(0, 0, 0, 0.8);
     `
 
-    const PopupContainer = styled.div`
+const PopupContainer = styled.div`
     width: 428px;
     box-sizing: border-box;
     padding: 40px 24px 40px 24px;
@@ -27,11 +27,11 @@ import {userState} from '../../../../components/stores';
     /* box-shadow: 3px 3px 3px 3px black; */
 
     position: absolute;
-    top: calc(50vh - (428px / 2));
-    left: calc(50vw - (240px / 2));
+    top: calc(50vh - (240px / 2));
+    left: calc(50vw - (428px / 2));
     `
 
-    const PopupTitle = styled.div`
+const PopupTitle = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,14 +39,14 @@ import {userState} from '../../../../components/stores';
     margin-bottom: 24px;
     `
 
-    const PopupContent = styled.div`
+const PopupContent = styled.div`
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 32px;
     `
 
-    const PopupBtnContainer = styled.div`
+const PopupBtnContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -56,7 +56,7 @@ import {userState} from '../../../../components/stores';
 
 export default function DeleteHabitPopup(props) {
 
-   
+
 
 
 
@@ -65,7 +65,7 @@ export default function DeleteHabitPopup(props) {
 
     const [accessToken, setAccessToken] = useRecoilState(userState)
 
-      // ----- axios(delete) -- 습관이름 삭제하기
+    // ----- axios(delete) -- 습관이름 삭제하기
     const deleteHabitData = async () => {
         // console.log(props.habitId)
         if (accessToken) {
@@ -75,7 +75,7 @@ export default function DeleteHabitPopup(props) {
             return
         }
     }
-    
+
 
 
 

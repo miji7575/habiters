@@ -31,11 +31,12 @@ export default function CalenderUI(props) {
 
 
                         <CalenderDaysContainer
-                        ref={props.calender}>
+                            ref={props.calender}>
                             {props.showDate.showDays.map((day, index) => <CalenderDay
+                                HabitAlertPopupOn={props.HabitAlertPopupOn}
                                 selected={props.selected}
                                 selectedDate={props.selectedDate}
-                                
+
                                 habits={props.habits}
                                 day={day}
                                 date={index + 1}
@@ -44,8 +45,8 @@ export default function CalenderUI(props) {
 
                                 showDate={props.showDate}
 
-                            
-                                
+
+
 
 
                                 getUserHabit={props.getUserHabit}

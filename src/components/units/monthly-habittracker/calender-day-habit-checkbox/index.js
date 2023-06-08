@@ -113,7 +113,9 @@ export default function CalenderDayHabitCheckbox(props) {
             return
         }
         else {
-            alert("당일의 습관만 체크할 수 있습니다.")
+            const popupMessage = "당일의 습관만 체크할 수 있어요."
+            props.HabitAlertPopupOn(popupMessage);
+            // alert("당일의 습관만 체크할 수 있습니다.")
         }
 
 

@@ -33,6 +33,7 @@ export default function Calender(props) {
 
             updateHabitPopupOn={props.updateHabitPopupOn}
             deleteHabitPopupOn={props.deleteHabitPopupOn}
+            HabitAlertPopupOn={props.HabitAlertPopupOn}
             showDate={props.showDate}
             habits={props.habits}
 

@@ -16,7 +16,7 @@ export default function CalenderDayUI(props) {
             ref={props.ref}>
 
             <DayBox
-            isSelected={props.isSelected}>
+                isSelected={props.isSelected}>
                 <DayDateBox
                     onClick={props.onClickDayHandler}>
                     <CalenderDay className="caption1-medium">{props.day}</CalenderDay>
@@ -26,6 +26,7 @@ export default function CalenderDayUI(props) {
 
                 {Object.entries(props.habits).map(([key, value], index) =>
                     <CalenderDayHabitCheckbox
+                        HabitAlertPopupOn={props.HabitAlertPopupOn}
                         habitId={value.id}
                         habitName={value.content}
                         habitChecks={value.habitChecks}
@@ -34,7 +35,7 @@ export default function CalenderDayUI(props) {
 
                         showDate={props.showDate}
                         date={props.date}
-                       
+
 
 
 

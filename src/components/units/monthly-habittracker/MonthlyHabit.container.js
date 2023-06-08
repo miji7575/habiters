@@ -4,6 +4,7 @@ import MonthlyHabitTrackerUI from "./MonthlyHabit.presenter"
 import AddNewHabitPopup from './addnewHabitPopup/AddNewHabitPopup';
 import UpdateHabitPopup from './update-habit-popup/UpdateHabitPopup';
 import DeleteHabitPopup from './delete-habit-popup/DeleteHabitpopup';
+import Popup1Btn from '../popup-1btn';
 
 import { userHabitState, userState} from '../../../components/stores';
 import axios from "axios";
@@ -117,7 +118,18 @@ export default function MonthlyHabitTracker(props) {
         setDate(date)
     }
 
+// ------- 당일습관 팝업
+const [isHabitAlertOn, setIsHabitAlertOn] = useState(false)
+const [popupMessage, setPopupMessage] = useState('')
 
+const HabitAlertPopupOn = (props) => {
+    setPopupMessage(props)
+    setIsHabitAlertOn(true)
+}
+
+const HabitAlertPopupClose = () => {
+    setIsHabitAlertOn(false)
+}
 
 
 
@@ -130,6 +142,7 @@ export default function MonthlyHabitTracker(props) {
                 addNewHabitPopupOn={addNewHabitPopupOn}
                 updateHabitPopupOn={updateHabitPopupOn}
                 deleteHabitPopupOn={deleteHabitPopupOn}
+                HabitAlertPopupOn={HabitAlertPopupOn}
 
 
                 showDate={props.showDate}
@@ -169,6 +182,11 @@ export default function MonthlyHabitTracker(props) {
                 deleteHabitPopupClose={deleteHabitPopupClose}
                 habitId={habitId}
                 getUserHabit={getUserHabit}
+            />}
+
+            {isHabitAlertOn && <Popup1Btn
+            HabitAlertPopupClose={HabitAlertPopupClose}
+            popupMessage={popupMessage}
             />}
         </>
 

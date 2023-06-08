@@ -29,8 +29,8 @@ flex-direction: column;
 /* box-shadow: 3px 3px 3px 3px black; */
 
 position: absolute;
-top: calc(50vh - (428px / 2));
-left: calc(50vw - (504px / 2));
+top: calc(50vh - (504px / 2));
+left: calc(50vw - (428px / 2));
 height: 504px;
 `
 
