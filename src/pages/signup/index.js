@@ -162,7 +162,7 @@ export default function SignupPage() {
                 </LoginButtonBox>
 
                 <div className={'body2-medium color-black4'}>
-                이미 회원이신가요? <MoveLink onClick={onClickMoveLogin}>로그인하기</MoveLink>
+                    처음이신가요? <MoveLink onClick={onClickMoveLogin}>로그인하기</MoveLink>
                 </div>
 
             </Body>

@@ -24,7 +24,6 @@ export const HabitTrackerHeader = styled.div`
 `
 
 export const AddHabitBtn = styled.div`
-    position: absolute;
-    width: 160px;
+ position: absolute;
     right: 0;
 `

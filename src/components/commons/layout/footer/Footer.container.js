@@ -15,9 +15,6 @@ export default function Footer() {
     const onClickMoveIntroPrivacyPolicy = () => {
         router.push("/intro-privacypolicy")
     }
-    const onClickMoveIntroTeam = () => {
-        router.push("/comming-soon")
-    }
 
 
 
@@ -26,7 +23,6 @@ export default function Footer() {
         onClickMoveIntroService={onClickMoveIntroService}
         onClickMoveIntroTermsOfUse={onClickMoveIntroTermsOfUse}
         onClickMoveIntroPrivacyPolicy={onClickMoveIntroPrivacyPolicy}
-        onClickMoveIntroTeam={onClickMoveIntroTeam}
         
         
         />

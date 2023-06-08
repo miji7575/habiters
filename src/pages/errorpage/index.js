@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
+import {headerSelectedMenu} from '../../components/stores';
 import { useRecoilState } from 'recoil';
 
 
@@ -39,9 +40,11 @@ export default function ErrorPage() {
 
 // ========================= Function  ==============================
 
-
+const [clickedMenu, setClickedMenu] = useRecoilState(headerSelectedMenu)
     const router = useRouter()
     const onClickMove = () => {
+        setClickedMenu("마이해빗")
+        console.log(clickedMenu)
         router.push("/myhabit")
     }
 
