@@ -39,6 +39,7 @@ export default function DeleteRetrospectsPopup(props) {
     align-items: center;
     gap: 8px;
     margin-bottom: 24px;
+    color: var(--color-black1);
     `
 
     const PopupContent = styled.div`
@@ -46,6 +47,7 @@ export default function DeleteRetrospectsPopup(props) {
     flex-direction: column;
     gap: 12px;
     margin-bottom: 32px;
+    color: var(--color-black2);
     `
 
     const PopupBtnContainer = styled.div`
