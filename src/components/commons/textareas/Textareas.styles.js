@@ -33,14 +33,16 @@ export const TextareaDefault = styled.textarea`
     resize: none;
     border-radius: 8px;
     border: ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `solid 1px var(--color-black7)`};
-    color : ${(props) => props.isError === true ? `var(--color-error)` : `var(--color-black2)`};
+    color : var(--color-black2);
+    /* color : ${(props) => props.isError === true ? `var(--color-error)` : `var(--color-black2)`}; */
     background-color:${(props)=>props.diaryState === true? `var(--color-black8)`: 'none'};
 
     &:focus{
         outline: none;
     }
     &:focus-visible {
-    outline: 1px solid var(--color-black4);
+        /* outline: none; */
+    outline: ${(props) => props.isError === true ? `none` : `solid 1px var(--color-black4)`};
     }
     &::placeholder {
     /* color: var(--color-black4); */
