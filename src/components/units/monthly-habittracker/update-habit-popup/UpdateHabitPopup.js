@@ -41,6 +41,7 @@ justify-content: space-between;
 align-items: center;
 gap: 8px;
 margin-bottom: 24px;
+color: var(--color-black1);
 `
 
 const PopupContent = styled.div`

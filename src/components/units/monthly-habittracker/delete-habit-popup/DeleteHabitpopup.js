@@ -37,6 +37,7 @@ const PopupTitle = styled.div`
     align-items: center;
     gap: 8px;
     margin-bottom: 24px;
+    color: var(--color-black1);
     `
 
 const PopupContent = styled.div`
@@ -44,6 +45,7 @@ const PopupContent = styled.div`
     flex-direction: column;
     gap: 12px;
     margin-bottom: 32px;
+    color: var(--color-black2);
     `
 
 const PopupBtnContainer = styled.div`

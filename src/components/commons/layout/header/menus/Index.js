@@ -28,8 +28,8 @@ const Menu = styled.div`
 
 `
 const MyImgBox = styled.div`
-  width: 60px;
- height: 60px;
+  width: 56px;
+ height: 56px;
  box-sizing: border-box;
  border: 1px solid var(--color-black7);
  border-radius: 30px;
@@ -40,8 +40,8 @@ const MyImgBox = styled.div`
 `
 
 const MyImg = styled.img`
-  width: 30px;
- height: 30px;
+  width: 35px;
+ height: 35px;
  object-fit: scale-down;
  
  `

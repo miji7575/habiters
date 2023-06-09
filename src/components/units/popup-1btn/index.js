@@ -34,6 +34,7 @@ justify-content: space-between;
 align-items: center;
 gap: 8px;
 margin-bottom: 24px;
+color: var(--color-black1);
 `
 
 
@@ -42,6 +43,7 @@ display: flex;
 flex-direction: column;
 gap: 12px;
 margin-bottom: 32px;
+color: var(--color-black2);
 `
 
 
