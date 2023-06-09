@@ -25,8 +25,8 @@ export const Input = styled.input`
         outline: none;
     }
     &:focus-visible {
-    outline: ${(props) => props.isError === true ? `1px solid var(--color-error)` : `1px solid var(--color-black4)`}; 
-    /* outline: 1px solid var(--color-black4); */
+        border :  ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `1px solid var(--color-black4)`};
+        outline: none;
     }
     &::placeholder {
     color: var(--color-black4);
@@ -35,7 +35,7 @@ export const Input = styled.input`
 
 
 export const InputMessage = styled.div`
-    
+    padding-top: 4px;
 `
 
 export const ErrorIcon = styled.span`

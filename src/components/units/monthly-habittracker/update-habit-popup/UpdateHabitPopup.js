@@ -125,6 +125,46 @@ export default function UpdateHabitPopup(props) {
     }
 
 
+
+
+
+    // ----- habit 유효성 검사
+
+    const habitInputCheck = () => {
+        // console.log(nickName.toString().length)
+        if (!habitName) {
+            // alert("내용을 입력해주세요");
+            setIsError(true)
+            setErrorMessage("습관 이름을 작성해주세요")
+            return
+        }
+        if (habitName.length > 10) {
+            // alert("습관 이름은 10자 이내만 가능합니다")
+            setIsError(true)
+            setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
+            return
+        }
+        else {
+            setIsError(false)
+            setErrorMessage("")
+        }
+
+    }
+
+    useEffect(() => {
+        habitInputCheck()
+    }, [habitName])
+
+
+
+
+
+
+
+
+
+
+
     // --- 팝업창 닫기
     function updateHabitPopupClose() {
         setNewInput('')

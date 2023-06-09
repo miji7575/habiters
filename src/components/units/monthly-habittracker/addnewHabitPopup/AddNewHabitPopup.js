@@ -76,13 +76,32 @@ export default function AddNewHabitPopup(props) {
     }
 
 
+
+    // ----- input
+    const placeholder = "만드실 습관을 10자 이내로 입력해주세요.";
+    const [newInput, setNewInput] = useRecoilState(InputValue)
+    const { habitName } = newInput;
+
+
+
+
+    const onChange = (e) => {
+        const { value, name } = e.target;
+        setNewInput({ ...newInput, [name]: value })
+        setIsError(false)
+    };
+
+
+
+
+
     // ----- 습관 등록하기
     const [isError, setIsError] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
 
-
+    // ------Habit 추가하기
     const addNewhabit = async () => {
-    
+
         if (!newInput["habitName"] || newInput["habitName"].trim().length == 0) {
             // alert("내용을 입력해주세요");
             setIsError(true)
@@ -106,19 +125,43 @@ export default function AddNewHabitPopup(props) {
 
 
 
-    // ----- input
-    const placeholder = "만드실 습관을 10자 이내로 입력해주세요.";
-    const [newInput, setNewInput] = useRecoilState(InputValue)
-    const { habitName } = newInput;
 
 
 
 
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setNewInput({ ...newInput, [name]: value })
-        setIsError(false)
-    };
+
+
+
+
+
+    // ----- habit 유효성 검사
+
+    const habitInputCheck = () => {
+        // console.log(nickName.toString().length)
+        if (!habitName) {
+            // alert("내용을 입력해주세요");
+            setIsError(true)
+            setErrorMessage("습관 이름을 작성해주세요")
+            return
+        }
+        if (habitName.length > 10) {
+            // alert("습관 이름은 10자 이내만 가능합니다")
+            setIsError(true)
+            setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
+            return
+        }
+        else {
+            setIsError(false)
+            setErrorMessage("")
+        }
+
+    }
+
+    useEffect(() => {
+        habitInputCheck()
+    }, [habitName])
+
+
 
 
     // ----- 팝업창 닫기
@@ -126,11 +169,6 @@ export default function AddNewHabitPopup(props) {
         setNewInput('')
         props.addNewHabitPopupClose();
     }
-
-
-
-
-
 
 
 
