@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { userState, userDetail, InputValue, userHabitState, userRetrospectData, SelectedDate, TodayRetrospectState } from '../../components/stores';
 import axios from 'axios'
@@ -163,7 +163,7 @@ export default function MyPage() {
     const [errorMessage, setErrorMessage] = useState()
 
     const updateUser = async () => {
-        console.log(isError)
+        // console.log(isError)
         if (!nickName) {
 
             setIsError(true)
@@ -176,7 +176,11 @@ export default function MyPage() {
             setErrorMessage("기존 닉네임과 동일합니다. 확인해주세요.")
             return
         }
-
+        if (nickName.toString().length > nickNameLength) {
+            setIsError(true)
+            setErrorMessage("닉네임은 12자 이내로 입력해주세요.")
+            return
+        }
 
 
         else {
@@ -203,7 +207,7 @@ export default function MyPage() {
             setErrorMessage("닉네임을 입력해주세요")
             return
         }
-        if (nickName.toString().length >= nickNameLength) {
+        if (nickName.toString().length > nickNameLength) {
             setIsError(true)
             setErrorMessage("닉네임은 12자 이내로 입력해주세요.")
         }
@@ -240,6 +244,18 @@ export default function MyPage() {
     }, [nickName])
 
 
+   
+
+
+
+
+
+
+
+
+
+
+
     //  -----  이미지 로드
     const [profileImgUrl, setProfileImgUrl] = useState('');
     const [imageFile, setImageFile] = useState()
@@ -258,63 +274,63 @@ export default function MyPage() {
     const updateUserData = async () => {
 
 
-     
 
 
-            const response = await axios.put(`https://api.habiters.store/users/me`,
-                {
-                    // "email" : email,
-                    "nickName": nickName,
-                    // "profileImgUrl": profileImgUrl
-                }
-                // formData
-                , {
-                    headers: { "Content-Type": 'application/json', Authorization: 'Bearer ' + accessToken }
-                })
-                .then(
-                    setPopUp({ summary: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
-                )
-                .catch(function (error) {
-                    if (error.response) { // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.
-                        // console.log(error.response.data.msg);
-                        // console.log(error.response.status);
-                        // console.log(error.response.headers);
 
-                        // setPopUp({ summary: '닉네임 수정 실패', content: error.response.data.msg })
-                        setIsError(() => true)
-                        setErrorMessage("이미 사용중인 닉네임입니다. 다른 이름을 입력해주세요.")
+        const response = await axios.put(`https://api.habiters.store/users/me`,
+            {
+                // "email" : email,
+                "nickName": nickName,
+                // "profileImgUrl": profileImgUrl
+            }
+            // formData
+            , {
+                headers: { "Content-Type": 'application/json', Authorization: 'Bearer ' + accessToken }
+            })
+            .then(
+                setPopUp({ summary: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
+            )
+            .catch(function (error) {
+                if (error.response) { // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.
+                    // console.log(error.response.data.msg);
+                    // console.log(error.response.status);
+                    // console.log(error.response.headers);
 
-                        return
-                    } else if (error.request) {
-                        // 요청이 전송되었지만, 응답이 수신되지 않았습니다. 
-                        // 'error.request'는 브라우저에서 XMLHtpRequest 인스턴스이고,
-                        // node.js에서는 http.ClientRequest 인스턴스입니다.
+                    // setPopUp({ summary: '닉네임 수정 실패', content: error.response.data.msg })
+                    setIsError(() => true)
+                    setErrorMessage("이미 사용중인 닉네임입니다. 다른 이름을 입력해주세요.")
 
-                        // console.log(error.request);
-                        return
-                    } else {
-                        // 오류가 발생한 요청을 설정하는 동안 문제가 발생했습니다.
-
-                        // console.log('Error', error.message);
-                        return
-
-                    }
-
-
-                    // console.log(error.config);
                     return
-                })
+                } else if (error.request) {
+                    // 요청이 전송되었지만, 응답이 수신되지 않았습니다. 
+                    // 'error.request'는 브라우저에서 XMLHtpRequest 인스턴스이고,
+                    // node.js에서는 http.ClientRequest 인스턴스입니다.
+
+                    // console.log(error.request);
+                    return
+                } else {
+                    // 오류가 발생한 요청을 설정하는 동안 문제가 발생했습니다.
+
+                    // console.log('Error', error.message);
+                    return
+
+                }
+
+
+                // console.log(error.config);
+                return
+            })
 
 
 
-            // console.log("항상 나오나?")
-            console.log(response)
+        // console.log("항상 나오나?")
+        console.log(response)
 
 
 
 
 
-        
+
 
 
         return response
@@ -358,7 +374,8 @@ export default function MyPage() {
         <>
             <main>
 
-                <Main>
+                <Main
+                >
 
                     <Title className={'headline1'}>
                         마이페이지
@@ -385,15 +402,20 @@ export default function MyPage() {
                                 </Label>
 
 
-                                <div>
+                                <div >
 
 
                                     <Input
+                                      
                                         name="email"
                                         onChange={onChangeRecoil}
                                         value={email}
                                         placeholder={emailInputPlaceHolder}
                                         isEditable={isEditable}
+
+
+                                       
+
 
                                     ></Input>
 
@@ -418,7 +440,7 @@ export default function MyPage() {
                                             width={`292px`}
                                             isError={isError}
                                             errorMessage={errorMessage}
-                                            length={nickNameLength}
+                                        // length={nickNameLength}
 
                                         ></Input>
 

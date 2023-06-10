@@ -15,13 +15,53 @@ export default function Inputs(props) {
 
     const [inputValues, setInputValues] = useRecoilState(InputValue)
     const [isValueNull, setIsValueNull] = useState(true)
-    const [isOnFocus, setIsOnFocus] = useState(false)
+    const [isOnFocus, setIsOnFocus] = useState(false);
     const [isError, setisError] = useState(false);
 
 
 
 
+    // const [inputIconShow, setInputIconShow] = useState(false)
+    
+ 
+
+    const useOutsideClick = ({ onClickOutside }) => {
+        const ref = useRef(null);
+
+        const handleClick = useCallback(
+            e => {
+                const inside = ref?.current?.contains(e.target);
+                // const inside = e.target.name == "nickName";
+                // const inside = e.target;
+                if (inside){
+                    console.log(inside)
+                    setIsOnFocus(true)
+                    // console.log(inputIconShow)
+                    return;
+                } 
+                setIsOnFocus(false)
+                onClickOutside();
+            },
+            [onClickOutside, ref]
+        );
+
+        useEffect(() => {
+            document.addEventListener("click", handleClick);
+
+            return () => document.removeEventListener("click", handleClick);
+        }, [handleClick]);
+
+        return ref;
+    };
+
+
    
+    const ref = useOutsideClick({
+        onClickOutside: () => {
+            console.log("outside 가 클릭되었음!");
+        }
+    });
+
 
   
 
@@ -46,7 +86,7 @@ export default function Inputs(props) {
         // setIsValueNull(false)
         // }
         // autocompleteOn()
-       
+      
      })  
 
      const onChange = (e) => {
@@ -87,12 +127,13 @@ export default function Inputs(props) {
     return (
         <>
 
-             <InputWrap>
+             <InputWrap  >
 
                 <InputBox
+                ref={ref}
                 // {()=>setIsOnFocus(false)}
                 >
-                    {!isValueNull  && isOnFocus && !props.isError &&
+                    {!isValueNull  && isOnFocus && !props.isError && 
                         <span
                             className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
                             onClick={removeValue} />}
@@ -121,7 +162,7 @@ export default function Inputs(props) {
 
 
 
-                    {props.isError &&
+                    {props.isError && 
                         <ErrorIcon
                             className="icon-m icon-error-colored" 
                             onClick={onFocus}/>}

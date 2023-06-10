@@ -12,7 +12,7 @@ export const HeaderWrap = styled.div`
     }
     `
 export const HeaderContent = styled.div`
-    width: 1108px;
+    width: 1180px;
     display: flex;
     align-items: center;
     justify-content: space-between;

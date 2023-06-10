@@ -7,8 +7,8 @@ export const TextareaBox = styled.div`
     /* color: var(--color-black4); */
     color : ${(props) => props.isError === true ? `var(--color-error)` : `var(--color-black4)`};
     /* width: auto ; */
-    width: ${(props) => props.width || `239px` };
-    margin: ${(props) => props.margin || 0 };
+    width: ${(props) => props.width || `239px`};
+    margin: ${(props) => props.margin || 0};
     
     box-sizing: border-box;
     
@@ -35,14 +35,14 @@ export const TextareaDefault = styled.textarea`
     border: ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `solid 1px var(--color-black7)`};
     color : var(--color-black2);
     /* color : ${(props) => props.isError === true ? `var(--color-error)` : `var(--color-black2)`}; */
-    background-color:${(props)=>props.diaryState === true? `var(--color-black8)`: 'none'};
+    background-color:${(props) => props.diaryState === true ? `var(--color-black8)` : 'none'};
 
     &:focus{
         outline: none;
     }
     &:focus-visible {
-        /* outline: none; */
-    outline: ${(props) => props.isError === true ? `none` : `solid 1px var(--color-black4)`};
+        border :  ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `1px solid var(--color-black4)`};
+        outline: none;
     }
     &::placeholder {
     /* color: var(--color-black4); */

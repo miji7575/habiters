@@ -4,6 +4,16 @@
 /* header */
 --header-height: 90px;
 
+
+/* toggle */
+--radious: 32px;
+--toggle-width : 500px;
+--toggle-height: 60px;
+
+--tab-width : 500px;
+--tab-height: 60px;
+
+
 /* color */
   --color-purple1 : #6F50ED;
   --color-purple2 : #937CF1;
@@ -41,7 +51,20 @@
   --color-info: #387FEA;
   --color-success: #1CCC78;
   --color-warning: #F99A2A;
+
+
+
+
 }
+
+
+
+:root {
+
+  
+}
+
+
 
 .color-purple1 {color: #6F50ED;}
 .color-purple2 {color: #937CF1;}

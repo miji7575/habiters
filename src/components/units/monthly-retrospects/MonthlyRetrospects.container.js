@@ -24,7 +24,7 @@ export default function MonthlyRetrospects(props) {
                 }
             )
             setUserRetrospect(() => response.data.data)
-
+            console.log(response.data.data)
         }
         return
     }
@@ -42,19 +42,23 @@ export default function MonthlyRetrospects(props) {
     const todayMonth = ('00' + (Number(todayData.getMonth() + 1))).slice(-2)
     const todayDate = ('00' + (Number(todayData.getDate()))).slice(-2)
     const Today = todayData.getFullYear() + "-" + todayMonth + "-" + todayDate
+    
 
-    const checkTodayRetrospectsExist = async () => {
-        for (const [key, value] of Object.entries(userRetrospect)) {
-            if (value.createDate.includes(Today)) {
-                setTodayRetrospectState(true)
-                return
-            }
-        }
-    }
-    useEffect(() => {
-        checkTodayRetrospectsExist()
-        console.log("test")
-    },[userRetrospect])
+    // const checkTodayRetrospectsExist = async () => {
+    //     for (const [key, value] of Object.entries(userRetrospect)) {
+    //         console.log(value.createDate)
+    //         console.log(yesterday)
+    //         if (value.createDate.includes(yesterday)) {
+    //             console.log((value.createDate.includes(yesterday)))
+    //             setTodayRetrospectState(true)
+    //             return
+    //         }
+    //     }
+    // }
+    // useEffect(() => {
+    //     checkTodayRetrospectsExist()
+    //     console.log("test")
+    // },[userRetrospect])
 
 
     // ----- 오늘 작성한 글이 있을 때 입력 막기
