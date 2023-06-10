@@ -61,12 +61,12 @@ export default function SignupPage() {
     const getAccessToken = async () => {
         setAccessToken(() => router.query.accessToken)
         // console.log("토큰 : " + accessToken)
-        if (accessToken) {
-            localStorage.setItem("accessToken", accessToken)
-            if (localStorage.getItem("accessToken")) {
-                setAccessToken(localStorage.getItem("accessToken") || "")
-            }
-        }
+        // if (accessToken) {
+        //     localStorage.setItem("accessToken", accessToken)
+        //     if (localStorage.getItem("accessToken")) {
+        //         setAccessToken(localStorage.getItem("accessToken") || "")
+        //     }
+        // }
     }
 
 
