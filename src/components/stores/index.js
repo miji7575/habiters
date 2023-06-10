@@ -14,7 +14,7 @@ export const localStorage =
 
 
 export const { persistAtom } = recoilPersist({
-    storage: localStorage,
+    storage: sessionStorage,
 });
 
 
