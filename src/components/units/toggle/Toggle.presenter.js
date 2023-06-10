@@ -1,5 +1,5 @@
 
-import { ToggleBox } from './Toggle.styles'
+import { ToggleContainer, ToggleBox, ToggleBtn, Test } from './Toggle.styles'
 
 
 export default function MyHabitToggleUI(props) {
@@ -11,23 +11,39 @@ export default function MyHabitToggleUI(props) {
         // html 부분을 여기에 담아라
         <div>
 
-            <ToggleBox>
-                <div className="a-tab-box headline5 ">
+            <ToggleContainer>
+                <ToggleBox className="headline5 ">
 
-                    <input type="radio" id="트래커" name="tabs" checked={props.monthlyHabitTrackerChecked} hidden />
+                    {/* <input type="radio" id="트래커" name="tabs" checked={props.monthlyHabitTrackerChecked} hidden />
                     <label HTMLfor="트래커"
-                    onClick={props.MonthlyHabitTrackerOn}>
-                        <div className="a-tab-content" >월간 해빗 트래커</div>
-                    </label>
+                        onClick={props.MonthlyHabitTrackerOn}>
 
-                    <input type="radio" id="회고" name="tabs" checked={props.monthlyRetrospectsChecked} hidden />
+                    </label> */}
+                    <Test
+                     monthlyHabitTrackerChecked={props.monthlyHabitTrackerChecked}
+                     monthlyRetrospectsChecked={props.monthlyRetrospectsChecked}
+                     ></Test>
+
+                    <ToggleBtn
+                        onClick={props.MonthlyHabitTrackerOn}
+                        monthlyHabitTrackerChecked={props.monthlyHabitTrackerChecked}>
+                        월간 해빗 트래커
+                    </ToggleBtn>
+
+                    {/* <input type="radio" id="회고" name="tabs" checked={props.monthlyRetrospectsChecked} hidden />
                     <label HTMLfor="회고"
-                     onClick={props.MonthlyRetrospectsOn}>
+                        onClick={props.MonthlyRetrospectsOn}>
                         <div className="a-tab-content">월간 회고</div>
-                    </label>
+                    </label> */}
 
-                </div>
-            </ToggleBox>
+                    <ToggleBtn
+                        onClick={props.MonthlyRetrospectsOn}
+                        monthlyRetrospectsChecked={props.monthlyRetrospectsChecked}>
+                        월간 회고
+                    </ToggleBtn>
+
+                </ToggleBox>
+            </ToggleContainer>
         </div>
     )
 

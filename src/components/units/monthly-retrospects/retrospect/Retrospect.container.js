@@ -22,14 +22,55 @@ export default function Retrospect(props) {
     const [isEditable, setIsEditable] = useState(false)
     const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectData)
 
+    const today = props.Today
+    const yesterday = today.slice(0,8) + ('00' + (Number(today.slice(-2) -1))).slice(-2);;
+   
+
+    const createDate = props.date;
+
+
+    const createDateCheck = () => {
+       
+        switch(createDate.slice(0,10)){
+            
+            case today:
+                setIsEditable(true)
+                console.log("오늘")
+                break;
+            case yesterday:
+                let createDateToJson = new Date(createDate)
+                console.log(createDate)
+                console.log(createDateToJson)
+                console.log(createDateToJson.getHours())
+                // let aa = createDateToJson.setHours(createDateToJson.getHours()+5)
+                console.log(new Date(createDateToJson.setHours(createDateToJson.getHours()+24)))
+                // const validDate = checkDate.getHours()+24;
+                // console.log(setCheckDate(validDate))
+                setIsEditable(true)
+                console.log("어제")
+                break;
+            
+        }
+
+        // if(createDate.includes(yesterday) || createDate.includes(today)){
+        //     setIsEditable(true)
+        //     return
+        // }
+        // if(createDate.includes(today)){
+            
+        // }
+    }
+    // todayData.getFullYear() + "-" + todayMonth + "-" + ('00' + (Number(todayData.getDate())-1)).slice(-2);
+
     useEffect(() => {
         // if (props.todayRetrospectState && (props.date.includes(props.Today))) {
         // props.diaryState 없이 그냥 객체별 생성일과 오늘 날짜를 비교하는 뒤에 식만 있어도 될 것 같다
         setIsEditable(false)
-        if ((props.date.includes(props.Today))) {
-            setIsEditable(true)
-            return
-        }
+        createDateCheck();
+        // if ((createDate.includes(yesterday))) {
+        //     setIsEditable(true)
+        //     return
+        // }
 
 
     })
