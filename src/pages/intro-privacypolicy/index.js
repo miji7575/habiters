@@ -19,12 +19,17 @@ const PrivacyPolicyWrap = styled.div`
  `
 
 const PrivacyPolicyTitle = styled.div`
- color: var(--color-black1);
+  color: var(--color-black1);
   padding: 72px 0 32px 0;
+  & + div{
+    padding: 0 0 8px 0;
+  }
+
  `
 
 const PrivacyPolicySubTitle = styled.div`
  padding: 24px 0 8px 0;
+
  `
 
 
