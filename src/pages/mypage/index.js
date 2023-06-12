@@ -8,6 +8,7 @@ import axios from 'axios'
 
 import Input from '../../components/commons/inputs/Inputs.container';
 import UpdateDonePopup from './update-done-popup/UpdateDonePopup';
+import createMixins from '@material-ui/core/styles/createMixins';
 
 
 
@@ -349,18 +350,17 @@ export default function MyPage() {
     const [userRetrospect, setUserRetrospect] = useRecoilState(userRetrospectData)
     const [Selected, setSelected] = useRecoilState(SelectedDate)
     const [TodayRetrospect, setTodayRetrospect] = useRecoilState(TodayRetrospectState)
+    // const [persistAtom, setPersistAtom] = useRecoilState(persistAtom)
     // const [userState,setUserState] = useRecoilState(userState)
 
 
 
-    const logout = async () => {
-        setUser();
-        setUserHabit();
-        setUserRetrospect();
-        setSelected();
-        setTodayRetrospect();
-        setAccessToken();
+    const logout = () => {
+     
+    
+        window.sessionStorage.clear();
         router.push("/")
+
     }
 
 
