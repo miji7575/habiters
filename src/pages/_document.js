@@ -16,7 +16,7 @@ export default function Document() {
           <meta name="description" property="og:description" content="해빗트래커 기반 습관 성형 커뮤니티" />
 
           {/* <!-- 이미지 설정 --> */}
-          <meta name="image" property="og:image" content="../../public/image/habiters_ogImage.png" />
+          <meta name="image" property="og:image" content="/public/image/habiters_ogImage.png" />
 
           {/* <!-- URL 설정 --> */}
           <meta name="url" property="og:url" content="https://api.habiters.store" />
