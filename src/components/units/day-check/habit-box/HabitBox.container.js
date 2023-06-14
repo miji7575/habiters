@@ -66,8 +66,8 @@ export default function HabitBox(props) {
 
     const onHabitCheckClick = async () => {
         // console.log(props.habitId)
-
-        if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + nowSelectedDate == today)) {
+        const month = (('00' + (Number(todayMonth))).slice(-2)); 
+        if ((props.showDate.showYear + "-" + month + "-" + nowSelectedDate == today)) { //month => props.showDate.showMonth 날짜변경시 같이 변경, 현재는 오늘 습관만 체크
             // 체크해제하기
             if (isHabitChecked) {
                 await deleteHabitCheck()
@@ -113,20 +113,20 @@ export default function HabitBox(props) {
     const [habitcheckId, setHabitcheckId] = useState()
     const habitColoring = async () => {
 
-    
+        const month = (('00' + (Number(todayMonth))).slice(-2)); 
         const date = (('00' + (Number(nowSelectedDate))).slice(-2));
         setIsHabitChecked(false)
         Object.entries(props.habitChecks).map(([key, value]) => {
 
+          
            
-           
-            if (value.updatedAt.includes(year + "-" + props.showDate.showMonth + "-" + date)) {
+            if (value.updatedAt.includes(year + "-" + month + "-" + date)) { //month => props.showDate.showMonth 날짜변경시 같이 변경
                 setIsHabitChecked(true)
                 setHabitcheckId(value.id)
                 return
             }
             else {
-                if((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date == today)){
+                if((props.showDate.showYear + "-" + month + "-" + props.date == today)){ //month => props.showDate.showMonth 날짜변경시 같이 변경
                     setIsHabitChecked(false)
                 }
                 

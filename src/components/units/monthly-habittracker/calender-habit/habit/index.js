@@ -17,7 +17,8 @@ import { useState } from 'react'
     height: 44px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 32px;
     background-color: var(--color-purple2);
     `
     const HabitUpdateBtn = styled.span`

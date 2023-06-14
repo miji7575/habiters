@@ -25,7 +25,7 @@ from, 20%, 40%, 60%, 80%, 100%,to {
 export const DateBox = styled.div`
     display: inline-flex;
     align-items: center;
-    color: #000000; 
+    color: var(--color-black1); 
     gap : 4px;
 
 `

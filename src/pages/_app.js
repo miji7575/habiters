@@ -34,15 +34,6 @@ export default function App({ Component, pageProps }) {
   return (
     <>
 
-
-
-
-
-
-
-
-
-
       {/* <Global styles={ GlobalStyles }> */}
       <RecoilRoot>
         <Layout>

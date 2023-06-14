@@ -55,5 +55,5 @@ export const HabitCheckBtnGreen = styled(HabitCheckBtn)`
 
 export const HabitTitle = styled.div`
 padding-bottom: 16px;
-
+color : var(--color-black2);
 `

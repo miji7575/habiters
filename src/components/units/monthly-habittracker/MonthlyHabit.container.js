@@ -6,7 +6,7 @@ import UpdateHabitPopup from './update-habit-popup/UpdateHabitPopup';
 import DeleteHabitPopup from './delete-habit-popup/DeleteHabitpopup';
 import Popup1Btn from '../popup-1btn';
 
-import { userHabitState, userState} from '../../../components/stores';
+import { userHabitState, userHabitStateThisMonth, userState } from '../../../components/stores';
 import axios from "axios";
 
 
@@ -20,7 +20,7 @@ export default function MonthlyHabitTracker(props) {
         getUserHabit()
     }, [props.showDate])
 
-  
+
     // --- Axios get--- 유저의 habit 목록 get 
     const getUserHabit = async () => {
         if (accessToken) {
@@ -29,12 +29,38 @@ export default function MonthlyHabitTracker(props) {
                 headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
             })
             setHabits(() => response.data.data)
-         
+
         }
 
         return
     }
 
+   
+
+    const [habitsThisMonth, setHabitsThisMonth] = useRecoilState(userHabitStateThisMonth);
+
+    const getUserHabitThisMonth = async () => {
+
+        const todayYear = new Date().getFullYear()
+        const Month = new Date().getMonth() + 1
+        const todayMonth = ("00" + (Number(Month))).slice(-2)
+
+
+        if (accessToken) {
+            // console.log("토큰" + props.showDate.showMonth)
+            const response = await axios.get(`https://api.habiters.store/habits?date=${todayYear}-${todayMonth}`, {
+                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+            })
+            setHabitsThisMonth(() => response.data.data)
+
+        }
+
+        return
+    }
+
+    useEffect(()=>{
+        getUserHabitThisMonth()
+    },[])
 
 
 
@@ -118,19 +144,21 @@ export default function MonthlyHabitTracker(props) {
         setDate(date)
     }
 
-// ------- 당일습관 팝업
-const [isHabitAlertOn, setIsHabitAlertOn] = useState(false)
-const [popupMessage, setPopupMessage] = useState('')
+    // ------- 당일습관 팝업
+    const [isHabitAlertOn, setIsHabitAlertOn] = useState(false)
+    const [popupMessage, setPopupMessage] = useState('')
 
-const HabitAlertPopupOn = (props) => {
-    setPopupMessage(props)
-    setIsHabitAlertOn(true)
-}
+    const HabitAlertPopupOn = (props) => {
+        setPopupMessage(props)
+        setIsHabitAlertOn(true)
+    }
 
-const HabitAlertPopupClose = () => {
-    setIsHabitAlertOn(false)
-}
+    const HabitAlertPopupClose = () => {
+        setIsHabitAlertOn(false)
+    }
 
+
+   
 
 
     return (
@@ -158,10 +186,11 @@ const HabitAlertPopupClose = () => {
                 selectedDate={selectedDate}
 
 
-
+                moveToThisMonth={props.moveToThisMonth}
 
 
                 getUserHabit={getUserHabit}
+                getUserHabitThisMonth={getUserHabitThisMonth}
             />
 
 
@@ -185,8 +214,8 @@ const HabitAlertPopupClose = () => {
             />}
 
             {isHabitAlertOn && <Popup1Btn
-            HabitAlertPopupClose={HabitAlertPopupClose}
-            popupMessage={popupMessage}
+                HabitAlertPopupClose={HabitAlertPopupClose}
+                popupMessage={popupMessage}
             />}
         </>
 

@@ -76,6 +76,12 @@ export const userHabitState = atom({
     effects_UNSTABLE:[persistAtom]
 })
 
+export const userHabitStateThisMonth = atom({
+    key:"userhabitThisMonth",
+    default:'',
+    effects_UNSTABLE:[persistAtom]
+})
+
 // ===============받아온 user의 habit data
 export const userRetrospectData = atom({
     key:"userRetrospect",

@@ -31,6 +31,7 @@ const Content = styled.div`
 
 const Title = styled.div`
     padding: 72px 0 48px 0;
+    color: var(--color-black1);
 `
 
 
@@ -47,7 +48,7 @@ export default function HabitTracker() {
     const [accessToken, setAccessToken] = useRecoilState(userState)
     const [user, setUser] = useRecoilState(userDetail);
     const [userName, setUserName] = useState("")
-   
+
 
     const router = useRouter()
 
@@ -56,13 +57,13 @@ export default function HabitTracker() {
         if (!accessToken) {
             router.push("/login")
         }
-       
+
     }, [])
 
     // user의 정보를 받으면 닉네임 보여주기
     useEffect(() => {
         setUserName(user.nickName)
-        
+
     }, [user])
 
 
@@ -70,7 +71,7 @@ export default function HabitTracker() {
 
 
 
-   
+
 
 
 
@@ -122,7 +123,7 @@ export default function HabitTracker() {
     }, [lastDate, startDay])
 
 
-
+  
 
     const makeCalender = () => {
 
@@ -141,7 +142,7 @@ export default function HabitTracker() {
 
 
 
-    // --- 이전 달
+    // --- 이전 달로 이동
     const monthDown = () => {
         setMonth(month => ('00' + (Number(month) - 1)).slice(-2));
         if (month == '01') {
@@ -150,7 +151,7 @@ export default function HabitTracker() {
         }
     }
 
-    // --- 다음 달
+    // --- 다음 달로 이동
     function monthUp() {
         setMonth(month => ('00' + (Number(month) + 1)).slice(-2));
         if (month == 12) {
@@ -159,6 +160,11 @@ export default function HabitTracker() {
         }
     }
 
+
+      // ------오늘로 이동하기 
+      const moveToThisMonth = () => {
+        setMonth( ('00' + (Number(nowDate.getMonth())+1)).slice(-2))
+    }
 
 
 
@@ -203,7 +209,7 @@ export default function HabitTracker() {
                     <Content>
 
 
-                        <Title className="headline1 color-black1">
+                        <Title className="headline1">
                             안녕하세요, {userName}님!
                         </Title>
 
@@ -215,6 +221,7 @@ export default function HabitTracker() {
 
 
                         {isMonthlyHabitTrackerOn && <MonthlyHabitTracker
+                        moveToThisMonth={moveToThisMonth}
                             showDate={showDate}
                             monthDown={monthDown}
                             monthUp={monthUp} />}

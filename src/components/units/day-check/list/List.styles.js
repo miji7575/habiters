@@ -23,6 +23,7 @@ export const TodayHabitCheckTitle = styled.div`
     box-sizing: border-box;
     position: absolute;
     top: 0;
+    color: var(--color-black1);
 `
 
 export const TodayHabitCheckFilterTop = styled.div`
@@ -87,15 +88,26 @@ export const TodayHabitCheckContent = styled.div`
 
 `
 
-export const NoRetrospectImgBox = styled.div`
-    /* width: 278px;*/
+export const NoHabitImgBox = styled.div`
+    
     height: 100%; 
-    padding-top: 147px;
-    /* align-items: center; */
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
     
 `
-export const NoRetrospectImg = styled.img`
-    width: 148px;
-    height: 110px;
+export const NoHabitImg = styled.img`
+    height: 54px;
+    width: 40px;
+
+`
+
+export const NoHabitContent = styled.div`
+    color: var(--color-black2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 `

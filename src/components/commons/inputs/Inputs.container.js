@@ -34,7 +34,7 @@ export default function Inputs(props) {
                 // const inside = e.target.name == "nickName";
                 // const inside = e.target;
                 if (inside){
-                    console.log(inside)
+                    // console.log(inside)
                     setIsOnFocus(true)
                     // console.log(inputIconShow)
                     return;
@@ -58,7 +58,7 @@ export default function Inputs(props) {
    
     const ref = useOutsideClick({
         onClickOutside: () => {
-            console.log("outside 가 클릭되었음!");
+            // console.log("outside 가 클릭되었음!");
         }
     });
 

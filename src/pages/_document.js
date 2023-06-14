@@ -8,7 +8,22 @@ export default function Document() {
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         />
+        
+          {/* <!-- 제목 설정 --> */}
+          <meta name="title" property="og:title" content="Habiters" />
 
+          {/* <!-- 설명문 설정 --> */}
+          <meta name="description" property="og:description" content="해빗트래커 기반 습관 성형 커뮤니티" />
+
+          {/* <!-- 이미지 설정 --> */}
+          <meta name="image" property="og:image" content="../../public/image/habiters_ogImage.png" />
+
+          {/* <!-- URL 설정 --> */}
+          <meta name="url" property="og:url" content="https://api.habiters.store" />
+
+          {/* <!-- 언어 설정 --> */}
+          <meta property="og:locale" content="ko_KR" />
+        
 
         {/* <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />

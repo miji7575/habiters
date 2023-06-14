@@ -1,5 +1,5 @@
 
-import { TodayHabitCheckContainer, TodayHabitCheckTitle, TodayHabitCheckFilterTop, TodayHabitCheckFilterBottom, TodayHabitCheckContent, NoRetrospectImg, NoRetrospectImgBox } from './List.styles'
+import { TodayHabitCheckContainer, TodayHabitCheckTitle, TodayHabitCheckFilterTop, TodayHabitCheckFilterBottom, TodayHabitCheckContent, NoHabitImgBox, NoHabitImg, NoHabitContent } from './List.styles'
 import HabitBox from '../habit-box/HabitBox.container';
 import { HabitListBox } from '../../monthly-habittracker/calender-habit/CalenderHabit.styles';
 
@@ -36,9 +36,14 @@ export default function DayCheckUI(props) {
 
                     {/* 등록된 habit이 없을 때 이미지 */}
                     {props.isHabitNull &&
-                        <NoRetrospectImgBox>
-                            <NoRetrospectImg className="img-no-retrospect" src="/image/img-no-retrospect.svg" alt="일별확인없음" />
-                        </NoRetrospectImgBox>
+                        <NoHabitImgBox>
+                            <NoHabitImg src="/image/img-no-content.svg" alt="일별확인없음" />
+                            <NoHabitContent className='body3-regular'>
+                                <div>아직 작성된 회고가 없네요!</div>
+                                <div>회고를 작성해주세요.</div>
+                                
+                            </NoHabitContent>
+                        </NoHabitImgBox>
                     }
 
 

@@ -53,7 +53,8 @@ export const DayDateBox = styled.span`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    color : var(--color-black1);
+    /* cursor: pointer; */
 `
 
 export const CalenderDay = styled.span`

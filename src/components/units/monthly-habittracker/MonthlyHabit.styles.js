@@ -25,6 +25,14 @@ export const HabitTrackerHeader = styled.div`
 
 export const AddHabitBtn = styled.div`
     position: absolute;
-    width: 160px;
+    width: 156px;
     right: 0;
+    padding: 0;
+`
+
+export const MoveTodayBtn = styled.div`
+    position: absolute;
+    width: 57px;
+    right: 168px;
+    padding: 0;
 `
