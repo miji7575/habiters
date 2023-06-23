@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { userState, userDetail, InputValue, userHabitState, userRetrospectData, SelectedDate, TodayRetrospectState } from '../../components/stores';
+import { userAccessToken, userDetail, InputValue, userHabitState, userRetrospectData, SelectedDate, TodayRetrospectState } from '../../components/stores';
 import axios from 'axios'
 
 
@@ -270,7 +270,7 @@ export default function MyPage() {
 
 
     //  ----- Axios put(update) -- 회원정보 수정
-    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
 
     const updateUserData = async () => {
 

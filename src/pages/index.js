@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { userState, userDetail, userHabitState } from '../components/stores/index';
+import { userAccessToken, userDetail, userHabitState } from '../components/stores/index';
 import { useEffect, useRef, useState } from 'react';
 
 import { css, keyframes } from '@emotion/react';
@@ -184,7 +184,7 @@ export default function IntroPage() {
     const router = useRouter()
 
 
-    const [accessToken, setAccessToken] = useRecoilState(userState);
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken);
 
 
 

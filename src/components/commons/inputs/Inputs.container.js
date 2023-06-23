@@ -69,10 +69,11 @@ export default function Inputs(props) {
 
 //   ----- 삭제 icon 클릭시 전체삭제
     const removeValue = async (e) => {
-   
+
         setInputValues({...inputValues,
             [props.name]:''});
-            setIsValueNull(true)
+        setIsValueNull(true)
+
 
     }
     
@@ -86,11 +87,18 @@ export default function Inputs(props) {
         // setIsValueNull(false)
         // }
         // autocompleteOn()
+
       
      })  
 
      const onChange = (e) => {
-        props.onChange(e)
+        // props.onChange(e)
+        // ================================
+        const { value, name } = e.target;
+        setInputValues({ ...inputValues, [name]: value })
+        // ================================
+
+
         if(inputValues[props.name] == ''){
             setIsValueNull(true)
         }

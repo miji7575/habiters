@@ -2,8 +2,8 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userState, InputValue } from '../../../../components/stores';
-import Input from '../../../commons/inputs/Inputs.container';
+import { userState, InputValue } from '../../../../stores';
+import Input from '../../../../commons/inputs/Inputs.container';
 
 
 // ============================== Style  ==============================
@@ -55,9 +55,27 @@ const PopupBtn = styled.div`
     justify-content: center;
     `
 
+
+
+
+
+
+
+
+
 export default function AddNewHabitPopup(props) {
 
     // ============================== Function  ==============================
+
+
+      
+    const [popUpTitle, setPopUpTitle] = useState(props.popUpTitle)
+    const [popUpSubTitle, setPopUpSubTitle] = useState(props.popUpSubTitle)
+    const [popUpPlaceHolder, setPopUpPlaceHolder] = useState(props.popUpPlaceHolder)
+    const [popUpBtnText, setPopUpBtnText] = useState(props.popUpBtnText)
+
+
+
 
 
 
@@ -66,7 +84,7 @@ export default function AddNewHabitPopup(props) {
     const postHabit = async () => {
         if (accessToken) {
             const response = await axios.post('https://api.habiters.store/habits', {
-                "content": newInput["habitName"]
+                "content": habitName
             }, {
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ` + accessToken },
             })
@@ -78,7 +96,6 @@ export default function AddNewHabitPopup(props) {
 
 
     // ----- input
-    const placeholder = "만드실 습관을 10자 이내로 입력해주세요.";
     const [newInput, setNewInput] = useRecoilState(InputValue)
     const { habitName } = newInput;
 
@@ -88,64 +105,26 @@ export default function AddNewHabitPopup(props) {
     const onChange = (e) => {
         const { value, name } = e.target;
         setNewInput({ ...newInput, [name]: value })
-        setIsError(false)
+        // setIsError(false)
     };
 
 
 
 
 
-    // ----- 습관 등록하기
+    // ----- habit 유효성 검사
     const [isError, setIsError] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
 
-    // ------Habit 추가하기
-    const addNewhabit = async () => {
-
-        if (!newInput["habitName"] || newInput["habitName"].trim().length == 0) {
-            // alert("내용을 입력해주세요");
-            setIsError(true)
-            setErrorMessage("습관 이름을 작성해주세요")
-            return
-        }
-        if (newInput["habitName"].length > 10) {
-            // alert("습관 이름은 10자 이내만 가능합니다")
-            setIsError(true)
-            setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
-            return
-        }
-        else {
-            await postHabit()
-            setNewInput(() => '')
-            props.getUserHabit();
-            props.addNewHabitPopupClose();
-            return
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    // ----- habit 유효성 검사
-
     const habitInputCheck = () => {
-        // console.log(nickName.toString().length)
+
+
         if (!habitName) {
-            // alert("내용을 입력해주세요");
             setIsError(true)
             setErrorMessage("습관 이름을 작성해주세요")
             return
         }
         if (habitName.length > 10) {
-            // alert("습관 이름은 10자 이내만 가능합니다")
             setIsError(true)
             setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
             return
@@ -155,20 +134,51 @@ export default function AddNewHabitPopup(props) {
             setErrorMessage("")
         }
 
+
     }
 
+
+
+
+
+    // ------Habit 추가하기
+    const addNewhabit = async () => {
+
+        habitInputCheck();
+        await postHabit()
+        await props.getUserHabit();
+        props.addNewHabitPopupClose();
+
+    }
+
+
+
+
+
+
+
+
+    // habitName이 바뀔 때 마다 habitInputCheck() 유효성검사 실행.
     useEffect(() => {
         habitInputCheck()
     }, [habitName])
 
 
-
+    // Recoil의 inputValue 지우고 나오기
+    useEffect(() => {
+        return () => {
+            setNewInput(() => '')
+        }
+    }, [])
 
     // ----- 팝업창 닫기
     function addNewHabitPopupClose() {
         setNewInput('')
         props.addNewHabitPopupClose();
     }
+
+
+
 
 
 
@@ -194,7 +204,7 @@ export default function AddNewHabitPopup(props) {
                         <Input
                             name="habitName"
                             value={habitName}
-                            placeholder={placeholder}
+                            placeholder={popUpPlaceHolder}
                             onChange={onChange}
 
 

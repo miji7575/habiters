@@ -1,38 +1,17 @@
 import { useState, useEffect } from "react"
-import styled from '@emotion/styled'
 import axios from 'axios';
-import { useRecoilState } from "recoil";
-import { userDetail, userState } from '../../components/stores';
 import { useRouter } from "next/router";
+import { userDetail, userAccessToken, visibleDateState } from '../../components/stores';
+import { useRecoilState } from "recoil";
 
+import { Main, Content, Title } from './myhabit.styles';// 페이지 css
 
 
 import MyHabitToggle from '../../components/units/toggle/Toggle.container';
-import MonthlyHabitTracker from '../../components/units/monthly-habittracker/MonthlyHabit.container';
+import MonthlyHabitTracker from '../../components/myhabit/monthly-habit-tracker/MonthlyHabit.container';
 import MonthlyRetrospects from '../../components/units/monthly-retrospects/MonthlyRetrospects.container';
 
 
-
-// ============================== Style ==============================
-const Main = styled.div`
-    display: flex;
-    justify-content: center;
-
-`
-
-const Content = styled.div`
-    width: 60vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 200px;
-
-`
-
-const Title = styled.div`
-    padding: 72px 0 48px 0;
-    color: var(--color-black1);
-`
 
 
 
@@ -45,9 +24,9 @@ export default function HabitTracker() {
 
     // ============================== Function  ==============================
 
-    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     const [user, setUser] = useRecoilState(userDetail);
-    const [userName, setUserName] = useState("")
+
 
 
     const router = useRouter()
@@ -60,41 +39,32 @@ export default function HabitTracker() {
 
     }, [])
 
-    // user의 정보를 받으면 닉네임 보여주기
-    useEffect(() => {
-        setUserName(user.nickName)
-
-    }, [user])
 
 
 
 
 
 
+    // =====================  달력  =======================
+
+    // ===================RECOIL 씀
+
+    const [visibleDate, setVisibleDate] = useRecoilState(visibleDateState);
 
 
 
 
 
-
-
-
-
-    // ----- 달력
-
-    // 달력
-    const nowDate = new Date();
-    const [year, setYear] = useState(nowDate.getFullYear()); //현재 연도
-    // const [month, setMonth] = useState((nowDate.getMonth() + 1).padStart(2,'0')); //현재 월
-    const [month, setMonth] = useState(nowDate.toJSON().substring(5, 7)); //현재 월
-    const [date, setDate] = useState(nowDate.getDate()); //현제 일자
+    // ===================RECOIL XXXXXXXXXXXXXXXXXXXXXXX
+    // 달력에필요한 변수 선언
+    const currentDate = new Date();
+    const [year, setYear] = useState(currentDate.getFullYear()); //현재 연도
+    const [month, setMonth] = useState(currentDate.toJSON().substring(5, 7)); //현재 월
+    const [date, setDate] = useState(currentDate.getDate()); //현재 일자
 
     const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
     // const [startDay, setStartDay] = useState(WEEKDAY[new Date(year, month-1, 1).getDay()]); //월의 시작 요일
     const [startDay, setStartDay] = useState(new Date(year, month - 1, 1).getDay()); //월의 시작 요일
-
-
-
     const [lastDate, setLastDate] = useState(new Date(year, month, 0).getDate());
     const [dates, setDates] = useState([])
     const [days, setDays] = useState([]);
@@ -102,20 +72,55 @@ export default function HabitTracker() {
     let newDates = []
     let newDays = []
 
-    const showDate = {
-        showYear: year,
-        showMonth: month,
-        showDays: days,
-        showDates: dates,
-        startday: startDay,
-        lastDate: lastDate
-    }
+    const [makeCalenderDone, setMakeCalenderDone] = useState(false)
+
+    // const showDate = {
+    // //     // showYear: year,
+    // //     // showMonth: month,
+    // //     // showDays: days,
+    // //     // showDates: dates,
+    // //     // startday: startDay,
+    // //     // lastDate: lastDate
+
+    //     year: year,
+    //     month: month,
+    //     days: days,
+    //     startDay: startDay,
+    //     dates: dates,
+    //     lastDate: lastDate
+    // }
+
+    useEffect(() => {
+        // makeCalender();
+        setVisibleDate(
+            prevState => ({
+                ...prevState,
+                year: year,
+                month: month,
+                days: days,
+                startDay: startDay,
+                dates: dates,
+                lastDate: lastDate
+            }));
+
+
+
+
+
+    }, [dates])
+
+
+
+
+    useEffect(() => {
+        console.log(visibleDate)
+    })
 
 
     useEffect(() => {
         setLastDate(() => (new Date(year, month, 0).getDate()));
         setStartDay(() => new Date(year, month - 1, 1).getDay())
-        // getUserHabit();
+
     }, [year, month])
 
     useEffect(() => {
@@ -123,8 +128,9 @@ export default function HabitTracker() {
     }, [lastDate, startDay])
 
 
-  
 
+
+    // -----달력 만들기
     const makeCalender = () => {
 
         for (let i = 1; i <= lastDate; i++) {
@@ -133,11 +139,13 @@ export default function HabitTracker() {
         }
         setDates(newDates);
         setDays(newDays)
+
+        // setMakeCalenderDone(true)
     }
 
     const resetCalender = () => {
-        setYear(nowDate.getFullYear())
-        setMonth(nowDate.toJSON().substring(5, 7))
+        setYear(currentDate.getFullYear())
+        setMonth(currentDate.toJSON().substring(5, 7))
     }
 
 
@@ -161,9 +169,9 @@ export default function HabitTracker() {
     }
 
 
-      // ------오늘로 이동하기 
-      const moveToThisMonth = () => {
-        setMonth( ('00' + (Number(nowDate.getMonth())+1)).slice(-2))
+    // ------오늘로 이동하기 
+    const moveToThisMonth = () => {
+        setMonth(('00' + (Number(currentDate.getMonth()) + 1)).slice(-2))
     }
 
 
@@ -210,7 +218,7 @@ export default function HabitTracker() {
 
 
                         <Title className="headline1">
-                            안녕하세요, {userName}님!
+                            안녕하세요, {user.nickName}님!
                         </Title>
 
 
@@ -221,8 +229,8 @@ export default function HabitTracker() {
 
 
                         {isMonthlyHabitTrackerOn && <MonthlyHabitTracker
-                        moveToThisMonth={moveToThisMonth}
-                            showDate={showDate}
+                            moveToThisMonth={moveToThisMonth}
+                            visibleDate={visibleDate}
                             monthDown={monthDown}
                             monthUp={monthUp} />}
 

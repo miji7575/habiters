@@ -21,75 +21,98 @@ export const { persistAtom } = recoilPersist({
 /* ===============================그거 포트번호 ============================= */
 export const URL = atom({
     key: 'url',
-    default:'https://api.habiters.store',
-    effects_UNSTABLE: [persistAtom],
+    default: 'https://api.habiters.store',
+    // effects_UNSTABLE: [persistAtom],
 })
 
-// ----토큰을 받아오는 용도
-export const userState = atom({
+// ====================   User  ====================
+
+// --- User AccessToken
+export const userAccessToken = atom({
     key: 'accessToken',
     default: '',
     effects_UNSTABLE: [persistAtom],
 });
 
-// ---------------------------------------------------안씀
-export const accessTokenState = atom({
-    key: "accessTokenState",
-    default: ""
+// --- User 정보
+export const userDetail = atom({
+    key: "user",
+    default: "",
+    // effects_UNSTABLE:[persistAtom]
+})
+
+
+// ==================== Habit 
+
+// --- User의 Habit
+export const userHabitState = atom({
+    key: "userhabit",
+    default: '',
+    // effects_UNSTABLE:[persistAtom]
+})
+
+// --- User의 이번달 Habit
+export const userHabitStateThisMonth = atom({
+    key: "userhabitThisMonth",
+    default: '',
+    // effects_UNSTABLE:[persistAtom]
+})
+
+// ==================== Retrospect
+// --- User의 회고List
+export const userRetrospectData = atom({
+    key: "userRetrospect",
+    default: '',
+    // effects_UNSTABLE:[persistAtom]
+})
+
+// =======오늘 회고를 작성했는지 여부
+export const TodayRetrospectState = atom({
+    key: "todayRetrospectState",
+    default: false
 })
 
 
 
-// ========================================
-// --- Textarea Value
+
+// ====================   Input, Textarea  ====================
+// ==================== Textarea Value
 export const TextareaValueState = atom({
 
     key: 'textareaInput',
     default: '',
 })
 
-// --- input Value
+// ==================== input Value
 export const InputValue = atom({
     key: 'value',
     default: '',
 })
 
-// =======================================
-// ============================================
 
 
 
 
 
-// ============ 받아온 user의 자기소개 data===============================
 
-export const userDetail = atom({
-    key: "user",
-    default:"",
-    effects_UNSTABLE:[persistAtom]
+
+
+
+// ====================   날짜 관련  ====================
+
+
+// 렌더링 되는 날짜 
+export const visibleDateState = atom({
+    key: 'VisibleDate',
+    default: {
+        year: '',
+        month: '',
+        days: [],
+        startDay: '',
+        dates: [],
+        lastDate: ''
+    }
 })
-
-// ===============받아온 user의 habit data
-export const userHabitState = atom({
-    key:"userhabit",
-    default:'',
-    effects_UNSTABLE:[persistAtom]
-})
-
-export const userHabitStateThisMonth = atom({
-    key:"userhabitThisMonth",
-    default:'',
-    effects_UNSTABLE:[persistAtom]
-})
-
-// ===============받아온 user의 habit data
-export const userRetrospectData = atom({
-    key:"userRetrospect",
-    default:'',
-    effects_UNSTABLE:[persistAtom]
-})
-
-
 
 
 
@@ -97,16 +120,5 @@ export const userRetrospectData = atom({
 // 선택한 날짜
 export const SelectedDate = atom({
     key: "date",
-    default:new Date().getDate()
+    default: new Date().getDate()
 })
-
-
-// =======오늘 회고를 작성했는지 여부
-export const TodayRetrospectState = atom({
-    key: "todayRetrospectState",
-    default:false
-})
-
-
-
-

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userState, accessTokenStatem, URL, userDetail } from '../../components/stores';
+import { userAccessToken, accessTokenStatem, URL, userDetail } from '../../components/stores';
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -54,7 +54,7 @@ export default function LoginPage() {
 
     // ----- 토큰을 로컬에 저장
 
-    const [accessToken, setAccessToken] = useRecoilState(userState);
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken);
 
     const getAccessToken = async () => {
         setAccessToken(() => router.query.accessToken)
@@ -103,12 +103,12 @@ export default function LoginPage() {
 
     // Push전에 수정!!!
     // =====  소셜로그인 주소
-    const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://habiters.vercel.app/login"
-    const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/login"
-    const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/login"
-    // const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3001/login"
-    // const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3001/login"
-    // const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://localhost:3001/login"
+    // const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://habiters.vercel.app/login"
+    // const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/login"
+    // const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/login"
+    const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/login"
+    const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3000/login"
+    const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://localhost:3000/login"
 
     const kakaoLogin = async () => {
         router.push(KAKAO_LOGIN)

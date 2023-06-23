@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback } from "react"
 import { useRecoilState, useRecoilValue, atom } from 'recoil';
 import MonthlyHabitTrackerUI from "./MonthlyHabit.presenter"
-import AddNewHabitPopup from './addnewHabitPopup/AddNewHabitPopup';
-import UpdateHabitPopup from './update-habit-popup/UpdateHabitPopup';
-import DeleteHabitPopup from './delete-habit-popup/DeleteHabitpopup';
-import Popup1Btn from '../popup-1btn';
-
-import { userHabitState, userHabitStateThisMonth, userState } from '../../../components/stores';
+import { userHabitState, userHabitStateThisMonth, userAccessToken } from '../../../components/stores';
 import axios from "axios";
+
+// POPUP
+import AddHabitPopup from './popup/addHabit';//--해빗추가 
+import UpdateHabitPopup from './popup/updateHabit';// -- 해빗 수정
+import DeleteHabitPopup from './popup/deleteHabit';//-- 해빗삭제
+import HabitAlert from './popup/habitAlert';//-- 해빗 ALert
 
 
 
@@ -15,7 +16,7 @@ export default function MonthlyHabitTracker(props) {
 
 
     const [habits, setHabits] = useRecoilState(userHabitState)
-    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     useEffect(() => {
         getUserHabit()
     }, [props.showDate])
@@ -35,7 +36,7 @@ export default function MonthlyHabitTracker(props) {
         return
     }
 
-   
+
 
     const [habitsThisMonth, setHabitsThisMonth] = useRecoilState(userHabitStateThisMonth);
 
@@ -58,9 +59,9 @@ export default function MonthlyHabitTracker(props) {
         return
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getUserHabitThisMonth()
-    },[])
+    }, [])
 
 
 
@@ -158,7 +159,7 @@ export default function MonthlyHabitTracker(props) {
     }
 
 
-   
+
 
 
     return (
@@ -167,6 +168,7 @@ export default function MonthlyHabitTracker(props) {
 
 
             <MonthlyHabitTrackerUI
+                // popup실행함수
                 addNewHabitPopupOn={addNewHabitPopupOn}
                 updateHabitPopupOn={updateHabitPopupOn}
                 deleteHabitPopupOn={deleteHabitPopupOn}
@@ -194,12 +196,17 @@ export default function MonthlyHabitTracker(props) {
             />
 
 
+            {/* ------------------------------  Popup  ------------------------------ */}
 
-            {isaddNewHabitPopupOn && <AddNewHabitPopup
+            {/*  습관 등록 팝업 */}
+            {isaddNewHabitPopupOn && <AddHabitPopup
                 addNewHabitPopupClose={addNewHabitPopupClose}
                 getUserHabit={getUserHabit}
+
+
             />}
 
+            {/* 습관 수정 팝업 */}
             {isUpdateHabitPopupOn && <UpdateHabitPopup
                 updateHabitPopupClose={updateHabitPopupClose}
                 selectedHabitName={selectedHabitName}
@@ -207,15 +214,18 @@ export default function MonthlyHabitTracker(props) {
                 getUserHabit={getUserHabit}
             />}
 
+            {/* 습관 삭제 팝업 */}
             {isDeleteHabitPopupOn && <DeleteHabitPopup
                 deleteHabitPopupClose={deleteHabitPopupClose}
                 habitId={habitId}
                 getUserHabit={getUserHabit}
             />}
 
-            {isHabitAlertOn && <Popup1Btn
+
+            {/* 당일 이외의 Habit 체크 불가능 Alert */}
+            {isHabitAlertOn && <HabitAlert
                 HabitAlertPopupClose={HabitAlertPopupClose}
-                popupMessage={popupMessage}
+                popUpTitle={popupMessage}
             />}
         </>
 

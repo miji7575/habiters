@@ -2,7 +2,7 @@ import HeaderUI from "./Header.presenter"
 import { useRouter } from "next/router"
 import { useRecoilState, useRecoilValue } from 'recoil';
 // import { textState } from '../../../../../pages/commons/stores/store';
-import { userState, userDetail } from '../../../../components/stores';
+import { userAccessToken, userDetail } from '../../../../components/stores';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import instance from '../../../../commons/shared/Request';
@@ -11,7 +11,7 @@ import instance from '../../../../commons/shared/Request';
 export default function Header() {
 
     const router = useRouter()
-    const accessToken = useRecoilValue(userState)
+    const accessToken = useRecoilValue(userAccessToken)
     const [user, setUser] = useRecoilState(userDetail)
     const [profileImgUrl, setProfileImgUrl] = useState('');
 
