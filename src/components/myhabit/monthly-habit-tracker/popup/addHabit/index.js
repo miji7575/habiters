@@ -135,7 +135,7 @@ export default function AddHabitPopup(props) {
 
                 popUpTitle={popUpTitle}
                 popUpSubTitle={""}
-                popUpPlaceHolder={popUpPlaceHolder}
+                placeholder={popUpPlaceHolder}
                 popUpBtnText={popUpBtnText}
 
                 // inputComponent 에서 사용
@@ -147,10 +147,11 @@ export default function AddHabitPopup(props) {
 
 
                 // 닫기버튼
-                addNewHabitPopupClose={addNewHabitPopupClose}
+                popUpClose={addNewHabitPopupClose}
 
-                // 습관추가하기
-                addNewhabit={addNewhabit}
+                // 습관추가하기(버튼클릭)
+                onBtnClick ={addNewhabit}
+  
 
 
 

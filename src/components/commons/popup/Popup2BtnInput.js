@@ -54,11 +54,25 @@ gap: 8px;
 `
 
 export default function Popup2BtnInput(props) {
+    // --- 사용됨
+    // popUpTitle = 제목
+    // popUpClose = 팝업창 닫기
+    // onFisrtBtnClick = 첫번째 버튼 클릭 시 실행할 함수
+    // onSecondBtnClick = 두번째 버튼 클릭 시 실행할 함수
 
+    // -- InputComponent
+    // inputName = input의 name 
+    // value= input의 value
+    // placeholder= input의 placeholder
+    // onChange = input의 onChange
+    // isError = input의 isError State(true/false)
+    // errorMessage= input의 errorMessage
 
+    // --- 사용X
+    // popUpSubTitle = 소제목(설명) 
     return (
         <>
-          
+
 
 
             <PopupBackground>
@@ -67,14 +81,13 @@ export default function Popup2BtnInput(props) {
                     <PopupTitle>
                         <span className="headline5">{props.popUpTitle}</span>
                         <span className="icon-l icon-close-line"
-                            onClick={props.updateHabitPopupClose}></span>
+                            onClick={props.popUpClose}></span>
                     </PopupTitle>
 
                     <PopupContent>
                         <div>
                             <Input
                                 name={props.inputName}
-                                // value={habitName}
                                 value={props.value}
                                 placeholder={props.placeholder}
                                 onChange={props.onChange}
@@ -87,9 +100,9 @@ export default function Popup2BtnInput(props) {
 
                     <PopupBtnContainer>
                         <div className="btn btn-large btn-secondary-default body2-medium"
-                            onClick={props.updateHabitPopupClose}>{props.popUpFisrtBtnText}</div>
+                            onClick={props.onFisrtBtnClick}>{props.popUpFisrtBtnText}</div>
                         <div className="btn btn-large btn-primary-default body2-medium"
-                            onClick={props.updateHabit}>{props.popUpSecondBtnText}</div>
+                            onClick={props.onSecondBtnClick}>{props.popUpSecondBtnText}</div>
                     </PopupBtnContainer>
 
 

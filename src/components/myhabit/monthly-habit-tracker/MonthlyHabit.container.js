@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { useRecoilState, useRecoilValue, atom } from 'recoil';
 import MonthlyHabitTrackerUI from "./MonthlyHabit.presenter"
-import { userHabitState, userHabitStateThisMonth, userAccessToken ,visibleDateState} from '../../../components/stores';
+import { userHabitState, userAccessToken, visibleDateState, userHabitStateThisMonth } from '../../../components/stores';
 import axios from "axios";
 
 // POPUP
@@ -14,64 +14,52 @@ import HabitAlert from './popup/habitAlert';//-- 해빗 ALert
 
 export default function MonthlyHabitTracker(props) {
 
-    const [visibleDate,setVisibleDate] = useRecoilState(visibleDateState)
+    const [visibleDate, setVisibleDate] = useRecoilState(visibleDateState)
     const [habits, setHabits] = useRecoilState(userHabitState)
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
+    const [habitsThisMonth, setHabitThisMonth] = useRecoilState(userHabitStateThisMonth)
 
 
     useEffect(() => {
         getUserHabit()
-        console.log("얼마나 하는거니")
-    }, [visibleDate.month])
-
-    useEffect(()=>{
-        console.log(visibleDate)
-    },[])
+    }, [visibleDate.year, visibleDate.month])
 
 
-    // --- Axios get--- 유저의 habit 목록 get 
+
+    // --- Axios get--- 유저의 habit 목록 get (캘린더에서 사용)
     const getUserHabit = async () => {
-    
+  
+
+        getUserHabitThisMonth()
+
+
         if (accessToken && visibleDate.month && visibleDate.year) {
-            // console.log("토큰" + props.showDate.showMonth)
+
             const response = await axios.get(`https://api.habiters.store/habits?date=${visibleDate.year}-${visibleDate.month}`, {
                 headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
             })
-
-            console.log(response)
-            // setHabits(() => response.data.data)
-
+            setHabits(() => response.data.data)
+            return
         }
-
         return
     }
 
-
-
-    const [habitsThisMonth, setHabitsThisMonth] = useRecoilState(userHabitStateThisMonth);
-
+    // --- Axios get--- 유저의 이번달 habit 목록 get (일별확인에서 사용)
     const getUserHabitThisMonth = async () => {
-
-        const todayYear = new Date().getFullYear()
-        const Month = new Date().getMonth() + 1
-        const todayMonth = ("00" + (Number(Month))).slice(-2)
-
+     
+        const todayMonth = (('00' + (Number(todayDate.getMonth()) + 1)).slice(-2))
 
         if (accessToken) {
-            // console.log("토큰" + props.showDate.showMonth)
-            const response = await axios.get(`https://api.habiters.store/habits?date=${todayYear}-${todayMonth}`, {
+
+            const response = await axios.get(`https://api.habiters.store/habits?date=${year}-${todayMonth}`, {
                 headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
             })
-            setHabitsThisMonth(() => response.data.data)
-
+            setHabitThisMonth(() => response.data.data)
+            return
         }
-
         return
     }
 
-    useEffect(() => {
-        getUserHabitThisMonth()
-    }, [])
 
 
 
@@ -135,7 +123,7 @@ export default function MonthlyHabitTracker(props) {
 
 
 
-    // --- 날짜 선택
+    // --- 오늘 날짜
     const todayDate = new Date()
     const [year, setYear] = useState(todayDate.getFullYear());
     const [month, setMonth] = useState(todayDate.getMonth() + 1);
@@ -148,12 +136,18 @@ export default function MonthlyHabitTracker(props) {
     const [selectedDate, setSelectedDate] = useState(today)
 
 
+    // --- 오늘 날짜로 이동
+    const moveToThisMonth = () => {
+        setVisibleDate({
+            ...visibleDate,
+            year: todayDate.getFullYear(),
+            month: (('00' + (Number(todayDate.getMonth()) + 1)).slice(-2))
+        })
 
-
-
-    const dateSelect = (date) => {
-        setDate(date)
     }
+
+
+
 
     // ------- 당일습관 팝업
     const [isHabitAlertOn, setIsHabitAlertOn] = useState(false)
@@ -185,24 +179,21 @@ export default function MonthlyHabitTracker(props) {
                 HabitAlertPopupOn={HabitAlertPopupOn}
 
 
-                // showDate={props.showDate}
                 monthDown={props.monthDown}
                 monthUp={props.monthUp}
 
                 habits={habits}
-                // setHabits={setHabits}
                 isHabitNull={isHabitNull}
 
 
-                selected={dateSelect}
+
                 selectedDate={selectedDate}
 
 
-                moveToThisMonth={props.moveToThisMonth}
+                moveToThisMonth={moveToThisMonth}
 
 
                 getUserHabit={getUserHabit}
-                getUserHabitThisMonth={getUserHabitThisMonth}
             />
 
 

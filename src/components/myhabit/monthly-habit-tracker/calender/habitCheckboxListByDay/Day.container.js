@@ -23,7 +23,6 @@ export default function CalenderDay(props) {
 
     // ----- 최초 렌더링 오늘 날짜 선택됨
     useEffect(() => {
-        // console.log(props.selectedDate)
 
         if (visibleDate.year + "-" + visibleDate.month + "-" + props.date === props.selectedDate) {
 
@@ -32,19 +31,22 @@ export default function CalenderDay(props) {
 
     }, [])
 
-    const nowDate = new Date();
-    const year = nowDate.getFullYear();
-    const Month = nowDate.getMonth() + 1
+    const currnetDate = new Date();
+    const todayYear = currnetDate.getFullYear();
+    const Month = currnetDate.getMonth() + 1
     const todayMonth = ("00" + (Number(Month))).slice(-2)
-  
+
+ 
 
 
     // ----- 선택한 날짜만 색깔
     useEffect(() => {
+
+       
        
 
-        if ((visibleDate.year + "-" + visibleDate.month + "-" + props.date === year + "-" + todayMonth+ "-" + nowSelectedDate) ||
-            (visibleDate.year + "-" + visibleDate.month + "-0" + props.date === year + "-" + todayMonth + "-" + nowSelectedDate)) {
+        if ((visibleDate.year + "-" + visibleDate.month + "-" + props.date === todayYear + "-" + todayMonth+ "-" + nowSelectedDate) ||
+            (visibleDate.year + "-" + visibleDate.month + "-0" + props.date === todayYear + "-" + todayMonth + "-" + nowSelectedDate)) {
             // if ((props.showDate.showYear + "-" + props.showDate.showMonth + "-" + props.date === props.showDate.showYear + "-" + props.showDate.showMonth + "-" + nowSelectedDate) ||
             // (props.showDate.showYear + "-" + props.showDate.showMonth + "-0" + props.date === todayprops.showDate.showYearYear + "-" + props.showDate.showMonth + "-" + nowSelectedDate) ) {
             setIsSelected(true)

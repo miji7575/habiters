@@ -84,14 +84,8 @@ export const Test = styled.div`
     /* transition: left .5s; */
     
 
-    /* ${(props) => props.monthlyHabitTrackerChecked === true ? `left : 10px; `: ``}; */
-    /* ${(props) => props.monthlyRetrospectsChecked === true ? ` animation: ${bounce} 1.5s linear infinite  `: ``}; */
+   
 
-
-    /* ${(props) => props.monthlyRetrospectsChecked && css `
-        background-color: red;
-        animation-name: ${bounce};
-    `} */
 `
 
 

@@ -24,7 +24,6 @@ export default function CalenderUI(props) {
 
 
                         <CalenderHabit
-                            habits={props.habits}
                             updateHabitPopupOn={props.updateHabitPopupOn}
                             deleteHabitPopupOn={props.deleteHabitPopupOn}
                         />
@@ -33,6 +32,8 @@ export default function CalenderUI(props) {
                         <CalenderDaysContainer
                             ref={props.calender}>
                             {props.visibleDate.days.map((day, index) => <CalenderDay
+                                key={index}
+                                value={index}
                                 HabitAlertPopupOn={props.HabitAlertPopupOn}
                                 selected={props.selected}
                                 selectedDate={props.selectedDate}

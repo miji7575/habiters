@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
-import { InputValue, userAccessToken } from '../../../../stores';
+import { userAccessToken } from '../../../../stores';
 
 import Popup2BtnTextonly from '../../../../commons/popup/Popup2BtnTextonly';
 
-export default function DeleteHabitPopup(props) {
+
+
+
+export default function DeleteRetrospectsPopup(props) {
+
 
     const [popUpTitle, setPopUpTitle] = useState("정말 삭제하실건가요?")
     const [popUpSubTitle, setPopUpSubTitle] = useState("해당 기록은 삭제하시면 복구가 불가능해요!")
@@ -14,15 +18,13 @@ export default function DeleteHabitPopup(props) {
 
 
 
-    // ============================== Function  ==============================
-
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
 
-    // ----- axios(delete) -- 습관이름 삭제하기
-    const deleteHabitData = async () => {
-       
+
+    // --- Axios Delete  -- (회고 삭제)
+    const deleteUserRetrospectData = async () => {
         if (accessToken) {
-            const response = await axios.delete(`https://api.habiters.store/habits/${props.habitId}`, {
+            const response = await axios.delete(`https://api.habiters.store/diaries/${props.retrospectsId}`, {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             return
@@ -32,34 +34,42 @@ export default function DeleteHabitPopup(props) {
 
 
 
-    function deleteHabitPopupClose() {
-        props.deleteHabitPopupClose();
-    }
 
-    const deleteHabit = async () => {
-        await deleteHabitData()
-        props.deleteHabitPopupClose();
-        props.getUserHabit();
+    //   ---- 회고 삭제
+    const deleteRetrospect = async () => {
+        await deleteUserRetrospectData();
+        await props.getUserRetrospects();
+        props.deleteRetrospects()
+        props.deleteRetrospectsPopupClose();
     }
 
 
 
     return (
+
         <>
             <Popup2BtnTextonly
+
                 popUpTitle={popUpTitle}
                 popUpSubTitle={popUpSubTitle}
                 popUpFisrtBtnText={popUpFisrtBtnText}
                 popUpSecondBtnText={popUpSecondBtnText}
 
-                // habit 삭제하기
-                onFisrtBtnClick={deleteHabit}
-                // 팝업창 닫기
-                onSecondBtnClick={deleteHabitPopupClose}
-                popUpClose={deleteHabitPopupClose}
+
+
+                
+                // 회고 삭제하기(첫반째버튼)
+                onFisrtBtnClick={deleteRetrospect}
+                
+                // 닫기버튼
+                popUpClose={props.deleteRetrospectsPopupClose}
+                onSecondBtnClick={props.deleteRetrospectsPopupClose}
+
+
 
             />
         </>
     )
+
 
 }

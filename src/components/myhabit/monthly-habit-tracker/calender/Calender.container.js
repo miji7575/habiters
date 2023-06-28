@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import CalenderUI from "./Calender.presenter"
 import { useRecoilState } from "recoil";
-import {visibleDateState} from '../../../stores';
+import { visibleDateState } from '../../../stores';
 
 
 
@@ -9,6 +9,7 @@ export default function Calender(props) {
 
 
     const [visibleDate, setVisibleDate] = useRecoilState(visibleDateState)
+    const currentDate = new Date().getDate()
 
     // 스크롤바 날짜에 맞게 옮길건데..
     const calender = useRef()
@@ -17,15 +18,19 @@ export default function Calender(props) {
 
     const CalenderScroll = () => {
 
-        // calender.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        calender.current.scrollTo(43*24,0);
+        if(currentDate > 9){
+            calender.current.scrollTo({
+                left: (currentDate - 9) * 44,
+                behavior: "smooth",
+            })
+        }
+
     }
 
     useEffect(() => {
         CalenderScroll()
-        
-        // window.scrollTo(200,0)
-    }, [])
+        console.log(currentDate)
+    })
 
 
 

@@ -59,7 +59,22 @@ const PopupBtn = styled.div`
 export default function Popup1BtnInput(props) {
 
 
+    // --- 사용됨
+    // popUpTitle = 제목
+    // popUpClose = 팝업창 닫기
+    // onBtnClick = 버튼 클릭 시 실행할 함수
+ 
 
+    // -- InputComponent
+    // inputName = input의 name 
+    // value= input의 value
+    // placeholder= input의 placeholder
+    // onChange = input의 onChange
+    // isError = input의 isError State(true/false)
+    // errorMessage= input의 errorMessage
+
+    // --- 사용X
+    // popUpSubTitle = 소제목(설명) 
 
 
     return (
@@ -71,7 +86,7 @@ export default function Popup1BtnInput(props) {
                     <PopupTitle>
                         <span className="headline5">{props.popUpTitle}</span>
                         <span className="icon-l icon-close-line"
-                            onClick={props.addNewHabitPopupClose}></span>
+                            onClick={props.popUpClose}></span>
                     </PopupTitle>
 
                     <PopupContent>
@@ -80,7 +95,7 @@ export default function Popup1BtnInput(props) {
                             <Input
                                 name={props.inputName}
                                 value={props.value}
-                                placeholder={props.popUpPlaceHolder}
+                                placeholder={props.placeholder}
                                 onChange={props.onChange}
 
 
@@ -96,7 +111,7 @@ export default function Popup1BtnInput(props) {
 
                     <PopupBtn>
                         <div className="btn btn-large btn-primary-default body2-medium"
-                            onClick={props.addNewhabit}>{props.popUpBtnText}</div>
+                            onClick={props.onBtnClick}>{props.popUpBtnText}</div>
                     </PopupBtn>
 
                 </PopupContainer>

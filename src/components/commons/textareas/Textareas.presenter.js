@@ -4,10 +4,7 @@ import {
     TextareaDefault, TextareaOn, TextareaError, TextareaNonEditable,
     TextareaExplain
 } from './Textareas.styles'
-import { useState } from "react"
-import { useRecoilState } from 'recoil';
-import { TextareaValueState } from '../../../components/stores';
-import { useEffect } from 'react';
+
 
 
 
@@ -16,67 +13,33 @@ import { useEffect } from 'react';
 // -----------
 
 export default function TextareaUI(props) {
-    const [isError, setIsError] = useState(false)
-    const [textareaInput, setTextareaInput] = useRecoilState(TextareaValueState)
-    const [textareaErrorMessage, setTextareaErrorMessage] = useState("")
-    const [textLength, setTextLength] = useState()
-
-    useEffect(() => {
-        setTextareaErrorMessage(props.textareaErrorMessage)
-    }, [])
-
-    useEffect(() => {
-        textLengthCheck()
-        
-    }, [textareaInput])
-
-
-
     
-    const textLengthCheck = () => {
-        if (textareaInput.length < 200) {
-            setIsError(false)
-            setTextareaErrorMessage("")
-        }
-        else {
-            setIsError(true)
-            setTextareaErrorMessage("회고는 200자 이내로 입력해주세요.")
-        }
-    }
-
-
-    function InputChange(e) {
-       
-        setTextareaInput(() => e.target.value)
-
-    }
-
 
     return (
-        // html 부분을 여기에 담아라
+      
         <>
             {/* 입력 가능 */}
             {!props.todayRetrospectState && <TextareaBox
                 width={props.width}
                 margin={props.margin}
-                isError={isError}
+                isError={props.isError}
             >
-                <TextareaDefault name="" id="" cols="30" rows="10" className="body3-regular"
+                <TextareaDefault id="" cols="30" rows="10" className="body3-regular"
                     height={props.height}
                     placeholder={props.placeholder}
 
-                    onChange={InputChange}
-                    maxLength={200}
-                    isError={isError}
+                    onChange={props.onChange}
+                    // maxLength={200}
+                    isError={props.isError}
 
-
-                    value={textareaInput}
+                    value={props.value}
+                    name={props.name}
                 >
 
                 </TextareaDefault>
                 <TextareaExplain className="caption2-regular ">
-                    <span>{textareaErrorMessage}</span>
-                    <span><span>{textareaInput.length}</span>/200</span>
+                    <span>{props.textareaErrorMessage}</span>
+                    <span><span>{props.textLength}</span>/200</span>
                 </TextareaExplain>
             </TextareaBox>}
 
@@ -88,22 +51,25 @@ export default function TextareaUI(props) {
                 width={props.width}
                 margin={props.margin}
             >
-                <TextareaDefault name="" id="" cols="30" rows="10" className="body3-regular"
+                <TextareaDefault id="" cols="30" rows="10" className="body3-regular"
                     height={props.height}
                     placeholder={props.placeholder}
 
-                    onChange={InputChange}
-                    maxLength={200}
-                    isError={isError}
+                    onChange={props.onChange}
+                    // maxLength={200}
+                    isError={props.isError}
                     disabled
                     todayRetrospectState={props.todayRetrospectState}
-                // value={textareaInput}
+
+                    // value={props.value}
+                    // name={props.name}
+                
                 >
 
                 </TextareaDefault>
                 <TextareaExplain className="caption2-regular ">
-                    <span>{textareaErrorMessage}</span>
-                    <span><span>{textareaInput.length}</span>/200</span>
+                    <span>{props.textareaErrorMessage}</span>
+                    <span><span>{props.textLength}</span>/200</span>
                 </TextareaExplain>
             </TextareaBox>}
 

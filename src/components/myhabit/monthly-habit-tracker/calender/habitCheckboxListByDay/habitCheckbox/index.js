@@ -74,7 +74,7 @@ export default function CalenderDayHabitCheckbox(props) {
 
 
 
-        if ((visibleDate.year + "-" + visibleDate.month + "-" + props.date == today)) {
+        if ((props.visibleDate.year + "-" + props.visibleDate.month + "-" + props.date == today)) {
 
 
 
@@ -108,7 +108,7 @@ export default function CalenderDayHabitCheckbox(props) {
 
 
     // --- 날짜 형식 맞추기
-    const year = visibleDate.year;
+    const year = props.visibleDate.year;
     const [date, setDate] = useState(props.date)
     if (date.toString().length == 1) {
         setDate("0" + date)
@@ -123,14 +123,14 @@ export default function CalenderDayHabitCheckbox(props) {
         Object.entries(props.habitChecks).map(([key, value]) => {
 
 
-            if (value.updatedAt.includes(year + "-" + visibleDate.month + "-" + date)) {
+            if (value.updatedAt.includes(year + "-" + props.visibleDate.month + "-" + date)) {
                 setHabitcheckId(value.id)
                 setIsCheckboxChecked(() => true)
                 return
 
             }
             else {
-                if ((visibleDate.year + "-" + visibleDate.month + "-" + props.date == today)) {
+                if ((props.visibleDate.year + "-" + props.visibleDate.month + "-" + props.date == today)) {
                     setIsCheckboxChecked(false)
                 }
             }

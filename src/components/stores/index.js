@@ -50,13 +50,13 @@ export const userHabitState = atom({
     default: '',
     // effects_UNSTABLE:[persistAtom]
 })
-
-// --- User의 이번달 Habit
+// --- User의 이번달 Habit(일별확인)
 export const userHabitStateThisMonth = atom({
     key: "userhabitThisMonth",
     default: '',
     // effects_UNSTABLE:[persistAtom]
 })
+
 
 // ==================== Retrospect
 // --- User의 회고List
@@ -108,9 +108,7 @@ export const visibleDateState = atom({
         year: '',
         month: '',
         days: [],
-        startDay: '',
         dates: [],
-        lastDate: ''
     }
 })
 

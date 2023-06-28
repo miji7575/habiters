@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
-import { InputValue, userState } from '../../../../stores';
+import { InputValue, userAccessToken } from '../../../../stores';
 
 import Popup2BtnInputUI from '../../../../commons/popup/Popup2BtnInput';
 
@@ -13,116 +13,7 @@ export default function UpdateHabitPopup(props) {
 
 
 
-
-    // // ----- axios(post) -- 습관이름 등록하기
-    // const [accessToken, setAccessToken] = useRecoilState(userState)
-    // const postHabit = async () => {
-    //     if (accessToken) {
-    //         const response = await axios.post('https://api.habiters.store/habits', {
-    //             "content": habitName
-    //         }, {
-    //             headers: { "Content-Type": "application/json", Authorization: `Bearer ` + accessToken },
-    //         })
-    //         return
-    //     }
-
-    // }
-
-
-
-    // // ----- input
-    // const inputName = "habitName"
-    // const [newInput, setNewInput] = useRecoilState(InputValue)
-    // const { habitName } = newInput;
-
-
-
-
-    // const onChange = (e) => {
-    //     // ================================
-    //     // const { value, name } = e.target;
-    //     // setNewInput({ ...newInput, [name]: value })
-    //     // ================================
-    //     // setIsError(false)
-    // };
-
-
-
-
-    // // ----- habit 유효성 검사
-    // const [isError, setIsError] = useState(false)
-    // const [errorMessage, setErrorMessage] = useState()
-
-    // const habitInputCheck = () => {
-
-
-    //     if (!habitName) {
-    //         setIsError(true)
-    //         setErrorMessage("습관 이름을 작성해주세요")
-    //         console.log("111")
-    //         return false
-    //     }
-    //     if (habitName.length > 10) {
-    //         setIsError(true)
-    //         setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
-    //         console.log("2222")
-    //         return false
-    //     }
-    //     else {
-    //         setIsError(false)
-    //         setErrorMessage("")
-    //         console.log("333")
-    //         return true
-    //     }
-
-
-
-    // }
-
-
-
-
-
-    // // ------Habit 추가하기
-    // const addNewhabit = async () => {
-
-    //     const habitValidStatus = habitInputCheck();
-
-    //     if (habitValidStatus) {
-    //         await postHabit()
-    //         await props.getUserHabit();
-    //         props.addNewHabitPopupClose();
-
-    //     }
-
-
-    // }
-
-
-
-
-
-    // // habitName이 바뀔 때 마다 habitInputCheck() 유효성검사 실행.
-    // useEffect(() => {
-    //     habitInputCheck()
-    // }, [habitName])
-
-
-    // // Recoil의 inputValue 지우고 나오기
-    // useEffect(() => {
-    //     return () => {
-    //         setNewInput(() => '')
-    //     }
-    // }, [])
-
-    // // ----- 팝업창 닫기
-    // function addNewHabitPopupClose() {
-    //     setNewInput('')
-    //     props.addNewHabitPopupClose();
-    // }
-
-
-    // ------------
+ 
     // ============================== Function  ==============================
     const [popUpTitle, setPopUpTitle] = useState("습관 이름 수정")
     const [popUpSubTitle, setPopUpSubTitle] = useState("")
@@ -141,7 +32,7 @@ export default function UpdateHabitPopup(props) {
 
 
     //  ----- Axios put(update) -- 습관이름 수정하기
-    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     const updateHabitData = async () => {
 
         if (accessToken) {
@@ -262,10 +153,12 @@ export default function UpdateHabitPopup(props) {
 
 
                 // 닫기버튼
-                updateHabitPopupClose={updateHabitPopupClose}
+                popUpClose={updateHabitPopupClose}
 
-                // 습관수정하기
-                updateHabit={updateHabit}
+                // 취소하기(첫번째 버튼)
+                onFisrtBtnClick={updateHabitPopupClose}
+                // 습관수정하기(두번째 버튼)
+                onSecondBtnClick={updateHabit}
 
 
 

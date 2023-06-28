@@ -2,8 +2,9 @@
 import Layout from '../components/commons/layout/index';
 import { Global } from "@emotion/react";
 // import { GlobalStyles } from "../src/commons/styles/globalStyles"
-import { RecoilRoot, useRecoilState, atom } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import ErrorPage from '../pages/errorpage';
+
 
 // "src/commons/styles/globalStyles";
 import '../styles/globals.css'
@@ -27,7 +28,7 @@ import '../styles/util.css'
 export default function App({ Component, pageProps }) {
 
 
-
+  console.log("App.js")
 
 
 

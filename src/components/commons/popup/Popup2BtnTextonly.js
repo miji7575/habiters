@@ -51,10 +51,18 @@ const PopupBtnContainer = styled.div`
     `
 
 
-export default function Popup2BtnTextonly(props){
+export default function Popup2BtnTextonly(props) {
 
 
-    return(
+    // popUpTitle = 제목
+    // popUpSubTitle = 소제목(설명)
+    // popUpClose = 팝업창 닫기
+    // onFisrtBtnClick = 첫번째 버튼 클릭 시 실행할 함수
+    // onSecondBtnClick = 두번째 버튼 클릭 시 실행할 함수
+    
+
+
+    return (
         <>
 
 
@@ -64,7 +72,7 @@ export default function Popup2BtnTextonly(props){
                     <PopupTitle>
                         <span className="headline5">{props.popUpTitle}</span>
                         <span className="icon-l icon-close-line"
-                            onClick={props.deleteHabitPopupClose}></span>
+                            onClick={props.popUpClose}></span>
                     </PopupTitle>
 
                     <PopupContent>
@@ -77,9 +85,9 @@ export default function Popup2BtnTextonly(props){
 
                     <PopupBtnContainer>
                         <div className="btn btn-large btn-secondary-default body2-medium"
-                            onClick={props.deleteHabit}>{props.popUpFisrtBtnText}</div>
+                            onClick={props.onFisrtBtnClick}>{props.popUpFisrtBtnText}</div>
                         <div className="btn btn-large btn-primary-default body2-medium"
-                            onClick={props.deleteHabitPopupClose}>{props.popUpSecondBtnText}</div>
+                            onClick={props.onSecondBtnClick}>{props.popUpSecondBtnText}</div>
                     </PopupBtnContainer>
 
 

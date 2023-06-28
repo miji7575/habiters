@@ -22,8 +22,8 @@ export default function Inputs(props) {
 
 
     // const [inputIconShow, setInputIconShow] = useState(false)
-    
- 
+
+
 
     const useOutsideClick = ({ onClickOutside }) => {
         const ref = useRef(null);
@@ -33,12 +33,13 @@ export default function Inputs(props) {
                 const inside = ref?.current?.contains(e.target);
                 // const inside = e.target.name == "nickName";
                 // const inside = e.target;
-                if (inside){
+                if (inside) {
                     // console.log(inside)
                     setIsOnFocus(true)
+
                     // console.log(inputIconShow)
                     return;
-                } 
+                }
                 setIsOnFocus(false)
                 onClickOutside();
             },
@@ -55,7 +56,7 @@ export default function Inputs(props) {
     };
 
 
-   
+
     const ref = useOutsideClick({
         onClickOutside: () => {
             // console.log("outside 가 클릭되었음!");
@@ -63,23 +64,25 @@ export default function Inputs(props) {
     });
 
 
-  
 
 
 
-//   ----- 삭제 icon 클릭시 전체삭제
+
+    //   ----- 삭제 icon 클릭시 전체삭제
     const removeValue = async (e) => {
 
-        setInputValues({...inputValues,
-            [props.name]:''});
+        setInputValues({
+            ...inputValues,
+            [props.name]: ''
+        });
         setIsValueNull(true)
 
 
     }
-    
 
-// ----- 
-    useEffect(()=>{
+
+    // ----- 
+    useEffect(() => {
         // if(inputValues[props.name] == ''){
         //     setIsValueNull(true)
         // }
@@ -87,11 +90,12 @@ export default function Inputs(props) {
         // setIsValueNull(false)
         // }
         // autocompleteOn()
+        console.log(inputValues)
+        console.log(isOnFocus)
 
-      
-     })  
+    })
 
-     const onChange = (e) => {
+    const onChange = (e) => {
         // props.onChange(e)
         // ================================
         const { value, name } = e.target;
@@ -99,43 +103,68 @@ export default function Inputs(props) {
         // ================================
 
 
-        if(inputValues[props.name] == ''){
+        if (inputValues[props.name] == '') {
             setIsValueNull(true)
         }
-        else{
-        setIsValueNull(false)
+        else {
+            setIsValueNull(false)
         }
-     }
+    }
 
-     const onFocus = () => {
+    const onFocus = () => {
         setIsOnFocus(true)
-         if (inputValues[props.name] == '') {
-             setIsValueNull(true)
-         } 
-         else {
-             setIsValueNull(false)
-         }
-     }
+        if (inputValues[props.name] == '') {
+            console.log("1111")
+            setIsValueNull(true)
+        }
+        else {
+            console.log("222")
+            setIsValueNull(false)
+        }
+    }
 
 
 
-// const [autocompleteState, setAutocompleteState ] = useState('new-password')
-// console.log(autocompleteState)
-// const autocompleteOn = () => {
+    // const [autocompleteState, setAutocompleteState ] = useState('new-password')
+    // console.log(autocompleteState)
+    // const autocompleteOn = () => {
 
-//     if(props.autocomplete === 'on'){
-//         setAutocompleteState('on')
-//         return
-//     }
-// }
-// ================================================
+    //     if(props.autocomplete === 'on'){
+    //         setAutocompleteState('on')
+    //         return
+    //     }
+    // }
+    // ================================================
 
 
 
     return (
         <>
 
-             <InputWrap  >
+            <InputUI
+                ref={ref}
+                isValueNull={isValueNull}
+                isOnFocus={isOnFocus}
+                isError={props.isError}
+                placeholder={props.placeholder}
+                value={props.value}
+                name={props.name}
+
+                isEditable={props.isEditable}
+
+                onChange={onChange}
+                onFocus={onFocus}
+                removeValue={removeValue}
+
+                width={props.width}
+                maxLength={props.length}
+
+
+                errorMessage={props.errorMessage}
+
+            />
+
+            {/* <InputWrap  >
 
                 <InputBox
                 ref={ref}
@@ -176,12 +205,12 @@ export default function Inputs(props) {
                             onClick={onFocus}/>}
                 </InputBox>
                 {props.isError && <InputMessage id="name" className={'caption1-regular color-error'}>{props.errorMessage}</InputMessage>}
-            </InputWrap>
+            </InputWrap> */}
 
 
 
 
-           
+
         </>
 
     )
@@ -190,104 +219,3 @@ export default function Inputs(props) {
 
 
 
-    // const [name, setName] = useState("Mike");
-    // function changeName() {
-    //     const newName = name === "Mike" ? "Jane" : "Mike"
-    //     setName(newName);
-    // }
-
-    // const [isOnGoing, setisOnGoing] = useState(false);
-    // const [isSuccess, setisSuccess] = useState(false);
-    // const [isError, setisError] = useState(false);
-    // const [isDone, setisDone] = useState(false);
-    // const [isDisabled, setisDisabled] = useState(false);
-
-
-
-
-
-
-    // const [message, setMessage] = useState(isError);
-    // const [messageColor, setMessageColor] = useState(isError);
-
-
-
-
-    // function ChangeMessageColor() {
-
-
-    //     if (isError) {
-
-    //         const newMessageColor = messageColor === isError ? "" : "color-error"
-    //         const newMessage = isError ? "입력이 잘못되었습니다." : ""
-
-    //         setMessageColor(newMessageColor);
-    //         setMessage(newMessage);
-
-
-    //     }
-    // };
-
-    // const [inputValue, setInputvalue] = useState('')
-    // const InputChange = (e) => {
-
-    //        setInputvalue(e.target.value)
-
-
-
-    //        // props.setNewInputvalue(() =>inputValue)
-    //        // -------------
-
-    //        // console.log(inputValue)
-
-    //        // if (inputValue == "오류") {
-    //        //     setisError(true)
-    //        //     // console.log(isError)
-    //        //     ChangeMessageColor();
-
-    //        // }
-    //        // if (inputValue != "오류") {
-    //        //     setisError(false)
-    //        //     // console.log(isError)
-    //        //     ChangeMessageColor();
-    //        // }
-
-
-    //    }
-
-    //     const removeValue = () => {
-    //        props.setInputvalue("")
-    //    }
-
-    // const [inputData, setInputData] = useState('')
-    // const [newHabitName, setNewHabitName] = useRecoilState();
-    // const data = (e) => {
-
-    //     // setNewHabitName(e.target.value)
-    //     // console.log(newHabitName)
-
-
-    // }
-
-    // const getInputData = () => {
-    //     // props.InputChangeHandler(newHabitName)
-
-
-    // }
-
-
-    // // useEffect(() => {
-
-    // //     if (props.isDone === true) {
-    // //         props.InputChangeHandler(inputData)
-    // //         console.log(inputData)
-    // //     }
-
-
-
-    // // }, [props.isDone])
- 
-
-    // const getData = () => {
-
-    // }

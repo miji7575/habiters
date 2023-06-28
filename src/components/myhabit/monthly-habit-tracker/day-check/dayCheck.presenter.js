@@ -1,7 +1,7 @@
 
 import { TodayHabitCheckContainer, TodayHabitCheckTitle, TodayHabitCheckFilterTop, TodayHabitCheckFilterBottom, TodayHabitCheckContent, NoHabitImgBox, NoHabitImg, NoHabitContent } from './dayCheck.styles'
-import HabitBox from './list/habit-box/HabitBox.container';
-;
+import HabitBox from './habit-box/HabitBox.container';
+
 
 
 export default function DayCheckUI(props) {
@@ -10,7 +10,7 @@ export default function DayCheckUI(props) {
 
 
     return (
-        // html 부분을 여기에 담아라
+
         <>
 
             <TodayHabitCheckContainer>
@@ -23,6 +23,8 @@ export default function DayCheckUI(props) {
 
                 <TodayHabitCheckContent>
                     {Object.entries(props.habits).map(([key, value], index) => <HabitBox
+                        key={index}
+                        value={index}
                         name={value.content}
                         index={index}
                         habitChecks={value.habitChecks}
@@ -39,8 +41,8 @@ export default function DayCheckUI(props) {
                         <NoHabitImgBox>
                             <NoHabitImg src="/image/img-no-content.svg" alt="일별확인없음" />
                             <NoHabitContent className='body3-regular'>
-                                <div>아직 작성된 회고가 없네요!</div>
-                                <div>회고를 작성해주세요.</div>
+                                <div>아직 확인할 습관이 없어요!</div>
+                                <div>습관을 만들어주세요.</div>
                                 
                             </NoHabitContent>
                         </NoHabitImgBox>

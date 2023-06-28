@@ -1,53 +1,65 @@
-// import inputStyles from '../../../../styles/input.module.css'
-// import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
-// import { useState } from "react"
+import inputStyles from '../../../styles/input.module.css'
+import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
 
 
 
 
 
-// // -----------
+// -----------
 
-// export default function InputUI(props) {
-
-
-
-//     return (
-//         // html 부분을 여기에 담아라
-//         <>
-//             <InputWrap>
-
-//                 <InputBox>
-//                     {!props.isError &&
-//                         <span
-//                             className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
-//                             onClick={props.removeValue} />}
-//                     <Input
-//                         type="text"
-//                         className={'input-default body3-medium color-black2'}
-//                         width={props.width}
-//                         isError={props.isError}
-//                         onChange={(props.InputChange)}
-//                         value={props.newInputVlaue}
-//                         placeholder={props.placeholder} 
-//                         ref={props.ref}/>
-
-                        
-
-//                     {props.isError &&
-//                         <ErrorIcon
-//                             className="icon-m icon-error-colored" />}
-//                 </InputBox>
-//                 <InputMessage id="name" className={'caption1-regular ${props.MessageColor}'}>{props.Message}</InputMessage>
-//             </InputWrap>
+export default function InputUI(props) {
 
 
 
-//             {/* ===================================================== */}
-//             <div>{props.inputValue}inputPresenter</div>
+    return (
 
-//             {/* ===================================================== */}
-//         </>
-//     )
+        <>
+            <InputWrap  >
 
-// }
+                <InputBox
+                    ref={props.ref}
+                    
+                >
+                    {!props.isValueNull && props.isOnFocus && !props.isError &&
+                        <span
+                            className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
+                            onClick={props.removeValue} />}
+                    <Input
+                        type="text"
+                        className={'input-default body3-medium color-black2'}
+
+                        isError={props.isError}
+                        onChange={props.onChange}
+                        value={props.value}
+                        placeholder={props.placeholder}
+                        name={props.name}
+
+                        disabled={props.isEditable ? true : false}
+                        onFocus={props.onFocus}
+
+                        // onBlur={()=>setIsOnFocus(false)}
+                        width={props.width}
+                        maxLength={props.length}
+                    
+
+
+
+                    />
+
+
+
+
+                    {props.isError &&
+                        <ErrorIcon
+                            className="icon-m icon-error-colored"
+                            onClick={props.onFocus} />}
+                </InputBox>
+                {props.isError && <InputMessage id="name" className={'caption1-regular color-error'}>{props.errorMessage}</InputMessage>}
+            </InputWrap>
+
+
+
+        </>
+    )
+
+}

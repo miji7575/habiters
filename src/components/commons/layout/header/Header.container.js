@@ -10,6 +10,13 @@ import instance from '../../../../commons/shared/Request';
 
 export default function Header() {
 
+    console.log("Header")
+
+
+
+
+
+
     const router = useRouter()
     const accessToken = useRecoilValue(userAccessToken)
     const [user, setUser] = useRecoilState(userDetail)
@@ -19,9 +26,24 @@ export default function Header() {
     const [clickedMenu, setClickedMenu] = useState()
     const [nowPath, setNowPath] = useState(router.asPath)
 
+    const getUserData = async () => {
+
+        if (accessToken) {
+            const response = await axios.get('https://api.habiters.store/users/me', {
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+            setUser(response.data.data)
+            return
+        }
+
+
+    }
+
+
     useEffect(() => {
+
+        getUserData()
         setProfileImgUrl(user.profileImgUrl)
-        // console.log(user)
 
     }, [])
 

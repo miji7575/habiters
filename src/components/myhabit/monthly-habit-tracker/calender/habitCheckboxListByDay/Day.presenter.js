@@ -1,6 +1,6 @@
 
 import { DayBox, DayDateBox, CalenderDay, CalenderDate, DayContainer, HabitCheckBox } from './Day.styles'
-import CalenderDayHabitCheckbox from './habitCheckbox/index';
+import CalenderDayHabitCheckbox from './habitCheckbox';
 
 export default function CalenderDayUI(props) {
 
@@ -26,6 +26,8 @@ export default function CalenderDayUI(props) {
 
                 {Object.entries(props.habits).map(([key, value], index) =>
                     <CalenderDayHabitCheckbox
+                        key={index}
+                        value={index}
                         HabitAlertPopupOn={props.HabitAlertPopupOn}
                         habitId={value.id}
                         habitName={value.content}
@@ -33,7 +35,7 @@ export default function CalenderDayUI(props) {
                         index={index}
                         isSelected={props.isSelected}
 
-                        // showDate={props.showDate}
+                        visibleDate={props.visibleDate}
                         date={props.date}
 
 

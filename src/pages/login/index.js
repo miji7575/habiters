@@ -47,7 +47,7 @@ export default function LoginPage() {
     // ============================== Function  ==============================
 
     const router = useRouter()
-
+    console.log("LoginPage")
 
 
 

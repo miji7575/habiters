@@ -20,13 +20,8 @@ export default function MonthlyHabitTrackerUI(props) {
             <MonthlyHabitTrackerContainer>
 
                 <HabitTrackerHeader>
-                    <YearDateBox
-                        // showDate={props.showDate}
-                        monthDown={props.monthDown}
-                        monthUp={props.monthUp}
-                        getUserHabit={props.getUserHabit}
-                    />
-              
+                    <YearDateBox/>
+
 
                     <AddHabitBtn className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content "
                         onClick={props.addNewHabitPopupOn}>
@@ -44,12 +39,8 @@ export default function MonthlyHabitTrackerUI(props) {
 
                 {/* <!-- ---  일별확인  ---  --> */}
                 <TodayHabitCheck
-                    habits={props.habits}
                     isHabitNull={props.isHabitNull}
-                    // showDate={props.showDate}
-
                     getUserHabit={props.getUserHabit}
-                    getUserHabitThisMonth={props.getUserHabitThisMonth}
                 />
 
 
@@ -57,18 +48,12 @@ export default function MonthlyHabitTrackerUI(props) {
 
                 {/*해빗트래커 컨텐츠 박스 */}
                 <Calender
-                    // showDate={props.showDate}
                     updateHabitPopupOn={props.updateHabitPopupOn}
                     deleteHabitPopupOn={props.deleteHabitPopupOn}
                     HabitAlertPopupOn={props.HabitAlertPopupOn}
+
                     habits={props.habits}
-
-                    
-                    selected={props.selected}
                     selectedDate={props.selectedDate}
-                    
-                    
-
                     getUserHabit={props.getUserHabit}
                 />
 
