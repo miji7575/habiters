@@ -28,7 +28,7 @@ import '../styles/util.css'
 export default function App({ Component, pageProps }) {
 
 
-  console.log("App.js")
+  // console.log("App.js")
 
 
 

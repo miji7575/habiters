@@ -27,7 +27,7 @@ export default function MonthlyRetrospects(props) {
                 }
             )
             setUserRetrospect(() => response.data.data)
-            console.log(response.data.data)
+            // console.log(response.data.data)
         }
         return
     }

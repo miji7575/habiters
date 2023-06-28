@@ -90,8 +90,7 @@ export default function Inputs(props) {
         // setIsValueNull(false)
         // }
         // autocompleteOn()
-        console.log(inputValues)
-        console.log(isOnFocus)
+
 
     })
 
@@ -114,11 +113,11 @@ export default function Inputs(props) {
     const onFocus = () => {
         setIsOnFocus(true)
         if (inputValues[props.name] == '') {
-            console.log("1111")
+         
             setIsValueNull(true)
         }
         else {
-            console.log("222")
+       
             setIsValueNull(false)
         }
     }

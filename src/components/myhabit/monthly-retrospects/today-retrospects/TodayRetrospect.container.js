@@ -45,7 +45,7 @@ export default function TodayRetrospect(props) {
             const response = await axios.post(`https://api.habiters.store/diaries`, retrospectsPost, {
                 headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
             })
-            console.log(response)
+            // console.log(response)
             return
         }
     }
@@ -53,7 +53,7 @@ export default function TodayRetrospect(props) {
 
     // ----- 오늘의 회고 등록하기
     const onPostRetrospectsBtnClick = async () => {
-        console.log(retrospectsPost.length <= 200)
+        
         if (retrospectsPost.length <= 200) {
             await postRetrospects();
             props.getUserRetrospects()

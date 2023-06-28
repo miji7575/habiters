@@ -32,9 +32,6 @@ export default function UpdateHabitPopup(props) {
 
 
 
-useEffect(()=>{
-    console.log(textareaValue)
-})
 
 
     // --- Axios Update

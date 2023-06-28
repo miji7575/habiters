@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled'
 import axios from 'axios';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
-// import {userState} from '../../../../components/stores';
+// import {userAccessToken} from '../../../../components/stores';
 
 
 // ============================== Style  ==============================

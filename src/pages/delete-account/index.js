@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import Textarea from "../../components/commons/textareas/Textareas.container"
 import axios from 'axios'
-import { userState } from '../../components/stores';
+import { userAccessToken } from '../../components/stores';
 import { useRecoilState } from 'recoil';
 
 
@@ -79,7 +79,7 @@ export default function DeleteAccount() {
     const textareaErrorMessage = "";
 
 
-    const [accessToken, setAccessToken] = useRecoilState(userState)
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     const deleteUser = async () => {
         if (accessToken) {
 

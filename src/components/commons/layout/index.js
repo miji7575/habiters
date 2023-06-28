@@ -4,7 +4,7 @@ import Header from './header/Header.container';
 import Footer from './footer/Footer.container';
 import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 // import { textState } from '../../../../pages/commons/stores/store';
-import { userState, sessionStorage, persistAtom, userDetail } from '../../../components/stores';
+import { userAccessToken, sessionStorage, persistAtom, userDetail } from '../../../components/stores';
 import axios from 'axios';
 import { useEffect } from 'react';
 

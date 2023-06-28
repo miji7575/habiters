@@ -29,7 +29,7 @@ export default function Calender(props) {
 
     useEffect(() => {
         CalenderScroll()
-        console.log(currentDate)
+        // console.log(currentDate) ------- 렌더링 너무 많이됨 다시보기 <수정>
     })
 
 

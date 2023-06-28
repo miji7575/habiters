@@ -10,7 +10,7 @@ import instance from '../../../../commons/shared/Request';
 
 export default function Header() {
 
-    console.log("Header")
+
 
 
 

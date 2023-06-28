@@ -1,11 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 // import cookies from 'js-cookie';
 import { useRecoilState } from 'recoil';
-import { userState } from '../components/stores';
+import { userAccessToken } from '../components/stores';
 
 
 // const SERVER_ADDRESS = 'https://api.habiters.store';
-// const [accessToken, setAccessToken] = useRecoilState(userState)
+// const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
 
 
 // export const customAxios = axios.create({

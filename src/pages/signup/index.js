@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userState, accessTokenStatem, URL, userDetail } from '../../components/stores';
+import { userAccessToken, accessTokenStatem, URL, userDetail } from '../../components/stores';
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -56,7 +56,7 @@ export default function SignupPage() {
 
     // ----- 토큰을 로컬에 저장
 
-    const [accessToken, setAccessToken] = useRecoilState(userState);
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken);
 
     const getAccessToken = async () => {
         setAccessToken(() => router.query.accessToken)

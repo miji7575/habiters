@@ -63,7 +63,6 @@ export default function Habit(props) {
 
     function deleteHabitPopupOn(){
         props.deleteHabitPopupOn(props.habitId)
-        console.log(props.habitId)
         setIsHabitTitleShow(true)
         setIsHabitTitleManageShow(false)
     }
