@@ -1,10 +1,11 @@
+import styled from '@emotion/styled'
 import { useState, useEffect } from "react"
 import axios from 'axios';
 import { useRouter } from "next/router";
 import { userDetail, userAccessToken, visibleDateState } from '../../components/stores';
 import { useRecoilState } from "recoil";
 
-import { Main, Content, Title } from './myhabit.styles';// 페이지 css
+
 
 
 import MyHabitToggle from '../../components/units/toggle/Toggle.container';
@@ -13,6 +14,27 @@ import MonthlyRetrospects from '../../components/myhabit/monthly-retrospects/Mon
 
 
 
+
+// ============================== Style ==============================
+ const Main = styled.div`
+    display: flex;
+    justify-content: center;
+
+`
+
+ const Content = styled.div`
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 200px;
+
+`
+
+ const Title = styled.div`
+    padding: 72px 0 48px 0;
+    color: var(--color-black1);
+`
 
 
 
