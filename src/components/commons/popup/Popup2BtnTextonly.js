@@ -57,9 +57,11 @@ export default function Popup2BtnTextonly(props) {
     // popUpTitle = 제목
     // popUpSubTitle = 소제목(설명)
     // popUpClose = 팝업창 닫기
+    // popUpFisrtBtnText=첫번째 버튼 내용
     // onFisrtBtnClick = 첫번째 버튼 클릭 시 실행할 함수
+    // popUpSecondBtnText = 두번째 버튼 내용
     // onSecondBtnClick = 두번째 버튼 클릭 시 실행할 함수
-    
+
 
 
     return (
@@ -75,13 +77,13 @@ export default function Popup2BtnTextonly(props) {
                             onClick={props.popUpClose}></span>
                     </PopupTitle>
 
-                    <PopupContent>
+                    {props.popUpSubTitle && <PopupContent>
                         <div>
                             <div className="body2-medium">
                                 {props.popUpSubTitle}
                             </div>
                         </div>
-                    </PopupContent>
+                    </PopupContent> }
 
                     <PopupBtnContainer>
                         <div className="btn btn-large btn-secondary-default body2-medium"

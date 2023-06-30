@@ -4,7 +4,8 @@ import Textarea from "../../components/commons/textareas/Textareas.container"
 import axios from 'axios'
 import { userAccessToken } from '../../components/stores';
 import { useRecoilState } from 'recoil';
-
+import Popup2BtnTextonly from '../../components/commons/popup/Popup2BtnTextonly';
+import { useState } from 'react';
 
 // =======================  Style  =======================
 
@@ -71,6 +72,7 @@ export default function DeleteAccount() {
     const onDeleteUserBtnClick = () => {
         deleteUser();
         setAccessToken();
+        setIsDeleteAccountPopUpOn(false)
         router.push("/")
     }
 
@@ -92,6 +94,26 @@ export default function DeleteAccount() {
 
         }
     }
+
+
+
+    // ----- POPUP
+
+    const popUpTitle="정말 탈퇴하시겠어요?"
+    const popUpFisrtBtnText="네"
+    const popUpSecondBtnText="아니오"
+
+
+    const [isDeleteAccountPopUpOn, setIsDeleteAccountPopUpOn] = useState(false)
+
+    const deleteAccountPopUpOn = () => {
+        setIsDeleteAccountPopUpOn(true)
+    }
+
+    const deleteAccountPopUpClose = () =>{
+        setIsDeleteAccountPopUpOn(false)
+    }
+
 
 
     return (
@@ -121,7 +143,17 @@ export default function DeleteAccount() {
                         placeholder={placeholder}
                         textareaErrorMessage={textareaErrorMessage} />
 
-                    <div className={'btn btn-large btn-primary-default body2-medium'} onClick={onDeleteUserBtnClick}>탈퇴하기</div>
+                    <div className={'btn btn-large btn-primary-default body2-medium'} onClick={deleteAccountPopUpOn}>탈퇴하기</div>
+
+
+                    {isDeleteAccountPopUpOn && <Popup2BtnTextonly
+                    popUpTitle={popUpTitle}
+                    popUpFisrtBtnText={popUpFisrtBtnText}
+                    popUpSecondBtnText={popUpSecondBtnText}
+                    popUpClose={deleteAccountPopUpClose}
+                    onFirstBtnClick={onDeleteUserBtnClick}
+                    onSecondBtnClick={deleteAccountPopUpClose}
+                    />}
 
                 </Main>
 
