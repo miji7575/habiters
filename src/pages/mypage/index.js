@@ -85,11 +85,29 @@ export default function MyPage() {
 
 
     // ============================== Function  ==============================
+    const [user, setUser] = useRecoilState(userDetail)
+       //  ----- Axios get -- 회원정보 가져오기
+       const getUserData = async () => {
+
+        if (accessToken) {
+            const response = await axios.get('https://api.habiters.store/users/me', {
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+            setUser(response.data.data)
+            console.log(response)
+            return
+        }
+    }
+
+
+
     const router = useRouter()
     useEffect(() => {
         if (!accessToken) {
             router.push("/login")
         }
+        getUserData()
+        console.log(user)
     }, [])
 
     const onClickMoveDeleteAccount = () => {
@@ -105,15 +123,15 @@ export default function MyPage() {
     const [isEditable, setIsEditable] = useState(true)
 
 
-    const [user, setUser] = useRecoilState(userDetail)
+    
 
     // ----- 초기값 설정하기
     useEffect(() => {
 
-        if (user.profileImgUrl) {
-            setProfileImgUrl(user.profileImgUrl)
-        }
-
+        // if (user.profileImgUrl) {
+        //     setProfileImgUrl(user.profileImgUrl)
+        // }
+        setProfileImgUrl(user.profileImgUrl)
         setInputValues({ ["nickName"]: user.nickName })
         if (user.email != null) {
             setEmailInputPlaceHolder(user.email)
@@ -122,7 +140,8 @@ export default function MyPage() {
                 //  ["email"]: user.email
             })
         }
-    }, [])
+       
+    }, [user])
 
 
     // ------- 수정 완료 팝업
@@ -143,18 +162,7 @@ export default function MyPage() {
 
 
 
-    //  ----- Axios get -- 회원정보 가져오기
-    const getUserData = async () => {
-
-        if (accessToken) {
-            const response = await axios.get('https://api.habiters.store/users/me', {
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
-            setUser(response.data.data)
-            // console.log(response)
-            return
-        }
-    }
+ 
 
 
 
@@ -357,7 +365,9 @@ export default function MyPage() {
 
     const logout = () => {
      
-    
+        // window.caches.clear();
+        // window.CacheStorage.clear()
+        // window.
         window.sessionStorage.clear();
         router.push("/")
 
