@@ -1,5 +1,5 @@
 
-import { MonthlyHabitTrackerContainer, HabitTrackerHeader, AddHabitBtn, MoveTodayBtn } from './MonthlyHabit.styles'
+import { MonthlyHabitTrackerContainer, HabitTrackerHeader, AddHabitBtn, MoveTodayBtn, BtnContainer } from './MonthlyHabit.styles'
 
 import YearDateBox from '../../units/year-date-box/YearDateBox.container';
 import TodayHabitCheck from './day-check/dayCheck.container';
@@ -20,19 +20,22 @@ export default function MonthlyHabitTrackerUI(props) {
             <MonthlyHabitTrackerContainer>
 
                 <HabitTrackerHeader>
-                    <YearDateBox/>
+                    <YearDateBox />
 
+                    <BtnContainer>
 
-                    <AddHabitBtn className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content "
-                        onClick={props.addNewHabitPopupOn}>
-                        <span className="icon-s icon-add-colored btn-inner-icon-white"></span>
-                        <span>새로운 습관 만들기</span>
-                    </AddHabitBtn>
+                        <MoveTodayBtn className="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content "
+                            onClick={props.moveToThisMonth}>
+                            <span>오늘</span>
+                        </MoveTodayBtn>
 
-                    <MoveTodayBtn className="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content "
-                        onClick={props.moveToThisMonth}>
-                        <span>오늘</span>
-                    </MoveTodayBtn>
+                        <AddHabitBtn className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content "
+                            onClick={props.addNewHabitPopupOn}>
+                            <span className="icon-s icon-add-colored btn-inner-icon-white"></span>
+                            <span>새로운 습관 만들기</span>
+                        </AddHabitBtn>
+
+                    </BtnContainer>
                 </HabitTrackerHeader>
 
 

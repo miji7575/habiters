@@ -13,6 +13,8 @@ export const TodayHabitCheckContainer = styled.div`
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 3;
+   
+
 `
 
 export const TodayHabitCheckTitle = styled.div`
@@ -56,7 +58,7 @@ export const TodayHabitCheckContent = styled.div`
     width: 278px;
     height: 438px;
     box-sizing: border-box;
-    padding: 0 20px 20px 20px;
+    padding: 0 12px 20px 20px;
 
 
     display: flex;
