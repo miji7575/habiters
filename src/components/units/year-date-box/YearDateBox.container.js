@@ -14,7 +14,7 @@ export default function YearDateBox(props) {
 
     const currentDate = new Date();
     const [year, setYear] = useState(currentDate.getFullYear()); //현재 연도
-    const [month, setMonth] = useState(currentDate.toJSON().substring(5, 7)); //현재 월
+    const [month, setMonth] = useState(('00' + (Number(currentDate.getMonth() + 1))).slice(-2)); //현재 월
     const [date, setDate] = useState(currentDate.getDate()); //현재 일자
     const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
     const [startDay, setStartDay] = useState(new Date(year, month - 1, 1).getDay()); //월의 시작 요일
@@ -24,8 +24,6 @@ export default function YearDateBox(props) {
 
     let newDates = []
     let newDays = []
-
-
 
 
 
