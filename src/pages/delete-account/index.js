@@ -69,13 +69,6 @@ export default function DeleteAccount() {
 
 
     const router = useRouter()
-    const onDeleteUserBtnClick = () => {
-        deleteUser();
-        setAccessToken();
-        setIsDeleteAccountPopUpOn(false)
-        router.push("/")
-    }
-
 
     const placeholder = "탈퇴 사유를 입력해주세요. (선택적)"
     const textareaErrorMessage = "";
@@ -83,13 +76,14 @@ export default function DeleteAccount() {
 
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     const deleteUser = async () => {
+        console.log("?")
         if (accessToken) {
 
             const response = await axios.delete(`https://api.habiters.store/users/me`,
                 {
                     headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
                 })
-            // console.log(response)
+            console.log(response)
             return
 
         }
@@ -99,9 +93,9 @@ export default function DeleteAccount() {
 
     // ----- POPUP
 
-    const popUpTitle="정말 탈퇴하시겠어요?"
-    const popUpFisrtBtnText="네"
-    const popUpSecondBtnText="아니오"
+    const popUpTitle = "정말 탈퇴하시겠어요?"
+    const popUpFisrtBtnText = "네"
+    const popUpSecondBtnText = "아니오"
 
 
     const [isDeleteAccountPopUpOn, setIsDeleteAccountPopUpOn] = useState(false)
@@ -110,9 +104,20 @@ export default function DeleteAccount() {
         setIsDeleteAccountPopUpOn(true)
     }
 
-    const deleteAccountPopUpClose = () =>{
+    const deleteAccountPopUpClose = () => {
         setIsDeleteAccountPopUpOn(false)
     }
+
+    const onDeleteUserBtnClick = () => {
+        console.log("삭ㅈㅔ됨")
+        deleteUser();
+        setAccessToken();
+        setIsDeleteAccountPopUpOn(false)
+
+        router.push("/")
+    }
+
+
 
 
 
@@ -147,12 +152,12 @@ export default function DeleteAccount() {
 
 
                     {isDeleteAccountPopUpOn && <Popup2BtnTextonly
-                    popUpTitle={popUpTitle}
-                    popUpFisrtBtnText={popUpFisrtBtnText}
-                    popUpSecondBtnText={popUpSecondBtnText}
-                    popUpClose={deleteAccountPopUpClose}
-                    onFirstBtnClick={onDeleteUserBtnClick}
-                    onSecondBtnClick={deleteAccountPopUpClose}
+                        popUpTitle={popUpTitle}
+                        popUpFisrtBtnText={popUpFisrtBtnText}
+                        popUpSecondBtnText={popUpSecondBtnText}
+                        popUpClose={deleteAccountPopUpClose}
+                        onFirstBtnClick={onDeleteUserBtnClick}
+                        onSecondBtnClick={deleteAccountPopUpClose}
                     />}
 
                 </Main>

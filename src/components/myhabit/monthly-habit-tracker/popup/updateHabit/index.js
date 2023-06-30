@@ -156,7 +156,7 @@ export default function UpdateHabitPopup(props) {
                 popUpClose={updateHabitPopupClose}
 
                 // 취소하기(첫번째 버튼)
-                onFisrtBtnClick={updateHabitPopupClose}
+                onFirstBtnClick={updateHabitPopupClose}
                 // 습관수정하기(두번째 버튼)
                 onSecondBtnClick={updateHabit}
 

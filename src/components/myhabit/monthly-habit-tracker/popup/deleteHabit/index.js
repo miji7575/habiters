@@ -53,7 +53,7 @@ export default function DeleteHabitPopup(props) {
                 popUpSecondBtnText={popUpSecondBtnText}
 
                 // habit 삭제하기
-                onFisrtBtnClick={deleteHabit}
+                onFirstBtnClick={deleteHabit}
                 // 팝업창 닫기
                 onSecondBtnClick={deleteHabitPopupClose}
                 popUpClose={deleteHabitPopupClose}

@@ -63,7 +63,7 @@ export default function Popup2BtnTextarea(props) {
     // --- 사용됨
     // popUpTitle = 제목
     // popUpClose = 팝업창 닫기
-    // onFisrtBtnClick = 첫번째 버튼 클릭 시 실행할 함수
+    // onFirstBtnClick = 첫번째 버튼 클릭 시 실행할 함수
     // onSecondBtnClick = 두번째 버튼 클릭 시 실행할 함수
 
     // -- Textarea Component
@@ -106,7 +106,7 @@ export default function Popup2BtnTextarea(props) {
 
                     <PopupBtnContainer>
                         <div className="btn btn-large btn-secondary-default body2-medium"
-                            onClick={props.onFisrtBtnClick}>{props.popUpFisrtBtnText}</div>
+                            onClick={props.onFirstBtnClick}>{props.popUpFisrtBtnText}</div>
                         <div className="btn btn-large btn-primary-default body2-medium"
                             onClick={props.onSecondBtnClick}>{props.popUpSecondBtnText}</div>
                     </PopupBtnContainer>

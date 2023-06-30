@@ -59,7 +59,7 @@ export default function DeleteRetrospectsPopup(props) {
 
                 
                 // 회고 삭제하기(첫반째버튼)
-                onFisrtBtnClick={deleteRetrospect}
+                onFirstBtnClick={deleteRetrospect}
                 
                 // 닫기버튼
                 popUpClose={props.deleteRetrospectsPopupClose}

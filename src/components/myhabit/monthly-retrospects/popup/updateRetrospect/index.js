@@ -90,7 +90,7 @@ export default function UpdateHabitPopup(props) {
                 popUpClose={updateRetrospectsPopupClose}
 
                 // 습관추가하기
-                onFisrtBtnClick={updateRetrospectsPopupClose}
+                onFirstBtnClick={updateRetrospectsPopupClose}
                 onSecondBtnClick={updateRetrospect}
 
 
