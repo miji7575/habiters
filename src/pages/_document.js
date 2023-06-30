@@ -2,6 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 
 export default function Document() {
+ 
   return (
     <Html lang="en">
       <Head >
@@ -17,7 +18,7 @@ export default function Document() {
           <meta name="description" property="og:description" content="해빗트래커 기반 습관 성형 커뮤니티" />
 
           {/* <!-- 이미지 설정 --> */}
-          <meta name="image" property="og:image" content="../public/image/habiters_ogImage.png" />
+          <meta name="image" property="og:image" content="https://api.habiters.store/public/image/habiters_ogImage.png" />
 
           {/* <!-- URL 설정 --> */}
           <meta name="url" property="og:url" content="habiters.vercel.app" />
@@ -50,6 +51,11 @@ export default function Document() {
       </Head>
       <body>
         <Main />
+        <div>
+          ====================================
+          <img src="/image/habiters_ogImage.png"/>
+          <image src="/image/habiters_ogImage.png"/>
+        </div>
         <NextScript />
       </body>
     </Html>
