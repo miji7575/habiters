@@ -9,7 +9,7 @@ export default function HeaderUI(props) {
         // html 부분을 여기에 담아라
         <>
 
-            <header>
+            
                 <HeaderWrap>
                     <HeaderContent>
                         <LogoBox>
@@ -45,7 +45,7 @@ export default function HeaderUI(props) {
                         </HeaderMypageBox>
                     </HeaderContent>
                 </HeaderWrap>
-            </header>
+         
         </>
     )
 

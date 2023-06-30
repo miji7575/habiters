@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 
-export const HeaderWrap = styled.div`
+export const HeaderWrap = styled.header`
     height: var(--header-height);
     display: flex;
     justify-content: center;

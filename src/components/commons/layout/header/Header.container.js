@@ -20,7 +20,7 @@ export default function Header() {
     const router = useRouter()
     const accessToken = useRecoilValue(userAccessToken)
     const [user, setUser] = useRecoilState(userDetail)
-    const [profileImgUrl, setProfileImgUrl] = useState('');
+  
 
     const menuName = ["마이해빗", "해비티뮤니티", "마이페이지"]
     const [clickedMenu, setClickedMenu] = useState()
@@ -33,6 +33,7 @@ export default function Header() {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             setUser(response.data.data)
+
             return
         }
 
@@ -43,7 +44,6 @@ export default function Header() {
     useEffect(() => {
 
         getUserData()
-        setProfileImgUrl(user.profileImgUrl)
 
     }, [])
 
@@ -112,7 +112,7 @@ export default function Header() {
 
                 menuName={menuName}
                 clickedMenu={clickedMenu}
-                profileImgUrl={profileImgUrl}
+                profileImgUrl={user.profileImgUrl}
             />
         </>
     )
