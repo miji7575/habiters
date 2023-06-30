@@ -20,7 +20,7 @@ export default function Document() {
           <meta name="image" property="og:image" content="https://habiters.vercel.app/image/habiters_ogImage.png" />
 
           {/* <!-- URL 설정 --> */}
-          <meta name="url" property="og:url" content="https://api.habiters.store" />
+          <meta name="url" property="og:url" content="https://habiters.vercel.app" />
 
           {/* <!-- 언어 설정 --> */}
           <meta property="og:locale" content="ko_KR" />
