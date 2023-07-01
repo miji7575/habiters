@@ -146,6 +146,7 @@ export default function DeleteAccount() {
                         margin={`24px 0 56px 0`}
                         height={`172px`}
                         placeholder={placeholder}
+                        name="deleteUser"
                         textareaErrorMessage={textareaErrorMessage} />
 
                     <div className={'btn btn-large btn-primary-default body2-medium'} onClick={deleteAccountPopUpOn}>탈퇴하기</div>

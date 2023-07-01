@@ -12,7 +12,9 @@ export default function Textareas(props) {
     const [textareaErrorMessage, setTextareaErrorMessage] = useState("")
     const [textLength, setTextLength] = useState("0")
 
-
+    useEffect(() => {
+        console.log(textareaValue)
+    })
 
 
     useEffect(() => {
@@ -31,6 +33,10 @@ export default function Textareas(props) {
             if (textareaValue[props.name].length <= 200) {
                 setIsError(false)
                 setTextareaErrorMessage("")
+            }
+            else if (props.name == "deleteUser") {
+                setIsError(true)
+                setTextareaErrorMessage("200자 이내로 입력해주세요.")
             }
             else {
 
