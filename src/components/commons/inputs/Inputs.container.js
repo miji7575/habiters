@@ -21,54 +21,23 @@ export default function Inputs(props) {
 
 
 
-    // const [inputIconShow, setInputIconShow] = useState(false)
-
-
-
-    const useOutsideClick = ({ onClickOutside }) => {
-        const ref = useRef(null);
-
-        const handleClick = useCallback(
-            e => {
-                const inside = ref?.current?.contains(e.target);
-                // const inside = e.target.name == "nickName";
-                // const inside = e.target;
-                if (inside) {
-                    // console.log(inside)
-                    setIsOnFocus(true)
-
-                    // console.log(inputIconShow)
-                    return;
-                }
-                setIsOnFocus(false)
-                onClickOutside();
-            },
-            [onClickOutside, ref]
-        );
-
-        useEffect(() => {
-            document.addEventListener("click", handleClick);
-
-            return () => document.removeEventListener("click", handleClick);
-        }, [handleClick]);
-
-        return ref;
-    };
-
-
-
-    const ref = useOutsideClick({
-        onClickOutside: () => {
-            // console.log("outside 가 클릭되었음!");
+    // --- Error Check (페이지 조건별로 에러State 변경)
+    useEffect(() => {
+        console.log(props.isError)
+        switch (props.isError) {
+           
+            case true:
+                setisError(true)
+                return
+            case false:
+                setisError(false)
         }
-    });
+
+    })
 
 
 
-
-
-
-    //   ----- 삭제 icon 클릭시 전체삭제
+    //   -----  값 삭제하기
     const removeValue = async (e) => {
 
         setInputValues({
@@ -81,27 +50,20 @@ export default function Inputs(props) {
     }
 
 
-    // ----- 
-    useEffect(() => {
-        // if(inputValues[props.name] == ''){
-        //     setIsValueNull(true)
-        // }
-        // else{
-        // setIsValueNull(false)
-        // }
-        // autocompleteOn()
-
-
-    })
-
+    // ----- 전달받은 Input값 저장하기.
     const onChange = (e) => {
-        // props.onChange(e)
-        // ================================
-        const { value, name } = e.target;
-        setInputValues({ ...inputValues, [name]: value })
-        // ================================
+        const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+        setInputValues({
+            ...inputValues // 기존의 input 객체를 복사한 뒤
+            , [name]: value
+        }) // name 키를 가진 값을 value 로 설정
+
+    }
 
 
+
+    // --- 값이 변할 때 마다 확인하여 지울 수 있도록 함.
+    const valueNullCheck = () => {
         if (inputValues[props.name] == '') {
             setIsValueNull(true)
         }
@@ -110,20 +72,59 @@ export default function Inputs(props) {
         }
     }
 
-    const onFocus = () => {
-        setIsOnFocus(true)
-        if (inputValues[props.name] == '') {
-         
-            setIsValueNull(true)
-        }
-        else {
-       
-            setIsValueNull(false)
-        }
+    useEffect(() => {
+        valueNullCheck()
+    }, [inputValues])
+
+
+
+    // --- MouseEvent 감지하여 Input내부 클릭 여부 확인.
+    //    <수정>
+    const Test = ({ 함수를전달하는키 }) => {
+
+        const ref = useRef(null);
+
+
+        const 콜백함수 = useCallback(
+            (event) => {
+
+
+                const inside = ref.current.contains(event.target);
+
+                if (event.target.id == "removeBtn") {
+                    return
+                }
+                // else if (inside && ref.current.name == "nickName") {
+                else if (inside && ref.current.name !== "email") {
+                    setIsOnFocus(true)
+                }
+                else {
+                    setIsOnFocus(false)
+                }
+
+
+            },
+            [함수를전달하는키, ref]
+        );
+
+        useEffect(() => {
+
+            document.addEventListener("mouseup", 콜백함수);
+            return () => document.removeEventListener("mouseup", 콜백함수);
+        }, [콜백함수]);
+
+        return ref
     }
 
 
 
+    const inputRef = Test({ 함수를전달하는키: () => { console.log('Click!') } });
+
+
+
+
+
+    // 자동완성 끌려고 만들었는데 안됨..
     // const [autocompleteState, setAutocompleteState ] = useState('new-password')
     // console.log(autocompleteState)
     // const autocompleteOn = () => {
@@ -137,14 +138,20 @@ export default function Inputs(props) {
 
 
 
+
+
+    // ----------UseEffect
+
     return (
         <>
 
+
+
             <InputUI
-                ref={ref}
+                ref={inputRef}
                 isValueNull={isValueNull}
                 isOnFocus={isOnFocus}
-                isError={props.isError}
+                isError={isError}
                 placeholder={props.placeholder}
                 value={props.value}
                 name={props.name}
@@ -152,7 +159,6 @@ export default function Inputs(props) {
                 isEditable={props.isEditable}
 
                 onChange={onChange}
-                onFocus={onFocus}
                 removeValue={removeValue}
 
                 width={props.width}
@@ -162,51 +168,6 @@ export default function Inputs(props) {
                 errorMessage={props.errorMessage}
 
             />
-
-            {/* <InputWrap  >
-
-                <InputBox
-                ref={ref}
-                // {()=>setIsOnFocus(false)}
-                >
-                    {!isValueNull  && isOnFocus && !props.isError && 
-                        <span
-                            className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
-                            onClick={removeValue} />}
-                    <Input
-                        type="text"
-                        className={'input-default body3-medium color-black2'}
-                        
-                        isError={props.isError}
-                        onChange={onChange}
-                        value={props.value}
-                        placeholder={props.placeholder}
-                        name={props.name}
-                        
-                        disabled={props.isEditable ? true : false}
-                        onFocus={onFocus}
-                        
-                        // onBlur={()=>setIsOnFocus(false)}
-                        width={props.width}
-                        maxLength={props.length}
-                        autocomplete="off" 
-                  
-
-                       
-                    />
-                        
-
-
-
-                    {props.isError && 
-                        <ErrorIcon
-                            className="icon-m icon-error-colored" 
-                            onClick={onFocus}/>}
-                </InputBox>
-                {props.isError && <InputMessage id="name" className={'caption1-regular color-error'}>{props.errorMessage}</InputMessage>}
-            </InputWrap> */}
-
-
 
 
 

@@ -25,11 +25,7 @@ const Title = styled.div`
   padding: 72px 0 58px 0 ;
   color: var(--color-black1);
  `
-const Form = styled.form`
- display: flex;
- flex-direction: column;
- align-items: center;
-`
+
 
 const Label = styled.div`
 color: var(--color-black1);
@@ -83,18 +79,21 @@ export default function MyPage() {
     //2. 백엔드컴터에보내주기
     //3. 성공알람 보여주기.
 
+    // useEffect(()=>{
+    //     console.log(inputValues)
+    // })
 
     // ============================== Function  ==============================
     const [user, setUser] = useRecoilState(userDetail)
-       //  ----- Axios get -- 회원정보 가져오기
-       const getUserData = async () => {
+    //  ----- Axios get -- 회원정보 가져오기
+    const getUserData = async () => {
 
         if (accessToken) {
             const response = await axios.get('https://api.habiters.store/users/me', {
                 headers: { Authorization: 'Bearer ' + accessToken }
             })
             setUser(response.data.data)
-            console.log(response)
+
             return
         }
     }
@@ -107,7 +106,6 @@ export default function MyPage() {
             router.push("/login")
         }
         getUserData()
-        console.log(user)
     }, [])
 
     const onClickMoveDeleteAccount = () => {
@@ -123,7 +121,7 @@ export default function MyPage() {
     const [isEditable, setIsEditable] = useState(true)
 
 
-    
+
 
     // ----- 초기값 설정하기
     useEffect(() => {
@@ -140,7 +138,7 @@ export default function MyPage() {
                 //  ["email"]: user.email
             })
         }
-       
+
     }, [user])
 
 
@@ -162,12 +160,12 @@ export default function MyPage() {
 
 
 
- 
+
 
 
 
     // --------------------회원정보 수정하기
-    const formData = new FormData()
+
     const [isError, setIsError] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
 
@@ -238,22 +236,23 @@ export default function MyPage() {
     const { email, nickName } = inputValues; // 비구조화 할당을 통해 값 추출
     const nickNameLength = 12;
 
-    const onChangeRecoil = (e) => {
-        const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
-        setInputValues({
-            ...inputValues, // 기존의 input 객체를 복사한 뒤
-            [name]: value // [name]: value // name 키를 가진 값을 value 로 설정
-        });
 
-
-    };
+    // 값 변경은 Input 컴포넌트에서 처리하도록 함.
+    // const onChangeRecoil = (e) => {
+    //     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+    //     setInputValues({
+    //         ...inputValues, // 기존의 input 객체를 복사한 뒤
+    //         [name]: value // [name]: value // name 키를 가진 값을 value 로 설정
+    //     });
+    // };
 
     useEffect(() => {
         nickNameCheck()
+
     }, [nickName])
 
 
-   
+
 
 
 
@@ -364,10 +363,8 @@ export default function MyPage() {
 
 
     const logout = () => {
-     
-        // window.caches.clear();
-        // window.CacheStorage.clear()
-        // window.
+
+
         window.sessionStorage.clear();
         router.push("/")
 
@@ -390,81 +387,81 @@ export default function MyPage() {
                     <Title className={'headline1'}>
                         마이페이지
                     </Title>
-                    <Form method="post" enctype="multipart/form-data" >
-                        <MyImgWrap>
-                            <label>
-                                <MyImg src={profileImgUrl} alt="프로필이미지" />
-                                {/* {!profileImgUrl && <MyImg src="/image/image-default.svg" alt="프로필이미지" />} */}
-                                {/* <MyImg src="/image/image-default.svg" alt="프로필이미지" /> */}
-                                {/* <input className="d-none" id="img" name="files" type="file" accept="image/*" onChange={imgUpdate} /> */}
-                                {/* <MyImgUpdateIcon className={'icon-round-l'} >
+
+                    <MyImgWrap>
+                        <label>
+                            <MyImg src={profileImgUrl} alt="프로필이미지" />
+                            {/* {!profileImgUrl && <MyImg src="/image/image-default.svg" alt="프로필이미지" />} */}
+                            {/* <MyImg src="/image/image-default.svg" alt="프로필이미지" /> */}
+                            {/* <input className="d-none" id="img" name="files" type="file" accept="image/*" onChange={imgUpdate} /> */}
+                            {/* <MyImgUpdateIcon className={'icon-round-l'} >
                                     <span className={'icon-s icon-pencil'}></span>
                                 </MyImgUpdateIcon> */}
-                            </label>
+                        </label>
 
 
-                        </MyImgWrap>
+                    </MyImgWrap>
 
-                        <MypageInputWrap>
-                            <MypageInputBox>
-                                <Label className={'body1-bold'}>
-                                    이메일
-                                </Label>
-
-
-                                <div >
+                    <MypageInputWrap>
+                        <MypageInputBox>
+                            <Label className={'body1-bold'}>
+                                이메일
+                            </Label>
 
 
+                            <div >
+
+
+                                <Input
+
+                                    name="email"
+                                    // onChange={onChangeRecoil} 없어도 되네..
+                                    value={email}
+                                    placeholder={emailInputPlaceHolder}
+                                    isEditable={isEditable}
+
+
+
+
+
+                                ></Input>
+
+
+                            </div>
+
+
+                        </MypageInputBox>
+
+                        <MypageInputBox>
+                            <Label className={'body1-bold'}>
+                                닉네임
+                            </Label>
+
+                            <NickNameInputBox>
+                                <div>
                                     <Input
-                                      
-                                        name="email"
-                                        onChange={onChangeRecoil}
-                                        value={email}
-                                        placeholder={emailInputPlaceHolder}
-                                        isEditable={isEditable}
-
-
-                                       
-
+                                        name="nickName"
+                                        // onChange={onChangeRecoil}
+                                        value={nickName}
+                                        placeholder={nicknameInputPlaceHolder}
+                                        width={`292px`}
+                                        isError={isError}
+                                        errorMessage={errorMessage}
+                                    // length={nickNameLength}
 
                                     ></Input>
 
-
                                 </div>
+                                <NickNameUpdateBtn className="body2-medium btn btn-large btn-primary-default btn-width-fit-content"
+                                    onClick={updateUser}>
+                                    <span>수정</span>
+                                </NickNameUpdateBtn>
+                            </NickNameInputBox>
+                        </MypageInputBox>
+                    </MypageInputWrap>
 
 
-                            </MypageInputBox>
 
-                            <MypageInputBox>
-                                <Label className={'body1-bold'}>
-                                    닉네임
-                                </Label>
-
-                                <NickNameInputBox>
-                                    <div>
-                                        <Input
-                                            name="nickName"
-                                            onChange={onChangeRecoil}
-                                            value={nickName}
-                                            placeholder={nicknameInputPlaceHolder}
-                                            width={`292px`}
-                                            isError={isError}
-                                            errorMessage={errorMessage}
-                                        // length={nickNameLength}
-
-                                        ></Input>
-
-                                    </div>
-                                    <NickNameUpdateBtn className="body2-medium btn btn-large btn-primary-default btn-width-fit-content"
-                                        onClick={updateUser}>
-                                        <span>수정</span>
-                                    </NickNameUpdateBtn>
-                                </NickNameInputBox>
-                            </MypageInputBox>
-                        </MypageInputWrap>
-
-
-                    </Form>
 
 
 

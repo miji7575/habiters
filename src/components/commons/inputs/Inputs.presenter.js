@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import inputStyles from '../../../styles/input.module.css'
 import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
 
@@ -7,40 +8,40 @@ import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.st
 
 // -----------
 
-export default function InputUI(props) {
+// export default  function InputUI(props) {
 
+const InputUI = forwardRef(function InputUI(props, forwardedRef) {
 
-
+    
     return (
 
         <>
-            <InputWrap  >
+            <InputWrap>
 
-                <InputBox
-                    ref={props.ref}
-                    
-                >
+                <InputBox>
+
+
                     {!props.isValueNull && props.isOnFocus && !props.isError &&
                         <span
+                            id="removeBtn"
                             className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
-                            onClick={props.removeValue} />}
+                            onClick={props.removeValue}
+                            />}
                     <Input
+                        ref={forwardedRef}
                         type="text"
                         className={'input-default body3-medium color-black2'}
 
                         isError={props.isError}
                         onChange={props.onChange}
-                        value={props.value}
+                        value={props.value || ""}
                         placeholder={props.placeholder}
                         name={props.name}
 
                         disabled={props.isEditable ? true : false}
-                        onFocus={props.onFocus}
-
-                        // onBlur={()=>setIsOnFocus(false)}
                         width={props.width}
                         maxLength={props.length}
-                    
+
 
 
 
@@ -62,4 +63,6 @@ export default function InputUI(props) {
         </>
     )
 
-}
+})
+
+export default InputUI

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
 import { InputValue, userAccessToken } from '../../../../stores';
-
 import Popup2BtnInputUI from '../../../../commons/popup/Popup2BtnInput';
 
 
@@ -11,10 +10,6 @@ import Popup2BtnInputUI from '../../../../commons/popup/Popup2BtnInput';
 export default function UpdateHabitPopup(props) {
 
 
-
-
- 
-    // ============================== Function  ==============================
     const [popUpTitle, setPopUpTitle] = useState("습관 이름 수정")
     const [popUpSubTitle, setPopUpSubTitle] = useState("")
     const [popUpPlaceHolder, setPopUpPlaceHolder] = useState("만드실 습관을 10자 이내로 입력해주세요.")
@@ -22,13 +17,81 @@ export default function UpdateHabitPopup(props) {
     const [popUpSecondBtnText, setPopUpSecondBtnText] = useState("수정완료")
 
 
-
-
-    // --- 초기설정
+    // --- 기존Input Value 넣어주기
     useEffect(() => {
         setNewInput({ ["habitName"]: props.selectedHabitName })
 
     }, [])
+
+
+    // --- input
+    const inputName = "habitName"
+    const [newInput, setNewInput] = useRecoilState(InputValue)
+    const { habitName } = newInput;
+
+    // InputComponent에서 처리
+    // const onChange = (e) => {
+    //     const { value, name } = e.target;
+    //     setNewInput({ ...newInput, [name]: value })
+    //     setIsError(false)
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ----- habitName 유효성 검사
+    const [isError, setIsError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
+
+
+    // --- habitName 길이 체크
+    const habitNameLengthCheck = () => {
+
+        if (habitName && habitName.length > 10) {
+            setIsError(true)
+            setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
+            return false
+        }
+        else if (habitName) {
+            setIsError(false)
+            setErrorMessage("")
+            return true
+        }
+
+    }
+
+    // --- habitName Null 체크
+    const habitNullCheck = () => {
+
+        if (!habitName) {
+            setIsError(true)
+            setErrorMessage("습관 이름을 작성해주세요")
+            return false
+        }
+        else {
+            setIsError(false)
+            setErrorMessage("")
+            return true
+        }
+    }
+
+
+
+
+
+
+
 
 
     //  ----- Axios put(update) -- 습관이름 수정하기
@@ -49,66 +112,28 @@ export default function UpdateHabitPopup(props) {
 
 
     // --- 습관이름 수정하기
-    const [isError, setIsError] = useState(false)
-    const [errorMessage, setErrorMessage] = useState()
-
     const updateHabit = async () => {
 
-            const habitValidStatus = habitInputCheck();
-      
-            if (habitValidStatus) {
-                await updateHabitData()
-                props.getUserHabit();
-                props.updateHabitPopupClose();
-            }
 
-    }
+        const habitNullValidStatus = habitNullCheck()
+        const habitLengthValidStatus = habitNameLengthCheck();
 
 
-
-    // --- input
-    const inputName = "habitName"
-    const [newInput, setNewInput] = useRecoilState(InputValue)
-    const { habitName } = newInput;
-
-
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setNewInput({ ...newInput, [name]: value })
-        setIsError(false)
-    }
-
-
-
-
-
-    // ----- habit 유효성 검사
-
-    const habitInputCheck = () => {
-
-
-        if (!habitName) {
-            setIsError(true)
-            setErrorMessage("습관 이름을 작성해주세요")
-            return false
-        }
-        if (habitName.length > 10) {
-            setIsError(true)
-            setErrorMessage("습관 이름은 10자 이내로만 작성 가능해요.")
-            return false
-        }
-        else {
-            setIsError(false)
-            setErrorMessage("")
-            return true
+        if (habitNullValidStatus && habitLengthValidStatus) {
+            await updateHabitData()
+            props.getUserHabit();
+            props.updateHabitPopupClose();
         }
 
     }
 
 
-    // habitName이 바뀔 때 마다 habitInputCheck() 유효성검사 실행.
+
+
+
+    // habitName이 바뀔 때 마다 habitNameLengthCheck() 유효성검사 실행.
     useEffect(() => {
-        habitInputCheck()
+        habitNameLengthCheck()
     }, [habitName])
 
 
@@ -120,17 +145,10 @@ export default function UpdateHabitPopup(props) {
         }
     }, [])
 
-
-
-
-
-
-
     // --- 팝업창 닫기
     function updateHabitPopupClose() {
         props.updateHabitPopupClose();
     }
-
 
 
     return (
@@ -140,7 +158,7 @@ export default function UpdateHabitPopup(props) {
 
                 popUpTitle={popUpTitle}
                 popUpSubTitle={""}
-                popUpPlaceHolder={popUpPlaceHolder}
+                placeholder={popUpPlaceHolder}
                 popUpFisrtBtnText={popUpFisrtBtnText}
                 popUpSecondBtnText={popUpSecondBtnText}
 
@@ -149,7 +167,7 @@ export default function UpdateHabitPopup(props) {
                 value={habitName}
                 isError={isError}
                 errorMessage={errorMessage}
-                onChange={onChange}
+                // onChange={onChange}
 
 
                 // 닫기버튼
