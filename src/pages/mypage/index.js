@@ -293,7 +293,10 @@ export default function MyPage() {
             }
             // formData
             , {
-                headers: { "Content-Type": 'application/json', Authorization: 'Bearer ' + accessToken }
+                headers: {
+                    "Content-Type": 'application/json',
+                    Authorization: 'Bearer ' + accessToken,
+                   }
             })
             .then(
                 setPopUp({ summary: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
@@ -383,45 +386,11 @@ export default function MyPage() {
             //     "logout_redirect_uri": "https://habiters.vercel.app"
             // },
             {
-                headers: {  Authorization: 'Bearer ' + accessToken }
-            })
-            // .then(
-            //     setPopUp({ summary: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
-            // )
-            // .catch(function (error) {
-            //     if (error.response) { // 요청이 전송되었고, 서버는 2xx 외의 상태 코드로 응답했습니다.
-            //         // console.log(error.response.data.msg);
-            //         // console.log(error.response.status);
-            //         // console.log(error.response.headers);
+                headers: {  Authorization: 'Bearer ' + accessToken },
+                "Access-Control-Allow-Origin": '*'
+            }
+        )
 
-            //         // setPopUp({ summary: '닉네임 수정 실패', content: error.response.data.msg })
-            //         setIsError(() => true)
-            //         setErrorMessage("이미 사용중인 닉네임입니다. 다른 이름을 입력해주세요.")
-
-            //         return
-            //     } else if (error.request) {
-            //         // 요청이 전송되었지만, 응답이 수신되지 않았습니다. 
-            //         // 'error.request'는 브라우저에서 XMLHtpRequest 인스턴스이고,
-            //         // node.js에서는 http.ClientRequest 인스턴스입니다.
-
-            //         // console.log(error.request);
-            //         return
-            //     } else {
-            //         // 오류가 발생한 요청을 설정하는 동안 문제가 발생했습니다.
-
-            //         // console.log('Error', error.message);
-            //         return
-
-            //     }
-
-
-            //     // console.log(error.config);
-            //     return
-            // })
-
-
-
-        // console.log("항상 나오나?")
         console.log(response)
 
 
