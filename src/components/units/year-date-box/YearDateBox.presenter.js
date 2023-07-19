@@ -1,5 +1,5 @@
 
-import { DateBox, ArrowLeft, ArrowRight, Date} from './YearDateBox.styles'
+import { DateBox, ArrowLeft, ArrowRight, Date, BtnContainer, MoveTodayBtn, AddHabitBtn } from './YearDateBox.styles'
 
 
 export default function YearDateBoxUI(props) {
@@ -8,14 +8,19 @@ export default function YearDateBoxUI(props) {
 
 
     return (
-       
+
         <>
             <DateBox>
-                <ArrowLeft 
-                onClick={props.monthDown}/>
+                <ArrowLeft
+                    onClick={props.monthDown} />
                 <Date className="headline4"><span>{props.visibleDate.year}</span>.<span>{props.visibleDate.month}</span></Date>
-                <ArrowRight 
-                onClick={props.monthUp}/>
+                <ArrowRight
+                    onClick={props.monthUp} />
+
+
+
+
+
             </DateBox>
         </>
     )

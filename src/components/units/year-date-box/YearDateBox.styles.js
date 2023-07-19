@@ -54,6 +54,32 @@ export const ArrowRight = styled.span`
     }
     `
 
-    export const Date = styled.span`
-    width:98px
+export const Date = styled.span`
+    width:98px;
     `
+
+
+export const BtnContainer = styled.div`
+ position: absolute;
+ display: flex;
+ gap: 8px;
+ right: 10px;
+
+`
+
+
+export const AddHabitBtn = styled.div`
+ /* width: 156px; */
+    /* position: absolute;
+    width: 156px;
+    right: 0;
+    padding: 0; */
+`
+
+export const MoveTodayBtn = styled.div`
+margin-right: 156px;
+    /* position: absolute;
+    width: 57px;
+    right: 168px;
+    padding: 0; */
+`

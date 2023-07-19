@@ -23,7 +23,7 @@ export default function Inputs(props) {
 
     // --- Error Check (페이지 조건별로 에러State 변경)
     useEffect(() => {
-        console.log(props.isError)
+        // console.log(props.isError)
         switch (props.isError) {
            
             case true:

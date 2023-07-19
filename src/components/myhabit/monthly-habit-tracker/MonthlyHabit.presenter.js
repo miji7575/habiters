@@ -21,13 +21,13 @@ export default function MonthlyHabitTrackerUI(props) {
 
                 <HabitTrackerHeader>
                     <YearDateBox />
-
+                   
                     <BtnContainer>
 
                         <MoveTodayBtn className="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content "
-                            onClick={props.moveToThisMonth}>
+                            onClick={props.resetCalender}>
                             <span>오늘</span>
-                        </MoveTodayBtn>
+                        </MoveTodayBtn> 
 
                         <AddHabitBtn className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content "
                             onClick={props.addNewHabitPopupOn}>

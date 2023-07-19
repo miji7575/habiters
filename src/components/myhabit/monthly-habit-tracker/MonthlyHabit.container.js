@@ -28,7 +28,7 @@ export default function MonthlyHabitTracker(props) {
 
     // --- Axios get--- 유저의 habit 목록 get (캘린더에서 사용)
     const getUserHabit = async () => {
-  
+
 
         getUserHabitThisMonth()
 
@@ -46,7 +46,7 @@ export default function MonthlyHabitTracker(props) {
 
     // --- Axios get--- 유저의 이번달 habit 목록 get (일별확인에서 사용)
     const getUserHabitThisMonth = async () => {
-     
+
         const todayMonth = (('00' + (Number(todayDate.getMonth()) + 1)).slice(-2))
 
         if (accessToken) {
@@ -131,20 +131,14 @@ export default function MonthlyHabitTracker(props) {
     const today = year + "-" + month + "-" + date;
 
 
-
+    useEffect(() => {
+        // console.log(visibleDate)
+    })
 
     const [selectedDate, setSelectedDate] = useState(today)
 
 
-    // --- 오늘 날짜로 이동
-    const moveToThisMonth = () => {
-        setVisibleDate({
-            ...visibleDate,
-            year: todayDate.getFullYear(),
-            month: (('00' + (Number(todayDate.getMonth()) + 1)).slice(-2))
-        })
 
-    }
 
 
 
@@ -172,27 +166,17 @@ export default function MonthlyHabitTracker(props) {
 
 
             <MonthlyHabitTrackerUI
+                
                 // popup실행함수
                 addNewHabitPopupOn={addNewHabitPopupOn}
                 updateHabitPopupOn={updateHabitPopupOn}
                 deleteHabitPopupOn={deleteHabitPopupOn}
                 HabitAlertPopupOn={HabitAlertPopupOn}
 
-
-                monthDown={props.monthDown}
-                monthUp={props.monthUp}
-
                 habits={habits}
                 isHabitNull={isHabitNull}
-
-
-
                 selectedDate={selectedDate}
-
-
-                moveToThisMonth={moveToThisMonth}
-
-
+                resetCalender={props.resetCalender}
                 getUserHabit={getUserHabit}
             />
 

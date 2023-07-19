@@ -13,7 +13,7 @@ export default function Textareas(props) {
     const [textLength, setTextLength] = useState("0")
 
     useEffect(() => {
-        console.log(textareaValue)
+        // console.log(textareaValue)
     })
 
 

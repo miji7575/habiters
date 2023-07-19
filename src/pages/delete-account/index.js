@@ -76,14 +76,14 @@ export default function DeleteAccount() {
 
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     const deleteUser = async () => {
-        console.log("?")
+        // console.log("?")
         if (accessToken) {
 
             const response = await axios.delete(`https://api.habiters.store/users/me`,
                 {
                     headers: { "Content-Type": 'multipart/form-data', Authorization: 'Bearer ' + accessToken }
                 })
-            console.log(response)
+            // console.log(response)
             return
 
         }
@@ -109,7 +109,7 @@ export default function DeleteAccount() {
     }
 
     const onDeleteUserBtnClick = () => {
-        console.log("삭ㅈㅔ됨")
+        // console.log("삭ㅈㅔ됨")
         deleteUser();
         setAccessToken();
         setIsDeleteAccountPopUpOn(false)

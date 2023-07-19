@@ -125,7 +125,8 @@ export default function HabitTracker() {
                         />
 
 
-                        {isMonthlyHabitTrackerOn && <MonthlyHabitTracker />}
+                        {isMonthlyHabitTrackerOn && <MonthlyHabitTracker 
+                        resetCalender={resetCalender}/>}
 
 
 
