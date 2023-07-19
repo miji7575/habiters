@@ -377,7 +377,7 @@ export default function MyPage() {
 
         const client_id = "58a5cd8f1a8ca897c3509e973e68767f"
 
-        const response = await axios.get(`https://kauth.kakao.com/oauth/logout?client_id={process.env.REACT_APP_Client_Id}&logout_redirect_uri=https://habiters.vercel.app`,
+        const response = await axios.get(`https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app`,
             // {
             //     "client_id": client_id,
             //     "logout_redirect_uri": "https://habiters.vercel.app"
