@@ -47,7 +47,7 @@ export default function LoginPage() {
     // ============================== Function  ==============================
 
     const router = useRouter()
-    console.log("LoginPage")
+    // console.log("LoginPage")
 
 
 
@@ -55,6 +55,7 @@ export default function LoginPage() {
     // ----- 토큰을 로컬에 저장
 
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken);
+
 
     const getAccessToken = async () => {
         setAccessToken(() => router.query.accessToken)
