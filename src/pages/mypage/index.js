@@ -367,7 +367,7 @@ export default function MyPage() {
 
     const logout = () => {
 
-        KakaoLogout()
+        // KakaoLogout()
         // window.sessionStorage.clear();
         // router.push("/");
 
@@ -498,7 +498,8 @@ export default function MyPage() {
                     <div className="btn-arrange-vertical">
                         <div>
                             <div className="btn btn-large btn-primary-default body2-medium"
-                                onClick={logout}>로그아웃</div>
+                              onClick={logout}><a href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</a></div>
+                               
                         </div>
                         <div>
                             <div className="btn btn-large btn-secondary-default body2-medium"
