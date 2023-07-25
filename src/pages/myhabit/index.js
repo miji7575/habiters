@@ -16,13 +16,13 @@ import MonthlyRetrospects from '../../components/myhabit/monthly-retrospects/Mon
 
 
 // ============================== Style ==============================
- const Main = styled.div`
+const Main = styled.div`
     display: flex;
     justify-content: center;
 
 `
 
- const Content = styled.div`
+const Content = styled.div`
     width: 60vw;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@ import MonthlyRetrospects from '../../components/myhabit/monthly-retrospects/Mon
 
 `
 
- const Title = styled.div`
+const Title = styled.div`
     padding: 72px 0 48px 0;
     color: var(--color-black1);
 `
@@ -97,10 +97,12 @@ export default function HabitTracker() {
             year: todayDate.getFullYear(),
             month: (('00' + (Number(todayDate.getMonth()) + 1)).slice(-2))
         })
-
+        console.log("실행됨")
     }
 
-
+    useEffect(() => {
+        console.log(visibleDate)
+    })
 
 
 
@@ -125,12 +127,12 @@ export default function HabitTracker() {
                         />
 
 
-                        {isMonthlyHabitTrackerOn && <MonthlyHabitTracker 
-                        resetCalender={resetCalender}/>}
+                        {isMonthlyHabitTrackerOn && <MonthlyHabitTracker
+                            resetCalender={resetCalender} />}
 
 
 
-                        {isMonthlyRetrospectsOn && <MonthlyRetrospects/>}
+                        {isMonthlyRetrospectsOn && <MonthlyRetrospects />}
 
 
 
