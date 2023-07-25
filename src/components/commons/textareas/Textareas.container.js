@@ -22,46 +22,78 @@ export default function Textareas(props) {
     }, [])
 
 
+    // 230724 textarearValue가 변경될때마다 textLengthCheck 함수를 호출
+    useEffect(() => {
+        textLengthCheck();
+    }, [textareaValue]);
 
+
+    // 230724 text 길이 체크하는 함수
     const textLengthCheck = () => {
 
-
         if (textareaValue[props.name]) {
-            setTextLength(() => textareaValue[props.name].length)
+            const length = textareaValue[props.name].length;
+            setTextLength(length);
 
-
-            if (textareaValue[props.name].length <= 200) {
-                setIsError(false)
-                setTextareaErrorMessage("")
+            if (length <= 200) {
+                setIsError(false);
+                setTextareaErrorMessage("");
+            } else if (props.name === "deleteUser") {
+                setIsError(true);
+                setTextareaErrorMessage("200자 이내로 입력해주세요.");
+            } else {
+                setIsError(true);
+                setTextareaErrorMessage("회고는 200자 이내로 입력해주세요.");
             }
-            else if (props.name == "deleteUser") {
-                setIsError(true)
-                setTextareaErrorMessage("200자 이내로 입력해주세요.")
-            }
-            else {
-
-                setIsError(true)
-                setTextareaErrorMessage("회고는 200자 이내로 입력해주세요.")
-            }
-
         } else {
-            setTextLength(0)
-            setTextareaErrorMessage("")
-
+            setTextLength(0);
+            setTextareaErrorMessage("");
         }
-
     }
 
 
 
+    // const textLengthCheck = () => {
+
+    //     if (textareaValue[props.name]) {
+    //         setTextLength(() => textareaValue[props.name].length)
+
+
+    //         if (textareaValue[props.name].length <= 200) {
+    //             setIsError(false)
+    //             setTextareaErrorMessage("")
+    //         }
+    //         else if (props.name == "deleteUser") {
+    //             setIsError(true)
+    //             setTextareaErrorMessage("200자 이내로 입력해주세요.")
+    //         }
+    //         else {
+
+    //             setIsError(true)
+    //             setTextareaErrorMessage("회고는 200자 이내로 입력해주세요.")
+    //         }
+
+    //     } else {
+    //         setTextLength(0);
+    //         setTextareaErrorMessage("")
+
+    //     }
+
+    // }
+
+    // 230724 글이 입력될 때 실행되는 함수
     const onChange = (e) => {
         const { value, name } = e.target;
-        setTextareaInput({ ...textareaValue, [name]: value })
-        textLengthCheck()
+        setTextareaInput({ ...textareaValue, [name]: value });
     }
 
 
 
+    // const onChange = (e) => {
+    //     const { value, name } = e.target;
+    //     setTextareaInput({ ...textareaValue, [name]: value })
+    //     textLengthCheck()
+    // }
 
 
     return (
