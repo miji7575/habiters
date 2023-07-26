@@ -65,11 +65,16 @@ export default function HabitimunityBoardUI() {
             <BoardContainer>
                 <BoardBox>
                     <BoardTitle>
-                        <strong>
-                            <a href="#">
-                                제목을 기입해줍니다.
-                            </a>
-                        </strong>
+                        <div>
+                            <span>
+                                icon
+                            </span>
+                            <strong>
+                                <a href="#">
+                                    제목을 기입해줍니다.
+                                </a>
+                            </strong>
+                        </div>
                         <div>북마크</div>
                     </BoardTitle>
                     <BoardContent>
@@ -85,10 +90,7 @@ export default function HabitimunityBoardUI() {
                                 작성자
                             </span>
                             <span>
-                                category
-                            </span>
-                            <span>
-                                1일전
+                                날짜
                             </span>
                         </div>
                         <div>

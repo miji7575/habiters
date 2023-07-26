@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import CommunityCategory from '../../components/units/habitimunity-category/Category.container';
 import HabitimunityNotice from '../../components/habitimunity/habitimunity-notice/habitimunity-notice.container';
 import HabitimunityBoard from '../../components/habitimunity/habitimunity-board/habitimunity-board.container';
+import axios from 'axios';
 
 // ============================== Style ==============================
 const Main = styled.div`
@@ -29,6 +30,44 @@ const CommunityHeader = styled.div`
     display: flex;
     justify-content: space-between;
 `
+
+const SearchInputBox = styled.div`
+    width: 280px;
+    height: 48px;
+
+    border: 1px solid #DBDBDB;
+    border-radius: 8px;
+`
+
+const SearchInput = styled.input`
+
+
+
+
+`
+
+const SearchIcon = styled.i`
+
+    &::after{
+        content: '';
+        width: 20px;
+        height: 20px;
+
+        // padding: .4em 0.8em;
+        // display: flex; /* 가상 요소 가운데 정렬 */
+        // margin-left: auto;
+
+        background-color: #494949bd;
+        
+        mask-size: 20px 20px;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-size: 20px 20px;
+        
+        mask-image: url(/image/search.svg); /* mask 속성 사용할 때 앞에 접두사(ex.webkit)을 안붙이면 현재 mask 기능이 지원되는 브라우저에서는 모두 적용이 된다. */
+        -webkit-mask-image: url(/image/search.svg);
+    }
+`
+
 const CommnuityContent = styled.div`
     width: 100%;
 
@@ -65,6 +104,13 @@ export default function Habitimunity() {
 
     }
 
+    useEffect(async () => {
+        const response = await axios.get(`https://api.habiters.store/posts?page=1&category=DAILY`, {
+            headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+        })
+        console.log(response)
+    })
+
 
     return (
         <>
@@ -74,9 +120,13 @@ export default function Habitimunity() {
                     <Content>
                         <CommunityHeader>
                             <CommunityCategory />
-                            <div>
-                                검색어를 입력해주세요.
-                            </div>
+                            <SearchInputBox>
+                                <SearchIcon />
+                                <SearchInput 
+                                    onFocus={createBoard}
+                                    placeholder='검색어를 입력해주세요.'>
+                                </SearchInput>
+                            </SearchInputBox>
                         </CommunityHeader>
                         <CommnuityContent>
                             <CommnunityList>
