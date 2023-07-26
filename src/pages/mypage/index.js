@@ -296,7 +296,7 @@ export default function MyPage() {
                 headers: {
                     "Content-Type": 'application/json',
                     Authorization: 'Bearer ' + accessToken,
-                   }
+                }
             })
             .then(
                 setPopUp({ summary: '닉네임 수정 완료', content: '변경하신 닉네임으로 수정이 완료되었어요.' })
@@ -386,7 +386,7 @@ export default function MyPage() {
             //     "logout_redirect_uri": "https://habiters.vercel.app"
             // },
             {
-                headers: {  Authorization: 'Bearer ' + accessToken },
+                headers: { Authorization: 'Bearer ' + accessToken },
                 "Access-Control-Allow-Origin": '*'
             }
         )
@@ -498,8 +498,11 @@ export default function MyPage() {
                     <div className="btn-arrange-vertical">
                         <div>
                             <div className="btn btn-large btn-primary-default body2-medium"
-                              onClick={logout}><a href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</a></div>
-                               
+                                onClick={logout}>
+                                로그아웃
+                                {/* <a href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</a> */}
+                            </div>
+
                         </div>
                         <div>
                             <div className="btn btn-large btn-secondary-default body2-medium"

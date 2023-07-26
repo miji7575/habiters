@@ -41,7 +41,7 @@ export default function YearDateBox(props) {
     let newDays = []
 
     useEffect(() => {
-        // console.log(visibleDate)
+        console.log(visibleDate)
         // console.log(year)
     })
 
@@ -62,7 +62,14 @@ export default function YearDateBox(props) {
             }));
 
 
-    }, [year, month, days, startDay,])
+    }, [year, month, days, startDay ])
+
+
+    // useEffect(() => {
+    //     setYear(visibleDateState.year)
+    //     setMonth(visibleDateState.month)
+
+    // }, [visibleDateState])
 
 
 
@@ -137,7 +144,7 @@ export default function YearDateBox(props) {
         // console.log(Number(visibleDate.month))
         setMonth(('00' + (Number(visibleDate.month) + 1)).slice(-2));
         if (month == 12) {
-            // setMonth('01')
+            setMonth('01')
             // setVisibleDate(
             //     prevState => ({
             //         ...prevState,
