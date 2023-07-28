@@ -7,6 +7,7 @@ import CommunityCategory from '../../components/units/habitimunity-category/Cate
 import HabitimunityNotice from '../../components/habitimunity/habitimunity-notice/habitimunity-notice.container';
 import HabitimunityBoard from '../../components/habitimunity/habitimunity-board/habitimunity-board.container';
 import axios from 'axios';
+import Search from '../../components/habitimunity/commons/search/search.container';
 
 // ============================== Style ==============================
 const Main = styled.div`
@@ -37,35 +38,6 @@ const SearchInputBox = styled.div`
 
     border: 1px solid #DBDBDB;
     border-radius: 8px;
-`
-
-const SearchInput = styled.input`
-
-
-
-
-`
-
-const SearchIcon = styled.i`
-
-    &::after{
-        content: '';
-        width: 20px;
-        height: 20px;
-
-        // padding: .4em 0.8em;
-        // display: flex; /* 가상 요소 가운데 정렬 */
-        // margin-left: auto;
-
-        background-color: #494949bd;
-        
-        mask-size: 20px 20px;
-        -webkit-mask-repeat: no-repeat;
-        -webkit-mask-size: 20px 20px;
-        
-        mask-image: url(/image/search.svg); /* mask 속성 사용할 때 앞에 접두사(ex.webkit)을 안붙이면 현재 mask 기능이 지원되는 브라우저에서는 모두 적용이 된다. */
-        -webkit-mask-image: url(/image/search.svg);
-    }
 `
 
 const CommnuityContent = styled.div`
@@ -120,13 +92,7 @@ export default function Habitimunity() {
                     <Content>
                         <CommunityHeader>
                             <CommunityCategory />
-                            <SearchInputBox>
-                                <SearchIcon />
-                                <SearchInput 
-                                    onFocus={createBoard}
-                                    placeholder='검색어를 입력해주세요.'>
-                                </SearchInput>
-                            </SearchInputBox>
+                            <Search />
                         </CommunityHeader>
                         <CommnuityContent>
                             <CommnunityList>
