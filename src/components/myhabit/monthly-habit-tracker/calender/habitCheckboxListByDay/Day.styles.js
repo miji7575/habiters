@@ -20,7 +20,6 @@ export const DayContainer = styled.div`
 /* 날짜기준 마지막 세로줄 (말일) */
 &:last-of-type > div {
     border-right: ${(props) => props.isSelected === true ? '1px solid var(--color-black1)' : '1px solid var(--color-black8)'};
-    margin-right: 20px;
 }
 /* 날짜칸 */
 & > div > span:first-of-type{

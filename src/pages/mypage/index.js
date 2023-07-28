@@ -73,6 +73,17 @@ const NickNameUpdateBtn = styled.div`
      width: 80px;
  
  `
+
+const LogoutLink = styled.a`
+text-decoration: none;
+  :visited{ color: inherit; }
+  :link{ color: inherit; }
+  :hover{ color:inherit; }
+  :active{ color: inherit; }
+
+`
+
+
 export default function MyPage() {
 
     // 1. 검증하기
@@ -499,8 +510,7 @@ export default function MyPage() {
                         <div>
                             <div className="btn btn-large btn-primary-default body2-medium"
                                 onClick={logout}>
-                                로그아웃
-                                {/* <a href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</a> */}
+                                <LogoutLink href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</LogoutLink>
                             </div>
 
                         </div>

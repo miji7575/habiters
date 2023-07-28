@@ -23,10 +23,10 @@ export const HabitTrackerHeader = styled.div`
     justify-content: center;
 `
 export const BtnContainer = styled.div`
- position: absolute;
- display: flex;
- gap: 8px;
- right: 10px;
+    position: absolute;
+    display: flex;
+    gap: 8px;
+    right: 0px;
 
 `
 
