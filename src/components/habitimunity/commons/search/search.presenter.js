@@ -5,7 +5,6 @@ const SearchBox = styled.div`
     width: 280px;
     height: 48px;
     display: flex;
-    align-itmes: center;
 
     position: relative;
 `
