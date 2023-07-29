@@ -3,11 +3,11 @@ import { useRouter } from "next/router"
 import { useRecoilState } from 'recoil'
 import { userAccessToken } from '../../components/stores';
 import { useEffect } from 'react';
-import CommunityCategory from '../../components/units/habitimunity-category/Category.container';
 import HabitimunityNotice from '../../components/habitimunity/habitimunity-notice/habitimunity-notice.container';
 import HabitimunityBoard from '../../components/habitimunity/habitimunity-board/habitimunity-board.container';
 import axios from 'axios';
 import Search from '../../components/habitimunity/commons/search/search.container';
+import Tabs from '../../components/habitimunity/commons/tabs/tabs.container';
 
 // ============================== Style ==============================
 const Main = styled.div`
@@ -91,7 +91,7 @@ export default function Habitimunity() {
                 <Main>
                     <Content>
                         <CommunityHeader>
-                            <CommunityCategory />
+                            <Tabs/>
                             <Search />
                         </CommunityHeader>
                         <CommnuityContent>
