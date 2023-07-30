@@ -8,6 +8,7 @@ import HabitimunityPost from '../../components/habitimunity/habitimunity-post/ha
 import axios from 'axios';
 import Search from '../../components/habitimunity/commons/search/search.container';
 import Tabs from '../../components/habitimunity/commons/tabs/tabs.container';
+import UserProfile from '../../components/habitimunity/list/userProfile/userProfile.container';
 
 // ============================== Style ==============================
 const Main = styled.div`
@@ -51,13 +52,6 @@ const CommnuityContent = styled.div`
 const CommnunityList = styled.div`
     width: 880px;
 `
-const UserActivites = styled.div`
-    min-width: 280px;
-    height: 230px;
-
-    border: 1px solid #DBDBDB;
-    border-radius: 16px;
-`
 
 
 export default function Habitimunity() {
@@ -99,29 +93,7 @@ export default function Habitimunity() {
                                 <HabitimunityNotice />
                                 <HabitimunityPost />
                             </CommnunityList>
-                            <UserActivites>
-                                <div>유저닉네임</div>
-                                <div>
-                                    <div>
-                                        <span>북마크 수</span>
-                                        <span>10</span>
-                                    </div>
-                                    <div>
-                                        <span>작성한 글</span>
-                                        <span>10</span>
-                                    </div>
-                                    <div>
-                                        <span>작성한 댓글</span>
-                                        <span>10</span>
-                                    </div>
-                                </div>
-                                <button 
-                                    className="btn btn-large btn-primary-default body2-medium"
-                                    onClick={createPost}    
-                                >
-                                    게시글 작성하기
-                                </button>
-                            </UserActivites>
+                            <UserProfile />
                         </CommnuityContent>
                     </Content>
 
