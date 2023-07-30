@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import Label from "../commons/label/label.container"
 
 const BoardContainer = styled.div`
 
@@ -19,7 +20,7 @@ const BoardBox = styled.div`
 
 `
 
-const BoardTitle = styled.div`
+const PostHeader = styled.div`
     display: flex;
     justify-content: space-between;
 
@@ -27,6 +28,12 @@ const BoardTitle = styled.div`
     padding-top: 24px;
     padding-bottom: 16px;
 
+`
+const PostTitle = styled.div`
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
 `
 
 const BoardContent = styled.div`
@@ -64,24 +71,25 @@ export default function HabitimunityBoardUI() {
         <>
             <BoardContainer>
                 <BoardBox>
-                    <BoardTitle>
-                        <div>
-                            <span>
-                                icon
-                            </span>
+                    <PostHeader>
+                        <PostTitle>
+                            <Label 
+                                value='운동' 
+                                default='skyBlue'
+                            />
                             <strong>
                                 <a href="#">
                                     제목을 기입해줍니다.
                                 </a>
                             </strong>
-                        </div>
+                        </PostTitle>
                         <div>북마크</div>
-                    </BoardTitle>
+                    </PostHeader>
                     <BoardContent>
                         <a href="#">
-                        내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                        내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                        내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
+                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
+                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
+                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
                         </a>
                     </BoardContent>
                     <BoardSub>
@@ -99,8 +107,9 @@ export default function HabitimunityBoardUI() {
                     </BoardSub>
                 </BoardBox>
 
+
             </BoardContainer>
-        
+
         </>
 
     )
