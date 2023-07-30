@@ -1,11 +1,11 @@
 import styled from "@emotion/styled"
 import Label from "../commons/label/label.container"
 
-const BoardContainer = styled.div`
+const PostContainer = styled.div`
 
 `
 
-const BoardBox = styled.div`
+const PostBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,7 +36,7 @@ const PostTitle = styled.div`
     gap: 8px;
 `
 
-const BoardContent = styled.div`
+const PostContent = styled.div`
     width: 832px;
     min-height: 72px;
     max-height: 72px;
@@ -53,7 +53,7 @@ const BoardContent = styled.div`
     margin-bottom: 24px;
 `
 
-const BoardSub = styled.div`
+const PostSub = styled.div`
     display: flex;
     justify-content: space-between;
 
@@ -64,13 +64,13 @@ const BoardSub = styled.div`
 
 `
 
-export default function HabitimunityBoardUI() {
+export default function HabitimunityPostUI() {
 
 
     return (
         <>
-            <BoardContainer>
-                <BoardBox>
+            <PostContainer>
+                <PostBox>
                     <PostHeader>
                         <PostTitle>
                             <Label 
@@ -85,14 +85,14 @@ export default function HabitimunityBoardUI() {
                         </PostTitle>
                         <div>북마크</div>
                     </PostHeader>
-                    <BoardContent>
+                    <PostContent>
                         <a href="#">
                             내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
                             내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
                             내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
                         </a>
-                    </BoardContent>
-                    <BoardSub>
+                    </PostContent>
+                    <PostSub>
                         <div>
                             <span>
                                 작성자
@@ -104,11 +104,11 @@ export default function HabitimunityBoardUI() {
                         <div>
                             아이콘
                         </div>
-                    </BoardSub>
-                </BoardBox>
+                    </PostSub>
+                </PostBox>
 
 
-            </BoardContainer>
+            </PostContainer>
 
         </>
 

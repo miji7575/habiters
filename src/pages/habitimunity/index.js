@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil'
 import { userAccessToken } from '../../components/stores';
 import { useEffect } from 'react';
 import HabitimunityNotice from '../../components/habitimunity/habitimunity-notice/habitimunity-notice.container';
-import HabitimunityBoard from '../../components/habitimunity/habitimunity-board/habitimunity-board.container';
+import HabitimunityPost from '../../components/habitimunity/habitimunity-post/habitimunity-post.container';
 import axios from 'axios';
 import Search from '../../components/habitimunity/commons/search/search.container';
 import Tabs from '../../components/habitimunity/commons/tabs/tabs.container';
@@ -71,8 +71,8 @@ export default function Habitimunity() {
         // router.push("/comming-soon")
     }, [])
 
-    const createBoard = () => {
-        console.log('createBoard')
+    const createPost = () => {
+        console.log('createPost')
 
     }
 
@@ -97,7 +97,7 @@ export default function Habitimunity() {
                         <CommnuityContent>
                             <CommnunityList>
                                 <HabitimunityNotice />
-                                <HabitimunityBoard />
+                                <HabitimunityPost />
                             </CommnunityList>
                             <UserActivites>
                                 <div>유저닉네임</div>
@@ -117,7 +117,7 @@ export default function Habitimunity() {
                                 </div>
                                 <button 
                                     className="btn btn-large btn-primary-default body2-medium"
-                                    onClick={createBoard}    
+                                    onClick={createPost}    
                                 >
                                     게시글 작성하기
                                 </button>
