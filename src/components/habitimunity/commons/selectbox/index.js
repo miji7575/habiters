@@ -3,6 +3,20 @@ import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
 
 
+
+
+// 2023/07/30/박미지  -------------------------------------  SelectBoxDefault
+
+
+// =====  사용법
+// "SelectBoxDefault" 라는 이름으로 import 해서 사용
+// 받아올 옵션의 데이터 : 사용하는 곳에서 "options" 라는 이름으로 전달.
+// width 변경하기 : SelectBoxDefaultWrap 안의 width 속성에 prop 전달(단위까지 기재) 기본값 380px
+// Medium SelectBox 사용시에만 type={ "medium" }으로 전달
+
+
+
+
 // --------------------애니메이션 시간되면 넣기
 const slideFadeIn = keyframes`
 
@@ -30,15 +44,6 @@ const slideFadeOut = keyframes`
 
 
 
-
-
-// 2023/07/30/박미지  -------------------------------------  SelectBoxDefault
-
-
-// =====  사용법
-// 받아올 옵션의 데이터 : 사용하는 곳에서 "options" 라는 이름으로 전달.
-// width 변경하기 : SelectBoxDefaultWrap 안의 width 속성에 prop 전달(단위까지 기재) 기본값 380px
-// Medium SelectBox 사용시에만 type={ "medium" }으로 전달
 
 
 
