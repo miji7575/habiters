@@ -38,8 +38,9 @@ export default function App({ Component, pageProps }) {
       {/* <Global styles={ GlobalStyles }> */}
       <RecoilRoot>
         <Layout>
-         {pageProps.statusCode != 404 && <Component {...pageProps} />}
-         {pageProps.statusCode == 404 && <ErrorPage/>}
+         {/* {pageProps.statusCode != 404 && <Component {...pageProps} />} */}
+         {/* {pageProps.statusCode == 404 && <ErrorPage/>} */}
+         <Component {...pageProps}/>
         </Layout>
       </RecoilRoot>
       {/* </Global> */}
