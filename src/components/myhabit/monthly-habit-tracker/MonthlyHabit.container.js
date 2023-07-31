@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { useRecoilState, useRecoilValue, atom } from 'recoil';
 import MonthlyHabitTrackerUI from "./MonthlyHabit.presenter"
-import { userHabitState, userAccessToken, visibleDateState, userHabitStateThisMonth } from '../../../components/stores';
+import { userHabitState, userAccessToken, visibleDateState, resetCalenderStaste, userHabitStateThisMonth } from '../../../components/stores';
 import axios from "axios";
 
 // POPUP
@@ -158,6 +158,13 @@ export default function MonthlyHabitTracker(props) {
 
 
 
+    // 달력 초기화 State
+    const [isResetCalender, setIsResetCalender] = useRecoilState(resetCalenderStaste)
+
+    const resetCalender = () => {
+        setIsResetCalender(true)
+    }
+
 
 
     return (
@@ -176,7 +183,7 @@ export default function MonthlyHabitTracker(props) {
                 habits={habits}
                 isHabitNull={isHabitNull}
                 selectedDate={selectedDate}
-                resetCalender={props.resetCalender}
+                resetCalender={resetCalender} // 오늘 버튼 누르면 작동
                 getUserHabit={getUserHabit}
             />
 

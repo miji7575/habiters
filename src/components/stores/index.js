@@ -120,3 +120,13 @@ export const SelectedDate = atom({
     key: "date",
     default: new Date().getDate()
 })
+
+
+
+
+
+// 달력 초기화 state
+export const resetCalenderStaste = atom({
+    key : "resetCalenderStaste",
+    default : true
+})
