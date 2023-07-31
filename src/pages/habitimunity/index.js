@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil'
 import { userAccessToken } from '../../components/stores';
 import { useEffect } from 'react';
 import HabitimunityNotice from '../../components/habitimunity/habitimunity-notice/habitimunity-notice.container';
-import HabitimunityPost from '../../components/habitimunity/habitimunity-post/habitimunity-post.container';
+import HabitimunityPost from '../../components/habitimunity/list/postList/postList.container';
 import axios from 'axios';
 import Search from '../../components/habitimunity/commons/search/search.container';
 import Tabs from '../../components/habitimunity/commons/tabs/tabs.container';

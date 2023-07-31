@@ -83,7 +83,7 @@ const PostContent = styled.div`
     margin-bottom: 24px;
 `
 
-const PostSub = styled.div`
+const PostInformation = styled.div`
     display: flex;
     justify-content: space-between;
 
@@ -124,7 +124,7 @@ export default function PostListUI() {
                             내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
                         </a>
                     </PostContent>
-                    <PostSub>
+                    <PostInformation>
                         <div>
                             <span>
                                 작성자
@@ -136,7 +136,7 @@ export default function PostListUI() {
                         <div>
                             아이콘
                         </div>
-                    </PostSub>
+                    </PostInformation>
                 </PostBox>
 
 
