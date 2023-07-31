@@ -17,6 +17,8 @@ const TabBtn = styled.div`
     background-color: ${(props) => (props.active ? "#937CF1" : "transparent")};
     color: ${(props) => (props.active ? "white" : "inherit")};
     font-weight: ${(props) => (props.active ? "700" : "inherit")};
+
+    cursor: pointer;
 `
 
 export default function TabUI(props) {
