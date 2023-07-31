@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
-import Label from "../commons/label/label.container"
+import Label from "../../commons/label/label.container"
+import Bookmark from "../../commons/bookmark/bookmark.container"
 
 const PostContainer = styled.div`
 
@@ -36,6 +37,35 @@ const PostTitle = styled.div`
     gap: 8px;
 `
 
+const PostBookmark = styled.div`
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-black4);
+    border-radius: 50%;
+    
+    cursor: pointer;
+`
+
+const BookmarkIcon = styled.i`
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+
+    margin-right: 4px;
+
+    background-color: #A6A6A6;
+
+    mask-size: 16px 16px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 16px 16px;
+
+    mask-position: center;
+    -webkit-mask-position: center;
+
+    mask-image: url(/image/icon/icon-bookmark.svg);
+    -webkit-mask-image: url(/image/icon/icon-bookmark.svg);
+`
+
 const PostContent = styled.div`
     width: 832px;
     min-height: 72px;
@@ -64,7 +94,7 @@ const PostSub = styled.div`
 
 `
 
-export default function HabitimunityPostUI() {
+export default function PostListUI() {
 
 
     return (
@@ -83,7 +113,9 @@ export default function HabitimunityPostUI() {
                                 </a>
                             </strong>
                         </PostTitle>
-                        <div>북마크</div>
+                        <Bookmark 
+                            bookmarked={true}
+                        />
                     </PostHeader>
                     <PostContent>
                         <a href="#">
