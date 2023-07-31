@@ -89,6 +89,12 @@ export const InputValue = atom({
     default: '',
 })
 
+export const InputValueState = atom({
+    key: 'inputvalue',
+    default: '',
+})
+
+
 
 
 
