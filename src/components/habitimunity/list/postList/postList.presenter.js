@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import Label from "../../commons/label/label.container"
 import Bookmark from "../../commons/bookmark/bookmark.container"
+import UserData from "../../commons/userData/userData.container"
 
 const PostContainer = styled.div`
 
@@ -86,11 +87,12 @@ const PostContent = styled.div`
 const PostInformation = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     width: 832px;
-    border-top: 1px solid #DBDBDB;
+    height: 24px;
 
-    padding-top: 12px;
+    /* padding-top: 12px; */
 
 `
 
@@ -124,15 +126,10 @@ export default function PostListUI() {
                             내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
                         </a>
                     </PostContent>
-                    <PostInformation>
-                        <div>
-                            <span>
-                                작성자
-                            </span>
-                            <span>
-                                날짜
-                            </span>
-                        </div>
+                    <PostInformation
+                        className="caption1-regular"
+                    >
+                        <UserData />
                         <div>
                             아이콘
                         </div>
