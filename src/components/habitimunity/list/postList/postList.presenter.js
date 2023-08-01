@@ -2,6 +2,7 @@ import styled from "@emotion/styled"
 import Label from "../../commons/label/label.container"
 import Bookmark from "../../commons/bookmark/bookmark.container"
 import UserData from "../../commons/userData/userData.container"
+import FeedData from "../../commons/feedData/feedData.container"
 
 const PostContainer = styled.div`
 
@@ -38,35 +39,6 @@ const PostTitle = styled.div`
     gap: 8px;
 `
 
-const PostBookmark = styled.div`
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--color-black4);
-    border-radius: 50%;
-    
-    cursor: pointer;
-`
-
-const BookmarkIcon = styled.i`
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-
-    margin-right: 4px;
-
-    background-color: #A6A6A6;
-
-    mask-size: 16px 16px;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: 16px 16px;
-
-    mask-position: center;
-    -webkit-mask-position: center;
-
-    mask-image: url(/image/icon/icon-bookmark.svg);
-    -webkit-mask-image: url(/image/icon/icon-bookmark.svg);
-`
-
 const PostContent = styled.div`
     width: 832px;
     min-height: 72px;
@@ -91,6 +63,8 @@ const PostInformation = styled.div`
 
     width: 832px;
     height: 24px;
+
+    color: var(--color-black3);
 
     /* padding-top: 12px; */
 
@@ -130,9 +104,7 @@ export default function PostListUI() {
                         className="caption1-regular"
                     >
                         <UserData />
-                        <div>
-                            아이콘
-                        </div>
+                        <FeedData />
                     </PostInformation>
                 </PostBox>
 
