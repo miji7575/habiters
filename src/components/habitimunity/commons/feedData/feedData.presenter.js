@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 const FeedDataBox = styled.div`
-    width: 169px;
-    height: 24px;
+    width: 146px;
+    height: 100%;
 
     display: inline-flex;
     align-items: center;

@@ -5,19 +5,38 @@ import UserData from "../../commons/userData/userData.container"
 import FeedData from "../../commons/feedData/feedData.container"
 
 const PostContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 880px;
+    height: 204px;
+
+    border: 1px solid var(--color-black7);
+    border-radius: 8px;
 
 `
 
 const PostBox = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 24px;
 
-    width: 880px;
-    height: 208px;
+    width: 832px;
+    height: 164px;
 
-    border: 1px solid #DBDBDB;
-    border-radius: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+`
+
+const Post = styled.div`
+    width: 100%;
+    height: 116px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
     
 
@@ -28,8 +47,7 @@ const PostHeader = styled.div`
     justify-content: space-between;
 
     width: 832px;
-    padding-top: 24px;
-    padding-bottom: 16px;
+    height: 32px;
 
 `
 const PostTitle = styled.div`
@@ -40,6 +58,16 @@ const PostTitle = styled.div`
 `
 
 const PostContent = styled.div`
+    display: flex;
+    gap: 16px;
+`
+
+const PostImage = styled.img`
+    width: 76px;
+    height: 76px;
+`
+
+const PostText = styled.div`
     width: 832px;
     min-height: 72px;
     max-height: 72px;
@@ -53,7 +81,7 @@ const PostContent = styled.div`
     line-height: 1.5rem;
 
 
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 `
 
 const PostInformation = styled.div`
@@ -77,29 +105,32 @@ export default function PostListUI() {
         <>
             <PostContainer>
                 <PostBox>
-                    <PostHeader>
-                        <PostTitle>
-                            <Label 
-                                value='운동' 
-                                default='skyBlue'
-                            />
-                            <strong>
-                                <a href="#">
+                    <Post>
+                        <PostHeader>
+                            <PostTitle>
+                                <Label
+                                    value='운동'
+                                    default='skyBlue'
+                                />
+                                <div className="body2-bold">
                                     제목을 기입해줍니다.
-                                </a>
-                            </strong>
-                        </PostTitle>
-                        <Bookmark 
-                            bookmarked={true}
-                        />
-                    </PostHeader>
-                    <PostContent>
-                        <a href="#">
-                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                        </a>
-                    </PostContent>
+                                </div>
+                            </PostTitle>
+                            <Bookmark
+                                bookmarked={true}
+                            />
+                        </PostHeader>
+                        <PostContent
+                            className="body2-regular"
+                        >
+                            <PostImage src="/image/logo-habiters.svg" />
+                            <PostText>
+                                내용 1줄일 경우 / 피드 최소 길이 <br/>
+                                내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이    
+                            </PostText>
+                        </PostContent>
+                    </Post>
+
                     <PostInformation
                         className="caption1-regular"
                     >
@@ -107,8 +138,6 @@ export default function PostListUI() {
                         <FeedData />
                     </PostInformation>
                 </PostBox>
-
-
             </PostContainer>
 
         </>
