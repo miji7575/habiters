@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 
 const LabelContent = styled.div`
+    width: fit-content; // 글자길이에 맞게 width 설정
+
     position: relative;
 
     display: inline-flex;

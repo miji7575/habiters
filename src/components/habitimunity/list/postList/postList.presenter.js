@@ -3,6 +3,8 @@ import Label from "../../commons/label/label.container"
 import Bookmark from "../../commons/bookmark/bookmark.container"
 import UserData from "../../commons/userData/userData.container"
 import FeedData from "../../commons/feedData/feedData.container"
+import VoteItem from "../Items/vote/voteItem.container"
+import { useState } from "react"
 
 const PostContainer = styled.div`
     display: flex;
@@ -10,7 +12,7 @@ const PostContainer = styled.div`
     align-items: center;
 
     width: 880px;
-    height: 204px;
+    /* height: 204px; */
 
     border: 1px solid var(--color-black7);
     border-radius: 8px;
@@ -23,7 +25,7 @@ const PostBox = styled.div`
     gap: 24px;
 
     width: 832px;
-    height: 164px;
+    /* height: 164px; */
 
     padding-top: 20px;
     padding-bottom: 20px;
@@ -32,7 +34,7 @@ const PostBox = styled.div`
 
 const Post = styled.div`
     width: 100%;
-    height: 116px;
+    /* height: 116px; */
 
     display: flex;
     flex-direction: column;
@@ -59,7 +61,8 @@ const PostTitle = styled.div`
 
 const PostContent = styled.div`
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    gap: 12px;
 `
 
 const PostImage = styled.img`
@@ -90,7 +93,7 @@ const PostInformation = styled.div`
     align-items: center;
 
     width: 832px;
-    height: 24px;
+    /* height: 24px; */
 
     color: var(--color-black3);
 
@@ -99,6 +102,11 @@ const PostInformation = styled.div`
 `
 
 export default function PostListUI() {
+
+    // 230802 투표가 있는지 없는지
+    const [hasVoteItem, setHasVoteItem] = useState(false);
+    // 230802 이미지가 있는지 없는지
+    const [hasImageItem, setHasImageItem] = useState(false);
 
 
     return (
@@ -122,12 +130,18 @@ export default function PostListUI() {
                         </PostHeader>
                         <PostContent
                             className="body2-regular"
-                        >
-                            <PostImage src="/image/logo-habiters.svg" />
-                            <PostText>
-                                내용 1줄일 경우 / 피드 최소 길이 <br/>
-                                내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이    
-                            </PostText>
+                        >   
+                            {hasVoteItem && <VoteItem progress={true} />}
+
+                            <div 
+                                style={{display: 'flex', gap: '16px'}}
+                            >
+                                {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+                                <PostText>
+                                    내용 1줄일 경우 / 피드 최소 길이 <br/>
+                                    내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이    
+                                </PostText>
+                            </div>
                         </PostContent>
                     </Post>
 
