@@ -1,7 +1,8 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
-
+import {SelectBoxValueState} from '../../../stores/index';
+import { useRecoilState } from 'recoil';
 
 
 
@@ -221,21 +222,21 @@ export function SelectBoxDefault(props) {
     const [isError, setIsError] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
     const [type, setType] = useState(props.type)
-    const [selectedValue, setSelectedValue] = useState('')
     const [width, setWidth] = useState(props.width)
     const [errorMessage, setErrorMessage] = useState('에러메세지');
+    const [selectedValue, setSelectedValue] = useRecoilState(SelectBoxValueState);
     // const width = props.width
 
 
     // ----- SelectBox 내부 값
     const [isValueNull, setIsValueNull] = useState(true)
 
-    // 초기값 설정
+    // 2023/07/30/박미지 ----- 초기값 설정
     useEffect(() => {
-        setPlaceholder("값을 입력해주세요")
-        setSelectedValue(placeholder)
-        // setErrorMessage(props.errorMessage)
-    }, [placeholder])
+        setPlaceholder(()=> props.placeholder ? props.placeholder : "값을 입력해주세요")
+        setSelectedValue(()=> props.placeholder ? props.placeholder : "값을 입력해주세요")
+        setErrorMessage(() => props.errorMessage ? props.errorMessage : "값을 확인해주세요")
+    }, [props.placeholder,props.errorMessage])
 
 
     useEffect(() => {
@@ -257,8 +258,6 @@ export function SelectBoxDefault(props) {
     useEffect(() => {
         setIsError(props.isError)
         setIsDisabled(props.isDisabled)
-
-        console.log(selectedValue)
     })
 
 

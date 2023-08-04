@@ -5,7 +5,7 @@ import { userAccessToken, accessTokenStatem, URL, userDetail } from '../../../co
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 //-------------
-import { DropdownBorder, DropdownFill, SelectBoxDefault } from '../../../components/habitimunity/commons/selectbox'
+import {  SelectBoxDefault } from '../../../components/habitimunity/commons/selectbox'
 
 
 // ============================== Style ==============================
@@ -30,12 +30,28 @@ const SelectBoxByType = styled.div`
     flex-direction: column;
 `
 
+const GoBack = styled.div`
+    width : 150px;
+    height: 50px;
+    background-color: var(--color-black7);
+    border-radius: 10px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 900px;
+
+`
+
 export default function TestPage() {
+    const router = useRouter()
+    const moveTestPage = () => {
+        router.push("/test-page")
+    }
 
 
     // ============================== Function  ==============================
 
-    const router = useRouter()
+  
 
     const OPTIONS = [
         { value: "1", name: "Option1" },
@@ -53,6 +69,7 @@ export default function TestPage() {
     return (
         <Main>
             <h1>selectbox</h1>
+            <GoBack onClick={moveTestPage} >테스트페이지로</GoBack>
             <hr />
 
 

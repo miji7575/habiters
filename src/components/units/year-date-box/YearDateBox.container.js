@@ -41,7 +41,7 @@ export default function YearDateBox(props) {
     let newDays = []
 
     useEffect(() => {
-        console.log(visibleDate)
+        // console.log(visibleDate)
         // console.log(year)
     })
 
