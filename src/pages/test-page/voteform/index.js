@@ -1,13 +1,11 @@
 import styled from '@emotion/styled'
-import Inputs from '../../../components/habitimunity/register/voteForm/votingInputs/inputs/Inputs.container'
-import VotingInputs from '../../../components/habitimunity/register/voteForm/votingInputs/votingInputs.container'
+import VoteForm from '../../../components/habitimunity/register/voteForm/voteForm.container';
+
 import { InputValueState } from '../../../components/stores/index';
 import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import { useEffect } from 'react';
 
-
-import VoteForm from '../../../components/habitimunity/register/voteForm/voteForm.container';
 
 
 const Main = styled.div`
@@ -60,21 +58,23 @@ export default function VoteFormTestPage() {
 
     // ============================== Function  ==============================
 
-    const [inputValue, setInputValue] = useRecoilState(InputValueState)
+    // const [inputValue, setInputValue] = useRecoilState(InputValueState)
 
 
     // 2023-07-31 박미지 ------- Input값을 따로 넣어줄 경우.
-    useEffect(() => {
-        setInputValue({
-            ...inputValue // 기존의 input 객체를 복사한 뒤
-            , ["네번째 값"]: "밖에서 값 집어넣기🍀"
-        }) // name 키를 가진 값을 value 로 설정        
-    }, [])
+    // useEffect(() => {
+    //     setInputValue({
+    //         ...inputValue // 기존의 input 객체를 복사한 뒤
+    //         , ["네번째 값"]: "밖에서 값 집어넣기🍀"
+    //     }) // name 키를 가진 값을 value 로 설정        
+    // }, [])
 
 
 
+    {/* VotingInputs => map 돌려서 이것저것 값을 넣은 형태로 만들기 */ }
+    {/* api 호출해서 어케오나보기 */ }
+    {/* 일단 가짜 데이터 만들어서 진행 */ }
 
-  
 
     return (
 
@@ -90,17 +90,12 @@ export default function VoteFormTestPage() {
                         <h3>VoteForm reg</h3>
 
                         <div>
-                            {/* map 돌려서 이것저것 값을 넣은 형태로 만들기 */}
-                            {/* api 호출해서 어케오나보기 */}
-                            {/* 일단 가짜 데이터 만들어서 진행 */}
-                            <VotingInputs
-                                placeholder={'값을 입력하세요1번'}
-                                name={"첫번쨰 값"}
-                            />
+                            <VoteForm />
+
                         </div>
 
-                 
-                       
+
+
                     </div>
 
 

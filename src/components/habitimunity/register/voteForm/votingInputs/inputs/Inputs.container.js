@@ -37,7 +37,7 @@ export default function Inputs(props) {
     // test용
     useEffect(() => {
 
-
+        // console.log(inputValue)
 
     })
 
