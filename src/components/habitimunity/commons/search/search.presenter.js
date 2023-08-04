@@ -18,9 +18,7 @@ const SearchInput = styled.input`
     border-radius: 8px;
 
     padding-left: 44px;
-    padding-right: 10px;
-
-
+    padding-right: 36px;
 `
 
 const SearchIcon = styled.i`

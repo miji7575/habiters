@@ -1,21 +1,44 @@
 import styled from "@emotion/styled"
 import Label from "../../commons/label/label.container"
 import Bookmark from "../../commons/bookmark/bookmark.container"
+import UserData from "../../commons/userData/userData.container"
+import FeedData from "../../commons/feedData/feedData.container"
+import VoteItem from "../Items/vote/voteItem.container"
+import { useState } from "react"
 
 const PostContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 880px;
+    /* height: 204px; */
+
+    border: 1px solid var(--color-black7);
+    border-radius: 8px;
 
 `
 
 const PostBox = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 24px;
 
-    width: 880px;
-    height: 208px;
+    width: 832px;
+    /* height: 164px; */
 
-    border: 1px solid #DBDBDB;
-    border-radius: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+`
+
+const Post = styled.div`
+    width: 100%;
+    /* height: 116px; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
     
 
@@ -26,8 +49,7 @@ const PostHeader = styled.div`
     justify-content: space-between;
 
     width: 832px;
-    padding-top: 24px;
-    padding-bottom: 16px;
+    height: 32px;
 
 `
 const PostTitle = styled.div`
@@ -37,36 +59,22 @@ const PostTitle = styled.div`
     gap: 8px;
 `
 
-const PostBookmark = styled.div`
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--color-black4);
-    border-radius: 50%;
-    
-    cursor: pointer;
-`
-
-const BookmarkIcon = styled.i`
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-
-    margin-right: 4px;
-
-    background-color: #A6A6A6;
-
-    mask-size: 16px 16px;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-size: 16px 16px;
-
-    mask-position: center;
-    -webkit-mask-position: center;
-
-    mask-image: url(/image/icon/icon-bookmark.svg);
-    -webkit-mask-image: url(/image/icon/icon-bookmark.svg);
-`
-
 const PostContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+`
+const PostImage = styled.img`
+    width: 76px;
+    height: 76px;
+
+    display: inline-block;
+
+    border: 1px solid var(--color-black7);
+
+`
+
+const PostText = styled.div`
     width: 832px;
     min-height: 72px;
     max-height: 72px;
@@ -80,66 +88,123 @@ const PostContent = styled.div`
     line-height: 1.5rem;
 
 
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 `
 
 const PostInformation = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     width: 832px;
-    border-top: 1px solid #DBDBDB;
+    /* height: 24px; */
 
-    padding-top: 12px;
+    color: var(--color-black3);
+
+    /* padding-top: 12px; */
 
 `
 
-export default function PostListUI() {
+export default function PostListUI(props) {
+
+    // 230802 투표가 있는지 없는지
+    const [hasVoteItem, setHasVoteItem] = useState(true);
+    // 230802 이미지가 있는지 없는지
+    const [hasImageItem, setHasImageItem] = useState(true);
+
 
 
     return (
-        <>
+        <>  
+            {/* pagination test data처리용 */}
+            {props.posts.slice(props.offset, props.offset + props.limit).map(({ id, title, body, userId }) => (
+                <PostContainer key={id}>
+                    <PostBox>
+                        <Post>
+                            <PostHeader>
+                                <PostTitle>
+                                    <Label
+                                        value='운동'
+                                        default='skyBlue'
+                                    />
+                                    <div className="body2-bold">
+                                        {title}
+                                    </div>
+                                </PostTitle>
+                                <Bookmark
+                                    bookmarked={false}
+                                />
+                            </PostHeader>
+                            <PostContent
+                                className="body2-regular"
+                            >   
+                                {hasVoteItem && <VoteItem progress={true} />}
+
+                                <div 
+                                    style={{display: 'flex', gap: '16px'}}
+                                >
+                                    <PostImage src="/image/logo-habiters.svg" />
+                                    <PostText>
+                                        {body}
+                                    </PostText>
+                                </div>
+                            </PostContent>
+                        </Post>
+
+                        <PostInformation
+                            className="caption1-regular"
+                        >
+                            <UserData userId={userId} />
+                            <FeedData />
+                        </PostInformation>
+                    </PostBox>
+                </PostContainer>
+
+            ))}
+
+
+            {/* sample */}
             <PostContainer>
                 <PostBox>
-                    <PostHeader>
-                        <PostTitle>
-                            <Label 
-                                value='운동' 
-                                default='skyBlue'
-                            />
-                            <strong>
-                                <a href="#">
+                    <Post>
+                        <PostHeader>
+                            <PostTitle>
+                                <Label
+                                    value='운동'
+                                    default='skyBlue'
+                                />
+                                <div className="body2-bold">
                                     제목을 기입해줍니다.
-                                </a>
-                            </strong>
-                        </PostTitle>
-                        <Bookmark 
-                            bookmarked={true}
-                        />
-                    </PostHeader>
-                    <PostContent>
-                        <a href="#">
-                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                            내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.내용을 기입해줍니다.
-                        </a>
-                    </PostContent>
-                    <PostInformation>
-                        <div>
-                            <span>
-                                작성자
-                            </span>
-                            <span>
-                                날짜
-                            </span>
-                        </div>
-                        <div>
-                            아이콘
-                        </div>
+                                </div>
+                            </PostTitle>
+                            <Bookmark
+                                bookmarked={true}
+                            />
+                        </PostHeader>
+                        <PostContent
+                            className="body2-regular"
+                        >   
+                            {hasVoteItem && <VoteItem progress={true} />}
+
+                            <div 
+                                style={{display: 'flex', gap: '16px'}}
+                            >
+                                {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+                                <PostText>
+                                    내용 1줄일 경우 / 피드 최소 길이 <br/>
+                                    내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이내용 1줄일 경우 / 피드 최소 길이    
+                                </PostText>
+                            </div>
+                        </PostContent>
+                    </Post>
+
+                    <PostInformation
+                        className="caption1-regular"
+                    >
+                        <UserData />
+                        <FeedData />
                     </PostInformation>
                 </PostBox>
-
-
             </PostContainer>
 
         </>
