@@ -5,7 +5,7 @@ import { userAccessToken, accessTokenStatem, URL, userDetail } from '../../../co
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 //-------------
-import { DropdownBorder, DropdownFill, SelectBoxDefault } from '../../../components/habitimunity/commons/selectbox'
+import {  SelectBoxDefault } from '../../../components/habitimunity/commons/selectbox'
 
 
 // ============================== Style ==============================
