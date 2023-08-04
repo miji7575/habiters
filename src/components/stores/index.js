@@ -83,11 +83,22 @@ export const TextareaValueState = atom({
     default: '',
 })
 
-// ==================== input Value
+// ==================== input Value 이거 아래껄로 다 바꾸기
 export const InputValue = atom({
     key: 'value',
     default: '',
 })
+// ==================== input Value
+export const InputValueState = atom({
+    key: 'inputvalue',
+    default: '',
+})
+
+export const SelectBoxValueState = atom({
+    key: 'selectBoxvalue',
+    default: '',
+})
+
 
 
 
