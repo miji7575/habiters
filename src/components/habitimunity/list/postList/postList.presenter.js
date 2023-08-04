@@ -64,10 +64,14 @@ const PostContent = styled.div`
     flex-direction: column;
     gap: 12px;
 `
-
 const PostImage = styled.img`
     width: 76px;
     height: 76px;
+
+    display: inline-block;
+
+    border: 1px solid var(--color-black7);
+
 `
 
 const PostText = styled.div`
@@ -101,16 +105,65 @@ const PostInformation = styled.div`
 
 `
 
-export default function PostListUI() {
+export default function PostListUI(props) {
 
     // 230802 투표가 있는지 없는지
-    const [hasVoteItem, setHasVoteItem] = useState(false);
+    const [hasVoteItem, setHasVoteItem] = useState(true);
     // 230802 이미지가 있는지 없는지
-    const [hasImageItem, setHasImageItem] = useState(false);
+    const [hasImageItem, setHasImageItem] = useState(true);
+
 
 
     return (
-        <>
+        <>  
+            {/* pagination test data처리용 */}
+            {props.posts.slice(props.offset, props.offset + props.limit).map(({ id, title, body, userId }) => (
+                <PostContainer key={id}>
+                    <PostBox>
+                        <Post>
+                            <PostHeader>
+                                <PostTitle>
+                                    <Label
+                                        value='운동'
+                                        default='skyBlue'
+                                    />
+                                    <div className="body2-bold">
+                                        {title}
+                                    </div>
+                                </PostTitle>
+                                <Bookmark
+                                    bookmarked={false}
+                                />
+                            </PostHeader>
+                            <PostContent
+                                className="body2-regular"
+                            >   
+                                {hasVoteItem && <VoteItem progress={true} />}
+
+                                <div 
+                                    style={{display: 'flex', gap: '16px'}}
+                                >
+                                    <PostImage src="/image/logo-habiters.svg" />
+                                    <PostText>
+                                        {body}
+                                    </PostText>
+                                </div>
+                            </PostContent>
+                        </Post>
+
+                        <PostInformation
+                            className="caption1-regular"
+                        >
+                            <UserData userId={userId} />
+                            <FeedData />
+                        </PostInformation>
+                    </PostBox>
+                </PostContainer>
+
+            ))}
+
+
+            {/* sample */}
             <PostContainer>
                 <PostBox>
                     <Post>

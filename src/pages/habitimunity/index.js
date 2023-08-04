@@ -2,13 +2,14 @@ import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useRecoilState } from 'recoil'
 import { userAccessToken } from '../../components/stores';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PostNotice from '../../components/habitimunity/list/notice/notice.container';
 import PostList from '../../components/habitimunity/list/postList/postList.container';
 import axios from 'axios';
 import Search from '../../components/habitimunity/commons/search/search.container';
 import Tabs from '../../components/habitimunity/commons/tabs/tabs.container';
 import UserProfile from '../../components/habitimunity/list/userProfile/userProfile.container';
+import Pagination from '../../components/habitimunity/list/pagination/pagination.container';
 
 // ============================== Style ==============================
 const Main = styled.div`
@@ -70,12 +71,25 @@ export default function Habitimunity() {
 
     }
 
-    useEffect(async () => {
-        const response = await axios.get(`https://api.habiters.store/posts?page=1&category=DAILY`, {
-            headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-        })
-        console.log(response)
-    })
+    // useEffect(async () => {
+    //     const response = await axios.get(`https://api.habiters.store/posts?page=1&category=DAILY`, {
+    //         headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+    //     })
+    //     console.log(response)
+    // })
+
+
+    const [posts, setPosts] = useState([]);
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
+
+    // useEffect(() => {
+    //   fetch("https://jsonplaceholder.typicode.com/posts")
+    //     .then((res) => res.json())
+    //     .then((data) => setPosts(data));
+    // }, []);
+    
 
 
     return (
@@ -91,7 +105,17 @@ export default function Habitimunity() {
                         <CommnuityContent>
                             <CommnunityList>
                                 <PostNotice />
-                                <PostList />
+                                <PostList 
+                                    posts={posts}
+                                    limit={limit}
+                                    offset={offset}
+                                />
+                                <Pagination
+                                    total={posts.length}
+                                    limit={limit}
+                                    page={page}
+                                    setPage={setPage}
+                                />
                             </CommnunityList>
                             <UserProfile />
                         </CommnuityContent>
