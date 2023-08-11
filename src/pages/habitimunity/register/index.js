@@ -2,11 +2,12 @@
 
 import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SelectBoxDefault } from '../../../components/habitimunity/commons/selectbox';
-import { SelectBoxValueState, InputValueState } from '../../../components/stores/index';
+import { SelectBoxValueState, InputValueState, PostContentState, userAccessToken } from '../../../components/stores/index';
 import Inputs from '../../../components/habitimunity/register/voteForm/votingInputs/inputs/Inputs.container';
 import CommunityArticleEditor from '../../../components/habitimunity/register/communityArticleEditor/communityArticleEditor.container';
+import axios from 'axios';
 // ============================== Style ==============================
 const Main = styled.div`
     display: flex;
@@ -91,17 +92,45 @@ export default function BoardRegister() {
     // 2023-08-04 박미지 ----- Input(제목) 값 저장  //inputValue["title"] 로 꺼내씀
     const [inputValue, setInputValue] = useRecoilState(InputValueState)
 
+    const [postContent, setPostContent] = useRecoilState(PostContentState);
 
     useEffect(() => {
-        // console.log(SelectBoxValue)
-        // console.log(inputValue["title"])
+
+
     })
 
+    const data = {
+        category: 'DAILY', // 선택된 카테고리 값
+        title: inputValue["title"], // 제목 값
+        content: postContent
+    };
 
 
-    const regCommunityArticle = (e) => {
-        console.log(e)
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
+
+    const regCommunityArticle = async (e) => {
+        console.log(data);
+
+        if (accessToken) {
+            const response = await axios.post('https://api.habiters.store/posts',
+                {
+                    "title" : data.title,
+                    "content" : data.content,
+                    "category" : data.category
+                }, {
+                'Content-Type': 'application/json',
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+
+            console.log(response)
+            return
+
+        }
+
     }
+
+
+
 
 
 
