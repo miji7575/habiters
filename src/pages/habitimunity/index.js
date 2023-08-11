@@ -168,19 +168,6 @@ export default function Habitimunity() {
 
                 </Main>
 
-                {/* 2023-08-11 박미지 테스트용도입니다 */}
-                {DataEx.map((data) =>
-                    <Link
-                        key={data.id}
-                        href={`/habitimunity/${data.id}`}>
-                        <a>
-                            <ItemEX
-                                key={data.id}
-                                id={data.id}
-                                title={data.title}
-                                content={data.content} />
-                        </a>
-                    </Link>)}
 
             </main>
         </>
