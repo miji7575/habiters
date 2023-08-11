@@ -200,7 +200,7 @@ export function SelectBoxDefault(props) {
                                 // 선택된 값과 OPTION의 name 비교(selectedValue, name)
                                 selectedValue={selectedValue[props.name]}
                                 name={value.name}
-                                onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.name }), setisFocused(!isFocused) }}>
+                                onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.value }), setisFocused(!isFocused) }}>
                                 {value.name}
 
                             </SelectBoxDefaultOption>
