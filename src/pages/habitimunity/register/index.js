@@ -79,11 +79,11 @@ export default function BoardRegister() {
     // 2023-08-04 박미지 ----- SelectBox 값 저장
     const [SelectBoxValue, setSelectedValue] = useRecoilState(SelectBoxValueState)
     const OPTIONS = [
-        { value: "1", name: "공부" },
-        { value: "2", name: "운동" },
-        { value: "3", name: "건강" },
-        { value: "4", name: "일상" },
-        { value: "5", name: "기타" },
+        { value: "STUDY", name: "공부" },
+        { value: "EXERCISE", name: "운동" },
+        { value: "HEALTH", name: "건강" },
+        { value: "DAILY", name: "일상" },
+        { value: "ETC", name: "기타" },
 
     ];
 
@@ -95,8 +95,8 @@ export default function BoardRegister() {
     const [postContent, setPostContent] = useRecoilState(PostContentState);
 
     useEffect(() => {
-
-
+        // console.log(SelectBoxValue)
+        // console.log(inputValue["title"])
     })
 
     const data = {
