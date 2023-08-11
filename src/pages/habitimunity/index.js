@@ -10,6 +10,7 @@ import Search from '../../components/habitimunity/commons/search/search.containe
 import Tabs from '../../components/habitimunity/commons/tabs/tabs.container';
 import UserProfile from '../../components/habitimunity/list/userProfile/userProfile.container';
 import Pagination from '../../components/habitimunity/list/pagination/pagination.container';
+import Link from 'next/link';
 
 // ============================== Style ==============================
 const Main = styled.div`
@@ -132,6 +133,7 @@ export default function Habitimunity() {
 
     }, [handleTabChange])
 
+    
     
 
 
