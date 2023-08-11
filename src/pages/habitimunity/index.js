@@ -123,6 +123,20 @@ export default function Habitimunity() {
 
                 </Main>
 
+                {/* 2023-08-11 박미지 테스트용도입니다 */}
+                {DataEx.map((data) =>
+                    <Link
+                        key={data.id}
+                        href={`/habitimunity/${data.id}`}>
+                        <a>
+                            <ItemEX
+                                key={data.id}
+                                id={data.id}
+                                title={data.title}
+                                content={data.content} />
+                        </a>
+                    </Link>)}
+
             </main>
 
         </>
@@ -133,3 +147,42 @@ export default function Habitimunity() {
 
 
 
+//  {/* 2023-08-11 박미지 테스트용도입니다 */}
+const DataEx = [
+    {
+        id: 1,
+        title: "첫번째 제목",
+        content: "첫번째 내용"
+    },
+    {
+        id: 2,
+        title: "두번째 제목",
+        content: "두번째 내용"
+    },
+    {
+        id: 3,
+        title: "세번째 제목",
+        content: "세번째 내용"
+    },
+
+]
+
+const ItemStyle = styled.div`
+    border : 1px solid var(--color-black7);
+    padding : 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    `
+
+
+
+const ItemEX = (props) => {
+    return (
+        <ItemStyle>
+            <div>id : {props.id}</div>
+            <div>title : {props.title}</div>
+            <div>content : {props.content}</div>
+        </ItemStyle>
+
+    )
+}

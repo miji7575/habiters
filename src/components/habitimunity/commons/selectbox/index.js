@@ -81,15 +81,31 @@ export function SelectBoxDefault(props) {
 
 
 
+    
+
     // 콘솔용
     useEffect(() => {
+      
+
         setIsError(props.isError)
         setIsDisabled(props.isDisabled)
-        console.log(selectedValue)
+        // console.log(selectedValue["category"])
         // console.log(props.name)
         // console.log("selectedValue.name : " + selectedValue.name)
         // console.log("placeholder : " + placeholder)
     })
+
+
+
+
+    
+  
+
+
+
+
+
+
 
 
 
@@ -158,7 +174,7 @@ export function SelectBoxDefault(props) {
                     isValueNull={isValueNull}
                 >
                     <div>
-                        {selectedValue[props.name]}
+                        {/* {selectedValue[props.name]} */}
                     </div>
                 </SelectBoxDefaultSelectBox>
 
@@ -200,7 +216,7 @@ export function SelectBoxDefault(props) {
                                 // 선택된 값과 OPTION의 name 비교(selectedValue, name)
                                 selectedValue={selectedValue[props.name]}
                                 name={value.name}
-                                onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.value }), setisFocused(!isFocused) }}>
+                                onClick={e => { setSelectedValue({ ...selectedValue, [props.name]:  {[value.name]: value.value}  }), setisFocused(!isFocused) }}>
                                 {value.name}
 
                             </SelectBoxDefaultOption>
@@ -315,7 +331,7 @@ export function SelectBoxTimePicker(props) {
     const [selectedAMPM, setSelectedAMPM] = useState('')
     const [selectedTime, setSelectedTime] = useState('')
     const [selectedMinutes, setSelectedMinutes] = useState('')
-    const [clickedY,setClickedY] = useState('')
+    const [clickedY, setClickedY] = useState('')
 
 
 
@@ -327,17 +343,17 @@ export function SelectBoxTimePicker(props) {
 
 
     useEffect(() => {
-        setSelectedValue((prevState)=>({ ...prevState, [props.name]: selectedAMPM }))
+        setSelectedValue((prevState) => ({ ...prevState, [props.name]: selectedAMPM }))
         setSelectedTime("1")
     }, [selectedAMPM])
 
     useEffect(() => {
-        setSelectedValue((prevState)=>({ ...prevState, [props.name]: selectedAMPM +" "+ selectedTime + ":" + selectedMinutes}))
+        setSelectedValue((prevState) => ({ ...prevState, [props.name]: selectedAMPM + " " + selectedTime + ":" + selectedMinutes }))
         setSelectedMinutes("00")
     }, [selectedTime])
 
     useEffect(() => {
-        setSelectedValue((prevState)=>({ ...prevState, [props.name]: selectedAMPM +" "+ selectedTime + ":" + selectedMinutes}))
+        setSelectedValue((prevState) => ({ ...prevState, [props.name]: selectedAMPM + " " + selectedTime + ":" + selectedMinutes }))
     }, [selectedMinutes])
 
 
@@ -350,8 +366,8 @@ export function SelectBoxTimePicker(props) {
     // 2023/07/30/박미지  ----- SelectBox 컴포넌트에 선택된 값이 있는지 확인 
     const selectBoxValueNullCheck = () => {
 
-        
-        
+
+
     }
 
 
@@ -387,7 +403,7 @@ export function SelectBoxTimePicker(props) {
 
                 {/* SelectBox */}
                 <SelectBoxDefaultSelectBox
-                    onClick={(e) => { if (!isDisabled) { setisFocused(!isFocused),setClickedY(e.clientY) } }}
+                    onClick={(e) => { if (!isDisabled) { setisFocused(!isFocused), setClickedY(e.clientY) } }}
                     isFocused={isFocused}
                     isDisabled={isDisabled}
                     isError={isError}
@@ -405,9 +421,9 @@ export function SelectBoxTimePicker(props) {
                 {isFocused &&
                     <SelectBoxTimePickerOptionWrap
                         size={size}
-                        onClick={(e)=>{setIsValueNull(false)}}
+                        onClick={(e) => { setIsValueNull(false) }}
                         clickedY={clickedY}
-                        // width={width}
+                    // width={width}
                     >
 
                         <div>
@@ -443,8 +459,8 @@ export function SelectBoxTimePicker(props) {
                                     // selectedValue={selectedValue[props.name]}
                                     name={value.name}
                                     onClick={e => { setSelectedTime(value.name) }}
-                                    // onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.name }), setisFocused(!isFocused) }}
-                                    >
+                                // onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.name }), setisFocused(!isFocused) }}
+                                >
                                     {value.name}
 
                                 </SelectBoxTimePickerOption>
@@ -465,8 +481,8 @@ export function SelectBoxTimePicker(props) {
                                     // selectedValue={selectedValue[props.name]}
                                     name={value.name}
                                     onClick={e => { setSelectedMinutes(value.name) }}
-                                    // onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.name }), setisFocused(!isFocused) }}
-                                    >
+                                // onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.name }), setisFocused(!isFocused) }}
+                                >
                                     {value.name}
 
                                 </SelectBoxTimePickerOption>
