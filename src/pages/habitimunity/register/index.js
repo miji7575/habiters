@@ -116,6 +116,7 @@ export default function BoardRegister() {
                         options={OPTIONS}
                         width={"880px"}
                         placeholder={"카테고리를 선택해 주세요"}
+                        name={"category"}
 
                     />
                     <Inputs
