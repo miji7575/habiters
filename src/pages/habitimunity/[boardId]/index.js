@@ -100,7 +100,7 @@ export default function BoardDetail(props) {
     const boardDetailData = {
         id: boardId,
         regDate: "2023-03-03",
-        category: category[boardId],
+        category: category[boardId % 3],
         title: boardId + "번째글 제목",
         content: "영양제 다들 어떤거 먹고있어?\n나는 매일 종합비타민이랑 루테인이랑 유산균 먹는데..\n다른 더 좋은거 있나 궁금해서ㅋㅋㅋㅋ\n뭐 먹는지 투표 좀 해줘라~"
         ,

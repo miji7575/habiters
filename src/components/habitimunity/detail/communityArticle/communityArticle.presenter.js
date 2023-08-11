@@ -9,7 +9,7 @@ import EmojiCluster from '../../detail/emojiCluster/emojiCluster.container';
 export default function CommunityArticleUI(props) {
 
 
-
+// console.log(props.data.category)
 
 
 
@@ -21,8 +21,8 @@ export default function CommunityArticleUI(props) {
                     <ArticleCategoryBookMark>
                         <div>
                             <Label
-                                value={props.data.category.name}
-                                default={props.data.category.color}
+                                    // text={props.data.category.name}
+                                    // default={props.data.category.color}
                             />
                         </div>
                         <BookMark
