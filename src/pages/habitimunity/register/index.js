@@ -95,8 +95,8 @@ export default function BoardRegister() {
     const [postContent, setPostContent] = useRecoilState(PostContentState);
 
     useEffect(() => {
-        // console.log(SelectBoxValue)
-        // console.log(inputValue["title"])
+
+
     })
 
     const data = {

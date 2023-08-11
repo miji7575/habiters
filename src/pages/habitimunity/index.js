@@ -92,6 +92,7 @@ export default function Habitimunity() {
     //     .then((data) => setPosts(data));
     // }, []);
     
+    
 
 
     return (
@@ -101,7 +102,7 @@ export default function Habitimunity() {
                 <Main>
                     <Content>
                         <CommunityHeader>
-                            <Tabs/>
+                            <Tabs onTabChange={handleTabChange} />
                             <Search />
                         </CommunityHeader>
                         <CommnuityContent>
