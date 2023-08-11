@@ -5,7 +5,7 @@ export default function Label(props) {
 
     return (
       <LabelUI
-        value={props.value}
+        text={props.text}
         default={props.default}
         icon={props.icon}
       />

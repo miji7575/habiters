@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { userAccessToken, userDetail } from "../../../stores";
 import axios from "axios";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 
 const UserProfileContainer = styled.div`
@@ -75,6 +76,11 @@ const CountTitle = styled.div`
 export default function UserProfileUI() {
     const [user, setUser] = useRecoilState(userDetail)
 
+    const router = useRouter()
+    const registerPost = () => {
+        router.push("habitimunity/register")
+    }
+
     return (
         <UserProfileContainer>
             <UserProfileContent>
@@ -101,6 +107,7 @@ export default function UserProfileUI() {
                 <button
                     className="btn btn-large btn-primary-default body2-medium"
                     style={{width: '100%'}}
+                    onClick={registerPost}
                 >
                     게시글 작성하기
                 </button>
