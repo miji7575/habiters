@@ -5,6 +5,7 @@ import UserData from "../../commons/userData/userData.container"
 import FeedData from "../../commons/feedData/feedData.container"
 import VoteItem from "../Items/vote/voteItem.container"
 import { useState } from "react"
+import Link from "next/link"
 
 const PostContainer = styled.div`
     display: flex;
@@ -149,53 +150,56 @@ export default function PostListUI(props) {
         <>  
             {/* pagination test data처리용 */}
             {props.posts.slice(props.offset, props.offset + props.limit).map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
-                <PostContainer key={id}>
-                    <PostBox>
-                        <Post>
-                            <PostHeader>
-                                <PostTitle>
-                                    <Label
-                                        text={categoryOptions[category].text}
-                                        default={categoryOptions[category].default}
+                <Link key={id}  href={`/habitimunity/${id}`}>
+                    <PostContainer>
+                        <PostBox>
+                            <Post>
+                                <PostHeader>
+                                    <PostTitle>
+                                        <Label
+                                            text={categoryOptions[category].text}
+                                            default={categoryOptions[category].default}
+                                        />
+                                        <div className="body2-bold">
+                                            {title}
+                                        </div>
+                                    </PostTitle>
+                                    <Bookmark
+                                        bookmarked={false}
                                     />
-                                    <div className="body2-bold">
-                                        {title}
-                                    </div>
-                                </PostTitle>
-                                <Bookmark
-                                    bookmarked={false}
-                                />
-                            </PostHeader>
-                            <PostContent
-                                className="body2-regular"
-                            >   
-                                {hasVoteItem && <VoteItem progress={true} />}
-
-                                <div 
-                                    style={{display: 'flex', gap: '16px'}}
+                                </PostHeader>
+                                <PostContent
+                                    className="body2-regular"
                                 >
-                                    {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
-                                    <PostText>
-                                        {content}
-                                    </PostText>
-                                </div>
-                            </PostContent>
-                        </Post>
+                                    {hasVoteItem && <VoteItem progress={true} />}
 
-                        <PostInformation
-                            className="caption1-regular"
-                        >
-                            <UserData
-                                createDate={createDate}
-                            />
-                            <FeedData 
-                                views={views}
-                                numOfComments={numOfComments}
-                                numOfEmojis={numOfEmojis}
-                            />
-                        </PostInformation>
-                    </PostBox>
-                </PostContainer>
+                                    <div
+                                        style={{ display: 'flex', gap: '16px' }}
+                                    >
+                                        {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+                                        <PostText>
+                                            {content}
+                                        </PostText>
+                                    </div>
+                                </PostContent>
+                            </Post>
+
+                            <PostInformation
+                                className="caption1-regular"
+                            >
+                                <UserData
+                                    createDate={createDate}
+                                />
+                                <FeedData
+                                    views={views}
+                                    numOfComments={numOfComments}
+                                    numOfEmojis={numOfEmojis}
+                                />
+                            </PostInformation>
+                        </PostBox>
+                    </PostContainer>
+                </Link>
+                
 
             ))}
 
