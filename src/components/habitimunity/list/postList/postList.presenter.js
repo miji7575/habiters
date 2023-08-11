@@ -17,6 +17,8 @@ const PostContainer = styled.div`
     border: 1px solid var(--color-black7);
     border-radius: 8px;
 
+    margin-bottom: 28px;
+
 `
 
 const PostBox = styled.div`
@@ -108,24 +110,53 @@ const PostInformation = styled.div`
 export default function PostListUI(props) {
 
     // 230802 투표가 있는지 없는지
-    const [hasVoteItem, setHasVoteItem] = useState(true);
+    const [hasVoteItem, setHasVoteItem] = useState(false);
     // 230802 이미지가 있는지 없는지
-    const [hasImageItem, setHasImageItem] = useState(true);
+    const [hasImageItem, setHasImageItem] = useState(false);
+    
+    // 카테고리에 따라서 Label 처리
+    const categoryOptions = {
+        STUDY: {
+            value: 'STUDY',
+            text: '공부',
+            default: 'orange',
+        },
+        EXERCISE: {
+            value: 'EXERCISE',
+            text: '운동',
+            default: 'skyBlue',
+        },
+        HEALTH: {
+            value: 'HEALTH',
+            text: '건강',
+            default: 'green',
+        },
+        DAILY: {
+            value: 'DAILY',
+            text: '일상',
+            default: 'purple',
+        },
+        ETC: {
+            value: 'ETC',
+            text: '기타',
+            default: 'gray',
+        }
+    };
 
 
 
     return (
         <>  
             {/* pagination test data처리용 */}
-            {props.posts.slice(props.offset, props.offset + props.limit).map(({ id, title, body, userId }) => (
+            {props.posts.slice(props.offset, props.offset + props.limit).map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
                 <PostContainer key={id}>
                     <PostBox>
                         <Post>
                             <PostHeader>
                                 <PostTitle>
                                     <Label
-                                        value='운동'
-                                        default='skyBlue'
+                                        text={categoryOptions[category].text}
+                                        default={categoryOptions[category].default}
                                     />
                                     <div className="body2-bold">
                                         {title}
@@ -143,9 +174,9 @@ export default function PostListUI(props) {
                                 <div 
                                     style={{display: 'flex', gap: '16px'}}
                                 >
-                                    <PostImage src="/image/logo-habiters.svg" />
+                                    {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
                                     <PostText>
-                                        {body}
+                                        {content}
                                     </PostText>
                                 </div>
                             </PostContent>
@@ -154,8 +185,14 @@ export default function PostListUI(props) {
                         <PostInformation
                             className="caption1-regular"
                         >
-                            <UserData userId={userId} />
-                            <FeedData />
+                            <UserData
+                                createDate={createDate}
+                            />
+                            <FeedData 
+                                views={views}
+                                numOfComments={numOfComments}
+                                numOfEmojis={numOfEmojis}
+                            />
                         </PostInformation>
                     </PostBox>
                 </PostContainer>
@@ -164,7 +201,7 @@ export default function PostListUI(props) {
 
 
             {/* sample */}
-            <PostContainer>
+            {/* <PostContainer>
                 <PostBox>
                     <Post>
                         <PostHeader>
@@ -205,7 +242,13 @@ export default function PostListUI(props) {
                         <FeedData />
                     </PostInformation>
                 </PostBox>
-            </PostContainer>
+            </PostContainer> */}
+
+
+            {/* {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+
+            {hasVoteItem && <VoteItem progress={true} />} */}
+
 
         </>
 
