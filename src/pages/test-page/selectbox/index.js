@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useRouter } from "next/router"
-import { userAccessToken, accessTokenStatem, URL, userDetail } from '../../../components/stores';
+import { userAccessToken, accessTokenStatem, URL, userDetail, SelectBoxValueState } from '../../../components/stores';
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil';
 //-------------
-import {  SelectBoxDefault } from '../../../components/habitimunity/commons/selectbox'
+import { SelectBoxDefault, SelectBoxTimePicker } from '../../../components/habitimunity/commons/selectbox'
 
 
 // ============================== Style ==============================
@@ -50,8 +50,8 @@ export default function TestPage() {
 
 
     // ============================== Function  ==============================
+    const [selectBoxvalue, setSelectboxValue] = useRecoilState(SelectBoxValueState)
 
-  
 
     const OPTIONS = [
         { value: "1", name: "Option1" },
@@ -81,15 +81,21 @@ export default function TestPage() {
 
                     <SelectBoxDefault
                         options={OPTIONS}
+                        name={"1번째"}
+
                     />
 
                     <SelectBoxDefault
                         options={OPTIONS}
-                        isDisabled={true} />
+                        isDisabled={true}
+                        name={"2번째"}
+                    />
 
                     <SelectBoxDefault
                         options={OPTIONS}
-                        isError={true} />
+                        isError={true}
+                        name={"3번째"}
+                    />
 
 
                 </SelectBoxByType>
@@ -101,17 +107,23 @@ export default function TestPage() {
 
                     <SelectBoxDefault
                         options={OPTIONS}
-                        type={"medium"} />
+                        size={"medium"}
+                        name={"4번째"}
+                    />
 
                     <SelectBoxDefault
                         options={OPTIONS}
-                        type={"medium"}
-                        isDisabled={true} />
+                        size={"medium"}
+                        isDisabled={true}
+                        name={"5번째"}
+                    />
 
                     <SelectBoxDefault
                         options={OPTIONS}
-                        type={"medium"}
-                        isError={true} />
+                        size={"medium"}
+                        isError={true}
+                        name={"6번째"}
+                    />
 
 
                 </SelectBoxByType>
@@ -130,17 +142,24 @@ export default function TestPage() {
 
                     <SelectBoxDefault
                         options={OPTIONS}
-                        width={"150px"} />
+                        width={"150px"}
+                        name={"7번째"}
+                        placeholder={"따로넣음"}
+                    />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"150px"}
-                        isDisabled={true} />
+                        isDisabled={true}
+                        name={"8번째"}
+                    />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"150px"}
-                        isError={true} />
+                        isError={true}
+                        name={"9번째"}
+                    />
 
                 </SelectBoxByType>
 
@@ -150,17 +169,23 @@ export default function TestPage() {
 
                     <SelectBoxDefault
                         options={OPTIONS}
-                        width={"500px"} />
+                        width={"500px"}
+                        name={"10번째"}
+                    />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"500px"}
-                        isDisabled={true} />
+                        isDisabled={true}
+                        name={"11번째"}
+                    />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"500px"}
-                        isError={true} />
+                        isError={true}
+                        name={"12번째"}
+                    />
 
                 </SelectBoxByType>
 
@@ -178,21 +203,25 @@ export default function TestPage() {
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"150px"}
-                        type={"medium"}
+                        size={"medium"}
+                        name={"13번째"}
+                       
                     />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"150px"}
                         isDisabled={true}
-                        type={"medium"}
+                        size={"medium"}
+                        name={"13번째"}
                     />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"150px"}
                         isError={true}
-                        type={"medium"}
+                        size={"medium"}
+                        name={"13번째"}
                     />
 
                 </SelectBoxByType>
@@ -204,21 +233,24 @@ export default function TestPage() {
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"500px"}
-                        type={"medium"}
+                        size={"medium"}
+                        name={"13번째"}
                     />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"500px"}
                         isDisabled={true}
-                        type={"medium"}
+                        size={"medium"}
+                        name={"13번째"}
                     />
 
                     <SelectBoxDefault
                         options={OPTIONS}
                         width={"500px"}
                         isError={true}
-                        type={"medium"}
+                        size={"medium"}
+                        name={"14번째"}
                     />
 
                 </SelectBoxByType>
@@ -226,6 +258,35 @@ export default function TestPage() {
 
             </SelectBoxSection>
 
+
+            <hr></hr>
+
+            <SelectBoxSection>
+                <SelectBoxByType>
+                    <div>datepicker</div>
+
+                    <SelectBoxTimePicker
+                        name={"TimeLarge"}
+                    />
+
+                    <SelectBoxTimePicker
+                        name={"TimeMedium"}
+                        size={"medium"}
+                    />
+
+
+
+                    <div>
+                        선택된 시간(Large) : {selectBoxvalue["TimeLarge"]}
+                    </div>
+                    <div>
+                        선택된 시간(Medium) : {selectBoxvalue["TimeMedium"]}
+                    </div>
+
+                </SelectBoxByType>
+
+
+            </SelectBoxSection>
 
         </Main>
 

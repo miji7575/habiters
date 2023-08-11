@@ -91,7 +91,8 @@ export function CheckBoxDefault(props) {
 
 
     useEffect(() => {
-        console.log(isCheckBoxChecked)
+        // console.log(isCheckBoxChecked)
+        setCheckBoxValue(props.checkBoxValue)
     })
 
 
@@ -106,7 +107,7 @@ export function CheckBoxDefault(props) {
                 <CheckBoxDefaultCheckBox
                     isDisabled={isDisabled}
                     isCheckBoxChecked={isCheckBoxChecked}
-                    onClick={e => {if(!isDisabled){setIsCheckBoxChecked(!isCheckBoxChecked)}}}
+                    onClick={e => {if(!isDisabled){setIsCheckBoxChecked(!isCheckBoxChecked), props.onClickEvent()}}}
                 >
                     <span></span>
                 </CheckBoxDefaultCheckBox>
