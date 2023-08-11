@@ -47,6 +47,10 @@ export default function Inputs(props) {
         setIsError(props.isError)
     }, [props.isError])
 
+    
+
+
+
 
     // 2023-07-31-박미지 ------- 값에 변화가 생기면 Recoil Atom에 저장
     const onChange = (e) => {

@@ -17,8 +17,12 @@ export default function VotingInputsUI(props) {
     return (
 
         <>
-            <VotingInputWrap>
-                <DeleteIcon />
+            <VotingInputWrap
+                onClick={(e) => props.getClickedVoteItemIndex(props)}//test!!!!!!!!
+            >
+                <DeleteIcon
+                    onClick={(e) => props.deleteVoteItem(props)}//test!!!!!!!!
+                />
 
                 <VotingInputBox>
                     <Inputs
@@ -28,6 +32,7 @@ export default function VotingInputsUI(props) {
                         errorMessage={props.errorMessage}
                         name={props.name}
                         value={props.value} //inputValue 를 따로 넣어줄 때만 사용됨.
+
                     />
                     <GroupIcon />
                 </VotingInputBox>

@@ -1,16 +1,18 @@
 import CommunityArticleUI from './communityArticle.presenter';
 
-export default function communityArticle (){
+export default function CommunityArticle(props) {
 
 
 
 
+    const boardDetailData = props.boardDetailData
 
 
 
-    return(
+    return (
         <>
-        <CommunityArticleUI />
+            <CommunityArticleUI
+                data={boardDetailData} />
         </>
     )
 }
