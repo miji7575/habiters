@@ -47,7 +47,7 @@ export default function TestPage() {
     }
 
     const moveDatePicker = () => {
-        router.push("/test-page/selectbox")
+        router.push("/test-page/datepicker")
     }
 
      const moveVoteInputs = () => {
@@ -56,6 +56,10 @@ export default function TestPage() {
 
     const moveVoteForm = () => {
         router.push("/test-page/voteform")
+    }
+
+    const moveDrag = () => {
+        router.push("/test-page/drag")
     }
 
 
@@ -74,6 +78,8 @@ export default function TestPage() {
                 <Button onClick={moveVoteInputs}>VoteInputs</Button>
 
                 <Button onClick={moveVoteForm}>VoteForm</Button>
+
+                <Button onClick={moveDrag}>Drag 연습</Button>
 
             </Main>
         </>
