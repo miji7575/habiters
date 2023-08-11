@@ -100,6 +100,11 @@ export const SelectBoxValueState = atom({
 })
 
 
+export const PostContentState = atom({
+    key: 'postContentState',
+    default: '',
+});
+
 
 
 
