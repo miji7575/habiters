@@ -1,0 +1,8 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icons/emoji">
+<circle id="Ellipse 126" cx="24" cy="24" r="20" fill="#EA3838"/>
+<rect id="Rectangle 31" x="17.2344" y="20.1445" width="2" height="3" rx="1" transform="rotate(-45 17.2344 20.1445)" fill="black"/>
+<rect id="Rectangle 32" x="29.3516" y="18.7305" width="2" height="3" rx="1" transform="rotate(45 29.3516 18.7305)" fill="black"/>
+<path id="Vector 127 (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M23.5841 24.376C23.836 24.208 24.1642 24.208 24.4161 24.376L27.4161 26.376C27.7608 26.6057 27.8539 27.0714 27.6241 27.416C27.3944 27.7607 26.9287 27.8538 26.5841 27.624L24.0001 25.9014L21.4161 27.624C21.0715 27.8538 20.6058 27.7607 20.376 27.416C20.1463 27.0714 20.2394 26.6057 20.5841 26.376L23.5841 24.376Z" fill="black"/>
+</g>
+</svg>
