@@ -71,20 +71,20 @@ const MessageIcon = styled.i`
 
 
 
-export default function FeedDataUI() {
+export default function FeedDataUI({views, numOfComments, numOfEmojis}) {
     return (
         <FeedDataBox>
             <FeedData>
                 <EyeIcon />
-                <span>70</span>
+                <span>{views}</span>
             </FeedData>
             <FeedData>
                 <EmojiIcon />
-                <span>4</span>
+                <span>{numOfEmojis}</span>
             </FeedData>
             <FeedData>
                 <MessageIcon />
-                <span>4</span>
+                <span>{numOfComments}</span>
             </FeedData>
 
 

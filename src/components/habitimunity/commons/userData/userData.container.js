@@ -1,7 +1,9 @@
 import UserDataUI from "./userData.presenter";
 
-export default function UserData() {
+export default function UserData({createDate}) {
     return(
-        <UserDataUI />
+        <UserDataUI
+            createDate={createDate}
+        />
     );
 }

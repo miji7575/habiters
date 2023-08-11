@@ -106,7 +106,7 @@ export default function LabelUI(props) {
                     }}
                 />}
                 <div>
-                    {props.value}
+                    {props.text}
                 </div>
             </LabelContent>
         </>

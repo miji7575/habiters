@@ -5,6 +5,7 @@ import UserData from "../../commons/userData/userData.container"
 import FeedData from "../../commons/feedData/feedData.container"
 import VoteItem from "../Items/vote/voteItem.container"
 import { useState } from "react"
+import Link from "next/link"
 
 const PostContainer = styled.div`
     display: flex;
@@ -16,6 +17,8 @@ const PostContainer = styled.div`
 
     border: 1px solid var(--color-black7);
     border-radius: 8px;
+
+    margin-bottom: 28px;
 
 `
 
@@ -108,63 +111,101 @@ const PostInformation = styled.div`
 export default function PostListUI(props) {
 
     // 230802 투표가 있는지 없는지
-    const [hasVoteItem, setHasVoteItem] = useState(true);
+    const [hasVoteItem, setHasVoteItem] = useState(false);
     // 230802 이미지가 있는지 없는지
-    const [hasImageItem, setHasImageItem] = useState(true);
+    const [hasImageItem, setHasImageItem] = useState(false);
+    
+    // 카테고리에 따라서 Label 처리
+    const categoryOptions = {
+        STUDY: {
+            value: 'STUDY',
+            text: '공부',
+            default: 'orange',
+        },
+        EXERCISE: {
+            value: 'EXERCISE',
+            text: '운동',
+            default: 'skyBlue',
+        },
+        HEALTH: {
+            value: 'HEALTH',
+            text: '건강',
+            default: 'green',
+        },
+        DAILY: {
+            value: 'DAILY',
+            text: '일상',
+            default: 'purple',
+        },
+        ETC: {
+            value: 'ETC',
+            text: '기타',
+            default: 'gray',
+        }
+    };
 
 
 
     return (
         <>  
             {/* pagination test data처리용 */}
-            {props.posts.slice(props.offset, props.offset + props.limit).map(({ id, title, body, userId }) => (
-                <PostContainer key={id}>
-                    <PostBox>
-                        <Post>
-                            <PostHeader>
-                                <PostTitle>
-                                    <Label
-                                        value='운동'
-                                        default='skyBlue'
+            {props.posts.slice(props.offset, props.offset + props.limit).map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
+                <Link key={id}  href={`/habitimunity/${id}`}>
+                    <PostContainer>
+                        <PostBox>
+                            <Post>
+                                <PostHeader>
+                                    <PostTitle>
+                                        <Label
+                                            text={categoryOptions[category].text}
+                                            default={categoryOptions[category].default}
+                                        />
+                                        <div className="body2-bold">
+                                            {title}
+                                        </div>
+                                    </PostTitle>
+                                    <Bookmark
+                                        bookmarked={false}
                                     />
-                                    <div className="body2-bold">
-                                        {title}
-                                    </div>
-                                </PostTitle>
-                                <Bookmark
-                                    bookmarked={false}
-                                />
-                            </PostHeader>
-                            <PostContent
-                                className="body2-regular"
-                            >   
-                                {hasVoteItem && <VoteItem progress={true} />}
-
-                                <div 
-                                    style={{display: 'flex', gap: '16px'}}
+                                </PostHeader>
+                                <PostContent
+                                    className="body2-regular"
                                 >
-                                    <PostImage src="/image/logo-habiters.svg" />
-                                    <PostText>
-                                        {body}
-                                    </PostText>
-                                </div>
-                            </PostContent>
-                        </Post>
+                                    {hasVoteItem && <VoteItem progress={true} />}
 
-                        <PostInformation
-                            className="caption1-regular"
-                        >
-                            <UserData userId={userId} />
-                            <FeedData />
-                        </PostInformation>
-                    </PostBox>
-                </PostContainer>
+                                    <div
+                                        style={{ display: 'flex', gap: '16px' }}
+                                    >
+                                        {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+                                        <PostText>
+                                            {content}
+                                        </PostText>
+                                    </div>
+                                </PostContent>
+                            </Post>
+
+                            <PostInformation
+                                className="caption1-regular"
+                            >
+                                <UserData
+                                    createDate={createDate}
+                                />
+                                <FeedData
+                                    views={views}
+                                    numOfComments={numOfComments}
+                                    numOfEmojis={numOfEmojis}
+                                />
+                            </PostInformation>
+                        </PostBox>
+                    </PostContainer>
+                </Link>
+                
 
             ))}
 
 
             {/* sample */}
-            <PostContainer>
+            {/* <PostContainer>
                 <PostBox>
                     <Post>
                         <PostHeader>
@@ -205,7 +246,13 @@ export default function PostListUI(props) {
                         <FeedData />
                     </PostInformation>
                 </PostBox>
-            </PostContainer>
+            </PostContainer> */}
+
+
+            {/* {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+
+            {hasVoteItem && <VoteItem progress={true} />} */}
+
 
         </>
 

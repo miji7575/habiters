@@ -23,6 +23,7 @@ export default function Tab(props) {
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
+        props.onTabChange(tab);
     };
 
     return (
