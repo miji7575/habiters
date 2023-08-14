@@ -1,9 +1,9 @@
 // import type { AppProps } from "next/app";
 import Layout from '../components/commons/layout/index';
-import { Global } from "@emotion/react";
+// import { Global } from "@emotion/react";
 // import { GlobalStyles } from "../src/commons/styles/globalStyles"
 import { RecoilRoot } from 'recoil';
-import ErrorPage from '../pages/errorpage';
+// import ErrorPage from '../pages/errorpage';
 
 
 // "src/commons/styles/globalStyles";
@@ -34,13 +34,13 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-
+      <title>Habiters</title>
       {/* <Global styles={ GlobalStyles }> */}
       <RecoilRoot>
         <Layout>
-         {/* {pageProps.statusCode != 404 && <Component {...pageProps} />} */}
-         {/* {pageProps.statusCode == 404 && <ErrorPage/>} */}
-         <Component {...pageProps}/>
+          {/* {pageProps.statusCode != 404 && <Component {...pageProps} />} */}
+          {/* {pageProps.statusCode == 404 && <ErrorPage/>} */}
+          <Component {...pageProps} />
         </Layout>
       </RecoilRoot>
       {/* </Global> */}
