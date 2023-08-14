@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import inputStyles from '../../../styles/input.module.css'
-import { InputWrap, InputBox, Input, InputMessage, ErrorIcon } from './Inputs.styles'
+import { InputWrap, InputBox, Input, InputMessage, CloseIcon, ErrorIcon } from './Inputs.styles'
 
 
 
@@ -22,15 +22,14 @@ const InputUI = forwardRef(function InputUI(props, forwardedRef) {
 
 
                     {!props.isValueNull && props.isOnFocus && !props.isError &&
-                        <span
+                        <CloseIcon
                             id="removeBtn"
-                            className={`icon-m icon-close-circle-colored ${inputStyles.input_icon_close_circle_colored} `}
                             onClick={props.removeValue}
                             />}
                     <Input
                         ref={forwardedRef}
                         type="text"
-                        className={'input-default body3-medium color-black2'}
+                        className={'body3-medium color-black2'}
 
                         isError={props.isError}
                         onChange={props.onChange}
@@ -52,10 +51,9 @@ const InputUI = forwardRef(function InputUI(props, forwardedRef) {
 
                     {props.isError &&
                         <ErrorIcon
-                            className="icon-m icon-error-colored"
                             onClick={props.onFocus} />}
                 </InputBox>
-                {props.isError && <InputMessage id="name" className={'caption1-regular color-error'}>{props.errorMessage}</InputMessage>}
+                {props.isError && <InputMessage id="name" className={'caption1-regular'}>{props.errorMessage}</InputMessage>}
             </InputWrap>
 
 

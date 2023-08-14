@@ -36,12 +36,45 @@ export const Input = styled.input`
 
 export const InputMessage = styled.div`
     padding-top: 4px;
+    color: var(--color-error);
 `
+export const CloseIcon = styled.span`
+    display: inline-block;
+    width: var(--icon-size-m);
+    height: var(--icon-size-m);
 
-export const ErrorIcon = styled.span`
-    background-color: var(--color-error);
+    background-size: var(--icon-size-m) var(--icon-size-m);
+    -webkit-mask-size: var(--icon-size-m) var(--icon-size-m);
+    cursor: pointer;
+
+    background-color: var(--color-black4);
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/image/icon/icon-close-circle.svg);
+    -webkit-mask-repeat: no-repeat;
+
+
     position: absolute;
     right: 12px;
+
+`
+
+
+export const ErrorIcon = styled.span`
+    display: inline-block;
+    width: var(--icon-size-m);
+    height: var(--icon-size-m);
+
+    position: absolute;
+    right: 12px;
+
+    background-color: var(--color-error);
+    background-repeat: no-repeat;
+    background-size: var(--icon-size-m) var(--icon-size-m);
+    -webkit-mask-image: url(/image/icon/icon-error.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: var(--icon-size-m) var(--icon-size-m);
+   
+
 
 `
 

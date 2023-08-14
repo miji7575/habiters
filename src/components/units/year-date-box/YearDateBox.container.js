@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil"
 import YearDateBoxUI from "./YearDateBox.presenter"
-import { visibleDateState } from '../../stores';
+import { visibleDateState, resetCalenderStaste } from '../../stores';
 import { useEffect, useState } from "react";
 
 
@@ -13,17 +13,6 @@ export default function YearDateBox(props) {
     const [visibleDate, setVisibleDate] = useRecoilState(visibleDateState)
 
     const currentDate = new Date();
-    // const [year, setYear] = useState(currentDate.getFullYear()); //현재 연도
-    // const [month, setMonth] = useState(('00' + (Number(currentDate.getMonth() + 1))).slice(-2)); //현재 월
-    // const [date, setDate] = useState(currentDate.getDate()); //현재 일자
-    // const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
-    // const [startDay, setStartDay] = useState(new Date(year, month - 1, 1).getDay()); //월의 시작 요일
-    // const [lastDate, setLastDate] = useState(new Date(year, month, 0).getDate());
-    // const [dates, setDates] = useState([])
-    // const [days, setDays] = useState([]);
-
-
-
     const [year, setYear] = useState(currentDate.getFullYear()); //현재 연도
     const [month, setMonth] = useState(('00' + (Number(currentDate.getMonth() + 1))).slice(-2)); //현재 월
     const [date, setDate] = useState(currentDate.getDate()); //현재 일자
@@ -37,17 +26,8 @@ export default function YearDateBox(props) {
 
 
 
-    let newDates = []
-    let newDays = []
 
-    useEffect(() => {
-        console.log(visibleDate)
-        // console.log(year)
-    })
-
-
-
-
+  
 
     useEffect(() => {
 
@@ -62,14 +42,15 @@ export default function YearDateBox(props) {
             }));
 
 
-    }, [year, month, days, startDay ])
+    }, [year, month, days, startDay])
 
+    // 2023-07-31-박미지 ------ 외부에서 캘린더 초기화 할 때 사용.
+    const [isResetCalender, setIsResetCalender] = useRecoilState(resetCalenderStaste)
 
-    // useEffect(() => {
-    //     setYear(visibleDateState.year)
-    //     setMonth(visibleDateState.month)
+    useEffect(() => {
+        moveToCurrentDate()
+    }, [isResetCalender])
 
-    // }, [visibleDateState])
 
 
 
@@ -88,6 +69,9 @@ export default function YearDateBox(props) {
 
 
     // -----달력 만들기
+    let newDates = []
+    let newDays = []
+
     const makeCalender = () => {
 
         const lastDate = new Date(visibleDate.year, visibleDate.month, 0).getDate();
@@ -98,8 +82,10 @@ export default function YearDateBox(props) {
             newDates.push(i)
             newDays.push(WEEKDAY[(i - 1 + startDay) % 7])
         }
+
         setDates(newDates);
         setDays(newDays);
+        setIsResetCalender(false)
 
     }
 
@@ -114,6 +100,8 @@ export default function YearDateBox(props) {
         setMonth(('00' + (Number(currentDate.getMonth() + 1))).slice(-2))
 
     }
+
+
 
 
 

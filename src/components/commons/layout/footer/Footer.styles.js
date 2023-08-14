@@ -23,7 +23,11 @@ export const FooterContent = styled.div`
 
 `
 
-
+export const FooterLogo = styled.img`
+    width: 212px;
+    height: 24px;
+    src: url("/image/logo-habiters.svg");
+`
 
 export const FooterDetailBox = styled.div`
     display: flex;

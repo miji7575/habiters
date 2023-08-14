@@ -97,11 +97,11 @@ export default function HabitTracker() {
             year: todayDate.getFullYear(),
             month: (('00' + (Number(todayDate.getMonth()) + 1)).slice(-2))
         })
-        console.log("실행됨")
+        // console.log("실행됨")
     }
 
     useEffect(() => {
-        console.log(visibleDate)
+        // console.log(visibleDate)
     })
 
 
