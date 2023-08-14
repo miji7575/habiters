@@ -53,6 +53,17 @@ flex-direction: row;
 gap: 8px;
 `
 
+const CloseIcon = styled.span`
+    display: inline-block;
+    width: var(--icon-size-l);
+    height: var(--icon-size-l);
+
+    background-size: var(--icon-size-l) var(--icon-size-l);
+    -webkit-mask-size: var(--icon-size-l) var(--icon-size-l);
+    cursor: pointer;
+    background: url(/image/icon/icon-close-line.svg) no-repeat;
+
+`
 export default function Popup2BtnInput(props) {
     // --- 사용됨
     // popUpTitle = 제목
@@ -80,8 +91,8 @@ export default function Popup2BtnInput(props) {
 
                     <PopupTitle>
                         <span className="headline5">{props.popUpTitle}</span>
-                        <span className="icon-l icon-close-line"
-                            onClick={props.popUpClose}></span>
+                        <CloseIcon 
+                            onClick={props.popUpClose} />
                     </PopupTitle>
 
                     <PopupContent>

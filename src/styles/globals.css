@@ -52,8 +52,15 @@
   --color-success: #1CCC78;
   --color-warning: #F99A2A;
 
-
-
+  /* icon-size */
+  --icon-size-xs: 12px;
+  --icon-size-s: 16px;
+  --icon-size-m: 24px;
+  --icon-size-l: 32px;
+  --icon-size-xl: 48px;
+  
+  --icon-round-l: 32px;
+  --icon-round-m: 24px;
 
 }
 
