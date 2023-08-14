@@ -9,7 +9,7 @@ import { RecoilRoot } from 'recoil';
 // "src/commons/styles/globalStyles";
 import '../styles/globals.css'
 import '../styles/colors.css'
-import '../styles/typhography.css'
+// import '../styles/typhography.css'
 import '../styles/layout.css'
 import '../styles/icon.css'
 import '../styles/button.css'
