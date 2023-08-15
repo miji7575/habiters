@@ -1,6 +1,9 @@
 import { useState } from "react";
 import TabUI from "./tabs.presenter";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { activeTabState } from "../../../stores";
 
 const TabBox = styled.div`
     position: relative;
@@ -19,7 +22,8 @@ const TabBox = styled.div`
 
 export default function Tab(props) {
     const tabs = ["전체", "공부", "운동", "건강", "일상", "기타"];
-    const [activeTab, setActiveTab] = useState("전체");
+    // const [activeTab, setActiveTab] = useState("전체");
+    const [activeTab, setActiveTab] = useRecoilState(activeTabState);
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);

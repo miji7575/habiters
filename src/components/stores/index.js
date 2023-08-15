@@ -136,3 +136,10 @@ export const SelectedDate = atom({
     key: "date",
     default: new Date().getDate()
 })
+
+
+// 230814 게시글 탭처리
+export const activeTabState = atom({
+    key: 'activeTabState',
+    default: '전체', // Set the initial value here
+  });

@@ -11,6 +11,8 @@ import Tabs from '../../components/habitimunity/commons/tabs/tabs.container';
 import UserProfile from '../../components/habitimunity/list/userProfile/userProfile.container';
 import Pagination from '../../components/habitimunity/list/pagination/pagination.container';
 import Link from 'next/link';
+import CategoryTab from './category/[tabPath]';
+import PostListWrapper from './list/PostListWrapper';
 
 // ============================== Style ==============================
 const Main = styled.div`
@@ -72,13 +74,6 @@ export default function Habitimunity() {
 
     }
 
-    // useEffect(async () => {
-    //     const response = await axios.get(`https://api.habiters.store/posts`, {
-    //         headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-    //     })
-    //     console.log(response.data.data)
-    //     setPosts(response.data.data)
-    // }, [])
 
 
     const [posts, setPosts] = useState([]);
@@ -150,7 +145,8 @@ export default function Habitimunity() {
                         <CommnuityContent>
                             <CommnunityList>
                                 <PostNotice />
-                                <PostList 
+                                <PostList
+                                    onTabChange={handleTabChange}
                                     posts={posts}
                                     limit={limit}
                                     offset={offset}
@@ -169,6 +165,7 @@ export default function Habitimunity() {
                 </Main>
 
 
+            
             </main>
         </>
     )
