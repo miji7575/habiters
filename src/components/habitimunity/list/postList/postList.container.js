@@ -11,6 +11,7 @@ export default function PostList(props) {
             posts={props.posts}
             limit={props.limit}
             offset={props.offset}
+            onTabChange={props.onTabChange}
         />
     )
 }
