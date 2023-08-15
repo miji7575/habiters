@@ -5,7 +5,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAccessToken, userDetail } from '../../../../components/stores';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import instance from '../../../../commons/shared/Request';
 
 
 export default function Header() {
@@ -20,7 +19,7 @@ export default function Header() {
     const router = useRouter()
     const accessToken = useRecoilValue(userAccessToken)
     const [user, setUser] = useRecoilState(userDetail)
-  
+
 
     const menuName = ["마이해빗", "해비티뮤니티", "마이페이지"]
     const [clickedMenu, setClickedMenu] = useState()
@@ -49,32 +48,25 @@ export default function Header() {
 
     useEffect(() => {
 
-        switch (nowPath) {
-            case "/myhabit":
-                setClickedMenu(() => menuName[0])
-                return
-            case "/habitimunity":
-                setClickedMenu(menuName[1])
-                return
-            case "/comming-soon":
-                setClickedMenu(menuName[1])
-                return
-            case "/mypage":
-                setClickedMenu(menuName[2])
-                return
-            default:
-                return
+        if(nowPath.includes("/myhabit")){
+            setClickedMenu(() => menuName[0])
+        }else if(nowPath.includes("/habitimunity")){
+            setClickedMenu(menuName[1])
+        }else if(nowPath.includes("/mypage")){
+            setClickedMenu(menuName[2])
+        }else{
+            setClickedMenu("")
         }
+      
 
-    }, [nowPath, clickedMenu])
-
+    }, [nowPath])
 
 
 
 
 
     const OnClickMoveMyhabit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         // setClickedMenu("마이해빗")
         // console.log(clickedMenu)
         router.push("/myhabit")
