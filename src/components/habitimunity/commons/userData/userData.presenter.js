@@ -17,10 +17,28 @@ const UserData = styled.div`
 
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 4px;
 `
+const WriterImageBox = styled.div`
+    width: 24px;
+    height: 24px;
 
-export default function UserDataUI({createDate}) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+
+    box-sizing: border-box;
+    border: 1px solid var(--color-black7);
+    border-radius: 50%;
+ `
+const WriterImage = styled.img`
+    width: 14px;
+    height: 14px;
+`
+
+export default function UserDataUI({createDate, selectedImage}) {
 
 
     // 게시글 리스트 날짜처리 (31일부터는 년.월.일로 표시)
@@ -63,8 +81,10 @@ export default function UserDataUI({createDate}) {
     return(
         <UserDataBox>
             <UserData>
-                <span>프사</span>
-                <span>글 쓴 해비터</span>
+                <WriterImageBox>
+                    <WriterImage src={`https://kr.object.ncloudstorage.com/habiters-bucket/Habitee_${selectedImage}.svg`} />
+                </WriterImageBox>
+                <span>글 쓴 해비터1</span>
             </UserData>
             <Bar />
             <div>
