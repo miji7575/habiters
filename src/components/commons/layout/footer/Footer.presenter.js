@@ -20,8 +20,8 @@ export default function FooterUI(props) {
 
                             <FooterDetail className="body3-regular color-black3">
                                 <span><a href='/intro-service'>서비스 소개</a></span> <Bar />
-                                <span><a  href='/intro-service' >이용약관</a></span> <Bar />
-                                <span><a  href='/intro-service' >개인정보처리방침</a></span> <Bar />
+                                <span><a  href='/intro-privacypolicy' >이용약관</a></span> <Bar />
+                                <span><a  href='/intro-terms-of-use' >개인정보처리방침</a></span> <Bar />
                                 <span><a  href='/intro-service' >팀 소개</a></span>
                             </FooterDetail>
                             <div className="body3-regular color-black3">

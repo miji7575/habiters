@@ -1,7 +1,7 @@
 // import type { AppProps } from "next/app";
 import Layout from '../components/commons/layout/index';
-// import { Global } from "@emotion/react";
-// import { GlobalStyles } from "../src/commons/styles/globalStyles"
+import { Global } from "@emotion/react";
+import GlobalStyles from "../commons/styles/globalStyles"
 import { RecoilRoot } from 'recoil';
 // import ErrorPage from '../pages/errorpage';
 
@@ -9,7 +9,7 @@ import { RecoilRoot } from 'recoil';
 // "src/commons/styles/globalStyles";
 import '../styles/globals.css'
 import '../styles/colors.css'
-// import '../styles/typhography.css'
+// // import '../styles/typhography.css'
 import '../styles/layout.css'
 import '../styles/icon.css'
 import '../styles/button.css'
@@ -35,15 +35,15 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <title>Habiters</title>
-      {/* <Global styles={ GlobalStyles }> */}
-      <RecoilRoot>
-        <Layout>
-          {/* {pageProps.statusCode != 404 && <Component {...pageProps} />} */}
-          {/* {pageProps.statusCode == 404 && <ErrorPage/>} */}
-          <Component {...pageProps} />
-        </Layout>
-      </RecoilRoot>
-      {/* </Global> */}
+      <GlobalStyles/>
+        <RecoilRoot>
+          <Layout>
+            {/* {pageProps.statusCode != 404 && <Component {...pageProps} />} */}
+            {/* {pageProps.statusCode == 404 && <ErrorPage/>} */}
+            <Component {...pageProps} />
+          </Layout>
+        </RecoilRoot>
+    
 
     </>
   )
