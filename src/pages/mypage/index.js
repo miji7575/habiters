@@ -376,44 +376,50 @@ export default function MyPage() {
 
 
 
-    const logout = () => {
+    const logout = async() => {
 
-        // KakaoLogout()
-        // window.sessionStorage.clear();
-        // router.push("/");
+        await KakaoLogout()
+        await window.sessionStorage.clear();
+        await router.push("/");
 
     }
 
-
-
     const KakaoLogout = async () => {
 
+        const response = await axios.post(`https://kapi.kakao.com/v1/user/logout`,
 
-        const client_id = "58a5cd8f1a8ca897c3509e973e68767f"
-
-        const response = await axios.get(`https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app`,
-            // {
-            //     "client_id": client_id,
-            //     "logout_redirect_uri": "https://habiters.vercel.app"
-            // },
             {
-                headers: { Authorization: 'Bearer ' + accessToken },
-                "Access-Control-Allow-Origin": '*'
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
             }
         )
-
-        console.log(response)
-
-
-
-
-
-
-
 
         return response
 
     }
+
+    // const KakaoLogout = async () => {
+
+
+    //     const client_id = "58a5cd8f1a8ca897c3509e973e68767f"
+
+    //     const response = await axios.get(`https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app`,
+    //         // {
+    //         //     "client_id": client_id,
+    //         //     "logout_redirect_uri": "https://habiters.vercel.app"
+    //         // },
+    //         {
+    //             headers: { Authorization: 'Bearer ' + accessToken },
+    //             "Access-Control-Allow-Origin": '*'
+    //         }
+    //     )
+
+    //     console.log(response)
+    //     return response
+
+    // }
 
 
 
@@ -510,7 +516,8 @@ export default function MyPage() {
                         <div>
                             <div className="btn btn-large btn-primary-default body2-medium"
                                 onClick={logout}>
-                                <LogoutLink href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</LogoutLink>
+                                로그아웃
+                                {/* <LogoutLink href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</LogoutLink> */}
                             </div>
 
                         </div>
