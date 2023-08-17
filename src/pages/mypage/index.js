@@ -378,27 +378,27 @@ export default function MyPage() {
 
     const logout = async() => {
 
-        await KakaoLogout()
-        await window.sessionStorage.clear();
-        await router.push("/");
+    //     await KakaoLogout()
+         window.sessionStorage.clear();
+    //     await router.push("/");
 
     }
 
-    const KakaoLogout = async () => {
+    // const KakaoLogout = async () => {
 
-        const response = await axios.post(`https://kapi.kakao.com/v1/user/logout`,
+    //     const response = await axios.post(`https://kapi.kakao.com/v1/user/logout`,
 
-            {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            }
-        )
+    //         {
+    //             headers: {
+    //                 Authorization: `Bearer ${accessToken}`,
+    //                 "Content-Type": "application/x-www-form-urlencoded"
+    //             }
+    //         }
+    //     )
 
-        return response
+    //     return response
 
-    }
+    // }
 
     // const KakaoLogout = async () => {
 
@@ -516,8 +516,8 @@ export default function MyPage() {
                         <div>
                             <div className="btn btn-large btn-primary-default body2-medium"
                                 onClick={logout}>
-                                로그아웃
-                                {/* <LogoutLink href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</LogoutLink> */}
+                                {/* 로그아웃 */}
+                                <LogoutLink href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</LogoutLink>
                             </div>
 
                         </div>
