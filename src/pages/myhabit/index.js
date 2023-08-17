@@ -32,9 +32,18 @@ const Content = styled.div`
 `
 
 const Title = styled.div`
+    font-size: 40px;
+    line-height: 52px;
+    font-weight: 700;     
     padding: 72px 0 48px 0;
     color: var(--color-black1);
+    font-family: 'Pretendard-Bold'; 
+    
+   
+
+
 `
+
 
 
 
@@ -116,10 +125,9 @@ export default function HabitTracker() {
                     <Content>
 
 
-                        <Title className="headline1">
+                        <Title >
                             안녕하세요, {user.nickName}님!
                         </Title>
-
 
                         <MyHabitToggle
                             MonthlyHabitTrackerOn={MonthlyHabitTrackerOn}
