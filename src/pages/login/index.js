@@ -71,39 +71,43 @@ export default function LoginPage() {
 
 
     // ----- 유저의 정보 get
-    const [user, setUser] = useRecoilState(userDetail);
+    // const [user, setUser] = useRecoilState(userDetail);
 
-    const getUserData = async () => {
+    // const getUserData = async () => {
 
-        if (accessToken) {
-            const response = await axios.get('https://api.habiters.store/users/me', {
-                headers: { Authorization: 'Bearer ' + accessToken }
-            })
-            setUser(response.data.data)
-            return
+    //     if (accessToken) {
+    //         const response = await axios.get('https://api.habiters.store/users/me', {
+    //             headers: { Authorization: 'Bearer ' + accessToken }
+    //         })
+    //         setUser(response.data.data)
+    //         return
+    //     }
+    //     // console.log(" 레이아웃 토큰없음. 유저정보 get x")
+
+    // }
+
+
+    
+
+
+
+        useEffect(() => {
+            getAccessToken();
+            // getUserData()
+            if (accessToken) {
+                router.push("/myhabit")
+            }
+            // console.log(user)
+        }, [accessToken])
+        // ===============================================================================
+
+
+        const onClickMoveSignup = () => {
+            router.push("/signup")
         }
-        // console.log(" 레이아웃 토큰없음. 유저정보 get x")
 
-    }
-
-
-    useEffect(() => {
-        getAccessToken();
-        getUserData()
-        if (accessToken) {
-            router.push("/myhabit")
-        }
-        // console.log(user)
-    }, [accessToken])
-    // ===============================================================================
-
-
-    const onClickMoveSignup = () => {
-        router.push("/signup")
-    }
-
-    // Push전에 수정!!!
-    // =====  소셜로그인 주소
+        // Push전에 수정!!!
+        // =====  소셜로그인 주소
     const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://habiters.vercel.app/login"
     const KAKAO_LOGIN = "https://api.habiters.store/oauth2/authorization/kakao?redirect_uri=http://habiters.vercel.app/login"
     const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://habiters.vercel.app/login"
@@ -111,62 +115,62 @@ export default function LoginPage() {
     // const NAVER_LOGIN = "https://api.habiters.store/oauth2/authorization/naver?redirect_uri=http://localhost:3000/login"
     // const GOOGLE_LOGIN = "https://api.habiters.store/oauth2/authorization/google?redirect_uri=http://localhost:3000/login"
 
-    const kakaoLogin = async () => {
-        router.push(KAKAO_LOGIN)
+        const kakaoLogin = async () => {
+            router.push(KAKAO_LOGIN)
+        }
+
+        const naverLogin = async () => {
+            router.push(NAVER_LOGIN)
+        }
+
+        const googleLogin = async () => {
+            router.push(GOOGLE_LOGIN)
+        }
+
+
+
+        return (
+            <main>
+                <Body>
+
+                    <LoginHeaderBox>
+                        <div>
+                            <Logo src="/image/logo-habiters.svg" alt="Logo" />
+                        </div>
+                        <div className="headline4 color-black1">
+                            환영합니다, 당신의 습관 메이커 해비터즈입니다!
+                        </div>
+                    </LoginHeaderBox>
+
+                    <LoginButtonBox>
+
+                        <div className={'btn-sns-login btn-sns-login-google'}
+                            onClick={googleLogin}>
+                            <span className={'body2-medium'}>구글로 로그인하기</span>
+                        </div>
+
+
+                        <div className={'btn-sns-login btn-sns-login-kakao'}
+                            onClick={kakaoLogin}>
+                            <span className={'body2-medium'}>카카오로 로그인하기</span>
+                        </div>
+
+
+                        <div className={'btn-sns-login btn-sns-login-naver'}
+                            onClick={naverLogin}>
+                            <span className={'body2-medium'}>네이버로 로그인하기</span>
+                        </div>
+
+
+                    </LoginButtonBox>
+
+                    <div className={'body2-medium color-black4'}>
+                        처음이신가요? <MoveLink onClick={onClickMoveSignup}>회원가입하기</MoveLink>
+                    </div>
+
+                </Body>
+
+            </main>
+
+        )
     }
-
-    const naverLogin = async () => {
-        router.push(NAVER_LOGIN)
-    }
-
-    const googleLogin = async () => {
-        router.push(GOOGLE_LOGIN)
-    }
-
-
-
-    return (
-        <main>
-            <Body>
-
-                <LoginHeaderBox>
-                    <div>
-                        <Logo src="/image/logo-habiters.svg" alt="Logo" />
-                    </div>
-                    <div className="headline4 color-black1">
-                        환영합니다, 당신의 습관 메이커 해비터즈입니다!
-                    </div>
-                </LoginHeaderBox>
-
-                <LoginButtonBox>
-
-                    <div className={'btn-sns-login btn-sns-login-google'}
-                        onClick={googleLogin}>
-                        <span className={'body2-medium'}>구글로 로그인하기</span>
-                    </div>
-
-
-                    <div className={'btn-sns-login btn-sns-login-kakao'}
-                        onClick={kakaoLogin}>
-                        <span className={'body2-medium'}>카카오로 로그인하기</span>
-                    </div>
-
-
-                    <div className={'btn-sns-login btn-sns-login-naver'}
-                        onClick={naverLogin}>
-                        <span className={'body2-medium'}>네이버로 로그인하기</span>
-                    </div>
-
-
-                </LoginButtonBox>
-
-                <div className={'body2-medium color-black4'}>
-                    처음이신가요? <MoveLink onClick={onClickMoveSignup}>회원가입하기</MoveLink>
-                </div>
-
-            </Body>
-
-        </main>
-
-    )
-}
