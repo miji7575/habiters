@@ -15,6 +15,7 @@ import MonthlyRetrospects from '../../components/myhabit/monthly-retrospects/Mon
 
 
 
+
 // ============================== Style ==============================
 const Main = styled.div`
     display: flex;
@@ -150,3 +151,24 @@ export default function HabitTracker() {
         </>
     )
 }
+
+
+// export async function getServerSideProps(context) {
+
+    // const session = await getServerSession(context);
+    // const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
+    // const session = window.sessionStorage;
+    // console.log(session)
+    // const response = await axios.get('https://api.habiters.store/users/me', {
+    //     headers: { Authorization: 'Bearer ' + accessToken }
+    // })
+    // console.log(response.data.data)
+    // setUser(response.data.data)
+//     return {
+//         props: {
+//             // user: response.data.data,
+//         },
+//     };
+// }
+
+
