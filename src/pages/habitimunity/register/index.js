@@ -79,11 +79,11 @@ export default function BoardRegister() {
     // 2023-08-04 박미지 ----- SelectBox 값 저장
     const [SelectBoxValue, setSelectedValue] = useRecoilState(SelectBoxValueState)
     const OPTIONS = [
-        { value: "STUDY", name: "공부" },
-        { value: "EXERCISE", name: "운동" },
-        { value: "HEALTH", name: "건강" },
-        { value: "DAILY", name: "일상" },
-        { value: "ETC", name: "기타" },
+        { value: "STUDY", text: "공부" },
+        { value: "EXERCISE", text: "운동" },
+        { value: "HEALTH", text: "건강" },
+        { value: "DAILY", text: "일상" },
+        { value: "ETC", text: "기타" },
 
     ];
 
@@ -95,7 +95,11 @@ export default function BoardRegister() {
     const [postContent, setPostContent] = useRecoilState(PostContentState);
 
     useEffect(() => {
-
+        console.log(SelectBoxValue["categoryvalue"])
+        // const data = {
+        //     category: SelectBoxValue["categoryvalue"], // 선택된 카테고리 값. 선택 안되었을 떄는 undifined
+        //     나머지 동일
+        // };
 
     })
 
@@ -114,9 +118,9 @@ export default function BoardRegister() {
         if (accessToken) {
             const response = await axios.post('https://api.habiters.store/posts',
                 {
-                    "title" : data.title,
-                    "content" : data.content,
-                    "category" : data.category
+                    "title": data.title,
+                    "content": data.content,
+                    "category": data.category
                 }, {
                 'Content-Type': 'application/json',
                 headers: { Authorization: 'Bearer ' + accessToken }

@@ -51,17 +51,19 @@ export default function TestPage() {
 
     // ============================== Function  ==============================
     const [selectBoxvalue, setSelectboxValue] = useRecoilState(SelectBoxValueState)
-
+    useEffect(() => {
+        // console.log(selectBoxvalue["1번째value"])
+    })
 
     const OPTIONS = [
-        { value: "1", name: "Option1" },
-        { value: "2", name: "Option2" },
-        { value: "3", name: "Option3" },
-        { value: "4", name: "긴 내용의 글 긴 내용의 글 긴 내용의 글 긴 내용의 글 긴 내용의 글 긴 내용의 글" },
-        { value: "5", name: "Option5" },
-        { value: "6", name: "긴 내용의 글긴 내용의 글긴 내용의 글긴 내용의 글긴 내용의 글" },
-        { value: "7", name: "Option7" },
-        { value: "8", name: "Option8" },
+        { value: "1", text: "Option1" },
+        { value: "2", text: "Option2" },
+        { value: "3", text: "Option3" },
+        { value: "4", text: "긴 내용의 글 긴 내용의 글 긴 내용의 글 긴 내용의 글 긴 내용의 글 긴 내용의 글" },
+        { value: "5", text: "Option5" },
+        { value: "6", text: "긴 내용의 글긴 내용의 글긴 내용의 글긴 내용의 글긴 내용의 글" },
+        { value: "7", text: "Option7" },
+        { value: "8", text: "Option8" },
     ];
 
 
@@ -205,7 +207,7 @@ export default function TestPage() {
                         width={"150px"}
                         size={"medium"}
                         name={"13번째"}
-                       
+
                     />
 
                     <SelectBoxDefault

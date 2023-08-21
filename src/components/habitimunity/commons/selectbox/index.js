@@ -13,7 +13,17 @@ import { useRecoilState } from 'recoil';
 
 // =====  사용법
 // "SelectBoxDefault" 라는 이름으로 import 해서 사용
+
+// --- 값 꺼내기
+//SelectBoxValueState 라는 Key로 RecoilAtom에 저장되어있음.
+//SelectBoxValue["지정한name+value"] 
+//--- ex)  SelectBoxValue["categoryvalue"], // 선택된 카테고리 값. 선택 안되었을 떄는 undifined
+
+// ===== 필수  속성
 // 받아올 옵션의 데이터 : 사용하는 곳에서 "options" 라는 이름으로 전달.
+// 어떠한 데이터를 저장할 것인지  name  속성을 통해 지정해주세요.
+
+// ===== 기타  속성
 // width 변경하기 : SelectBoxDefaultWrap 안의 width 속성에 prop 전달(단위까지 기재) 기본값 380px
 // Medium SelectBox 사용시에만 size={ "medium" }으로 전달
 
@@ -81,14 +91,15 @@ export function SelectBoxDefault(props) {
 
 
 
-    
+
 
     // 콘솔용
     useEffect(() => {
-      
 
-        setIsError(props.isError)
-        setIsDisabled(props.isDisabled)
+
+        // setIsError(props.isError)
+        // setIsDisabled(props.isDisabled)
+        // console.log(selectedValue)
         // console.log(selectedValue["category"])
         // console.log(props.name)
         // console.log("selectedValue.name : " + selectedValue.name)
@@ -98,8 +109,8 @@ export function SelectBoxDefault(props) {
 
 
 
-    
-  
+
+
 
 
 
@@ -174,7 +185,7 @@ export function SelectBoxDefault(props) {
                     isValueNull={isValueNull}
                 >
                     <div>
-                        {/* {selectedValue[props.name]} */}
+                        {selectedValue[props.name]}
                     </div>
                 </SelectBoxDefaultSelectBox>
 
@@ -215,9 +226,9 @@ export function SelectBoxDefault(props) {
                                 size={size} //Large, Medium 정의
                                 // 선택된 값과 OPTION의 name 비교(selectedValue, name)
                                 selectedValue={selectedValue[props.name]}
-                                name={value.name}
-                                onClick={e => { setSelectedValue({ ...selectedValue, [props.name]:  {[value.name]: value.value}  }), setisFocused(!isFocused) }}>
-                                {value.name}
+                                name={value.text}
+                                onClick={e => { setSelectedValue({ ...selectedValue, [props.name]: value.text, [props.name + "value"]: value.value }), setisFocused(!isFocused) }}>
+                                {value.text}
 
                             </SelectBoxDefaultOption>
                         ))}
