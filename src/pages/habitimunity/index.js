@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useRecoilState } from 'recoil'
 import { userAccessToken } from '../../components/stores';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import PostNotice from '../../components/habitimunity/list/notice/notice.container';
 import PostList from '../../components/habitimunity/list/postList/postList.container';
 import axios from 'axios';
@@ -102,34 +102,96 @@ export default function Habitimunity() {
     };
     
     // 230809 tab이 바뀔때마다 tab의 값 세팅
-    const handleTabChange = async (tab) => {
+    const handleTabChange = useCallback(async (tab) => {
         console.log(tab);
         setSelectedTab(tab);
-        // setPage(tabToPageMapping[tab]); // Set the page based on the selected tab
-    };
+        // setPage(tabToPageMapping[tab]);
+    }, []);
 
-    // 230809 tab을 누를때 마다 데이터를 가져오기.
-    useEffect( async () => {
-        // console.log('change')
+    // // 230809 tab을 누를때 마다 데이터를 가져오기.
+    // useEffect( async () => {
+    //     // console.log('change')
 
-        const response = await axios.get(`https://api.habiters.store/posts`, {
-            headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken },
-            params: {
-                category: tabToPageMapping[selectedTab]
-            }
-        })
+    //     const response = await axios.get(`https://api.habiters.store/posts`, {
+    //         headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken },
+    //         params: {
+    //             category: tabToPageMapping[selectedTab],
+    //             page: 0
+    //         }
+    //     })
 
-        // 230809 값이 있으면 값대로 세팅, 값이 없으면 빈배열
-        if (response.data.data) {
-            setPosts(response.data.data);
-        } else {
-            setPosts([]); // 데이터가 비어있을 경우 빈 배열로 초기화
+    //     // 230809 값이 있으면 값대로 세팅, 값이 없으면 빈배열
+    //     if (response.data.data) {
+    //         setPosts(response.data.data);
+    //     } else {
+    //         setPosts([]); // 데이터가 비어있을 경우 빈 배열로 초기화
+    //     }
+
+    // }, [selectedTab])
+
+
+
+    const [page2, setPage2] = useState(0)
+    // const [users, setUsers] = useState<User[]>([])
+    const [loading, setLoading] = useState(false)
+    const pageEnd = useRef()
+
+
+
+    const fetchPosts = useCallback(async () => {
+        if (loading) {
+            return; // If loading, don't fetch again
         }
-
-    }, [handleTabChange])
-
     
+        setLoading(true); // Set loading to true before fetching
+
+        try {
+            const { data } = await axios.get(`https://api.habiters.store/posts`, {
+                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken },
+                params: {
+                    category: tabToPageMapping[selectedTab],
+                    page: page2
+                }
+            });
+            console.log(data.data);
+            setPosts(prevPosts => [...prevPosts, ...data.data]);
+            setPage2(prevPage => prevPage + 1);
+        } catch (error) {
+            console.error("Error fetching posts:", error);
+        } finally {
+            setLoading(false); // Set loading to false after fetching
+        }
+    }, [loading, page2, selectedTab]);
+
+    useEffect(() => {
+        setLoading(true); // Set loading to true on initial load
+        fetchPosts(); // Fetch initial posts
+    }, []);
     
+
+    useEffect(() => {
+        console.log(loading);
+    }, [loading]);
+
+    useEffect(() => {
+        if (loading) {
+            const observer = new IntersectionObserver(
+                entries => {
+                    if (entries[0].isIntersecting) {
+                        console.log("Intersected! Fetching more data...");
+                        fetchPosts(); // Use fetchPosts to load more
+                    }
+                },
+                { threshold: 1 }
+            );
+            observer.observe(pageEnd.current);
+        }
+    }, [loading, fetchPosts]);
+
+
+
+
+
 
 
     return (
@@ -151,21 +213,18 @@ export default function Habitimunity() {
                                     limit={limit}
                                     offset={offset}
                                 />
-                                <Pagination
+                                {/* <Pagination
                                     total={posts.length}
                                     limit={limit}
                                     page={page}
                                     setPage={setPage}
-                                />
+                                /> */}
+                                <div ref={pageEnd}>1</div>
                             </CommnunityList>
                             <UserProfile />
                         </CommnuityContent>
                     </Content>
-
                 </Main>
-
-
-            
             </main>
         </>
     )

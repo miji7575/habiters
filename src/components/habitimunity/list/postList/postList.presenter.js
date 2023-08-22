@@ -154,21 +154,83 @@ export default function PostListUI(props) {
     };
 
     const images = ['Hope', 'Lucky', 'Dream'];
-    
+
     const [selectedImage, setSelectedImage] = useState('');
 
     useEffect(() => {
         setSelectedImage(getRandomWord(images));
     }, []);
+    
 
 
 
 
 
     return (
-        <>  
+        <>
             {/* pagination test data처리용 */}
-            {props.posts.slice(props.offset, props.offset + props.limit).map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
+            {/* {props.posts.slice(props.offset, props.offset + props.limit).map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
+                <PostContainer key={id}>
+                    <PostBox>
+                        <Post>
+                            <PostHeader>
+                                <PostTitle>
+                                    <Label
+                                        text={categoryOptions[category].text}
+                                        default={categoryOptions[category].default}
+                                        onTabChange={props.onTabChange}
+                                    />
+                                    <Link href={`/habitimunity/${id}`}>
+                                        <div className="body2-bold">
+                                            {title}
+                                        </div>
+                                    </Link>
+                                </PostTitle>
+
+                                <Bookmark
+                                    bookmarked={false}
+                                />
+                            </PostHeader>
+                            <Link href={`/habitimunity/${id}`}>
+                                <PostContent
+                                    className="body2-regular"
+                                >
+                                    {hasVoteItem && <VoteItem progress={true} />}
+
+                                    <div
+                                        style={{ display: 'flex', gap: '16px' }}
+                                    >
+                                        {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+                                        <PostText>
+                                            {content}
+                                        </PostText>
+                                    </div>
+                                </PostContent>
+                            </Link>
+                        </Post>
+
+                        <PostInformation
+                            className="caption1-regular"
+                        >
+                            <UserData
+                                createDate={createDate}
+                                selectedImage={selectedImage}
+                            />
+                            <FeedData
+                                views={views}
+                                numOfComments={numOfComments}
+                                numOfEmojis={numOfEmojis}
+                            />
+                        </PostInformation>
+                    </PostBox>
+                </PostContainer>
+
+
+
+            ))} */}
+
+            {props.posts.map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
+                
                 <PostContainer key={id}>
                     <PostBox>
                         <Post>
