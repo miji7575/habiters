@@ -27,8 +27,11 @@ export default function CommentReplyInput(props) {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${accessToken}`
                 }
+            }).then(async () => {
+                await props.getBoardDatails()
+                await props.getCommentReplyData()
             })
-            console.log(response.data.data)
+            // console.log(response.data.data)
             // console.log(response)
             setInputValue({ [props.name]: "" })
             return
