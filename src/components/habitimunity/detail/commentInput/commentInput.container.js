@@ -54,10 +54,12 @@ export default function CommentInput(props) {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${accessToken}`
                 }
+            }).then(async() => {
+                await props.getBoardDatails()
             })
 
             console.log(response)
-            await props.getBoardDatails()
+
             // setInputValue({ [props.name]: "" })
             props.finishCommentEditing()
             return
@@ -73,7 +75,7 @@ export default function CommentInput(props) {
     useEffect(() => {
         console.log(inputValue)
         // console.log(inputValue[props.name])
-     
+
     })
 
     useEffect(() => {

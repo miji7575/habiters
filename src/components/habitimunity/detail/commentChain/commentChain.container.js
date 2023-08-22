@@ -30,13 +30,11 @@ export default function CommentChain(props) {
 
             const response = await axios.get(`https://api.habiters.store/posts/${props.boardId}/comment/${commentData.id}/reply`, {
                 headers: {
-                    // "Access-Control-Allow-Origin" : "*",
                     "Content-Type": "application/json;charset=UTF-8",
                     Authorization: `Bearer ${accessToken}`
                 }
             })
 
-            // console.log(response.data.data)
             setCommentLength(response.data.data ? response.data.data.length : "")
             setCommentReplyData(response.data.data)
 
@@ -52,8 +50,8 @@ export default function CommentChain(props) {
 
 
     useEffect(() => {
-        // console.log(commentReplyData)
-    })
+        setCommentData(props.value)
+    },[props.value])
 
 
     // 댓글 수정UI
@@ -99,6 +97,7 @@ export default function CommentChain(props) {
                 boardId={props.boardId}
                 // ----- 댓글
                 getBoardDatails={props.getBoardDatails}
+                getCommentReplyData={getCommentReplyData}
                 // 댓글Data
                 commentData={commentData}
                 commentDataFIX={commentDataFIX}// 더 필요한 데이터 아직 안옴

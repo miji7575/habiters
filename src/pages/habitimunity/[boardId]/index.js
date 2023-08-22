@@ -85,7 +85,6 @@ export default function BoardDetail(props) {
     //2023-08-19 박미지 --- 게시글 상세내용 불러오기
     const getBoardDatails = async () => {
 
-
         if (accessToken && boardId) {
             const response = await axios.get(`https://api.habiters.store/posts/${boardId}`, {
                 headers: {
@@ -104,7 +103,7 @@ export default function BoardDetail(props) {
 
     useEffect(() => {
         getBoardDatails()
-    }, [boardId])
+    }, [])
 
 
 

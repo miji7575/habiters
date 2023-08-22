@@ -80,8 +80,9 @@ export default function CommentReplyUI(props) {
                     previousCommentReply={props.commentReplyData.content}
                     backgroundColor={props.index}
                     isEditingCommentReply={props.isEditingCommentReply}
-                    getBoardDatails={props.getBoardDatails}
                     finishCommentReplyEditing={props.finishCommentReplyEditing}
+                    getBoardDatails={props.getBoardDatails}
+                    getCommentReplyData={props.getCommentReplyData}
                 />
 
 

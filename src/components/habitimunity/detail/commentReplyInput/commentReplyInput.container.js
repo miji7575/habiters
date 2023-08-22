@@ -51,8 +51,9 @@ export default function CommentReplyInput(props) {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${accessToken}`
                 }
-            }).then(async function (){
+            }).then(async () => {
                 await props.getBoardDatails()
+                await props.getCommentReplyData()
             })
 
             console.log(response)
@@ -83,7 +84,7 @@ export default function CommentReplyInput(props) {
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(inputValue)
     })
 

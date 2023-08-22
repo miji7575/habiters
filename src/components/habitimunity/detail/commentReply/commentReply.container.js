@@ -40,6 +40,7 @@ export default function CommentReply(props) {
     const deleteCommentReply = async () => {
 
         console.log(`${props.commentId}번 댓글의 ${props.commentReplyData.id}번 답글 삭제`)
+        
         // if (accessToken && props.boardId && commentData.id) {
 
         //     const response = await axios.delete(`https://api.habiters.store/posts/${props.boardId}/comment/${commentData.id}`, {
@@ -50,7 +51,9 @@ export default function CommentReply(props) {
         //     })
 
         //     return
-        // }
+        // }.then(async ()=>{
+            // props.getCommentReplyData()
+        // })
 
     }
     useEffect(() => {
@@ -76,6 +79,7 @@ export default function CommentReply(props) {
                 // 기타
                 index={props.index}
                 getBoardDatails={props.getBoardDatails}
+                getCommentReplyData={props.getCommentReplyData}
 
 
             />

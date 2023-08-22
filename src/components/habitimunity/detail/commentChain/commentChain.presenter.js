@@ -93,6 +93,7 @@ export default function CommentChainUI(props) {
                         commentId={props.commentData.id}
                         commentReplyLength={props.commentReplyLength}
                         getBoardDatails={props.getBoardDatails}
+                        getCommentReplyData={props.getCommentReplyData}
                     />
 
                 ) : <></>}
@@ -102,9 +103,10 @@ export default function CommentChainUI(props) {
                     boardId={props.boardId}
                     commentId={props.commentData.id}
                     backgroundColor={props.commentReplyLength}
-                    getBoardDatails={props.getBoardDatails}
                     isEditingCommentReply={props.isEditingCommentReply}
-                   
+                    getBoardDatails={props.getBoardDatails}
+                    getCommentReplyData={props.getCommentReplyData}
+
                 />
             </CommentChainWrap>
 
