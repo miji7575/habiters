@@ -1,42 +1,8 @@
 import styled from "@emotion/styled";
 
 
-export const CommentChainWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    border: 1px solid var(--color-black7);
-    margin-bottom: 20px;
-    >div:first-of-type{
-        border-bottom:  ${(props)=> props.isEditingComment === true ? `none`: ` 1px solid var(--color-black7)`};
-    }
-    >div{
-        border-bottom: 1px solid var(--color-black7);
-    }
-    >div:last-of-type{
-        border-bottom: none;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
 
-`
 
-export const CommentWrap = styled.div`
-
-    display: flex;
-    flex-direction: column;
-    gap : 16px;
-    padding: 20px 24px;
-
-    position: relative;
-
-    font-family: 'Pretendard-Regular'; 
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--color-black2);
-   
-
-`
 
 export const CommentContent = styled.div`
     white-space: pre-line;

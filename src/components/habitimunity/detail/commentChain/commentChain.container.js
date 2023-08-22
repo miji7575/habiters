@@ -1,91 +1,122 @@
+import { useEffect, useState } from 'react';
 import CommentChainUI from './commentChain.presenter';
+import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { userAccessToken } from '../../../stores';
 
 export default function CommentChain(props) {
 
+    useEffect(() => {
+        // console.log(props.value)
+    })
 
-    const commentData = {
-        id: 78,
-        content: "나는 댓글이다.",
+    // 더 와야하는 데이터
+    const commentDataFIX = {
         writerId: "33",
-        regDate: "2023.03.04",
         like: 50,
+    }
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
+    const [commentData, setCommentData] = useState(props.value)
+    const [commentLength, setCommentLength] = useState(0)
+    const [commentReplyData, setCommentReplyData] = useState('')
+
+
+
+    //2023-08-19 박미지 --- 댓글에 대한 답글List 불러오기
+    const getCommentReplyData = async () => {
+
+
+        if (accessToken && props.boardId && commentData.id) {
+
+            const response = await axios.get(`https://api.habiters.store/posts/${props.boardId}/comment/${commentData.id}/reply`, {
+                headers: {
+                    // "Access-Control-Allow-Origin" : "*",
+                    "Content-Type": "application/json;charset=UTF-8",
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
+
+            // console.log(response.data.data)
+            setCommentLength(response.data.data ? response.data.data.length : "")
+            setCommentReplyData(response.data.data)
+
+
+            return
+        }
+
+    }
+
+    useEffect(() => {
+        getCommentReplyData()
+    }, [])
+
+
+    useEffect(() => {
+        // console.log(commentReplyData)
+    })
+
+
+    // 댓글 수정UI
+    const [isEditingComment, setIsEditingComment] = useState(false);
+    const startCommentEditing = () => {
+        setIsEditingComment(true);
+    };
+    const finishCommentEditing = () => {
+        setIsEditingComment(false);
+    };
+
+
+   
+
+
+
+
+    //2023-08-19 박미지 --- 댓글 삭제
+    const deleteComment = async () => {
+
+        console.log(`${commentData.id}번 댓글삭제`)
+        // if (accessToken && props.boardId && commentData.id) {
+
+        //     const response = await axios.delete(`https://api.habiters.store/posts/${props.boardId}/comment/${commentData.id}`, {
+        //         headers: {
+        //             "Content-Type": "application/json;charset=UTF-8",
+        //             Authorization: `Bearer ${accessToken}`
+        //         }
+        //     })
+
+        //     return
+        // }
+
     }
 
 
-    const commentReplyData = [{
-        id: 1,
-        content: "나는 1번 대댓글이다.\n나는 1번 대댓글이다.\n나는 1번 대댓글이다.",
-        writerId: "10",
-        regDate: "2023.03.10",
-        like: 50,
-    }, {
-        id: 2,
-        content: "나는 2번 대댓글이다.\n나는 2번 대댓글이다.",
-        writerId: "20",
-        regDate: "2023.03.10",
-        like: 50,
-    },
-    {
-        id: 3,
-        content: "나는 3번 대댓글이다.",
-        writerId: "30",
-        regDate: "2023.03.10",
-        like: 50,
-    }
-
-    ]
-    const commentLength = commentReplyData.length;
-
-
-    const commentReplyData2 = [{
-        id: 1,
-        content: "나는 1번 대댓글이다.\n나는 1번 대댓글이다.\n나는 1번 대댓글이다.",
-        writerId: "10",
-        regDate: "2023.03.10",
-        like: 50,
-    }, {
-        id: 2,
-        content: "나는 2번 대댓글이다.\n나는 2번 대댓글이다.",
-        writerId: "20",
-        regDate: "2023.03.10",
-        like: 50,
-    },
-    {
-        id: 3,
-        content: "나는 3번 대댓글이다.",
-        writerId: "30",
-        regDate: "2023.03.10",
-        like: 50,
-    },
-    {
-        id: 4,
-        content: "나는 4번 대댓글이다.",
-        writerId: "40",
-        regDate: "2023.03.10",
-        like: 50,
-    }
-
-    ]
-
-    const commentLength2 = commentReplyData2.length;
-
-
+    
 
 
     return (
         <>
             <CommentChainUI
+                boardId={props.boardId}
+                // ----- 댓글
+                getBoardDatails={props.getBoardDatails}
+                // 댓글Data
                 commentData={commentData}
+                commentDataFIX={commentDataFIX}// 더 필요한 데이터 아직 안옴
+                // 댓글 수정 UI
+                isEditingComment={isEditingComment}
+                startCommentEditing={startCommentEditing}
+                finishCommentEditing={finishCommentEditing}
+                //댓글 삭제
+                deleteComment={deleteComment}
+                 // -----  답글
+                // 답글Data
                 commentReplyData={commentReplyData}
                 commentReplyLength={commentLength}
 
+
             />
 
-            <CommentChainUI
-                commentData={commentData}
-                commentReplyData={commentReplyData2}
-                commentReplyLength={commentLength2}
-            />
+
         </>
     )
 }

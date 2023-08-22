@@ -7,12 +7,15 @@ export const CommentInputWrap = styled.div`
 
     height: 144px;
     padding: 24px;
-    margin-bottom: 20px;
-    
-   
-    border-radius: 8px;
-    border: 1px solid var(--color-black7);
 
+    ${(props) => props.isEditingComment === true ?`
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        ` :`
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border:  1px solid var(--color-black7);
+        `}
 `
 export const CommentInput = styled.textarea`
   

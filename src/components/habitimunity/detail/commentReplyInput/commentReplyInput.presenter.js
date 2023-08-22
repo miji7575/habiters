@@ -10,18 +10,24 @@ export default function CommentReplyInputUI(props) {
     return (
         <>
             <CommentReplyInputWrap
-            backgroundColor={props.backgroundColor}
+                backgroundColor={props.backgroundColor}
             >
                 <IconReply />
-                <CommentReplyInput placeholder={props.placeholder} />
+                <CommentReplyInput
+                    placeholder={props.placeholder}
+                    value={props.value}
+                    onChange={props.onChange}
+                    name={props.name}
+                />
 
-                <SubmitButton>
+                <SubmitButton
+                    onClick={() => {{ props.isEditingCommentReply ? props.updateCommentReply() : props.postCommentReply() } }}>
                     <div>등록</div>
                 </SubmitButton>
 
 
             </CommentReplyInputWrap>
-            
+
         </>
     )
 }
