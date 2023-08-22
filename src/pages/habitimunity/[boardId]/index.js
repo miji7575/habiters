@@ -95,7 +95,7 @@ export default function BoardDetail(props) {
 
             setBoardDetailData(response.data.data)
             setBoardCommentData(response.data.data.comments)
-            console.log(response.data.data)
+            // console.log(response.data.data)
             return
         }
 

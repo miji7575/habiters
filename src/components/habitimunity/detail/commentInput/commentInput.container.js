@@ -73,7 +73,7 @@ export default function CommentInput(props) {
 
 
     useEffect(() => {
-        console.log(inputValue)
+        // console.log(inputValue)
         // console.log(inputValue[props.name])
 
     })
