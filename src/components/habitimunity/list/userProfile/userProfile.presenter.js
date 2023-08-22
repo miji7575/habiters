@@ -78,7 +78,7 @@ export default function UserProfileUI() {
 
     const router = useRouter()
     const registerPost = () => {
-        router.push("habitimunity/register")
+        router.push("/habitimunity/register")
     }
 
     return (

@@ -40,7 +40,7 @@ const BookmarkIcon = styled.i`
 export default function BookmarkUI(props) {
   const [bookmarkState, setBookmarkState] = useState(props.bookmarked);
 
-  console.log(props.bookmarked);
+  // console.log(props.bookmarked);
 
   const setBookmark = () => {
     setBookmarkState(!bookmarkState); // bookmarkState 값을 토글합니다.

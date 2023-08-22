@@ -4,7 +4,7 @@ import Bookmark from "../../commons/bookmark/bookmark.container"
 import UserData from "../../commons/userData/userData.container"
 import FeedData from "../../commons/feedData/feedData.container"
 import VoteItem from "../Items/vote/voteItem.container"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 
 const PostContainer = styled.div`
@@ -60,12 +60,16 @@ const PostTitle = styled.div`
     align-items: center;
 
     gap: 8px;
+
+    cursor: pointer;
 `
 
 const PostContent = styled.div`
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    cursor: pointer;
 `
 const PostImage = styled.img`
     width: 76px;
@@ -114,7 +118,7 @@ export default function PostListUI(props) {
     const [hasVoteItem, setHasVoteItem] = useState(false);
     // 230802 이미지가 있는지 없는지
     const [hasImageItem, setHasImageItem] = useState(false);
-    
+
     // 카테고리에 따라서 Label 처리
     const categoryOptions = {
         STUDY: {
@@ -144,30 +148,50 @@ export default function PostListUI(props) {
         }
     };
 
+    const getRandomWord = (images) => {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return images[randomIndex];
+    };
+
+    const images = ['Hope', 'Lucky', 'Dream'];
+
+    const [selectedImage, setSelectedImage] = useState('');
+
+    useEffect(() => {
+        setSelectedImage(getRandomWord(images));
+    }, []);
+    
+
+
+
 
 
     return (
-        <>  
+        <>
             {/* pagination test data처리용 */}
-            {props.posts.slice(props.offset, props.offset + props.limit).map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
-                <Link key={id}  href={`/habitimunity/${id}`}>
-                    <PostContainer>
-                        <PostBox>
-                            <Post>
-                                <PostHeader>
-                                    <PostTitle>
-                                        <Label
-                                            text={categoryOptions[category].text}
-                                            default={categoryOptions[category].default}
-                                        />
+            {/* {props.posts.slice(props.offset, props.offset + props.limit).map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
+                <PostContainer key={id}>
+                    <PostBox>
+                        <Post>
+                            <PostHeader>
+                                <PostTitle>
+                                    <Label
+                                        text={categoryOptions[category].text}
+                                        default={categoryOptions[category].default}
+                                        onTabChange={props.onTabChange}
+                                    />
+                                    <Link href={`/habitimunity/${id}`}>
                                         <div className="body2-bold">
                                             {title}
                                         </div>
-                                    </PostTitle>
-                                    <Bookmark
-                                        bookmarked={false}
-                                    />
-                                </PostHeader>
+                                    </Link>
+                                </PostTitle>
+
+                                <Bookmark
+                                    bookmarked={false}
+                                />
+                            </PostHeader>
+                            <Link href={`/habitimunity/${id}`}>
                                 <PostContent
                                     className="body2-regular"
                                 >
@@ -182,24 +206,87 @@ export default function PostListUI(props) {
                                         </PostText>
                                     </div>
                                 </PostContent>
-                            </Post>
+                            </Link>
+                        </Post>
 
-                            <PostInformation
-                                className="caption1-regular"
-                            >
-                                <UserData
-                                    createDate={createDate}
-                                />
-                                <FeedData
-                                    views={views}
-                                    numOfComments={numOfComments}
-                                    numOfEmojis={numOfEmojis}
-                                />
-                            </PostInformation>
-                        </PostBox>
-                    </PostContainer>
-                </Link>
+                        <PostInformation
+                            className="caption1-regular"
+                        >
+                            <UserData
+                                createDate={createDate}
+                                selectedImage={selectedImage}
+                            />
+                            <FeedData
+                                views={views}
+                                numOfComments={numOfComments}
+                                numOfEmojis={numOfEmojis}
+                            />
+                        </PostInformation>
+                    </PostBox>
+                </PostContainer>
+
+
+
+            ))} */}
+
+            {props.posts.map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
                 
+                <PostContainer key={id}>
+                    <PostBox>
+                        <Post>
+                            <PostHeader>
+                                <PostTitle>
+                                    <Label
+                                        text={categoryOptions[category].text}
+                                        default={categoryOptions[category].default}
+                                        onTabChange={props.onTabChange}
+                                    />
+                                    <Link href={`/habitimunity/${id}`}>
+                                        <div className="body2-bold">
+                                            {title}
+                                        </div>
+                                    </Link>
+                                </PostTitle>
+
+                                <Bookmark
+                                    bookmarked={false}
+                                />
+                            </PostHeader>
+                            <Link href={`/habitimunity/${id}`}>
+                                <PostContent
+                                    className="body2-regular"
+                                >
+                                    {hasVoteItem && <VoteItem progress={true} />}
+
+                                    <div
+                                        style={{ display: 'flex', gap: '16px' }}
+                                    >
+                                        {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+                                        <PostText>
+                                            {content}
+                                        </PostText>
+                                    </div>
+                                </PostContent>
+                            </Link>
+                        </Post>
+
+                        <PostInformation
+                            className="caption1-regular"
+                        >
+                            <UserData
+                                createDate={createDate}
+                                selectedImage={selectedImage}
+                            />
+                            <FeedData
+                                views={views}
+                                numOfComments={numOfComments}
+                                numOfEmojis={numOfEmojis}
+                            />
+                        </PostInformation>
+                    </PostBox>
+                </PostContainer>
+
+
 
             ))}
 

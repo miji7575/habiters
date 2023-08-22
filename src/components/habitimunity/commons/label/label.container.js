@@ -8,6 +8,7 @@ export default function Label(props) {
         text={props.text}
         default={props.default}
         icon={props.icon}
+        onTabChange={props.onTabChange}
       />
     );
   }

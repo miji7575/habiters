@@ -1,5 +1,7 @@
 import styled from "@emotion/styled"
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { activeTabState } from "../../../stores";
 
 
 
@@ -85,12 +87,19 @@ export default function LabelUI(props) {
             setCheckIconActive(true);
         }
 
-        console.log(props.icon)
+        // console.log(props.icon)
 
     }, [props.icon])
 
     // 230729 기본칼라 세팅
     const defaultColor = colorOptions[props.default] || colorOptions['white'];
+
+    const [activeTab, setActiveTab] = useRecoilState(activeTabState);
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+        props.onTabChange(tab);
+    };
 
     return (
         <>
@@ -99,6 +108,7 @@ export default function LabelUI(props) {
                     backgroundColor: defaultColor.backgroundColor,
                     color: defaultColor.color
                 }}
+                onClick={() => handleTabClick(props.text)}
             >
                 {checkIconActive && <CheckIcon
                     style={{
