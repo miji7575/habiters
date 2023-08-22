@@ -8,6 +8,7 @@ import { SelectBoxValueState, InputValueState, PostContentState, userAccessToken
 import Inputs from '../../../components/habitimunity/register/voteForm/votingInputs/inputs/Inputs.container';
 import CommunityArticleEditor from '../../../components/habitimunity/register/communityArticleEditor/communityArticleEditor.container';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 // ============================== Style ==============================
 const Main = styled.div`
     display: flex;
@@ -74,6 +75,7 @@ const RegArticleBtn = styled.div`
 
 
 export default function BoardRegister() {
+    const router = useRouter()
 
 
     // 2023-08-04 박미지 ----- SelectBox 값 저장
@@ -123,8 +125,10 @@ export default function BoardRegister() {
             })
 
             console.log(response)
-            return
 
+            router.push("/habitimunity")
+
+            return
         }
 
     }
