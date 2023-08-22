@@ -95,16 +95,12 @@ export default function BoardRegister() {
     const [postContent, setPostContent] = useRecoilState(PostContentState);
 
     useEffect(() => {
-        console.log(SelectBoxValue["categoryvalue"])
-        // const data = {
-        //     category: SelectBoxValue["categoryvalue"], // 선택된 카테고리 값. 선택 안되었을 떄는 undifined
-        //     나머지 동일
-        // };
+       
 
     })
 
     const data = {
-        category: 'DAILY', // 선택된 카테고리 값
+        category: SelectBoxValue["categoryvalue"], // 선택된 카테고리 값
         title: inputValue["title"], // 제목 값
         content: postContent
     };
