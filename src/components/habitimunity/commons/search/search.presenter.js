@@ -1,5 +1,8 @@
 import styled from "@emotion/styled"
+import axios from "axios"
 import { useState } from "react"
+import { useRecoilState } from "recoil"
+import { userAccessToken } from "../../../stores"
 
 const SearchBox = styled.div`
     width: 280px;
@@ -73,6 +76,7 @@ export default function SearchUI() {
 
     const [isSearchText, setisSearchText] = useState(false);
     const [searchText, setSearchText] = useState('');
+    const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
 
 
     // 230726 close 버튼을 눌렀을 때, 
@@ -88,11 +92,24 @@ export default function SearchUI() {
     }
     
     // 230726 Enter키를 눌렀을 때, 검색 기능을 실행하는 함수
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         if (e.key === 'Enter') {
             // 여기서 실제로 검색을 수행하면 됩니다.
-            alert(`검색어: ${searchText}`);
+            // alert(`검색어: ${searchText}`);
+
+            const response = await axios.get('https://api.habiters.store/posts/search?page=0',
+            {
+                "category" : "DAILY",
+                "searchType" : "TITLE",
+                "keyword" : "searchTitle"
+            }, {
+                'Content-Type': 'application/json',
+                headers: { Authorization: 'Bearer ' + accessToken }
+            })
+
+            console.log(response)
         }
+        
     }
 
 
