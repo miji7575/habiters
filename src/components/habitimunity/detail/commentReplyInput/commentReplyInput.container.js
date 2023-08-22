@@ -88,7 +88,7 @@ export default function CommentReplyInput(props) {
 
 
     useEffect(() => {
-        console.log(inputValue)
+        // console.log(inputValue)
     })
 
     return (
