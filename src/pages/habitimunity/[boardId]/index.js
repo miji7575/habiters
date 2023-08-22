@@ -2,7 +2,7 @@
 
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { userAccessToken } from '../../../components/stores';
 import { useEffect, useState } from 'react';
 import HabitimunityNotice from '../../../components/habitimunity/list/notice/notice.container';
@@ -73,44 +73,38 @@ const SubmitButton = styled(BtnLargePrimary)`
 
 
 export default function BoardDetail(props) {
+
+
     const router = useRouter()
     const { boardId } = router.query;
 
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
+    const [boardDetailData, setBoardDetailData] = useState('')
+    const [boardCommentData, setBoardCommentData] = useState('')
 
+    //2023-08-19 박미지 --- 게시글 상세내용 불러오기
     const getBoardDatails = async () => {
 
-        if (accessToken) {
+
+        if (accessToken && boardId) {
             const response = await axios.get(`https://api.habiters.store/posts/${boardId}`, {
-                postId: boardId
-            }, {
-                headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`
+                }
             })
 
-            // console.log(response)
-
+            setBoardDetailData(response.data.data)
+            setBoardCommentData(response.data.data.comments)
+            console.log(response.data.data)
             return
         }
 
     }
 
-
-    // boardDetailDataEX
-    const category = [{name:"일상",color:"purple"},{name:"운동",color:"skyBlue"},{name:"기타",color:"green"},{name:"일상",color:"purple"}]
-    const boardDetailData = {
-        id: boardId,
-        regDate: "2023-03-03",
-        category: category[boardId % 3],
-        title: boardId + "번째글 제목",
-        content: "영양제 다들 어떤거 먹고있어?\n나는 매일 종합비타민이랑 루테인이랑 유산균 먹는데..\n다른 더 좋은거 있나 궁금해서ㅋㅋㅋㅋ\n뭐 먹는지 투표 좀 해줘라~"
-        ,
-        writerId: "76",
-        hit: "3",
-        like: "5",
-        habiti: [{ like: "3" }, { sad: "2" }, { surprise: "0" }, { angry: "13" }],
-        comment: "5"
-    }
-
+    useEffect(() => {
+        getBoardDatails()
+    }, [boardId])
 
 
 
@@ -130,9 +124,21 @@ export default function BoardDetail(props) {
                             <CommunityArticle
                                 boardDetailData={boardDetailData}
                             />
-                            <CommentInput />
-                            <CommentChain />
-                            <SubmitButton onClick={()=>{router.push("/habitimunity")}}>글 목록</SubmitButton>
+                            <CommentInput
+                                boardId={boardId}
+                                getBoardDatails={getBoardDatails}
+                                name={"newComment"}
+                            />
+
+                            {Object.entries(boardCommentData).map(([key, value]) =>
+                                <CommentChain
+                                    boardId={boardId}
+                                    key={value.id}
+                                    value={value}
+                                    getBoardDatails={getBoardDatails}
+                                />)}
+
+                            <SubmitButton onClick={() => { router.push("/habitimunity") }}>글 목록</SubmitButton>
                         </CommnunityList>
                         <UserProfile />
                     </CommnuityContent>
