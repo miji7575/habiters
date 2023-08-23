@@ -100,7 +100,7 @@ export default function Habitimunity() {
         일상: 'DAILY',
         기타: 'ETC',
     };
-    
+
     // 230809 tab이 바뀔때마다 tab의 값 세팅
     const handleTabChange = useCallback(async (tab) => {
         console.log(tab);
@@ -132,8 +132,8 @@ export default function Habitimunity() {
 
 
     const [page2, setPage2] = useState(0)
-    // const [users, setUsers] = useState<User[]>([])
     const [loading, setLoading] = useState(false)
+    const [hasNextPage, setHasNextPage] = useState(false);
     const pageEnd = useRef()
 
 
@@ -142,7 +142,7 @@ export default function Habitimunity() {
         if (loading) {
             return; // If loading, don't fetch again
         }
-    
+
         setLoading(true); // Set loading to true before fetching
 
         try {
@@ -154,8 +154,17 @@ export default function Habitimunity() {
                 }
             });
             console.log(data.data);
+            if (!data.data) {
+                console.log('test');
+                setLoading(false);
+                setHasNextPage(false);
+                return;
+            }
+
             setPosts(prevPosts => [...prevPosts, ...data.data]);
             setPage2(prevPage => prevPage + 1);
+            setHasNextPage(true);
+
         } catch (error) {
             console.error("Error fetching posts:", error);
         } finally {
@@ -164,29 +173,37 @@ export default function Habitimunity() {
     }, [loading, page2, selectedTab]);
 
     useEffect(() => {
-        setLoading(true); // Set loading to true on initial load
-        fetchPosts(); // Fetch initial posts
+        fetchPosts();
     }, []);
-    
+
 
     useEffect(() => {
         console.log(loading);
     }, [loading]);
 
     useEffect(() => {
-        if (loading) {
-            const observer = new IntersectionObserver(
-                entries => {
-                    if (entries[0].isIntersecting) {
-                        console.log("Intersected! Fetching more data...");
+        const observer = new IntersectionObserver(
+            entries => {
+                if (entries[0].isIntersecting) {
+                    if (hasNextPage) {
                         fetchPosts(); // Use fetchPosts to load more
                     }
-                },
-                { threshold: 1 }
-            );
+                }
+            },
+            { threshold: 1 }
+        );
+
+        if (pageEnd.current) {
             observer.observe(pageEnd.current);
         }
-    }, [loading, fetchPosts]);
+
+        return () => {
+            if (pageEnd.current) {
+                observer.unobserve(pageEnd.current);
+            }
+        };
+    }, [fetchPosts]);
+
 
 
 
@@ -219,9 +236,9 @@ export default function Habitimunity() {
                                     page={page}
                                     setPage={setPage}
                                 /> */}
-                                <div ref={pageEnd}>1</div>
+                                <div ref={pageEnd}></div>
                             </CommnunityList>
-                            <UserProfile />
+                                <UserProfile />
                         </CommnuityContent>
                     </Content>
                 </Main>
