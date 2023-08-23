@@ -23,7 +23,7 @@ const Main = styled.div`
 `
 
 const Content = styled.div`
-    width: 60vw;
+    width: 63vw;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -55,6 +55,39 @@ const CommnuityContent = styled.div`
 `
 const CommnunityList = styled.div`
     width: 880px;
+`
+
+const CommunitySide = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+`
+
+const TopButton = styled.div`
+    position: sticky;
+    top: 290px;
+
+    width: 80px;
+`
+const ArrowUpIcon = styled.div`
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+
+    margin-right: 4px;
+
+    background-color: var(--color-white);
+
+    mask-size: 16px 16px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 16px 16px;
+
+    mask-position: center;
+    -webkit-mask-position: center;
+
+    mask-image: url(/image/icon/icon-arrow-up-line.svg); 
+    -webkit-mask-image: url(/image/icon/icon-arrow-up-line.svg); 
 `
 
 
@@ -204,7 +237,9 @@ export default function Habitimunity() {
         };
     }, [fetchPosts]);
 
-
+    const goTop = () => {
+        window.scrollTo(0, 0)
+    }
 
 
 
@@ -238,7 +273,17 @@ export default function Habitimunity() {
                                 /> */}
                                 <div ref={pageEnd}></div>
                             </CommnunityList>
+                            <CommunitySide>
                                 <UserProfile />
+                                <TopButton
+                                    className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content"
+                                    onClick={goTop}
+                                >   
+                                    <ArrowUpIcon />
+                                    <span>TOP</span>
+                                </TopButton>
+                            </CommunitySide>
+
                         </CommnuityContent>
                     </Content>
                 </Main>
