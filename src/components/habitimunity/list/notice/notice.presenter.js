@@ -13,7 +13,7 @@ const NoticeBox = styled.div`
     border: 1px solid var(--color-black7);
     border-radius: 8px;
 
-    margin-bottom: 24px;
+    margin-bottom: 12px;
 `
 const NoticeIcon = styled.div`
 
