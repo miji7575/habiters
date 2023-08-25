@@ -8,8 +8,10 @@ import {
 import CommentInput from '../commentInput/commentInput.container';
 import CommentReplyInput from '../commentReplyInput/commentReplyInput.container';
 import CommentReply from '../commentReply/commentReply.container';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ActionList from '../../commons/actionList';
+
+
 export default function CommentChainUI(props) {
 
 
@@ -18,14 +20,27 @@ export default function CommentChainUI(props) {
     const IconLike = () => {
 
         const [like, setLike] = useState(false)
+
+        useEffect(() => {
+            props.commentEmojisData.map((data) => {
+                if (data.memberId === props.user.id) {
+                    setLike(true)
+                }
+            })
+           
+        }, [])
+
+
         return (
             <>
-                {!like && <IconLikeBefore onClick={() => { setLike(!like) }} />}
-                {like && <IconLikeAfter onClick={() => { setLike(!like) }} />}
+                {!like && <IconLikeBefore onClick={() => { setLike(!like), props.emojiClickHandler(like,"SMILE") }} />}
+                {like && <IconLikeAfter onClick={() => { setLike(!like), props.emojiClickHandler(like,"SMILE")  }} />}
             </>
 
         )
     }
+
+
 
 
     return (
@@ -53,7 +68,7 @@ export default function CommentChainUI(props) {
                                 <CommentInfoRight>
                                     <div>
                                         <IconLike />
-                                        <div>{props.commentDataFIX.like}</div>
+                                        <div>{props.commentEmojisData.length}</div>
                                     </div>
                                     <div>
                                         <IconCommunication />

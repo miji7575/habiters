@@ -1,100 +1,48 @@
 import { useRecoilState } from 'recoil';
 import EmojiClusterUI from './emojiCluster.presenter';
-import { userAccessToken } from '../../../stores';
-import { useState } from 'react';
+import { userAccessToken, userDetail } from '../../../stores';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 export default function EmojiCluster(props) {
 
-    const dataEx = {
-        like: 20,
-        sad: 6,
-        surprise: 35,
-        angry: 10
-    }
-
+    
 
 
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
+    const [user, setUser] = useRecoilState(userDetail)
 
 
-    const postLikeEmoji = async () => {
+  
 
-        const response = await axios.get(`https://api.habiters.store/posts/${boardId}/emojis?type={LIKE}`, {
-            postId: boardId
+
+    // 2023-08-23 박미지 ----- 이모지 등록하기.
+    // 빈 객체라도 바디를 보내야한다..이유를 모르겠다..
+    const emojiClickHandler = async (emojiType) => {
+        console.log(props.boardId)
+        const response = await axios.put(`https://api.habiters.store/post/${props.boardId}/emojis?type=${emojiType}`, {
+            // "emojiType": emojiType,
+            // "memberId": user.id,
+            // "domain": "POST",
+            // "domainId": props.boardId
         }, {
-            headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
+            headers: { "Content-Type": "application/json;charset=UTF-8", Authorization: 'Bearer ' + accessToken }
+        }).then(async()=>{
+            await props. getBoardDatails()
         })
 
-        console.log(response)
+        // console.log(response)
 
         return
 
-    }
-
-    const postSadEmoji = async () => {
-
-        const response = await axios.get(`https://api.habiters.store/posts/${boardId}/emojis?type={SAD}`, {
-            postId: boardId
-        }, {
-            headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-        })
-
-        console.log(response)
-
-        return
-
-    }
-
-
-
-    const postSurpriseEmoji = async () => {
-
-        const response = await axios.get(`https://api.habiters.store/posts/${boardId}/emojis?type={SURPRISE}`, {
-            postId: boardId
-        }, {
-            headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-        })
-
-        console.log(response)
-
-        return
-
-    }
-
-    const postAngryEmoji = async () => {
-
-        const response = await axios.get(`https://api.habiters.store/posts/${boardId}/emojis?type={ANGRY}`, {
-            postId: boardId
-        }, {
-            headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken }
-        })
-
-        console.log(response)
-
-        return
-
-    }
-
-
-    // === 이렇게 바꾸기
-    const [selectedEmojiType, setSelectedEmojiType] = useState('')
-    const emojiClickHandler = (e) => {
-        console.log(e)
     }
 
 
     return (
         <>
             <EmojiClusterUI
-                data={dataEx}
-                postLikeEmoji={postLikeEmoji}
-                postSadEmoji={postSadEmoji}
-                postSurpriseEmoji={postSurpriseEmoji}
-                postAngryEmoji={postAngryEmoji}
-
-
-
+                data={props.emojiData}
                 emojiClickHandler={emojiClickHandler}
 
             />

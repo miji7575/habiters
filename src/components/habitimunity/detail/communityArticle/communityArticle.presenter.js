@@ -25,9 +25,9 @@ export default function CommunityArticleUI(props) {
                                 default={props.category.color}
                             />
                         </div>
-                        {/* <BookMark
+                        <BookMark
                             bookmarked={false}
-                        /> */}
+                        />
                     </ArticleCategoryBookMark>
 
                     <ArticleTitle>
@@ -44,12 +44,13 @@ export default function CommunityArticleUI(props) {
                         <ArticleInfoRight>
                             <FeedData
                                 views={props.data.views}
-                                // numOfComments={numOfComments}
-                                // numOfEmojis={props.data.like}
+                                numOfComments={props.commentsLength}
+                                numOfEmojis={props.emojiData["smile"]}
                             />
+
                             {/* <div>조회수 : {props.data.views}</div> */}
-                            {/* <div>좋아요수 : {props.data.like}</div> */}
-                            <div>댓글수 : {props.commentsLength}</div>
+                            {/* <div>좋아요수 : {props.emojiData["smile"]}</div> */}
+                            {/* <div>댓글수 : {props.commentsLength}</div> */}
                         </ArticleInfoRight>
 
 
@@ -59,13 +60,18 @@ export default function CommunityArticleUI(props) {
 
                 </ArticleTopSection>
                 <ArticleContentWrap>
-                    <div>내용 : {props.data.content}</div>
+                    {/* 내용 */}
+                    <div>{props.data.content}</div>
 
 
 
                 </ArticleContentWrap>
                 <EmojiClusterWrap>
-                    <EmojiCluster />
+                    <EmojiCluster
+                        emojiData={props.emojiData}
+                        boardId={props.boardId}
+                        getBoardDatails={props.getBoardDatails}
+                    />
                 </EmojiClusterWrap>
 
 

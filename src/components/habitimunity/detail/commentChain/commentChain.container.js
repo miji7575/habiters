@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import CommentChainUI from './commentChain.presenter';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import { userAccessToken } from '../../../stores';
+import { userAccessToken, userDetail } from '../../../stores';
 
 export default function CommentChain(props) {
 
@@ -16,6 +16,7 @@ export default function CommentChain(props) {
         like: 50,
     }
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
+    const [user, setUser] = useRecoilState(userDetail)
     const [commentData, setCommentData] = useState(props.value)
     const [commentLength, setCommentLength] = useState(0)
     const [commentReplyData, setCommentReplyData] = useState('')
@@ -51,7 +52,7 @@ export default function CommentChain(props) {
 
     useEffect(() => {
         setCommentData(props.value)
-    },[props.value])
+    }, [props.value])
 
 
     // 댓글 수정UI
@@ -64,7 +65,7 @@ export default function CommentChain(props) {
     };
 
 
-   
+
 
 
 
@@ -87,8 +88,54 @@ export default function CommentChain(props) {
 
     }
 
+    // ====== Emojis
+    const [commentEmojisData, setCommentEmojisData] = useState(commentData.emojis)
 
-    
+
+
+    useEffect(() => {
+        console.log(commentEmojisData)
+    })
+    //2023-08-24 박미지 --- 댓글 좋아요 이모지 동륵
+
+    const emojiClickHandler = async (like,emojiType) => {
+        // console.log("호출됨" + like)
+        switch (like) {
+            case true:
+                // console.log("TRUE 호출됨" + like)
+                console.log(accessToken)
+                const responseDelete = await axios.delete(`https://api.habiters.store/comment/${commentData.id}/emojis`, {
+                    headers: { "Content-Type": "application/json;charset=UTF-8", Authorization: 'Bearer ' + accessToken }
+                }).then(async () => {
+                    console.log("responseDelete 완료")
+                    await props.getBoardDatails()
+                })
+
+                console.log(responseDelete)
+
+                break;
+
+            case false:
+                console.log("이모지 등록 , Like" + like)
+                console.log(commentData.id)
+                const response = await axios.put(`https://api.habiters.store/comment/${commentData.id}/emojis?type=${emojiType}`, {
+                    "emojiType": emojiType,
+                    // "memberId": user.id,
+                    // "domain": "COMMENT",
+                    // "domainId": commentData.id
+                }, {
+                    headers: { "Content-Type": "application/json;charset=UTF-8", Authorization: 'Bearer ' + accessToken }
+                }).then(async () => {
+                    await props.getBoardDatails()
+                })
+
+                console.log(response)
+
+                break;
+        }
+
+
+    }
 
 
     return (
@@ -107,10 +154,15 @@ export default function CommentChain(props) {
                 finishCommentEditing={finishCommentEditing}
                 //댓글 삭제
                 deleteComment={deleteComment}
-                 // -----  답글
+                // -----  답글
                 // 답글Data
                 commentReplyData={commentReplyData}
                 commentReplyLength={commentLength}
+                // 댓글/답글 Emoji
+                emojiClickHandler={emojiClickHandler}
+                commentEmojisData={commentEmojisData}
+                user={user}
+
 
 
             />
