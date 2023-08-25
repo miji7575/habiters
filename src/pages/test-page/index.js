@@ -62,6 +62,10 @@ export default function TestPage() {
         router.push("/test-page/drag")
     }
 
+    const movePostImage = () => {
+        router.push("/test-page/postImage")
+    }
+
 
     return (
         <>
@@ -80,6 +84,8 @@ export default function TestPage() {
                 <Button onClick={moveVoteForm}>VoteForm</Button>
 
                 <Button onClick={moveDrag}>Drag 연습</Button>
+
+                <Button onClick={movePostImage}>postImage</Button>
 
             </Main>
         </>
