@@ -107,7 +107,20 @@ export const PostContentState = atom({
 
 
 
+export const FileState = atom({
+    key:"file",
+    default:[]
+})
 
+export const FileUrlState = atom({
+    key:"fileUrl",
+    default:[]
+})
+
+export const IndexState = atom({
+    key:"index",
+    default:0
+})
 
 
 

@@ -1,42 +1,85 @@
-import { useState } from 'react';
-import {CommunityArticleEditorWrap, CommunityEditor} from './communityArticleEditor.styles';
-import { useRecoilState } from 'recoil';
-import { PostContentState } from '../../../stores';
-import VoteForm from '../voteForm/voteForm.container';
+import { useEffect, useState } from 'react';
+import { CommunityArticleEditorWrap, CommunityEditorHeader, CommunityEditorWrap, PostImageWrap, CommunityEditor } from './communityArticleEditor.styles';
+import PostImage from '../../commons/postImageVer2/postImageVer2.container';
 
-export default function CommunityArticleEditorUI (props){
 
-    const [postContent, setPostContent] = useRecoilState(PostContentState);
 
-    const onContentChange = (e) => {
-        const content = e.target.value;
-        setPostContent(content)
-    }
+export default function CommunityArticleEditorUI(props) {
 
-    const setVoteForm = () => {
+   
+
+
+
+    // 이미지
+    const ImageUploadBtn = () => {
+
+
         return (
+            <>
+                <label>
+                    <div>
+                        <input style={{ display: `none` }} id="img" name="files" type="file" accept="image/*"
+                            onClick={(e) => { if (props.imageUrl.length >= 3) { e.preventDefault(), alert("그만") } }}
+                            onChange={props.imgUpload} />
+                        <span>
+                            <span>이미지 업로드</span>
+                            <span>({props.imageUrl.length}/3)</span>
+                        </span>
+                    </div>
+                </label>
 
-            <VoteForm />
+
+            </>
         )
-
     }
 
-    return(
+
+
+    return (
         <>
+
+
+
+
             <CommunityArticleEditorWrap>
-                <button
-                    onClick={setVoteForm}
-                
-                >
-                    vote
-                </button>
-                <CommunityEditor
-                    // contentEditable='true'
-                    onChange={onContentChange}
-                    value={postContent}
-                />
+
+                <CommunityEditorHeader>
+                    <div>
+                        <span>투표</span>
+                    </div>
+
+                    <ImageUploadBtn />
+
+                </CommunityEditorHeader>
+                <CommunityEditorWrap >
+
+
+                    <PostImageWrap
+                        contentEditable='false'>
+                        <PostImage
+                            // 이미지
+                            // thumbNailUpdate={props.thumbNailUpdate}
+                            imageUrl={props.imageUrl} />
+                    </PostImageWrap>
+
+
+
+
+                    <CommunityEditor
+                        contentEditable suppressContentEditableWarning={true}
+                        onInput={props.onContentChange}
+                        value={props.postContent}
+                        placeholder={props.placeholder}
+                    >
+
+
+                    </CommunityEditor>
+
+
+                </CommunityEditorWrap >
             </CommunityArticleEditorWrap>
-    
+
+
         </>
     )
 }

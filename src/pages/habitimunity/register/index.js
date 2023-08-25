@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import { SelectBoxDefault } from '../../../components/habitimunity/commons/selectbox';
-import { SelectBoxValueState, InputValueState, PostContentState, userAccessToken } from '../../../components/stores/index';
+import { SelectBoxValueState, InputValueState, PostContentState, userAccessToken, FileState, FileUrlState, IndexState } from '../../../components/stores/index';
 import Inputs from '../../../components/habitimunity/register/voteForm/votingInputs/inputs/Inputs.container';
 import CommunityArticleEditor from '../../../components/habitimunity/register/communityArticleEditor/communityArticleEditor.container';
 import axios from 'axios';
@@ -97,7 +97,7 @@ export default function BoardRegister() {
     const [postContent, setPostContent] = useRecoilState(PostContentState);
 
     useEffect(() => {
-       
+
 
     })
 
@@ -111,13 +111,17 @@ export default function BoardRegister() {
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
 
     const regCommunityArticle = async (e) => {
-        console.log(data);
+        // console.log(data);
+        const thumbNailUrl = await postImage();
 
         if (accessToken) {
             const response = await axios.post('https://api.habiters.store/posts',
                 {
                     "title": data.title,
                     "content": data.content,
+                    // `<PostImage
+                    // imageUrl=${imageServerUrl} />`,
+                    "thumbnailUrl": thumbNailUrl,
                     "category": data.category
                 }, {
                 'Content-Type': 'application/json',
@@ -131,9 +135,92 @@ export default function BoardRegister() {
             return
         }
 
+
+        // setImageTagData(() => `<PostImage
+        // imageUrl=${imageServerUrl} />`)
+
+
+
     }
 
 
+
+
+
+
+    // ========================
+    useEffect(() => {
+        // console.log(imageUrl)
+        // console.log("imageIndex" + imageIndex)
+    })
+
+
+    // 2023-08-25 박미지 ---- 이미지 업로드
+    // ========================
+    const [imageFile, setImageFile] = useRecoilState(FileState)
+    const [imageUrl, setImageUrl] = useRecoilState(FileUrlState)
+    const [imageIndex, setImageIndex] = useRecoilState(IndexState)
+    const [ImageTagData, setImageTagData] = useState('')
+    const [imageServerUrl, setImageServerUrl] = useState([])
+
+
+
+
+
+
+    // 2023-08-24 박미지 --- 등록할 이미지 Data 저장, 화면에 띄워줄 URL 저장.
+    const imgUpload = (e) => {
+        setImageIndex(() => ++imageIndex)
+        setImageFile(e.target.files[0] ? [...imageFile, { id: imageIndex, isThumbnail: false, File: e.target.files[0] }] : imageFile)
+        setImageUrl(e.target.files[0] ? [...imageUrl, { id: imageIndex, isThumbnail: false, FileUrl: URL.createObjectURL(e.target.files[0]) }] : imageUrl);
+    }
+
+
+
+    // 이미지 API
+
+    const formData = new FormData();
+
+    const postImage = async () => {
+
+
+        // imageFile.map(async (imageFileData, index) => {
+
+        imageFile.map((data) => formData.append("file", data.File))
+
+        const response = await axios.post(`https://api.habiters.store/images/upload`,
+            formData
+            , {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    Authorization: 'Bearer ' + accessToken,
+                }
+            })
+
+        // setImageServerUrl(() => [...imageServerUrl, { id: imageFileData.id, FileUrl: response.data.data }])
+
+
+        // if (imageServerUrl.length === imageFile.length) {
+        //     await postArticle()
+        // }
+        return response.data.data
+        // })
+
+
+
+
+    }
+
+
+
+    const postArticle = async () => {
+        // console.log(`=========postArticle=========`)
+        // console.log(imageServerUrl)
+        // console.log(`=========postArticle=========`)
+
+
+
+    }
 
 
 
@@ -156,7 +243,14 @@ export default function BoardRegister() {
                         width={'880px'}
                         placeholder={"제목을 입력해주세요. (50자 제한)"}
                         name={"title"} />
-                    <CommunityArticleEditor />
+
+
+
+                    <CommunityArticleEditor
+                        imgUpload={imgUpload}
+                        imageUrl={imageUrl}
+                        ImageTagData={ImageTagData}
+                    />
 
                     <RegArticleBtn
                         onClick={regCommunityArticle}>등록하기</RegArticleBtn>
