@@ -65,7 +65,7 @@ export default function UserDataUI({createDate, selectedImage}) {
         } else if (elapsedTime < minute) {
             elapsedText = elapsedTime + "초 전";
         } else if (elapsedTime < hour) {
-            elapsedText = Math.trunc((elapsedTime / minute) / 2) + "분 전";
+            elapsedText = Math.trunc((elapsedTime / minute) / 1) + "분 전";
         } else if (elapsedTime < day) {
             elapsedText = Math.trunc(elapsedTime / hour) + "시간 전";
         } else if (elapsedTime < (day * 30)) {

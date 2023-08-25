@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from "next/router"
 import { useRecoilState } from 'recoil'
-import { userAccessToken } from '../../components/stores';
+import { activeTabState, userAccessToken } from '../../components/stores';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import PostNotice from '../../components/habitimunity/list/notice/notice.container';
 import PostList from '../../components/habitimunity/list/postList/postList.container';
@@ -23,7 +23,7 @@ const Main = styled.div`
 `
 
 const Content = styled.div`
-    width: 60vw;
+    width: 63vw;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -57,6 +57,39 @@ const CommnunityList = styled.div`
     width: 880px;
 `
 
+const CommunitySide = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+`
+
+const TopButton = styled.div`
+    position: sticky;
+    top: 290px;
+
+    width: 80px;
+`
+const ArrowUpIcon = styled.div`
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+
+    margin-right: 4px;
+
+    background-color: var(--color-white);
+
+    mask-size: 16px 16px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 16px 16px;
+
+    mask-position: center;
+    -webkit-mask-position: center;
+
+    mask-image: url(/image/icon/icon-arrow-up-line.svg); 
+    -webkit-mask-image: url(/image/icon/icon-arrow-up-line.svg); 
+`
+
 
 export default function Habitimunity() {
 
@@ -69,23 +102,12 @@ export default function Habitimunity() {
         // router.push("/comming-soon")
     }, [])
 
-    const createPost = () => {
-        console.log('createPost')
-
-    }
-
-
 
     const [posts, setPosts] = useState([]);
     const [limit, setLimit] = useState(5);
-    const [page, setPage] = useState(1);
-    const offset = (page - 1) * limit;
+    const [page_old, setPage_old] = useState(1);
+    const offset = (page_old - 1) * limit;
 
-    // useEffect(() => {
-    //   fetch("https://jsonplaceholder.typicode.com/posts")
-    //     .then((res) => res.json())
-    //     .then((data) => setPosts(data));
-    // }, []);
 
     // 230809 선택된 tab 상태 세팅
     const [selectedTab, setSelectedTab] = useState("전체");
@@ -100,49 +122,31 @@ export default function Habitimunity() {
         일상: 'DAILY',
         기타: 'ETC',
     };
-    
+
+    const [activeTab, setActiveTab] = useRecoilState(activeTabState);
+
     // 230809 tab이 바뀔때마다 tab의 값 세팅
     const handleTabChange = useCallback(async (tab) => {
         console.log(tab);
         setSelectedTab(tab);
+        setActiveTab(tab)
+        setPage(0);
         // setPage(tabToPageMapping[tab]);
-    }, []);
+    }, [selectedTab]);
+    
 
-    // // 230809 tab을 누를때 마다 데이터를 가져오기.
-    // useEffect( async () => {
-    //     // console.log('change')
-
-    //     const response = await axios.get(`https://api.habiters.store/posts`, {
-    //         headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken },
-    //         params: {
-    //             category: tabToPageMapping[selectedTab],
-    //             page: 0
-    //         }
-    //     })
-
-    //     // 230809 값이 있으면 값대로 세팅, 값이 없으면 빈배열
-    //     if (response.data.data) {
-    //         setPosts(response.data.data);
-    //     } else {
-    //         setPosts([]); // 데이터가 비어있을 경우 빈 배열로 초기화
-    //     }
-
-    // }, [selectedTab])
-
-
-
-    const [page2, setPage2] = useState(0)
-    // const [users, setUsers] = useState<User[]>([])
+    const [page, setPage] = useState(0)
     const [loading, setLoading] = useState(false)
+    const [hasNextPage, setHasNextPage] = useState(false);
     const pageEnd = useRef()
 
 
-
+    // 게시글 리스트 230823
     const fetchPosts = useCallback(async () => {
         if (loading) {
             return; // If loading, don't fetch again
         }
-    
+
         setLoading(true); // Set loading to true before fetching
 
         try {
@@ -150,44 +154,79 @@ export default function Habitimunity() {
                 headers: { "Content-Type": "application/json", Authorization: 'Bearer ' + accessToken },
                 params: {
                     category: tabToPageMapping[selectedTab],
-                    page: page2
+                    page: page
                 }
             });
             console.log(data.data);
-            setPosts(prevPosts => [...prevPosts, ...data.data]);
-            setPage2(prevPage => prevPage + 1);
+            if (!data.data && page == 0) {
+                setPosts([])
+            }
+            if (!data.data) {
+                console.log('test');
+                setLoading(false);
+                setHasNextPage(false);
+                return;
+            }
+
+            if (page === 0) {
+                setPosts(data.data)
+            } else{
+                setPosts(prevPosts => [...prevPosts, ...data.data]); 
+                
+            }
+
+            setPage(prevPage => prevPage + 1);
+            setHasNextPage(true);
+
         } catch (error) {
             console.error("Error fetching posts:", error);
         } finally {
             setLoading(false); // Set loading to false after fetching
         }
-    }, [loading, page2, selectedTab]);
+    }, [loading, page, selectedTab]);
 
     useEffect(() => {
-        setLoading(true); // Set loading to true on initial load
-        fetchPosts(); // Fetch initial posts
-    }, []);
-    
+        fetchPosts();
+    }, [selectedTab]);
+
+
+    // useEffect(() => {
+    //     console.log(loading);
+    // }, [loading]);
 
     useEffect(() => {
-        console.log(loading);
-    }, [loading]);
+        handleTabChange('전체')
+    },[])
 
+    // 무한스크롤을 위한 Intersection Observer API 사용 230823
     useEffect(() => {
-        if (loading) {
-            const observer = new IntersectionObserver(
-                entries => {
-                    if (entries[0].isIntersecting) {
-                        console.log("Intersected! Fetching more data...");
+        const observer = new IntersectionObserver(
+            entries => {
+                if (entries[0].isIntersecting) {
+                    if (hasNextPage) {
                         fetchPosts(); // Use fetchPosts to load more
                     }
-                },
-                { threshold: 1 }
-            );
+                }
+            },
+            { threshold: 1 }
+        );
+
+        if (pageEnd.current) {
             observer.observe(pageEnd.current);
         }
-    }, [loading, fetchPosts]);
 
+        return () => {
+            if (pageEnd.current) {
+                observer.unobserve(pageEnd.current);
+            }
+        };
+    }, [fetchPosts]);
+
+
+    // 230823 TOP버튼
+    const goTop = () => {
+        window.scrollTo(0, 0)
+    }
 
 
 
@@ -219,9 +258,19 @@ export default function Habitimunity() {
                                     page={page}
                                     setPage={setPage}
                                 /> */}
-                                <div ref={pageEnd}>1</div>
+                                <div ref={pageEnd}></div>
                             </CommnunityList>
-                            <UserProfile />
+                            <CommunitySide>
+                                <UserProfile />
+                                <TopButton
+                                    className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content"
+                                    onClick={goTop}
+                                >   
+                                    <ArrowUpIcon />
+                                    <span>TOP</span>
+                                </TopButton>
+                            </CommunitySide>
+
                         </CommnuityContent>
                     </Content>
                 </Main>
