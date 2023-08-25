@@ -15,6 +15,7 @@ import CommunityArticle from '../../../components/habitimunity/detail/communityA
 import CommentInput from '../../../components/habitimunity/detail/commentInput/commentInput.container';
 import CommentChain from '../../../components/habitimunity/detail/commentChain/commentChain.container';
 import { BtnLargePrimary } from '../../../components/commons/buttons';
+import PostImage from '../../../components/habitimunity/commons/postImageVer2/postImageVer2.container';
 // ============================== Style ==============================
 const Main = styled.div`
     display: flex;
@@ -121,7 +122,9 @@ export default function BoardDetail(props) {
                         <CommnunityList>
                             <HabitimunityNotice />
                             <CommunityArticle
+                                boardId={boardId}
                                 boardDetailData={boardDetailData}
+                                getBoardDatails={getBoardDatails}
                             />
                             <CommentInput
                                 boardId={boardId}
