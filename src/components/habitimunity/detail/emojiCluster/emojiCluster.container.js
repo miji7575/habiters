@@ -28,11 +28,8 @@ export default function EmojiCluster(props) {
             // "domainId": props.boardId
         }, {
             headers: { "Content-Type": "application/json;charset=UTF-8", Authorization: 'Bearer ' + accessToken }
-        }).then(async()=>{
-            await props. getBoardDatails()
         })
-
-        // console.log(response)
+        props.getBoardDatails()
 
         return
 

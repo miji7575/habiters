@@ -7,7 +7,7 @@ import { userAccessToken, userDetail } from '../../../stores';
 export default function CommentChain(props) {
 
     useEffect(() => {
-        // console.log(props.value)
+        // console.log(props.commentData)
     })
 
     // 더 와야하는 데이터
@@ -17,7 +17,7 @@ export default function CommentChain(props) {
     }
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     const [user, setUser] = useRecoilState(userDetail)
-    const [commentData, setCommentData] = useState(props.value)
+    const [commentData, setCommentData] = useState(props.commentData)
     const [commentLength, setCommentLength] = useState(0)
     const [commentReplyData, setCommentReplyData] = useState('')
 
@@ -29,7 +29,7 @@ export default function CommentChain(props) {
 
         if (accessToken && props.boardId && commentData.id) {
 
-            const response = await axios.get(`https://api.habiters.store/posts/${props.boardId}/comment/${commentData.id}/reply`, {
+            const response = await axios.get(`https://api.habiters.store/posts/${props.boardId}/comments/${commentData.id}/reply`, {
                 headers: {
                     "Content-Type": "application/json;charset=UTF-8",
                     Authorization: `Bearer ${accessToken}`
@@ -51,8 +51,8 @@ export default function CommentChain(props) {
 
 
     useEffect(() => {
-        setCommentData(props.value)
-    }, [props.value])
+        setCommentData(props.commentData)
+    }, [props.commentData])
 
 
     // 댓글 수정UI
@@ -74,49 +74,45 @@ export default function CommentChain(props) {
     const deleteComment = async () => {
 
         console.log(`${commentData.id}번 댓글삭제`)
-        // if (accessToken && props.boardId && commentData.id) {
+        if (accessToken && props.boardId && commentData.id) {
 
-        //     const response = await axios.delete(`https://api.habiters.store/posts/${props.boardId}/comment/${commentData.id}`, {
-        //         headers: {
-        //             "Content-Type": "application/json;charset=UTF-8",
-        //             Authorization: `Bearer ${accessToken}`
-        //         }
-        //     })
+            const response = await axios.delete(`https://api.habiters.store/posts/${props.boardId}/comments/${commentData.id}`, {
+                headers: {
+                    "Content-Type": "application/json;charset=UTF-8",
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
+            // .then(() => {
+            //     props.getBoardComments()
+            // })
+            props.getBoardDatails()
+            console.log(response)
 
-        //     return
-        // }
+            return
+        }
 
     }
 
     // ====== Emojis
+
+
     const [commentEmojisData, setCommentEmojisData] = useState(commentData.emojis)
 
-
-
     useEffect(() => {
-        console.log(commentEmojisData)
-    })
-    //2023-08-24 박미지 --- 댓글 좋아요 이모지 동륵
+        setCommentEmojisData(commentData.emojis)
+    },[commentData])
 
-    const emojiClickHandler = async (like,emojiType) => {
+
+
+    //2023-08-24 박미지 --- 댓글 좋아요 이모지 동륵 / 취소
+
+    const emojiClickHandler = async (like, emojiType) => {
         // console.log("호출됨" + like)
         switch (like) {
-            case true:
-                // console.log("TRUE 호출됨" + like)
-                console.log(accessToken)
-                const responseDelete = await axios.delete(`https://api.habiters.store/comment/${commentData.id}/emojis`, {
-                    headers: { "Content-Type": "application/json;charset=UTF-8", Authorization: 'Bearer ' + accessToken }
-                }).then(async () => {
-                    console.log("responseDelete 완료")
-                    await props.getBoardDatails()
-                })
 
-                console.log(responseDelete)
-
-                break;
 
             case false:
-                console.log("이모지 등록 , Like" + like)
+                console.log("이모지 좋아요 누르기 , Like는 지금 " + like)
                 console.log(commentData.id)
                 const response = await axios.put(`https://api.habiters.store/comment/${commentData.id}/emojis?type=${emojiType}`, {
                     "emojiType": emojiType,
@@ -125,11 +121,20 @@ export default function CommentChain(props) {
                     // "domainId": commentData.id
                 }, {
                     headers: { "Content-Type": "application/json;charset=UTF-8", Authorization: 'Bearer ' + accessToken }
-                }).then(async () => {
-                    await props.getBoardDatails()
                 })
-
+                props.getBoardDatails()
                 console.log(response)
+
+                break;
+
+            case true:
+                console.log("이모지 좋아요 취소 , Like는 지금 " + like)
+                console.log(accessToken)
+                const responseDelete = await axios.delete(`https://api.habiters.store/comment/${commentData.id}/emojis`, {
+                    headers: { "Content-Type": "application/json;charset=UTF-8", Authorization: 'Bearer ' + accessToken }
+                })
+                props.getBoardDatails()
+                console.log(responseDelete)
 
                 break;
         }

@@ -17,7 +17,8 @@ export default function CommentChainUI(props) {
 
 
 
-    const IconLike = () => {
+    const IconLike = (props) => {
+        // console.log(props.commentEmojisData? props.commentEmojisData : '')
 
         const [like, setLike] = useState(false)
 
@@ -27,14 +28,14 @@ export default function CommentChainUI(props) {
                     setLike(true)
                 }
             })
-           
-        }, [])
+
+        }, [props.commentEmojisData])
 
 
         return (
             <>
-                {!like && <IconLikeBefore onClick={() => { setLike(!like), props.emojiClickHandler(like,"SMILE") }} />}
-                {like && <IconLikeAfter onClick={() => { setLike(!like), props.emojiClickHandler(like,"SMILE")  }} />}
+                {!like && <IconLikeBefore onClick={() => { props.emojiClickHandler(like, "SMILE") }} />}
+                {like && <IconLikeAfter onClick={() => { props.emojiClickHandler(like, "SMILE") }} />}
             </>
 
         )
@@ -67,7 +68,11 @@ export default function CommentChainUI(props) {
                                 </CommentInfoLeft>
                                 <CommentInfoRight>
                                     <div>
-                                        <IconLike />
+                                        <IconLike
+                                            commentEmojisData={props.commentEmojisData}
+                                            user={props.user}
+                                            emojiClickHandler={props.emojiClickHandler}
+                                        />
                                         <div>{props.commentEmojisData.length}</div>
                                     </div>
                                     <div>

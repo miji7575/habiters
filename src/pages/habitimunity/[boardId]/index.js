@@ -81,7 +81,7 @@ export default function BoardDetail(props) {
 
     const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
     const [boardDetailData, setBoardDetailData] = useState('')
-    const [boardCommentData, setBoardCommentData] = useState('')
+    const [boardCommentData, setBoardCommentData] = useState([])
 
     //2023-08-19 박미지 --- 게시글 상세내용 불러오기
     const getBoardDatails = async () => {
@@ -94,9 +94,31 @@ export default function BoardDetail(props) {
                 }
             })
 
+            await getBoardComments()
+
             setBoardDetailData(response.data.data)
-            setBoardCommentData(response.data.data.comments)
-            // console.log(response.data.data)
+            console.log("getBoardDatails 호출")
+            console.log(response.data.data)
+            return
+        }
+
+        
+
+    }
+
+
+    const getBoardComments = async () => {
+
+        if (accessToken && boardId) {
+            const response = await axios.get(`https://api.habiters.store/posts/${boardId}/comments`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
+            setBoardCommentData(response.data.data ? response.data.data : [])
+            console.log("Comments 호출")
+            console.log(response.data.data)
             return
         }
 
@@ -106,6 +128,13 @@ export default function BoardDetail(props) {
         getBoardDatails()
     }, [])
 
+    // useEffect(() => {
+    //     getBoardComments()
+    // }, [boardDetailData])
+
+    useEffect(() => {
+        // console.log(boardCommentData)
+    })
 
 
     return (
@@ -132,13 +161,16 @@ export default function BoardDetail(props) {
                                 name={"newComment"}
                             />
 
-                            {Object.entries(boardCommentData).map(([key, value]) =>
+
+                            {boardCommentData.map((value) =>
                                 <CommentChain
                                     boardId={boardId}
                                     key={value.id}
-                                    value={value}
+                                    commentData={value}
                                     getBoardDatails={getBoardDatails}
-                                />)}
+                                />
+                            )}
+
 
                             <SubmitButton onClick={() => { router.push("/habitimunity") }}>글 목록</SubmitButton>
                         </CommnunityList>

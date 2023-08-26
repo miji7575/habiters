@@ -18,7 +18,7 @@ export default function CommentInput(props) {
 
 
         if (accessToken && inputValue[props.name]) {
-            const response = await axios.post(`https://api.habiters.store/posts/${props.boardId}/comment`, {
+            const response = await axios.post(`https://api.habiters.store/posts/${props.boardId}/comments`, {
                 "content": inputValue[props.name]
             }, {
                 headers: {
@@ -26,9 +26,10 @@ export default function CommentInput(props) {
                     Authorization: `Bearer ${accessToken}`
                 }
             })
-
-            console.log(response.data.data)
             props.getBoardDatails()
+            // props.getBoardComments()
+            console.log(response.data.data)
+
             setInputValue({ [props.name]: "" })
 
             return
@@ -45,7 +46,7 @@ export default function CommentInput(props) {
         console.log(inputValue[props.name])
 
         if (accessToken && inputValue[props.name]) {
-            const response = await axios.put(`https://api.habiters.store/posts/${props.boardId}/comment/${props.commentData.id}`, {
+            const response = await axios.put(`https://api.habiters.store/posts/${props.boardId}/comments/${props.commentData.id}`, {
 
                 "content": inputValue[props.name]
 
@@ -54,14 +55,11 @@ export default function CommentInput(props) {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${accessToken}`
                 }
-            }).then(async() => {
-                await props.getBoardDatails()
             })
-
-            console.log(response)
-
-            // setInputValue({ [props.name]: "" })
+            props.getBoardDatails()
             props.finishCommentEditing()
+            // console.log(response)
+            // setInputValue({ [props.name]: "" })
             return
         }
         else {
