@@ -20,7 +20,7 @@ export default function CommentReplyInput(props) {
 
         console.log(props.commentId)
         if (accessToken && inputValue[props.name]) {
-            const response = await axios.post(`https://api.habiters.store/posts/${props.boardId}/comment/${props.commentId}/reply`, {
+            const response = await axios.post(`https://api.habiters.store/posts/${props.boardId}/comments/${props.commentId}/reply`, {
                 "content": inputValue[props.name]
             }, {
                 headers: {
@@ -47,7 +47,7 @@ export default function CommentReplyInput(props) {
         // console.log(inputValue[props.name])
         // console.log(`${props.commentId}번 댓글의 ${props.commentReplyData.id}번 답글 수정`)
         if (accessToken && inputValue[props.name]) {
-            const response = await axios.put(`https://api.habiters.store/posts/${props.boardId}/comment/${props.commentReplyData.id}`, {
+            const response = await axios.put(`https://api.habiters.store/posts/${props.boardId}/comments/${props.commentReplyData.id}`, {
                 "content": inputValue[props.name]
             }, {
                 headers: {
