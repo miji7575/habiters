@@ -17,7 +17,9 @@ export default function VoteFormUI(props) {
 
         <>
             <PopupActivateBtn
-                onClick={() => props.closePopUp()}>투표버튼</PopupActivateBtn>
+                onClick={() => props.closePopUp()}>
+                <span>투표</span>
+            </PopupActivateBtn>
 
 
 

@@ -27,7 +27,7 @@ export const VoteFormPopUpWrap = styled.div`
     gap: 16px;
     /* box-shadow: 3px 3px 3px 3px black; */
 
-    position: fixed;
+    position: absolute;
     top : 100px;
     left: calc(50vw - (580px / 2));
     `
@@ -140,11 +140,11 @@ export const RegVoteBtn = styled.div`
 
 
 export const PopupActivateBtn = styled.div`
-background-color: blue;
+/* background-color: blue;
 color: white;
 border-radius: 8px;
 padding: 10px;
-display: inline-block;
+display: inline-block; */
 
 `
 

@@ -103,7 +103,7 @@ export default function BoardRegister() {
 
     const data = {
         category: SelectBoxValue["categoryvalue"], // 선택된 카테고리 값
-        title: inputValue["title"], // 제목 값
+        title: inputValue["ArticleTitle"], // 제목 값
         content: postContent
     };
 
@@ -117,7 +117,7 @@ export default function BoardRegister() {
         if (accessToken) {
             const response = await axios.post('https://api.habiters.store/posts',
                 {
-                    "title": data.title,
+                    "ArticleTitle": data.title,
                     "content": data.content,
                     // `<PostImage
                     // imageUrl=${imageServerUrl} />`,
@@ -242,7 +242,7 @@ export default function BoardRegister() {
                     <Inputs
                         width={'880px'}
                         placeholder={"제목을 입력해주세요. (50자 제한)"}
-                        name={"title"} />
+                        name={"ArticleTitle"} />
 
 
 

@@ -53,7 +53,7 @@ export function SelectBoxDefault(props) {
     // 2023/07/30/박미지 ----- 초기값 설정
     useEffect(() => {
         setPlaceholder(() => props.placeholder ? props.placeholder : "값을 입력해주세요")
-        setSelectedValue(() => props.placeholder ? { [props.name]: props.placeholder } : { [props.name]: placeholder })
+        // setSelectedValue(() => props.placeholder ? { [props.name]: props.placeholder } : { [props.name]: placeholder }) //이게 없어야 컴포넌트들의 name:placeholder 안엉킴
         setErrorMessage(() => props.errorMessage ? props.errorMessage : "값을 확인해주세요")
     }, [props.placeholder, props.errorMessage])
 
@@ -313,7 +313,7 @@ export function SelectBoxTimePicker(props) {
     // 2023/07/30/박미지 ----- 초기값 설정
     useEffect(() => {
         setPlaceholder(() => props.placeholder ? props.placeholder : "시간을 선택해 주세요")
-        setSelectedValue(() => props.placeholder ? { [props.name]: props.placeholder } : { [props.name]: placeholder })
+        // setSelectedValue(() => props.placeholder ? { [props.name]: props.placeholder } : { [props.name]: placeholder }) //이게 없어야 컴포넌트들의 name:placeholder 안엉킴
         setErrorMessage(() => props.errorMessage ? props.errorMessage : "값을 확인해주세요")
     }, [props.placeholder, props.errorMessage])
 

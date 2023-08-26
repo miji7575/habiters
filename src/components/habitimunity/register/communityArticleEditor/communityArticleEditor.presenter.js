@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { CommunityArticleEditorWrap, CommunityEditorHeader, CommunityEditorWrap, PostImageWrap, CommunityEditor } from './communityArticleEditor.styles';
 import PostImage from '../../commons/postImageVer2/postImageVer2.container';
-
+import VoteForm from '../voteForm/voteForm.container';
 
 
 export default function CommunityArticleEditorUI(props) {
 
-   
+
 
 
 
@@ -44,9 +44,10 @@ export default function CommunityArticleEditorUI(props) {
             <CommunityArticleEditorWrap>
 
                 <CommunityEditorHeader>
-                    <div>
+                    <VoteForm />
+                    {/* <div>
                         <span>투표</span>
-                    </div>
+                    </div> */}
 
                     <ImageUploadBtn />
 
@@ -54,8 +55,7 @@ export default function CommunityArticleEditorUI(props) {
                 <CommunityEditorWrap >
 
 
-                    <PostImageWrap
-                        contentEditable='false'>
+                    <PostImageWrap>
                         <PostImage
                             // 이미지
                             // thumbNailUpdate={props.thumbNailUpdate}
@@ -66,7 +66,8 @@ export default function CommunityArticleEditorUI(props) {
 
 
                     <CommunityEditor
-                        contentEditable suppressContentEditableWarning={true}
+                        contentEditable
+                        suppressContentEditableWarning='true'
                         onInput={props.onContentChange}
                         value={props.postContent}
                         placeholder={props.placeholder}
