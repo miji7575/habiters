@@ -79,7 +79,7 @@ export default function VoteForm(props) {
 
     // 2023-08-05 박미지 ----- inputValue가 변경될 때 마다 VotingItems 값을 같이 update하기 위한 함수.
     const VoteItemOnChange = () => {
-        console.log(clickedVoteItemIndex)
+        // console.log(clickedVoteItemIndex)
 
         if (clickedVoteItemIndex !== '') {
             setVoteItems((prevState) => ({

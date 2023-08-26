@@ -45,7 +45,7 @@ export const ThumbnailLabel = styled.span`
     left:12px;
     padding: 4px 8px;
     border-radius: 4px;
-    z-index: 997;
+    z-index: 970;
     cursor: pointer;
 
     font-family: 'Pretendard-Medium'; 
@@ -87,7 +87,7 @@ export const DeleteImageIcon = styled.span`
     position: absolute;
     top : 12px;
     left: calc(100% - 44px);
-    z-index: 998;
+    z-index: 970;
     width: 32px;
     height: 32px;
     border : 1px solid var(--color-purple2);
