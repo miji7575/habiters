@@ -116,8 +116,8 @@ export default function PostListUI(props) {
 
     // 230802 투표가 있는지 없는지
     const [hasVoteItem, setHasVoteItem] = useState(false);
-    // 230802 이미지가 있는지 없는지
-    const [hasImageItem, setHasImageItem] = useState(false);
+    // // 230802 이미지가 있는지 없는지
+    // const [hasImageItem, setHasImageItem] = useState(true);
 
     // 카테고리에 따라서 Label 처리
     const categoryOptions = {
@@ -160,7 +160,7 @@ export default function PostListUI(props) {
     useEffect(() => {
         setSelectedImage(getRandomWord(images));
     }, []);
-    
+
 
 
 
@@ -229,8 +229,8 @@ export default function PostListUI(props) {
 
             ))} */}
 
-            {props.posts.map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis }) => (
-                
+            {props.posts.map(({ category, id, title, content, createDate, views, numOfComments, numOfEmojis, thumbnailUrl }) => (
+
                 <PostContainer key={id}>
                     <PostBox>
                         <Post>
@@ -261,7 +261,13 @@ export default function PostListUI(props) {
                                     <div
                                         style={{ display: 'flex', gap: '16px' }}
                                     >
-                                        {hasImageItem && <PostImage src="/image/logo-habiters.svg" />}
+                                        {/* {hasImageItem && <PostImage src={thumbnailUrl} />} */}
+
+                                        {/* 이미지가 있으면, 이미지 띄워주기 230826 */}
+                                        {thumbnailUrl ? (
+                                            <PostImage src={thumbnailUrl} />
+                                        ) : null}
+                                        
                                         <PostText>
                                             {content}
                                         </PostText>
@@ -285,8 +291,6 @@ export default function PostListUI(props) {
                         </PostInformation>
                     </PostBox>
                 </PostContainer>
-
-
 
             ))}
 
