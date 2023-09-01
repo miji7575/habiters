@@ -33,12 +33,13 @@ const Content = styled.div`
 `
 
 const Title = styled.div`
+    font-family: 'Pretendard-Bold'; 
     font-size: 40px;
     line-height: 52px;
     font-weight: 700;     
     padding: 72px 0 48px 0;
     color: var(--color-black1);
-    font-family: 'Pretendard-Bold'; 
+    
     
    
 
@@ -50,9 +51,10 @@ const Title = styled.div`
 
 
 
-export default function HabitTracker() {
+export default function HabitTracker(props) {
 
-
+    console.log("====여기는 MyhabitHabit입니다=====")
+    console.log(props.user)
 
     // ============================== Function  ==============================
 
@@ -65,10 +67,11 @@ export default function HabitTracker() {
 
     // 로그인이 되어있지 않다면 로그인화면으로 이동
     useEffect(() => {
+        console.log(accessToken)
         if (!accessToken) {
             router.push("/login")
         }
-
+        setUser(props.user)
     }, [])
 
 
@@ -153,22 +156,24 @@ export default function HabitTracker() {
 }
 
 
-// export async function getServerSideProps(context) {
+// 1. getServerSideProps 는 존재하는 단어이므로 변경 불가능.
+// 2. 여기는 서버에서만 실행됨(Webpack프론트엔드 서버 프로그램)
 
-    // const session = await getServerSession(context);
-    // const [accessToken, setAccessToken] = useRecoilState(userAccessToken)
-    // const session = window.sessionStorage;
-    // console.log(session)
-    // const response = await axios.get('https://api.habiters.store/users/me', {
-    //     headers: { Authorization: 'Bearer ' + accessToken }
-    // })
-    // console.log(response.data.data)
-    // setUser(response.data.data)
-//     return {
-//         props: {
-//             // user: response.data.data,
-//         },
-//     };
-// }
+
+export const getServerSideProps = async (context) => {
+
+
+    console.log("====여기는 서버입니다=====")
+    const accessToken = context.req.cookies.toooo
+    const response = await axios.get('https://api.habiters.store/users/me', {
+        headers: { Authorization: 'Bearer ' + accessToken }
+    })
+    return {
+        props: {
+            user: response.data.data
+        }
+    }
+}
+
 
 
