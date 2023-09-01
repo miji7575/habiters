@@ -5,7 +5,9 @@ import { createGlobalStyle } from 'styled-components';
 
 
 const GlobalStyle = createGlobalStyle`
-
+html{
+  /* font-family: 'Pretendard-Regular';  */
+}
 :root{
     /* header */
 --header-height: 90px;
@@ -100,6 +102,31 @@ const GlobalStyle = createGlobalStyle`
   font-style: normal; 
   font-display : swap;
 } */
+
+
+@font-face { 
+  font-family: 'Pretendard-Bold'; 
+  font-weight: 700; 
+  font-display : swap;
+  font-style: normal; 
+  src:url('/font/Pretendard-Bold.subset.woff2'), url('/font/Pretendard-Bold.woff2') format('woff2');
+}
+
+@font-face { 
+  font-family: 'Pretendard-Medium'; 
+  font-weight: 500; 
+  font-display : swap;
+  font-style: normal; 
+  src: url('/font/Pretendard-Medium.subset.woff2'),url('/font/Pretendard-Medium.woff2') format('woff2');
+}
+
+@font-face { 
+  font-family: 'Pretendard-Regular';
+  font-weight: 400;
+  font-style: normal; 
+  font-display : swap;
+  src:  url('/font/Pretendard-Regular.subset.woff2'), url('/font/Pretendard-Regular.woff2') format('woff2');
+}
    `
 
 
