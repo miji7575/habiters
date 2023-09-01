@@ -36,6 +36,11 @@ const PopupTitle = styled.div`
     gap: 8px;
     margin-bottom: 24px;
     color: var(--color-black1);
+
+    /* .headline5{ */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 20px;
+  line-height: 28px;
     
     `
 
@@ -49,6 +54,11 @@ const PopupContent = styled.div`
 const PopupBtn = styled.div`
     display: flex;
     justify-content: center;
+
+    /* .body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
     `
 
 
@@ -73,7 +83,7 @@ export default function Popup1BtnInput(props) {
     // popUpTitle = 제목
     // popUpClose = 팝업창 닫기
     // onBtnClick = 버튼 클릭 시 실행할 함수
- 
+
 
     // -- InputComponent
     // inputName = input의 name 
@@ -94,8 +104,8 @@ export default function Popup1BtnInput(props) {
                 <PopupContainer>
 
                     <PopupTitle>
-                        <span className="headline5">{props.popUpTitle}</span>
-                        <CloseIcon 
+                        <span>{props.popUpTitle}</span>
+                        <CloseIcon
                             onClick={props.popUpClose} />
                     </PopupTitle>
 
@@ -120,7 +130,7 @@ export default function Popup1BtnInput(props) {
 
 
                     <PopupBtn>
-                        <div className="btn btn-large btn-primary-default body2-medium"
+                        <div className="btn btn-large btn-primary-default"
                             onClick={props.onBtnClick}>{props.popUpBtnText}</div>
                     </PopupBtn>
 

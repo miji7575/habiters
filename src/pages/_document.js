@@ -45,7 +45,7 @@ export default function Document() {
         <meta name="theme-color" content="#ffffff" /> */}
         <link rel="icon" href="/favicon.ico" />
 
-
+        {/* <link rel="preload" href="/font/Pretendard-Bold.woff2" as="font" type="font/woff2" crossorigin /> */}
 
       </Head>
       <body>

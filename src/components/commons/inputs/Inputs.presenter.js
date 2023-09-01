@@ -29,7 +29,6 @@ const InputUI = forwardRef(function InputUI(props, forwardedRef) {
                     <Input
                         ref={forwardedRef}
                         type="text"
-                        className={'body3-medium color-black2'}
 
                         isError={props.isError}
                         onChange={props.onChange}
@@ -53,7 +52,7 @@ const InputUI = forwardRef(function InputUI(props, forwardedRef) {
                         <ErrorIcon
                             onClick={props.onFocus} />}
                 </InputBox>
-                {props.isError && <InputMessage id="name" className={'caption1-regular'}>{props.errorMessage}</InputMessage>}
+                {props.isError && <InputMessage id="name" >{props.errorMessage}</InputMessage>}
             </InputWrap>
 
 

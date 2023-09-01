@@ -21,6 +21,13 @@ export const Input = styled.input`
     border: ${(props) => props.isError === true ? `solid 1px var(--color-error)` : `solid 1px var(--color-black7)`};
     border-radius: 8px;
     color: ${(props) => props.isError === true ? `var(--color-error)` : `var(--color-black2);`}; 
+
+    /* body3-medium */
+    font-family: 'Pretendard-Medium'; 
+    font-size: 14px;
+    line-height: 20px;
+
+
     &:focus{
         outline: none;
     }
@@ -37,6 +44,11 @@ export const Input = styled.input`
 export const InputMessage = styled.div`
     padding-top: 4px;
     color: var(--color-error);
+        /* caption1-regular */
+    font-family: 'Pretendard-Regular'; 
+    font-size: 12px;
+    line-height: 16px;
+
 `
 export const CloseIcon = styled.span`
     display: inline-block;

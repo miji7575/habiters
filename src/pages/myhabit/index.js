@@ -163,8 +163,8 @@ export default function HabitTracker(props) {
 export const getServerSideProps = async (context) => {
 
 
-    console.log("====여기는 서버입니다=====")
-    const accessToken = context.req.cookies.toooo
+    // console.log("====여기는 서버입니다=====")
+    const accessToken = context.req.cookies.accessToken
     const response = await axios.get('https://api.habiters.store/users/me', {
         headers: { Authorization: 'Bearer ' + accessToken }
     })

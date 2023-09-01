@@ -16,7 +16,12 @@ export const HabitListTitle = styled.span`
         line-height: 60px;  
         box-sizing: border-box;
         text-align: center;
-        color : var(--color-black1)
+        color : var(--color-black1);
+
+        /* .body1-bold */
+        font-family: 'Pretendard-Bold'; 
+        font-size: 18px;
+
     `
 
 

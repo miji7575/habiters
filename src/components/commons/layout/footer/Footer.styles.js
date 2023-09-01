@@ -33,6 +33,12 @@ export const FooterDetailBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 12px;
+        /* body3-regular */
+    font-family: 'Pretendard-Regular'; 
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-black3);
+
     & a{
         text-decoration: none;
         cursor: pointer;

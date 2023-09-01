@@ -18,10 +18,21 @@ padding-bottom: 200px;
 
 const Title = styled.div`
 padding: 72px 0 32px 0;
+
+    /* headline1 */
+font-family: 'Pretendard-Bold'; 
+font-size: 40px;
+line-height: 52px;
+color: var(--color-black1);
 `
 
 const SubTitle = styled.div`
 padding-bottom: 48px;
+    /* headline4 */
+font-family: 'Pretendard-Bold'; 
+font-size: 24px;
+line-height: 32px;
+color: var(--color-black2);
 `
 const DeleteAccountNoticeWrap = styled.div`
 width: 580px;
@@ -31,12 +42,27 @@ background-color: var(--color-black9);
 border-radius: 16px;
 padding: 24px 24px;
 `
+const DeleteAccountNoticeTitle = styled.div`
+ /* body1-bold */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--color-black2);
+
+`
+
 
 const DeleteAccountNotice = styled.div`
 display: flex;
 flex-direction: column;
 padding-top: 16px;
 gap: 8px;
+
+/* body2-regular */
+font-family: 'Pretendard-Regular'; 
+font-size: 16px;
+line-height: 24px;
+color: var(--color-black2);
 `
 const Notice = styled.div`
 display: flex;
@@ -60,6 +86,43 @@ const DeleteAccountTextarea = styled(Textarea)`
    margin: 24px 0 56px 0;
    width: 580px;
    height: 172px;
+
+`
+
+
+const DeleteAccountBtn = styled.div`
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--color-purple2);
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+
+
+    width: 380px;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 12px 16px 12px 16px;
+
+    background-color: var(--color-purple2);
+    color: var(--color-white);
+    border: 1px solid var(--color-purple2);
+
+    :hover{
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.08);
+    }
+
+
+
+
+/* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
+
 
 `
 
@@ -127,11 +190,11 @@ export default function DeleteAccount() {
 
                 <Main>
 
-                    <Title className={'headline1 color-black1'}>HABITERS 탈퇴 안내</Title>
-                    <SubTitle className={'headline4 color-black2'}>그 동안 HABITERS와 함께한 시간들, 유익하셨나요?</SubTitle>
+                    <Title>HABITERS 탈퇴 안내</Title>
+                    <SubTitle>그 동안 HABITERS와 함께한 시간들, 유익하셨나요?</SubTitle>
                     <DeleteAccountNoticeWrap>
-                        <div className={'body1-bold color-black2'}>‘HABITERS'를 탈퇴하기 전에 확인해주세요. </div>
-                        <DeleteAccountNotice className={'body2-regular color-black2'}>
+                        <DeleteAccountNoticeTitle>‘HABITERS'를 탈퇴하기 전에 확인해주세요. </DeleteAccountNoticeTitle>
+                        <DeleteAccountNotice>
                             <Notice>탈퇴가 완료되면 개인정보 및 모든 기록은 즉시 파기되며 복구가 불가해요. </Notice>
                             <Notice>기록을 남기고 싶으시면 탈퇴 전 엑셀 파일을 다운받아 주세요.</Notice>
                             <div>
@@ -149,8 +212,7 @@ export default function DeleteAccount() {
                         name="deleteUser"
                         textareaErrorMessage={textareaErrorMessage} />
 
-                    <div className={'btn btn-large btn-primary-default body2-medium'} onClick={deleteAccountPopUpOn}>탈퇴하기</div>
-
+                    <DeleteAccountBtn onClick={deleteAccountPopUpOn}>탈퇴하기</DeleteAccountBtn>
 
                     {isDeleteAccountPopUpOn && <Popup2BtnTextonly
                         popUpTitle={popUpTitle}

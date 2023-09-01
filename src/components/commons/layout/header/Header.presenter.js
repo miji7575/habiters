@@ -16,7 +16,7 @@ export default function HeaderUI(props) {
                             <MainLogo src="/image/logo-habiters.svg" alt="Logo"
                                 onClick={props.OnClickMoveMyhabit} />
                         </LogoBox>
-                        <HeaderMenuBox className='body1-medium'>
+                        <HeaderMenuBox>
                             {/* 마이해빗 */}
                             <HeaderMenu
                                 onClick={props.OnClickMoveMyhabit}
@@ -30,7 +30,7 @@ export default function HeaderUI(props) {
                                 clickedMenu={props.clickedMenu}
                             />
                         </HeaderMenuBox>
-                        <HeaderMypageBox className='body1-medium'>
+                        <HeaderMypageBox>
                             {/* 마이페이지 */}
 
                             <HeaderMenu

@@ -24,12 +24,12 @@ export default function MonthlyHabitTrackerUI(props) {
                    
                     <BtnContainer>
 
-                        <MoveTodayBtn className="body3-medium btn btn-medium btn-secondary-default btn-width-fit-content "
+                        <MoveTodayBtn className="btn btn-medium btn-secondary-default btn-width-fit-content "
                             onClick={props.resetCalender}>
                             <span>오늘</span>
                         </MoveTodayBtn> 
 
-                        <AddHabitBtn className="body3-medium btn btn-medium btn-primary-default btn-width-fit-content "
+                        <AddHabitBtn className="btn btn-medium btn-primary-default btn-width-fit-content "
                             onClick={props.addNewHabitPopupOn}>
                             <span className="icon-s icon-add-colored btn-inner-icon-white"></span>
                             <span>새로운 습관 만들기</span>

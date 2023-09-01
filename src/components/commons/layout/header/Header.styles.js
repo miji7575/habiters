@@ -20,6 +20,11 @@ export const HeaderContent = styled.div`
     & > div{
         height: inherit;
     }   
+
+        /* body1-medium */
+    font-family: 'Pretendard-Medium'; 
+    font-size: 18px;
+    line-height: 26px;
 `
 
 export const LogoBox = styled.div`

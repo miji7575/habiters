@@ -57,8 +57,17 @@ export const DayDateBox = styled.span`
 `
 
 export const CalenderDay = styled.span`
+
+/* .caption1-medium{ */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 12px;
+  line-height: 16px;
 `
 export const CalenderDate = styled.span`
+/* .body1-bold{ */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 18px;
+  line-height: 26px;
 `
 
 

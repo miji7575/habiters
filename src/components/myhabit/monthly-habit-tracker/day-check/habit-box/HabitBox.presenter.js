@@ -15,9 +15,8 @@ export default function HabitBoxUI(props) {
             colorArray={props.colorArray}
             index={props.index}
             >
-                <HabitTitle className="body2-bold">{props.name}</HabitTitle>
+                <HabitTitle>{props.name}</HabitTitle>
                 <HabitCheckBtn 
-                className="body3-medium"
                 btnColorArray={props.btnColorArray}
                 index={props.index}
                 

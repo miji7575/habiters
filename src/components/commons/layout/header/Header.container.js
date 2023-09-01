@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import instance from '../../../../commons/shared/Request';
 
 
-export default function Header() {
+export default function Header(props) {
 
 
 
@@ -43,7 +43,8 @@ export default function Header() {
 
     useEffect(() => {
 
-        getUserData()
+        // getUserData()
+        // setUser(props.user)
 
     }, [])
 

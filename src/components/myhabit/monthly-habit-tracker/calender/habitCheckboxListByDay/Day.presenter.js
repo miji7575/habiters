@@ -19,8 +19,8 @@ export default function CalenderDayUI(props) {
                 isSelected={props.isSelected}>
                 <DayDateBox
                     onClick={props.onClickDayHandler}>
-                    <CalenderDay className="caption1-medium">{props.day}</CalenderDay>
-                    <CalenderDate className="body1-bold">{props.date}</CalenderDate>
+                    <CalenderDay>{props.day}</CalenderDay>
+                    <CalenderDate>{props.date}</CalenderDate>
                 </DayDateBox>
 
 

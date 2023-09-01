@@ -34,6 +34,11 @@ const PopupTitle = styled.div`
     gap: 8px;
     margin-bottom: 24px;
     color: var(--color-black1);
+
+    /* headline5 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 20px;
+  line-height: 28px;
     `
 
 const PopupContent = styled.div`
@@ -42,6 +47,11 @@ const PopupContent = styled.div`
     gap: 12px;
     margin-bottom: 32px;
     color: var(--color-black2);
+
+    /* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
     `
 
 const PopupBtnContainer = styled.div`
@@ -49,6 +59,11 @@ const PopupBtnContainer = styled.div`
     justify-content: center;
     flex-direction: row;
     gap: 8px;
+
+    /* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
     `
 
 const CloseIcon = styled.span`
@@ -85,23 +100,23 @@ export default function Popup2BtnTextonly(props) {
                 <PopupContainer>
 
                     <PopupTitle>
-                        <span className="headline5">{props.popUpTitle}</span>
-                        <CloseIcon 
+                        <span>{props.popUpTitle}</span>
+                        <CloseIcon
                             onClick={props.popUpClose} />
                     </PopupTitle>
 
                     {props.popUpSubTitle && <PopupContent>
                         <div>
-                            <div className="body2-medium">
+                            <div>
                                 {props.popUpSubTitle}
                             </div>
                         </div>
                     </PopupContent>}
 
                     <PopupBtnContainer>
-                        <div className="btn btn-large btn-secondary-default body2-medium"
+                        <div className="btn btn-large btn-secondary-default "
                             onClick={props.onFirstBtnClick}>{props.popUpFisrtBtnText}</div>
-                        <div className="btn btn-large btn-primary-default body2-medium"
+                        <div className="btn btn-large btn-primary-default "
                             onClick={props.onSecondBtnClick}>{props.popUpSecondBtnText}</div>
                     </PopupBtnContainer>
 

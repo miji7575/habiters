@@ -39,6 +39,10 @@ export const HabitCheckBtn = styled.div`
     background-color: ${ (props) => props.isHabitChecked === true ? 'var(--color-white)' : props.btnColorArray[(props.index%3)]} ;
     border: ${ (props) => props.isHabitChecked === true ?  `1px solid ${props.btnColorArray[(props.index%3)]}` : 'none'} ;
     color: ${ (props) => props.isHabitChecked === true ? props.btnColorArray[(props.index%3)] : 'var(--color-white)'} ;
+
+    /* .body3-medium{ */
+    font-family: 'Pretendard-Medium'; 
+    font-size: 14px;
     
 `
 
@@ -56,4 +60,10 @@ export const HabitCheckBtnGreen = styled(HabitCheckBtn)`
 export const HabitTitle = styled.div`
 padding-bottom: 16px;
 color : var(--color-black2);
+
+
+/* .body2-bold{ */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 16px;
+  line-height: 24px;
 `

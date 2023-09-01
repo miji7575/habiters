@@ -13,7 +13,7 @@ export default function YearDateBoxUI(props) {
             <DateBox>
                 <ArrowLeft
                     onClick={props.monthDown} />
-                <Date className="headline4"><span>{props.visibleDate.year}</span>.<span>{props.visibleDate.month}</span></Date>
+                <Date><span>{props.visibleDate.year}</span>.<span>{props.visibleDate.month}</span></Date>
                 <ArrowRight
                     onClick={props.monthUp} />
 

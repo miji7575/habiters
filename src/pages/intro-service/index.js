@@ -26,6 +26,12 @@ display: flex;
 flex-direction: column;
 gap: 32px;
 text-align: center;
+
+/* headline2 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 32px;
+  line-height: 42px;
+  color: var(--color-black1);
 `
 
 const IntroServicePage1Title = styled.div`
@@ -67,6 +73,11 @@ const Page2IntroServiceDetail1 = styled.div`
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
+
+    /* headline1 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 40px;
+  line-height: 52px;
 `
 
 const Page2IntroServiceDetail2 = styled.div`
@@ -118,6 +129,11 @@ font-size: 24px;
 font-weight: 700;
 line-height: 36px;
 letter-spacing: 0em;
+color:var(--color-black2);
+`
+
+const IntroServicePage3DetainFontBlack1 = styled(IntroServicePage3DetainFont)`
+color:var(--color-black1);
 `
 
 const LogoBox = styled.div`
@@ -140,6 +156,11 @@ const IntroServicePage3Image = styled.img`
 
 const IntroServicePage3Detail2 = styled.div`
     text-align: center;
+    /* headline1 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 40px;
+  line-height: 52px;
+  color: var(--color-black1);
 `
 
 const IntroServicePage3BannerBox = styled.div`
@@ -165,6 +186,10 @@ const IntroServicePage3BannerContent = styled.div`
     color: var(--color-black1);
     box-sizing: border-box;
     grid-template-areas: 0 ;
+    /* body1-bold */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 18px;
+  line-height: 26px;
 `
 const IntroServicePage3BannerImageBox = styled.div`
 position: relative;
@@ -227,8 +252,8 @@ export default function IntroServicePage() {
                 <Main>
                     <IntroServicePage1>
                         <IntroBox>
-                            <div className="headline2 color-black1">모두가 건강하고 유익한 생활을 할 수 있도록.</div>
-                            <IntroServicePage1Title className={'color-black1'}>HABIT? HAVE-IT!</IntroServicePage1Title>
+                            <div>모두가 건강하고 유익한 생활을 할 수 있도록.</div>
+                            <IntroServicePage1Title >HABIT? HAVE-IT!</IntroServicePage1Title>
                         </IntroBox>
                         <div>
                             <img src="/image/img-Intro-service1.svg" alt="서비스소개 이미지1" />
@@ -236,7 +261,7 @@ export default function IntroServicePage() {
                     </IntroServicePage1>
                     <IntroServicePage2>
                         <IntroServiceDetailBox>
-                            <Page2IntroServiceDetail1 className={'headline1'}>
+                            <Page2IntroServiceDetail1>
                                 HABITERS는 <br />
                                 해빗트래커 기반 <br />
                                 습관 성형 커뮤니티입니다.
@@ -261,7 +286,7 @@ export default function IntroServicePage() {
 
                     <IntroServicePage3>
                         <IntroServicePage3IntroBox>
-                            <IntroServicePage3DetainFont className={'color-black2'}>
+                            <IntroServicePage3DetainFont>
                                 그래서 TEAM CLOVER🍀는 <br />
                                 모두가 알차고 행복한 삶을 영위할 수 있게 하기 위해서 <br />
                                 해당 서비스를 만들었습니다.
@@ -269,16 +294,16 @@ export default function IntroServicePage() {
                             <LogoBox>
                                 <IntroServicePage3Logo src="/image/logo-habiters.svg" alt="로고" />
                             </LogoBox>
-                            <IntroServicePage3DetainFont className={'color-black1'}>
+                            <IntroServicePage3DetainFontBlack1>
                                 갓생을 사는 사람들과 모두가 함께 건강해질 수 있는 공간을요.
-                            </IntroServicePage3DetainFont>
+                            </IntroServicePage3DetainFontBlack1>
                         </IntroServicePage3IntroBox>
 
                         <IntroServicePage3Image2Box>
                             <IntroServicePage3Image src="/image/img-Intro-service2.svg" alt="서비스소개 이미지2" />
                         </IntroServicePage3Image2Box>
 
-                        <IntroServicePage3Detail2 className={'headline1 color-black1'}>
+                        <IntroServicePage3Detail2>
                             더 나은 내가 되기 위한 여정,<br />
                             TEAM CLOVER🍀와 해비티가 함께 할게요!
                         </IntroServicePage3Detail2>
@@ -286,7 +311,7 @@ export default function IntroServicePage() {
                         <IntroServicePage3BannerBox>
                             {/* <IntroServicePage3BannerBackground src="/image/img-Intro-service-banner.svg" alt="서비스소개 배너" /> */}
 
-                            <IntroServicePage3BannerContent className={'body1-bold'}>
+                            <IntroServicePage3BannerContent>
                                 피드백은 언제든지 환영이예요! 🤗<br />
                                 🍀 TEAM CLOVER<br />
                                 : weareteamclovers@gmail.com<br />

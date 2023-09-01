@@ -24,7 +24,7 @@ export default function TextareaUI(props) {
                 margin={props.margin}
                 isError={props.isError}
             >
-                <TextareaDefault id="" cols="30" rows="10" className="body3-regular"
+                <TextareaDefault id="" cols="30" rows="10" 
                     height={props.height}
                     placeholder={props.placeholder}
 
@@ -37,7 +37,7 @@ export default function TextareaUI(props) {
                 >
 
                 </TextareaDefault>
-                <TextareaExplain className="caption2-regular ">
+                <TextareaExplain >
                     <span>{props.textareaErrorMessage}</span>
                     <span><span>{props.textLength}</span>/200</span>
                 </TextareaExplain>
@@ -51,7 +51,7 @@ export default function TextareaUI(props) {
                 width={props.width}
                 margin={props.margin}
             >
-                <TextareaDefault id="" cols="30" rows="10" className="body3-regular"
+                <TextareaDefault id="" cols="30" rows="10" 
                     height={props.height}
                     placeholder={props.placeholder}
 
@@ -67,7 +67,7 @@ export default function TextareaUI(props) {
                 >
 
                 </TextareaDefault>
-                <TextareaExplain className="caption2-regular ">
+                <TextareaExplain >
                     <span>{props.textareaErrorMessage}</span>
                     <span><span>{props.textLength}</span>/200</span>
                 </TextareaExplain>

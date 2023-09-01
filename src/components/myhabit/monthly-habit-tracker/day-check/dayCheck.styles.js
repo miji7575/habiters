@@ -26,6 +26,12 @@ export const TodayHabitCheckTitle = styled.div`
     position: absolute;
     top: 0;
     color: var(--color-black1);
+
+    /* .headline5 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 20px;
+  line-height: 28px;
+
 `
 
 export const TodayHabitCheckFilterTop = styled.div`
@@ -112,5 +118,8 @@ export const NoHabitContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    /* .body3-regular{ */
+  font-family: 'Pretendard-Regular'; 
+  font-size: 14px;
+  line-height: 20px;
 `

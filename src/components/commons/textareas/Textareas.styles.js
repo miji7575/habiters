@@ -37,6 +37,11 @@ export const TextareaDefault = styled.textarea`
     /* color : ${(props) => props.isError === true ? `var(--color-error)` : `var(--color-black2)`}; */
     background-color:${(props) => props.diaryState === true ? `var(--color-black8)` : 'none'};
 
+    /* body3-regular */
+  font-family: 'Pretendard-Regular'; 
+  font-size: 14px;
+  line-height: 20px;
+
     &:focus{
         outline: none;
     }
@@ -87,4 +92,9 @@ export const TextareaExplain = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 4px;
+
+    /* caption2-regular */
+  font-family: 'Pretendard-Regular'; 
+  font-size: 10px;
+  line-height: 12px;
 `

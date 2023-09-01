@@ -12,6 +12,11 @@ const Body = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+     /* body2-medium */
+    font-family: 'Pretendard-Medium'; 
+    font-size: 16px;
+    line-height: 24px;
+    color:var(--color-black1);
     `
 
 const LoginHeaderBox = styled.div`
@@ -21,6 +26,10 @@ const LoginHeaderBox = styled.div`
     gap: 24px;
     margin-top: 200px;
     margin-bottom: 56px;
+            /* headline4 */
+    font-family: 'Pretendard-Bold'; 
+    font-size: 24px;
+    line-height: 32px;
     `
 
 const Logo = styled.img`
@@ -34,6 +43,59 @@ const LoginButtonBox = styled.div`
     gap: 16px;
     margin-bottom: 64px;
     `
+
+const LoginBtn = styled.div`
+width: 600px;
+height: 60px;
+box-sizing: border-box;
+border-radius: 8px;
+display: flex;
+justify-content: center;
+cursor: pointer;
+>span{
+    display: inline-flex;
+    align-items: center;
+}
+>span::before{
+    content: '';
+    display: inline-flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    padding-right: 8px;
+}
+
+`
+const GoogleLoginBtn = styled(LoginBtn)`
+border: 1px solid var(--color-black1);
+color: var(--color-black1);
+>span::before{
+    background: url(/image/icon/icon-logo-google.svg) no-repeat;
+}
+`
+
+const KaKaoLoginBtn = styled(LoginBtn)`
+background-color: #FAE64C;
+color: var(--color-black1);
+>span::before{
+    background: url(/image/icon/icon-logo-kakao.svg) no-repeat;
+}
+
+`
+
+const NaverLoginBtn = styled(LoginBtn)`
+background-color: #00C300;
+color: var(--color-white);
+>span::before{
+    background: url(/image/icon/icon-logo-naver.svg) no-repeat;
+}
+
+`
+
+const MoveLinkWrap = styled.div`
+color: var(--color-black4);
+`
+
 
 const MoveLink = styled.span`
         text-decoration: underline;
@@ -116,7 +178,7 @@ export default function SignupPage() {
     const googleLogin = async () => {
         router.push(GOOGLE_LOGIN)
     }
-    
+
     const kakaoLogin = async () => {
         router.push(KAKAO_LOGIN)
     }
@@ -136,34 +198,34 @@ export default function SignupPage() {
                     <div>
                         <Logo src="/image/logo-habiters.svg" alt="Logo" />
                     </div>
-                    <div className="headline4 color-black1">
+                    <div>
                         해비터즈와 함께 지금 바로 습관 형성을 시작하세요!
                     </div>
                 </LoginHeaderBox>
 
                 <LoginButtonBox>
 
-                    <div className={'btn-sns-login btn-sns-login-google'}
+                    <GoogleLoginBtn
                         onClick={googleLogin}>
-                        <span className={'body2-medium'}>구글로 시작하기</span>
-                    </div>
+                        <span>구글로 시작하기</span>
+                    </GoogleLoginBtn>
 
-                    <div className={'btn-sns-login btn-sns-login-kakao'}
+                    <KaKaoLoginBtn 
                         onClick={kakaoLogin}>
-                        <span className={'body2-medium'}>카카오로 시작하기</span>
-                    </div>
+                        <span>카카오로 시작하기</span>
+                    </KaKaoLoginBtn>
 
-                    <div className={'btn-sns-login btn-sns-login-naver'}
+                    <NaverLoginBtn 
                         onClick={naverLogin}>
-                        <span className={'body2-medium'}>네이버로 시작하기</span>
-                    </div>
+                        <span>네이버로 시작하기</span>
+                    </NaverLoginBtn>
 
 
                 </LoginButtonBox>
 
-                <div className={'body2-medium color-black4'}>
-                이미 회원이신가요? <MoveLink onClick={onClickMoveLogin}>로그인하기</MoveLink>
-                </div>
+                <MoveLinkWrap>
+                    이미 회원이신가요? <MoveLink onClick={onClickMoveLogin}>로그인하기</MoveLink>
+                </MoveLinkWrap>
 
             </Body>
 

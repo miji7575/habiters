@@ -24,6 +24,11 @@ const PopupContainer = styled.div`
  position: absolute;
  top: calc(50vh - (180px / 2));
  left: calc(50vw - (428px / 2));
+
+ /* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
 `
 
 
@@ -34,6 +39,11 @@ const PopupTitle = styled.div`
  gap: 8px;
  margin-bottom: 24px;
  color: var(--color-black1);
+
+ /* .headline5 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 20px;
+  line-height: 28px;
 `
 
 
@@ -75,7 +85,7 @@ export default function Popup1BtnTextonly(props) {
                 <PopupContainer>
 
                     <PopupTitle>
-                        <span className="headline5">{props.popUpTitle}</span>
+                        <span >{props.popUpTitle}</span>
                         <CloseIcon 
                             onClick={props.HabitAlertPopupClose} />
 
@@ -83,14 +93,14 @@ export default function Popup1BtnTextonly(props) {
 
                   { props.popUpSubTitle && <PopupContent>
                         
-                        <div className="body2-medium">
+                        <div >
                         
                         
                         </div>
                     </PopupContent>}
 
                     <PopupBtnContainer>
-                        <div className="btn btn-large btn-primary-default body2-medium"
+                        <div className="btn btn-large btn-primary-default "
                             onClick={props.HabitAlertPopupClose}
                         >확인</div>
                     </PopupBtnContainer>

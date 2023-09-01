@@ -12,7 +12,7 @@ export default function MyHabitToggleUI(props) {
         <div>
 
             <ToggleContainer>
-                <ToggleBox className="headline5 ">
+                <ToggleBox>
 
                     {/* <input type="radio" id="트래커" name="tabs" checked={props.monthlyHabitTrackerChecked} hidden />
                     <label HTMLfor="트래커"

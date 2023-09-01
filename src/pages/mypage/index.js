@@ -24,11 +24,20 @@ const Main = styled.div`
 const Title = styled.div`
   padding: 72px 0 58px 0 ;
   color: var(--color-black1);
+  /* headline1 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 40px;
+  line-height: 52px;
  `
 
 
 const Label = styled.div`
 color: var(--color-black1);
+/* body1-bold */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 18px;
+  line-height: 26px;
+
 `
 const MyImgWrap = styled.div`
  position: relative;
@@ -68,7 +77,52 @@ const NickNameInputBox = styled.div`
  width: 380px;
  `
 
-const NickNameUpdateBtn = styled.div`
+
+const BtnWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    `
+const BtnLarge = styled.div`
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--color-purple2);
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+
+    width: 380px;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 12px 16px 12px 16px;
+
+    /* body2-medium */
+    font-family: 'Pretendard-Medium'; 
+    font-size: 16px;
+    line-height: 24px;
+
+    :hover {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+`
+
+const BtnLargePrimary = styled(BtnLarge)`
+    background-color: var(--color-purple2);
+    color: var(--color-white);
+    border: 1px solid var(--color-purple2);
+`
+
+const BtnLargeSecondary = styled(BtnLarge)`
+    background-color: var(--color-white);
+    color: var(--color-purple2);
+    border: 1px solid var(--color-purple2);
+`
+
+const NickNameUpdateBtn = styled(BtnLargePrimary)`
      margin-left: 8px;
      width: 80px;
  
@@ -376,11 +430,11 @@ export default function MyPage() {
 
 
 
-    const logout = async() => {
+    const logout = async () => {
 
-    //     await KakaoLogout()
-         window.sessionStorage.clear();
-    //     await router.push("/");
+        //     await KakaoLogout()
+        window.sessionStorage.clear();
+        //     await router.push("/");
 
     }
 
@@ -431,7 +485,7 @@ export default function MyPage() {
                 <Main
                 >
 
-                    <Title className={'headline1'}>
+                    <Title>
                         마이페이지
                     </Title>
 
@@ -451,7 +505,7 @@ export default function MyPage() {
 
                     <MypageInputWrap>
                         <MypageInputBox>
-                            <Label className={'body1-bold'}>
+                            <Label>
                                 이메일
                             </Label>
 
@@ -480,7 +534,7 @@ export default function MyPage() {
                         </MypageInputBox>
 
                         <MypageInputBox>
-                            <Label className={'body1-bold'}>
+                            <Label>
                                 닉네임
                             </Label>
 
@@ -499,8 +553,7 @@ export default function MyPage() {
                                     ></Input>
 
                                 </div>
-                                <NickNameUpdateBtn className="body2-medium btn btn-large btn-primary-default btn-width-fit-content"
-                                    onClick={updateUser}>
+                                <NickNameUpdateBtn onClick={updateUser}>
                                     <span>수정</span>
                                 </NickNameUpdateBtn>
                             </NickNameInputBox>
@@ -512,20 +565,18 @@ export default function MyPage() {
 
 
 
-                    <div className="btn-arrange-vertical">
+                    <BtnWrap>
                         <div>
-                            <div className="btn btn-large btn-primary-default body2-medium"
-                                onClick={logout}>
+                            <BtnLargePrimary onClick={logout}>
                                 {/* 로그아웃 */}
                                 <LogoutLink href='https://kauth.kakao.com/oauth/logout?client_id=58a5cd8f1a8ca897c3509e973e68767f&logout_redirect_uri=https://habiters.vercel.app'>로그아웃</LogoutLink>
-                            </div>
+                            </BtnLargePrimary >
 
                         </div>
                         <div>
-                            <div className="btn btn-large btn-secondary-default body2-medium"
-                                onClick={onClickMoveDeleteAccount}>탈퇴하기</div>
+                            <BtnLargeSecondary onClick={onClickMoveDeleteAccount}>탈퇴하기</BtnLargeSecondary>
                         </div>
-                    </div>
+                    </BtnWrap>
 
                 </Main>
 

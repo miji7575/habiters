@@ -32,6 +32,7 @@ const IntroFirstPageTitleWrap = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
+    color: var(--color-black1);
     `
 
 const IntroFirstPageTitle = styled.div`
@@ -52,9 +53,58 @@ const IntroFirstPageSubTitle = styled.div`
     text-align: center;
     `
 
+
+const BtnWrap = styled.div`
+
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    `
+
 const ButtonLarge = styled.div`
     width: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--color-purple2);
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+
+    height: 48px;
+    box-sizing: border-box;
+    padding: 12px 16px 12px 16px;
+
+
+
+
+    /* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
+
+
+  :hover {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+
     `
+
+
+const BtnPrimary = styled(ButtonLarge)`
+background-color: var(--color-purple2);
+color: var(--color-white);
+border: 1px solid var(--color-purple2);
+`
+
+const BtnSecondary = styled(ButtonLarge)`
+ background-color: var(--color-white);
+color: var(--color-purple2);
+border: 1px solid var(--color-purple2);
+`
 
 const NextIntroWrap = styled.div`
     display: flex;
@@ -62,6 +112,12 @@ const NextIntroWrap = styled.div`
     align-items: center;
     padding-top: 120px;
     gap: 20px;
+
+    /* body2-regular */
+  font-family: 'Pretendard-Regular'; 
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-purple2);
     `
 
 
@@ -189,13 +245,13 @@ export default function IntroPage() {
 
 
     // ===============안필요
-  
+
     // ============================================
 
 
     const onClickMoveLogin = () => {
 
-       
+
         router.push("/login")
     }
     const onClickMoveSignup = () => {
@@ -203,7 +259,7 @@ export default function IntroPage() {
     }
 
 
-   
+
     // console.log(url)
 
     // ========================================================================
@@ -378,7 +434,7 @@ export default function IntroPage() {
 
 
                 <IntroFirstPageWrap>
-                    <IntroFirstPageTitleWrap className={'color-black1'}>
+                    <IntroFirstPageTitleWrap>
                         <IntroFirstPageTitle>
                             HABIT?<br />
                             HAVE-IT!
@@ -390,12 +446,12 @@ export default function IntroPage() {
                         </IntroFirstPageSubTitle>
                     </IntroFirstPageTitleWrap>
 
-                    <div className={'btn-box btn-arrange-row'}>
-                        <ButtonLarge className={'btn btn-large btn-primary-default body2-medium'} onClick={onClickMoveLogin}>로그인하기</ButtonLarge>
-                        <ButtonLarge className={'btn btn-large btn-secondary-default body2-medium'} onClick={onClickMoveSignup}>회원가입하기</ButtonLarge>
-                    </div>
+                    <BtnWrap>
+                        <BtnPrimary onClick={onClickMoveLogin}>로그인하기</BtnPrimary>
+                        <BtnSecondary onClick={onClickMoveSignup}>회원가입하기</BtnSecondary>
+                    </BtnWrap>
 
-                    <NextIntroWrap className={'body2-regular color-purple2'}>
+                    <NextIntroWrap>
                         <div>스크롤을 내려서 해비터즈의 기능을 확인해보세요.</div>
                         <IconArrow
                             // className="icon-arrow"
@@ -447,10 +503,10 @@ export default function IntroPage() {
                         <IntroFirstPageTitle >HAVE IT NOW</IntroFirstPageTitle>
                         <IntroFirstPageSubTitle>지금 바로 해비터즈와 함께 습관 형성을 시작해보세요.</IntroFirstPageSubTitle>
                     </IntroFirstPageTitleWrap>
-                    <div className={'btn-box btn-arrange-row'}>
-                        <ButtonLarge className={'btn btn-large btn-primary-default body2-medium'} onClick={onClickMoveLogin}>로그인하기</ButtonLarge>
-                        <ButtonLarge className={'btn btn-large btn-secondary-default body2-medium'} onClick={onClickMoveSignup}>회원가입하기</ButtonLarge>
-                    </div>
+                    <BtnWrap>
+                        <BtnPrimary onClick={onClickMoveLogin}>로그인하기</BtnPrimary >
+                        <BtnSecondary onClick={onClickMoveSignup}>회원가입하기</BtnSecondary>
+                    </BtnWrap>
                 </IntroThirdPageWrap>
 
             </Main>

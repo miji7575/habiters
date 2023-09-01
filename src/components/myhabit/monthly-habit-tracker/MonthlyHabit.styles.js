@@ -36,9 +36,19 @@ export const AddHabitBtn = styled.div`
     width: 156px;
     right: 0;
     padding: 0; */
+    
+    /* .body3-medium{ */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 14px;
+  line-height: 20px;
 `
 
 export const MoveTodayBtn = styled.div`
+/* .body3-medium{ */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 14px;
+  line-height: 20px;
+
     /* position: absolute;
     width: 57px;
     right: 168px;

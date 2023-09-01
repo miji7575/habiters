@@ -62,7 +62,7 @@ export default function UpdateHabitPopup(props) {
 
     function updateRetrospectsPopupClose() {
         props.updateRetrospectsPopupClose();
-        setTextareaInput('');
+        setTextareaValue('');
     }
 
 

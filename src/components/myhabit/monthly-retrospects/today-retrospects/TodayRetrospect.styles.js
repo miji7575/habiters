@@ -19,6 +19,15 @@ export const TodayRetrospectContainer = styled.div`
     grid-row-end: 3;
 `
 
+export const TodayRetrospectTitle = styled.div`
+/* headline */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 20px;
+  line-height: 28px;
+
+  color: var(--color-black1);
+`
+
 export const TextareaBox = styled.div`
     width: 239px;
     display: flex;
@@ -50,6 +59,12 @@ export const BtnNonActive = styled.div`
  border:  1px solid var(--color-purple4);
  cursor: auto;
  transition: 0;
+
+ /* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
+
  &:hover{
     box-shadow: none;
  }
@@ -67,5 +82,10 @@ export const BtnActive = styled.div`
 
  background-color: var(--color-purple2);
  border:  1px solid var(--color-purple2);
+
+  /* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
 
 `

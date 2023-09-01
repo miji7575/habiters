@@ -16,7 +16,7 @@ export default function HabitListUI(props) {
 
         <>
             <HabitListBox>
-                <HabitListTitle className="body1-bold">내 습관 목록</HabitListTitle>
+                <HabitListTitle>내 습관 목록</HabitListTitle>
 
                 {Object.entries(props.habits).map(([key, value],index) =>
                     <Habits

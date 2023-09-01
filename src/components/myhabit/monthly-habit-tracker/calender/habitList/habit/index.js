@@ -2,18 +2,24 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 
 // ===============================================  Style  =============================================
-    const HabitTitleBox = styled.span`
+const HabitTitleBox = styled.span`
     height: 44px;
     box-sizing: border-box;
+
+    /* .body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-black2);
     `
-    const HabitTitle = styled.span`
+const HabitTitle = styled.span`
         display: inline-block;
         width: 176px;
         height: 44px;
         text-align: center;
         line-height: 44px;
     `
-    const HabitTitleManage = styled.div`
+const HabitTitleManage = styled.div`
     height: 44px;
     display: flex;
     align-items: center;
@@ -21,13 +27,13 @@ import { useState } from 'react'
     gap: 32px;
     background-color: var(--color-purple2);
     `
-    const HabitUpdateBtn = styled.span`
+const HabitUpdateBtn = styled.span`
     box-sizing: border-box;
     background-color: var(--color-white);
     background-repeat: no-repeat;
     cursor: pointer;
     `
-    const HabitDeleteBtn = styled.span`
+const HabitDeleteBtn = styled.span`
     box-sizing: border-box;
     background-color: var(--color-white);
     background-repeat: no-repeat;
@@ -55,13 +61,13 @@ export default function Habit(props) {
     }
 
 
-    function updateHabitPopupOn(){
+    function updateHabitPopupOn() {
         props.updateHabitPopupOn(props.habitId, props.name)
         setIsHabitTitleShow(true)
         setIsHabitTitleManageShow(false)
     }
 
-    function deleteHabitPopupOn(){
+    function deleteHabitPopupOn() {
         props.deleteHabitPopupOn(props.habitId)
         setIsHabitTitleShow(true)
         setIsHabitTitleManageShow(false)
@@ -70,14 +76,13 @@ export default function Habit(props) {
     return (
         <HabitTitleBox >
             {ishabitTitleShow &&
-                <HabitTitle className="body2-medium color-black2"
+                <HabitTitle
                     onMouseEnter={HabitTitleManageShow} >
                     {props.name}
                 </HabitTitle>}
 
             {ishabitTitleManageShow &&
                 <HabitTitleManage
-                    className="body2-medium color-black2"
                     onMouseLeave={HabitTitleShow}>
 
                     <HabitUpdateBtn className="icon-m icon-pencil-colored"
@@ -85,7 +90,7 @@ export default function Habit(props) {
                     <HabitDeleteBtn className="icon-m icon-delete-colored"
                         onClick={deleteHabitPopupOn}
                         habitId={props.habitId}
-                        ></HabitDeleteBtn>
+                    ></HabitDeleteBtn>
                 </HabitTitleManage>}
         </HabitTitleBox>
 

@@ -15,7 +15,7 @@ export default function DayCheckUI(props) {
 
             <TodayHabitCheckContainer>
 
-                <TodayHabitCheckTitle className="headline5">
+                <TodayHabitCheckTitle>
                     일별 확인
                 </TodayHabitCheckTitle>
 
@@ -40,7 +40,7 @@ export default function DayCheckUI(props) {
                     {props.isHabitNull &&
                         <NoHabitImgBox>
                             <NoHabitImg src="/image/img-no-content.svg" alt="일별확인없음" />
-                            <NoHabitContent className='body3-regular'>
+                            <NoHabitContent>
                                 <div>아직 확인할 습관이 없어요!</div>
                                 <div>습관을 만들어주세요.</div>
                                 

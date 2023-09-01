@@ -26,6 +26,11 @@ padding-top: 40px;
 
 const ButtonLarge = styled.div`
 width: 240px;
+
+/* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
 `
 
 export default function CommingSoonPage() {
@@ -49,7 +54,7 @@ export default function CommingSoonPage() {
                             onClick={onClickMove} />
 
                         <ButtonBox>
-                            <ButtonLarge onClick={onClickMove} className={'btn btn-large btn-primary-default body2-medium'}>메인으로 돌아가기</ButtonLarge>
+                            <ButtonLarge onClick={onClickMove} className={'btn btn-large btn-primary-default'}>메인으로 돌아가기</ButtonLarge>
                         </ButtonBox>
                     </CommingSoonContent>
 

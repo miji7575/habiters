@@ -6,7 +6,7 @@ import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
 
 
 // ============================== Style  ==============================
-    const PopupBackground = styled.div`
+const PopupBackground = styled.div`
      position: fixed;
     top: 0;
     left: 0;
@@ -16,7 +16,7 @@ import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
     background: rgba(0, 0, 0, 0.8);
     `
 
-    const PopupContainer = styled.div`
+const PopupContainer = styled.div`
     width: 428px;
     box-sizing: border-box;
     padding: 40px 24px 40px 24px;
@@ -32,34 +32,76 @@ import { RecoilRoot, useRecoilState, atom, useRecoilValue } from 'recoil';
     
     `
 
-    const PopupTitle = styled.div`
+const PopupTitle = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
     margin-bottom: 24px;
+    >span:first-of-type{
+        /* headline5 */
+    font-family: 'Pretendard-Bold'; 
+    font-size: 20px;
+    line-height: 28px;
+    }
     `
 
-    const PopupContent = styled.div`
+const PopupContent = styled.div`
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 32px;
+    /* body2-medium */
+  font-family: 'Pretendard-Medium'; 
+  font-size: 16px;
+  line-height: 24px;
     `
 
-    const PopupBtnContainer = styled.div`
+const PopupBtnContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: row;
     gap: 8px;
     `
 
+const BtnLarge = styled.div`
+
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 8px;
+border: 1px solid var(--color-purple2);
+text-align: center;
+transition: all .3s;
+cursor: pointer;
+
+width: 380px;
+height: 48px;
+box-sizing: border-box;
+padding: 12px 16px 12px 16px;
+
+/* body2-medium */
+font-family: 'Pretendard-Medium'; 
+font-size: 16px;
+line-height: 24px;
+
+:hover {
+box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+`
+
+const BtnLargePrimary = styled(BtnLarge)`
+background-color: var(--color-purple2);
+color: var(--color-white);
+border: 1px solid var(--color-purple2);
+`
 
 export default function UpdateDonePopup(props) {
 
 
 
-   
+
 
 
 
@@ -70,14 +112,14 @@ export default function UpdateDonePopup(props) {
         props.updateDonePopupClose();
     }
 
-    const [popUpTitle, setPopupTitle ] = useState('')
-    const [popUpMessage, setPopupMessage ] = useState('')
-    useEffect(()=>{
+    const [popUpTitle, setPopupTitle] = useState('')
+    const [popUpMessage, setPopupMessage] = useState('')
+    useEffect(() => {
         setPopupTitle(props.popUp.summary)
         setPopupMessage(props.popUp.content)
-       
-    },[props.popUp])
-   
+
+    }, [props.popUp])
+
 
 
 
@@ -92,7 +134,7 @@ export default function UpdateDonePopup(props) {
 
                     <PopupTitle>
                         {/* <span className="headline5">{props.popUp.messageTitle}</span> */}
-                        <span className="headline5">{popUpTitle}</span>
+                        <span>{popUpTitle}</span>
                         <span className="icon-l icon-close-line"
                             onClick={popupClose}></span>
                     </PopupTitle>
@@ -102,8 +144,8 @@ export default function UpdateDonePopup(props) {
                             {/* <div className="body2-medium">
                             {props.popUp.content}
                             </div> */}
-                            <div className="body2-medium">
-                            {popUpMessage}
+                            <div>
+                                {popUpMessage}
                             </div>
                         </div>
                     </PopupContent>
@@ -111,8 +153,7 @@ export default function UpdateDonePopup(props) {
                     <PopupBtnContainer>
                         {/* <div className="btn btn-large btn-secondary-default body2-medium"
                             onClick={popupClose}>예</div> */}
-                        <div className="btn btn-large btn-primary-default body2-medium"
-                            onClick={popupClose}>확인</div>
+                        <BtnLargePrimary onClick={popupClose}>확인</BtnLargePrimary>
                     </PopupBtnContainer>
 
 

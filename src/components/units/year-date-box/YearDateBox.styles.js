@@ -56,6 +56,10 @@ export const ArrowRight = styled.span`
 
 export const Date = styled.span`
     width:98px;
+    /* .headline4 */
+    font-family: 'Pretendard-Bold'; 
+    font-size: 24px;
+    line-height: 32px;
     `
 
 

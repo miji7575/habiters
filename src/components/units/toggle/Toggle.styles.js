@@ -23,6 +23,12 @@ export const ToggleBox = styled.div`
     color : var(--color-black4);
     position: relative;
 
+
+    /* headline5 */
+  font-family: 'Pretendard-Bold'; 
+  font-size: 20px;
+  line-height: 28px;
+
 `
 
 export const ToggleBtn = styled.div`
@@ -35,8 +41,8 @@ export const ToggleBtn = styled.div`
     line-height: calc(var(--tab-height) - 12px);
     
 
-    ${(props) => props.monthlyHabitTrackerChecked === true ?`color : var(--color-white);`: `none`};
-    ${(props) => props.monthlyRetrospectsChecked === true ?`color : var(--color-white);`: `none`};
+    ${(props) => props.monthlyHabitTrackerChecked === true ? `color : var(--color-white);` : `none`};
+    ${(props) => props.monthlyRetrospectsChecked === true ? `color : var(--color-white);` : `none`};
   
     
 `
@@ -78,8 +84,8 @@ export const Test = styled.div`
 
 
   
-    ${(props) => props.monthlyHabitTrackerChecked === true ? `left : 10px; `: ``}; 
-    ${(props) => props.monthlyRetrospectsChecked === true ? `right : 10px; `: ``};
+    ${(props) => props.monthlyHabitTrackerChecked === true ? `left : 10px; ` : ``}; 
+    ${(props) => props.monthlyRetrospectsChecked === true ? `right : 10px; ` : ``};
     
     /* transition: left .5s; */
     
